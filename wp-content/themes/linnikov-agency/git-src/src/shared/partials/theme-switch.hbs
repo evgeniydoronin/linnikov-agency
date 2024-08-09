@@ -1,0 +1,13 @@
+<form name="{{form-name}}" class="theme-switch {{class}}" data-component="theme-switch">
+	<label class="switch switch_theme">
+		<input type="checkbox" name="theme" checked>
+		<svg class="switch__thumb theme-switch__thumb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+			<defs>
+				<clipPath id="theme-switch-moon">
+					<path d="M0 0 H30 a 10 10 0 0 0 6 18 V 20 H 0 V 0z" class="switch__moon-clip"/>
+				</clipPath>
+			</defs>
+			<circle cx="10" cy="10" r="10" fill="var(--inc-switch-thumb-color)" clip-path="url(#theme-switch-moon)"/>
+		</svg>
+	</label>
+</form>

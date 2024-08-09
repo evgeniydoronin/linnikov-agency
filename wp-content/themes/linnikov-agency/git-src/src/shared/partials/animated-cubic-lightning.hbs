@@ -1,0 +1,15 @@
+<svg id="{{id}}" class="animated-cubic-lightning{{#if class}} {{class}}{{/if}}" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<g class="animated-cubic-lightning__body" clip-path="url(#{{id}}-clip)" transform="rotate(30 6.8 30) translate(-3)">
+		<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+		<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+		<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+		<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+	</g>
+	<defs>
+		<clipPath id="{{id}}-clip">
+			{{!-- <path d="M0 0 h3.4 v20 h3.4 v10 h-3.4 v-10 h-3.4 v-20z" class="animated-cubic-lightning__clip" fill="white" transform="rotate(30 6.8 30)"/> --}}
+			<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+			<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+		</clipPath>
+	</defs>
+</svg>

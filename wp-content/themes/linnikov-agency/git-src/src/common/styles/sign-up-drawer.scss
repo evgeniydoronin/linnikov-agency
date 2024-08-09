@@ -1,0 +1,42 @@
+.sign-up-drawer {
+	z-index: 1001;
+	color: var(--white, #FFF);
+	&__panel {
+		position: relative;
+		left: 0;
+		top: 0;
+		background: var(--black, #0B0B0B);
+	}
+	&__close-btn {
+		position: absolute;
+		top: 30px;
+		right: 30px;
+	}
+	&__inner {
+		display: grid;
+		gap: 70px;
+		max-width: 608px;
+		padding-top: 70px;
+		padding-bottom: 130px;
+		margin: auto;
+		@media (max-width: $mbpM) {
+			gap: 40px;
+		}
+		@media (max-width: $mbpM) {
+			gap: 40px;
+		}
+		& > h2 {
+			font-size: 60px;
+			font-weight: 500;
+			line-height: 120%;
+			letter-spacing: -0.048em;
+			@include aval(font-size, 30, 60, "both", 360, 768);
+		}
+		& > p {
+			font-size: 20px;
+			font-weight: 400;
+			line-height: 160%;
+			@include aval(font-size, 16, 20, "both", 360, 768);
+		}
+	}
+}

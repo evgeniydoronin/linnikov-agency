@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1" interactive-widget="resizes-visual">
+		<script defer="defer" src="libs/polyfills/ResizeObserver/ResizeObserver.global.js"></script>
+		<script defer="defer" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script defer="defer" src="libs/jqueryValidate/jquery.validate.min.js"></script>
+		<script defer="defer" src="libs/inputmask.min.js"></script>
+		<script defer="defer" src="libs/fancybox/jquery.fancybox.min.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+		<script defer="defer" src="https://player.vimeo.com/api/player.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/vanilla-drawers@1.1.21/dist/drawers.umd.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+		<script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+		<script defer="defer" src="libs/gsap-premium/SplitText.min.js"></script>
+		<script defer="defer" src="libs/gsap-premium/PhysicsPropsPlugin.min.js"></script>
+		<script defer="defer" src="libs/gsap-premium/MorphSVGPlugin.js"></script>
+		<script defer="defer" src="https://unpkg.com/mobx@6.12.3/dist/mobx.umd.production.min.js"></script>
+		
+		
+		<link rel="stylesheet" href="libs/fancybox/jquery.fancybox.min.css">
+		<title>About us</title>
+	<script defer="defer" src="./js/common.min.js"></script><script defer="defer" src="./js/about-us.min.js"></script><link href="./css/common.min.css" rel="stylesheet"><link href="./css/about-us.min.css" rel="stylesheet"></head>	<body class="about-us">
+		<header class="header">
+			<div class="section-container section-container_decor header__container">
+				<div class="header__main">
+					<nav class="header-nav header-nav_left header__left">
+						<div class="header-nav__inner">
+							<a href="works.html" class="header-link text-btn" data-component="animated-link">
+								<div class="text-btn__cap">Works</div>
+							</a>
+							<button type="button" data-submenu-elem="header-submenu<-ref->about" class="header-link text-btn header-link_ref header-nav__item" data-component="animated-link">
+								<div class="text-btn__cap">About</div>
+								<span class="icon-cubic-check-arrow"></span>
+							</button>
+							<a href="competencies.html" class="header-link text-btn header-link_desc" data-component="animated-link"><div class="text-btn__cap">Competencies</div></a>
+							<a href="competencies-mob.html" class="header-link text-btn header-link_mob" data-component="animated-link"><div class="text-btn__cap">Competencies</div></a>
+						</div>
+					</nav>
+					<a href="." class="logo header__logo">
+						<figure>
+							<img src="./img/logo-dark.svg" class="logo__img" alt="Light Logo">
+							<figcaption aria-hidden="true">Main page</figcaption>
+						</figure>
+					</a>
+					<nav class="header-nav header-nav_right header__right">
+						<div class="header-nav__inner">
+							<a href="contact.html" class="header-link text-btn" data-component="animated-link"><div class="text-btn__cap">Contact</div></a>
+							<form name="header-theme-switch" class="theme-switch header__theme-switch" data-component="theme-switch">
+								<label class="switch switch_theme">
+									<input type="checkbox" name="theme" checked="checked">
+									<svg class="switch__thumb theme-switch__thumb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+										<defs>
+											<clipPath id="theme-switch-moon">
+												<path d="M0 0 H30 a 10 10 0 0 0 6 18 V 20 H 0 V 0z" class="switch__moon-clip"/>
+											</clipPath>
+										</defs>
+										<circle cx="10" cy="10" r="10" fill="var(--inc-switch-thumb-color)" clip-path="url(#theme-switch-moon)"/>
+									</svg>
+								</label>
+							</form>				</div>
+					</nav>
+					<button type="button" class="burger-btn header__burger-btn" data-drawer-toggle="burger-menu">
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+				<nav id="header-submenu" class="header-submenu header__submenu" data-component="disclosure" data-component="submenu">
+					<div class="header-submenu__inner">
+						<div class="header-submenu__body" data-elem="disclosure.inner">
+							<section class="header-submenu__section" data-submenu-elem="body->about">
+								<a href="about-us.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">About us</div></a>
+								<a href="team.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">Team</div></a>
+								<a href="ideas.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">Ideas</div></a>
+								<a href="news.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">News</div></a>
+								<a href="careers.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">Careers</div></a>
+							</section>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<div class="header-underlay">
+		</div>
+		<div data-lenis-prevent id="burger-menu" class="burger-menu" data-drawer="burger-menu">
+			<div class="burger-menu__panel" data-elem="drawer.panel" data-scrollable>
+				<div class="section-container burger-menu__container">
+					<div class="burger-menu__inner">
+						<div class="burger-menu__header">
+							<a href="." class="logo burger-menu__logo">
+								<figure>
+									<img src="./img/logo-bright.svg" class="logo__img" alt="Light Logo">
+									<figcaption aria-hidden="true">Main page</figcaption>
+								</figure>
+							</a>
+							<button type="button" class="drawer-close-btn burger-menu__close-btn" data-drawer-close="burger-menu"><div class="drawer-close-btn__inner">Close burger menu<span class="icon-cubic-plus"></span></div></button>
+						</div>
+						<nav class="burger-menu__nav">
+							<div class="burger-menu__nav-section">
+								<a href="works.html" class="header-link reveal-wrap"><div class="reveal-wrap__inner"><div class="line">WORKS</div></div></a>
+							</div>
+							<div class="disclosure burger-menu__nav-section" data-component="disclosure">
+								<button type="button" class="reveal-wrap header-link header-link_ref header-link_pointer burger-menu__disclosure-btn" data-elem="disclosure.toggle-btn">
+									<div class="reveal-wrap__inner"><div class="line">About<span class="icon-cubic-check-arrow"></span></div></div>
+								</button>
+								<div class="disclosure__body">
+									<div class="disclosure__inner" data-elem="disclosure.inner">
+										<div class="burger-submenu">
+											<div class="burger-submenu__inner">
+												<a href="about-us.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">About us</div></div></a>
+												<a href="team.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">Team</div></div></a>
+												<a href="ideas.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">Ideas</div></div></a>
+												<a href="news.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">News</div></div></a>
+												<a href="careers.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">Careers</div></div></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="burger-menu__nav-section">
+								<a href="competencies.html" class="reveal-wrap header-link header-link_desc"><div class="reveal-wrap__inner"><div class="line">Competencies</div></div></a>
+								<a href="competencies-mob.html" class="reveal-wrap header-link header-link_mob"><div class="reveal-wrap__inner"><div class="line">Competencies</div></div></a>
+							</div>
+							<div class="burger-menu__nav-section">
+								<a href="contact.html" class="reveal-wrap header-link"><div class="reveal-wrap__inner"><div class="line">Contact</div></div></a>
+							</div>
+						</nav>
+						<form name="burger-theme-switch" class="theme-switch burger-menu__theme-switch" data-component="theme-switch">
+							<label class="switch switch_theme">
+								<input type="checkbox" name="theme" checked="checked">
+								<svg class="switch__thumb theme-switch__thumb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+									<defs>
+										<clipPath id="theme-switch-moon">
+											<path d="M0 0 H30 a 10 10 0 0 0 6 18 V 20 H 0 V 0z" class="switch__moon-clip"/>
+										</clipPath>
+									</defs>
+									<circle cx="10" cy="10" r="10" fill="var(--inc-switch-thumb-color)" clip-path="url(#theme-switch-moon)"/>
+								</svg>
+							</label>
+						</form>			</div>
+				</div>
+			</div>
+		</div>
+		<section class="burger-btn-layer">
+			<div class="section-container burger-btn-layer__container">
+				<div class="burger-btn-layer__inner">
+					<a href="." class="logo burger-btn-layer__logo">
+						<figure>
+							<img src="./img/logo-bright.svg" class="logo__img" alt="Light Logo">
+							<figcaption aria-hidden="true">Main page</figcaption>
+						</figure>
+					</a>
+					<button type="button" class="burger-btn burger-btn-layer__btn" data-drawer-toggle="burger-menu">
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+			</div>
+		</section>		<main>
+			<section class="hero">
+				<div class="section-container section-container_decor hero__container">
+					<nav id="nav" class="tg-control materials-filter_center hero__nav">
+						<div class="tg-control uppercase materials-filter__inner">
+							<a href="about-us.html" class="text-btn _active" data-component="animated-link">
+								<svg id="page-nav__lightning_1" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g class="animated-cubic-lightning__body" clip-path="url(#page-nav__lightning_1-clip)" transform="rotate(30 6.8 30) translate(-3)">
+										<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+									</g>
+									<defs>
+										<clipPath id="page-nav__lightning_1-clip">
+											<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										</clipPath>
+									</defs>
+								</svg>			<div class="text-btn__cap">About us</div>
+							</a>
+							<a href="team.html" class="text-btn" data-component="animated-link">
+								<svg id="page-nav__lightning_2" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g class="animated-cubic-lightning__body" clip-path="url(#page-nav__lightning_2-clip)" transform="rotate(30 6.8 30) translate(-3)">
+										<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+									</g>
+									<defs>
+										<clipPath id="page-nav__lightning_2-clip">
+											<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										</clipPath>
+									</defs>
+								</svg>			<div class="text-btn__cap">Team</div>
+							</a>
+							<a href="ideas.html" class="text-btn" data-component="animated-link">
+								<svg id="page-nav__lightning_3" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g class="animated-cubic-lightning__body" clip-path="url(#page-nav__lightning_3-clip)" transform="rotate(30 6.8 30) translate(-3)">
+										<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+									</g>
+									<defs>
+										<clipPath id="page-nav__lightning_3-clip">
+											<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										</clipPath>
+									</defs>
+								</svg>			<div class="text-btn__cap">Ideas</div>
+							</a>
+							<a href="news.html" class="text-btn" data-component="animated-link">
+								<svg id="page-nav__lightning_4" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g class="animated-cubic-lightning__body" clip-path="url(#page-nav__lightning_4-clip)" transform="rotate(30 6.8 30) translate(-3)">
+										<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+									</g>
+									<defs>
+										<clipPath id="page-nav__lightning_4-clip">
+											<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										</clipPath>
+									</defs>
+								</svg>			<div class="text-btn__cap">News</div>
+							</a>
+							<a href="careers.html" class="text-btn" data-component="animated-link">
+								<svg id="page-nav__lightning_5" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g class="animated-cubic-lightning__body" clip-path="url(#page-nav__lightning_5-clip)" transform="rotate(30 6.8 30) translate(-3)">
+										<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+										<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+									</g>
+									<defs>
+										<clipPath id="page-nav__lightning_5-clip">
+											<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										</clipPath>
+									</defs>
+								</svg>			<div class="text-btn__cap">Careers</div>
+							</a>
+						</div>
+					</nav>					<h1 class="tg-h1 hero__title">About us</h1>
+				</div>
+			</section>
+			<section class="video-section video-section_interactive" data-component="interactive-video-section">
+				<div class="section-container section-container_decor video-section__container">
+					<div data-cursor="none" class="work-video video-section__video" data-component="work-video">
+						<div class="img-wrap img-wrap_cover work-video__poster">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/avif" src="./img/about-us/video-poster.avif">
+									<img src="./img/about-us/video-poster.avif" alt="Iguana video poster">
+								</picture>
+							</div>
+						</div>
+						<div class="work-video__player-wrap">
+							<iframe data-elem="work-video.video" src="https://player.vimeo.com/video/311427118?title=0&byline=0&portrait=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="embed-content work-video__player">
+							</iframe>
+						</div>
+						<button data-elem="work-video.playback-btn" class="work-video-play-btn work-video__btn work-video__btn_playback">
+							<div class="work-video-play-btn__title">Video play / pause</div>
+							<div class="work-video-play-btn__inner">
+								<span class="icon-play work-video-play-btn__icon work-video-play-btn__icon_play"></span>
+								<span class="icon-pause work-video-play-btn__icon work-video-play-btn__icon_pause"></span>
+							</div>
+						</button>
+						<button data-elem="work-video.sound-toggle-btn" class="work-sound-toggle-btn work-video__btn work-video__btn_sound">
+							<div class="work-sound-toggle-btn__title">Sound on / off</div>
+							<div class="work-sound-toggle-btn__inner">
+								<span class="icon-sound-on work-sound-toggle-btn__icon work-sound-toggle-btn__icon_on"></span>
+								<span class="icon-sound-off work-sound-toggle-btn__icon work-sound-toggle-btn__icon_off"></span>
+							</div>
+						</button>
+					</div>
+				</div>
+			</section>
+			<section class="agency-in-numbers">
+				<div class="section-container section-container_decor">
+					<div class="section-container__inner agency-in-numbers__body">
+						<h2 class="tg-h2 agency-in-numbers__title">Linnikov<br>in numbers</h2>
+						<dl class="agency-rates">
+							<div>
+								<dd data-count-up class="tg-huge">9</dd>
+								<dt class="tg-h3">years of <br>transformation</dt>
+							</div>
+							<div>
+								<dd data-count-up class="tg-huge">77</dd>
+								<dt class="tg-h3">transformations <br>completed</dt>
+							</div>
+							<div>
+								<dd class="tg-huge"><span data-count-up class="count-up_spacing-sm">10</span>+</dd>
+								<dt class="tg-h3">world <br>awards</dt>
+							</div>
+							<div>
+								<dd data-count-up class="tg-huge">2</dd>
+								<dt class="tg-h3">company of the <br>year awards</dt>
+							</div>
+						</dl>
+					</div>
+				</div>
+			</section>
+			<section id="testimonials" class="testimonials about-us__testimonials">
+				<div class="section-container section-container_decor testimonials__container">
+					<div class="testimonials__wrap">
+						<div class="testimonials__inner">
+							<div class="testimonials__decor">“</div>
+							<div class="keen-slider testimonials__header">
+								<div class="keen-slider__slide">
+									<button type="button" class="testimonials-btn testimonials__client" data-name="karamat" data-default-selected="true">
+										<div class="testimonials-btn__cap">Select by karamat</div>
+										<img src="./img/clients/karamat.svg" class="testimonials-btn__logo" alt="karamat">
+									</button>
+								</div>
+								<div class="keen-slider__slide">
+									<button type="button" class="testimonials-btn testimonials__client" data-name="crowdfunding-lawyers">
+										<div class="testimonials-btn__cap">Select by crowdfunding-lawyers</div>
+										<img src="./img/clients/crowdfunding-lawyers.svg" class="testimonials-btn__logo" alt="crowdfunding-lawyers">
+									</button>
+								</div>
+								<div class="keen-slider__slide">
+									<button type="button" class="testimonials-btn testimonials__client" data-name="fast">
+										<div class="testimonials-btn__cap">Select by fast</div>
+										<img src="./img/clients/fast.svg" class="testimonials-btn__logo" alt="fast">
+									</button>
+								</div>
+								<div class="keen-slider__slide">
+									<button type="button" class="testimonials-btn testimonials__client" data-name="aromanty">
+										<div class="testimonials-btn__cap">Select by aromanty</div>
+										<img src="./img/clients/aromanty.svg" class="testimonials-btn__logo" alt="aromanty">
+									</button>
+								</div>
+								<div class="keen-slider__slide">
+									<button type="button" class="testimonials-btn testimonials__client" data-name="devspiration">
+										<div class="testimonials-btn__cap">Select by devspiration</div>
+										<img src="./img/clients/devspiration.svg" class="testimonials-btn__logo" alt="devspiration">
+									</button>
+								</div>
+								<div class="keen-slider__slide">
+									<button type="button" class="testimonials-btn testimonials__client" data-name="gar">
+										<div class="testimonials-btn__cap">Select by gar</div>
+										<img src="./img/clients/gar.svg" class="testimonials-btn__logo" alt="gar">
+									</button>
+								</div>
+							</div>
+							<div class="testimonials__body">
+								<div class="testimonials-card" data-name="karamat">
+									<div class="testimonials-card__inner">
+										<div class="testimonials-card__info tg-service uppercase">
+											<div class="testimonials-card__name">Joseph A</div> 
+											<div class="testimonials-card__title">Business Analyst</div>
+										</div>
+										<div class="testimonials-card__quote">
+											<div class="tg-h3 testimonials-quote">
+												<span class="testimonials-quote-sign testimonials-quote-sign_open">“</span>
+												<span data-to-split>
+												They were very easy to communicate with, and straight way to understand our <span class="white-space-nowrap">needs.<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="testimonials-card" data-name="crowdfunding-lawyers">
+									<div class="testimonials-card__inner">
+										<div class="testimonials-card__info tg-service uppercase">
+											<div class="testimonials-card__name">Nathaniel Dodson</div> 
+											<div class="testimonials-card__title">Manager Partner</div>
+										</div>
+										<div class="testimonials-card__quote">
+											<div class="tg-h3 testimonials-quote">
+												<span class="testimonials-quote-sign testimonials-quote-sign_open">“</span>
+												<span data-to-split>
+												They met expectation each <span class="white-space-nowrap"> time.<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="testimonials-card" data-name="fast">
+									<div class="testimonials-card__inner">
+										<div class="testimonials-card__info tg-service uppercase">
+											<div class="testimonials-card__name">Maxime Renaud</div> 
+											<div class="testimonials-card__title">Business Analyst</div>
+										</div>
+										<div class="testimonials-card__quote">
+											<div class="tg-h3 testimonials-quote">
+												<span class="testimonials-quote-sign testimonials-quote-sign_open">“</span>
+												<span data-to-split>
+												Their quality of work is very <span class="white-space-nowrap"> high.<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="testimonials-card" data-name="aromanty">
+									<div class="testimonials-card__inner">
+										<div class="testimonials-card__info tg-service uppercase">
+											<div class="testimonials-card__name">Mohammed Alajmi</div> 
+											<div class="testimonials-card__title">Owner, Perfume Startup</div>
+										</div>
+										<div class="testimonials-card__quote">
+											<div class="tg-h3 testimonials-quote">
+												<span class="testimonials-quote-sign testimonials-quote-sign_open">“</span>
+												<span data-to-split>
+													The creativity of the brand message for such a unique product was <span class="white-space-nowrap"> impressive.<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="testimonials-card" data-name="devspiration">
+									<div class="testimonials-card__inner">
+										<div class="testimonials-card__info tg-service uppercase">
+											<div class="testimonials-card__name">Vasyl Shkoropad</div> 
+											<div class="testimonials-card__title">managing partner<br>Devspiration</div>
+										</div>
+										<div class="testimonials-card__quote">
+											<div class="tg-h3 testimonials-quote">
+												<span class="testimonials-quote-sign testimonials-quote-sign_open">“</span>
+												<span data-to-split>
+													I just want to thank you guys for your creativity, your hard work and your flexibility while working on our projects. Just wishing you all the best in your future<span class="white-space-nowrap"> ventures.<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="testimonials-card" data-name="gar">
+									<div class="testimonials-card__inner">
+										<div class="testimonials-card__info tg-service uppercase">
+											<div class="testimonials-card__name">Vitalii Pcholkin </div> 
+											<div class="testimonials-card__title">Chairman of the Board</div>
+										</div>
+										<div class="testimonials-card__quote">
+											<div class="tg-h3 testimonials-quote">
+												<span class="testimonials-quote-sign testimonials-quote-sign_open">“</span>
+												<span data-to-split>
+												Thank you, Linnikov, for the extraordinary work and results; you are the first to convince<span class="white-space-nowrap"> us.<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="testimonials-pagination testimonials__pagination"></div>
+					</div>
+				</div>
+			</section>
+			<section class="our-awards">
+				<div class="section-container section-container_decor">
+					<div class="section-container__inner our-awards__header">
+						<h2 class="tg-h2">Our awards</h2>
+					</div>
+				</div>
+				<div class="section-container section-container_decor">
+					<div class="section-container__inner our-awards__body">
+						<div class="awards-showcase-flex">
+							<ul class="awards-showcase-flex__inner">
+								<li class="awards-showcase-flex__item">
+									<a href="" class="award-card award-card_rate">
+										<div class="award-card__top">
+											<div class="award-card__top-inner">
+												<div class="award-card__top-layout">
+													<div class="img-wrap award-card__img">
+														<div class="img-wrap__inner">
+															<img src="./img/awards/clutch-red.svg" alt="Clutch award">
+														</div>
+													</div>
+													<div class="award-card__rate">
+														<div class="icon-star"></div>
+														<div class="icon-star"></div>
+														<div class="icon-star"></div>
+														<div class="icon-star"></div>
+														<div class="icon-star"></div>
+													</div>
+													<div class="award-card__reviews">12 reviews</div>
+												</div>
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__bottom">
+											<div class="award-card__info">
+												<div class="award-card__award-name">5.0 average rating</div>
+												<h4 class="award-card__project-name">Clutch</h4>
+											</div>
+											<span class="ref-arrow-icon award-card__arrow">
+												<span class="icon-cubic-ref-arrow"></span>
+												<span class="icon-cubic-ref-arrow"></span>
+											</span>
+										</div>
+									</a>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘23</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/clutch.svg" alt="Clutch award">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">CLUTCH</div>
+										<h4 class="award-card__project-name">Linnikov&shy;.agency</h4>
+										
+										<div class="award-card__place">Тор Packaging design company supply chain, logistics, and transport United States</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘23</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/clutch.svg" alt="Clutch award">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">CLUTCH</div>
+										<h4 class="award-card__project-name">Burj Boutique</h4>
+										
+										<div class="award-card__place">Тор Packaging design<br>company Dallas</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘23</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/clutch.svg" alt="Clutch award">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">CLUTCH</div>
+										<h4 class="award-card__project-name">Linnikov&shy;.agency</h4>
+										
+										<div class="award-card__place">Тор Packaging design<br>company supply chain,<br>logistics, and transport</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘23</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/clutch.svg" alt="Clutch award">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">CLUTCH</div>
+										<h4 class="award-card__project-name">Linnikov&shy;.agency</h4>
+										
+										<div class="award-card__place">Top Logo design company<br>Fort Worth</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘23</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/clutch.svg" alt="Clutch award">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">CLUTCH</div>
+										<h4 class="award-card__project-name">Linnikov&shy;.agency</h4>
+										
+										<div class="award-card__place">Top Print design company<br>Fort Worth</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘23</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/ida-design.svg" alt="IDA Design">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">IDA Design Awards</div>
+										<h4 class="award-card__project-name">Burj Boutique</h4>
+										
+										<div class="award-card__place">Gold in Print / Stationery</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘22</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/top-ukraine-2022.svg" alt="Top Ukrain Award 2022">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">Choice of the country</div>
+										<h4 class="award-card__project-name">Linnikov&shy;.agency</h4>
+										
+										<div class="award-card__place">The Best Branding Agency of<br>Lviv in 2022</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘22</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/epica-awards.svg" alt="Epica Awards">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">Epica Awards</div>
+										<h4 class="award-card__project-name">Burj Boutique</h4>
+										
+										<div class="award-card__place">Shortlist</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘22</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/pentawards.svg" alt="Pentawards">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">Pentawards</div>
+										<h4 class="award-card__project-name">Khush</h4>
+										
+										<div class="award-card__place">Shortlist, Luxury body and<br>skin care 2022</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘22</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/a-design.svg" alt="A’Design Award">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">A’Design Award</div>
+										<h4 class="award-card__project-name">Iguana</h4>
+										
+										<div class="award-card__place">Silver</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘22</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/favourite-design.svg" alt="Favourite Design">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">Favourite Design</div>
+										<h4 class="award-card__project-name">blueberry wine</h4>
+										
+										<div class="award-card__place">Winner</div>
+									</div>
+								</li>
+								<li class="awards-showcase-flex__item">
+									<div class="award-card">
+										<div class="award-card__top">
+											<div class="award-card__year">‘22</div>
+											<div class="img-wrap award-card__img">
+												<img src="./img/awards/favourite-design.svg" alt="Favourite Design">
+											</div>
+										</div>
+										<div class="award-card__separator"></div>
+										<div class="award-card__award-name">Favourite Design</div>
+										<h4 class="award-card__project-name">Iguana</h4>
+										
+										<div class="award-card__place">Winner</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div id="about-us-motto" class="about-us-motto" data-track-intersection>
+				<div class="section-container section-container_decor">
+					<div class="section-container__inner about-us-motto__inner">
+						<div class="about-us-motto__body">
+						<div class="reveal-wrap about-us-motto__star-wrap">
+							<div class="reveal-wrap__inner">
+								<svg id="about-us-motto-star" class="animated-star reveal-wrap__item about-us-motto__star" viewBox="0 0 384 388">
+									<g mask="url(#about-us-motto-star-mask)">
+										<rect class="animated-star__bg" x="0" y="0" width="384" height="384" fill="var(--color, currentColor)"/>
+										<circle class="animated-star__fill" cx="192" cy="200" r="0" fill="var(--fill-color, #FF0000)"/>
+										<path d="M148.914 213.881L0.867188 176.965L23.9395 102.749L166.603 164.275L154.682 0.0771484H232.359L218.9 166.583L360.41 106.21L383.867 181.58L233.513 216.957L334.646 341.548L271.198 388.077L189.675 246.182L108.538 383.847L44.7045 339.625L148.914 213.881Z" class="animated-star__body" stroke="var(--stroke-color, #FF0000)" fill="none"/>
+									</g>
+									<mask id="about-us-motto-star-mask">
+										<path d="M148.914 213.881L0.867188 176.965L23.9395 102.749L166.603 164.275L154.682 0.0771484H232.359L218.9 166.583L360.41 106.21L383.867 181.58L233.513 216.957L334.646 341.548L271.198 388.077L189.675 246.182L108.538 383.847L44.7045 339.625L148.914 213.881Z" fill="white"/>
+									</mask>
+								</svg>							</div>
+						</div>
+						<div class="tg-h2 about-us-motto__msg uppercase">
+							<div class="reveal-wrap">
+								<div class="reveal-wrap__inner">
+									<div class="reveal-wrap__item">Achieve</div>
+								</div>
+							</div>
+							<div class="reveal-wrap">
+								<div class="reveal-wrap__inner">
+									<div class="reveal-wrap__item">ambitions</div>
+								</div>
+							</div>
+						</div>
+						<div class="reveal-wrap about-us-motto__decor-wrap">
+							<div class="reveal-wrap__inner">
+								<div class="reveal-wrap__item about-us-motto__decor double-cubic-decor"></div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="falling-leaf-cards" class="falling-leaf-cards">
+				<div class="falling-leaf-cards__sticky-wrap">
+					<div class="only-vetical-overflow">
+						<div class="section-container section-container_decor falling-leaf-cards__container">
+							<div class="falling-leaf-cards__bg">
+								<span>AchieveAc<br>ambitions</span>
+							</div>
+							<div class="falling-leaf-cards__inner">
+								<div id="falling-leaf-cards-container" class="falling-leaf-cards__cards">
+									<div id="card-01" class="about-us-card about-us-card_t1">
+										<div class="about-us-card__container">
+											<div class="about-us-card__inner">
+												<h4 class="about-us-card__title">
+													<div>Branding is a tool for realizing ambitions!</div>
+												</h4>
+												<div class="steps-animation about-us-card__steps-animation">
+													<div class="steps-animation__inner">
+														<svg id="card-1-steps-animation" class="steps-animation__svg" viewBox="0 0 432 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<defs>
+																<clipPath id="step-2-clip"><rect x="82.0469" y="207.386" width="79" height="14"/></clipPath>
+																<clipPath id="step-3-clip"><rect x="169.047" y="182.386" width="79" height="14"/></clipPath>
+																<clipPath id="step-4-clip"><rect x="239.047" y="151.386" width="66" height="14"/></clipPath>
+																<clipPath id="step-5-clip"><rect x="301.047" y="121.386" width="47" height="14"/></clipPath>
+																<clipPath id="step-6-clip"><rect x="344.047" y="93.3857" width="34" height="14"/></clipPath>
+															</defs>
+															<g class="steps">
+																<g class="step step_01">
+																	<g class="step__inner">
+																		<rect x="12.0234" y="248" width="64" height="10" fill="var(--light-black)"/>
+																		<rect x="76.0234" y="258" width="48" height="10" fill="var(--light-black)"/>
+																	</g>
+																</g>
+																<g class="step step_02" clip-path="url(#step-2-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="82.0469" y="207.386" width="75" height="10" fill="var(--light-black)"/>
+																		<rect x="87.0469" y="212.386" width="73" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_03" clip-path="url(#step-3-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="169.047" y="182.386" width="75" height="10" fill="var(--light-black)"/>
+																		<rect x="174.047" y="187.386" width="73" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_04" clip-path="url(#step-4-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="239.047" y="151.386" width="62" height="10" fill="var(--light-black)"/>
+																		<rect x="244.047" y="156.386" width="60" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_05" clip-path="url(#step-5-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="301.047" y="121.386" width="43" height="10" fill="var(--light-black)"/>
+																		<rect x="306.047" y="126.386" width="41" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_06" clip-path="url(#step-6-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="344.047" y="93.3857" width="30" height="10" fill="var(--light-black)"/>
+																		<rect x="349.047" y="98.3857" width="28" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+															</g>
+															<g class="star-1">
+																<path class="star__shadow" opacity="0.15" d="M30.0781 162.438L0 154.938L4.6875 139.859L33.6719 152.359L31.25 119H47.0312L44.2969 152.828L73.0469 140.562L77.8125 155.875L47.2656 163.062L67.8125 188.375L54.9219 197.828L38.3594 169L21.875 196.969L8.90625 187.984L30.0781 162.438Z" fill="var(--light-black)"/>
+																<path d="M3.75806 159.908L32.2939 167.023L12.1363 191.346L11.4407 192.186L12.3368 192.806L25.3055 201.791L26.1901 202.404L26.7365 201.477L42.3483 174.988L58.0548 202.326L58.6117 203.296L59.5132 202.635L72.4039 193.181L73.2509 192.56L72.5889 191.745L53.0472 167.671L82.0415 160.848L83.0863 160.603L82.7673 159.578L78.0017 144.265L77.6727 143.208L76.6545 143.643L49.427 155.259L52.028 123.081L52.1153 122H51.0312H35.25H34.1748L34.2526 123.072L36.5552 154.789L9.08351 142.941L8.06263 142.501L7.73258 143.563L3.04508 158.641L2.73078 159.652L3.75806 159.908Z" stroke="var(--card-snowflake-color)" stroke-width="2"/>
+																</g>
+															<path class="star-2" d="M344.078 43.4375L314 35.9375L318.688 20.8594L347.672 33.3594L345.25 0H361.031L358.297 33.8281L387.047 21.5625L391.812 36.875L361.266 44.0625L381.812 69.375L368.922 78.8281L352.359 50L335.875 77.9688L322.906 68.9844L344.078 43.4375Z" fill="var(--card-snowflake-color)"/>
+															<g class="card-animation-boxes">
+																<rect class="card-animation-box" x="107.023" y="172.386" width="13" height="13" fill="var(--card-snowflake-color)"/>
+																<rect class="card-animation-box" x="169.094" y="125.386" width="13" height="13" transform="rotate(22.9417 169.094 125.386)" fill="var(--card-snowflake-color)"/>
+																<rect class="card-animation-box" x="238.516" y="135.174" width="13" height="13" transform="rotate(-34.1442 238.516 135.174)" fill="var(--card-snowflake-color)"/>
+															</g>
+														</svg>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="card-02" class="about-us-card about-us-card_t2">
+										<div class="about-us-card__container">
+											<div class="about-us-card__inner">
+												<h4 class="about-us-card__title">
+													<div>Ambition is the motivation for evolution.</div>
+												</h4>
+												<div class="steps-animation about-us-card__steps-animation">
+													<div class="steps-animation__inner">
+														<svg id="card-2-steps-animation" class="steps-animation__svg" viewBox="0 0 432 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<defs>
+																<clipPath id="step-2-clip"><rect x="82.0469" y="207.386" width="79" height="14"/></clipPath>
+																<clipPath id="step-3-clip"><rect x="169.047" y="182.386" width="79" height="14"/></clipPath>
+																<clipPath id="step-4-clip"><rect x="239.047" y="151.386" width="66" height="14"/></clipPath>
+																<clipPath id="step-5-clip"><rect x="301.047" y="121.386" width="47" height="14"/></clipPath>
+																<clipPath id="step-6-clip"><rect x="344.047" y="93.3857" width="34" height="14"/></clipPath>
+															</defs>
+															<g class="steps">
+																<g class="step step_01">
+																	<g class="step__inner">
+																		<rect x="12.0234" y="248" width="64" height="10" fill="var(--light-black)"/>
+																		<rect x="76.0234" y="258" width="48" height="10" fill="var(--light-black)"/>
+																	</g>
+																</g>
+																<g class="step step_02" clip-path="url(#step-2-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="82.0469" y="207.386" width="75" height="10" fill="var(--light-black)"/>
+																		<rect x="87.0469" y="212.386" width="73" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_03" clip-path="url(#step-3-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="169.047" y="182.386" width="75" height="10" fill="var(--light-black)"/>
+																		<rect x="174.047" y="187.386" width="73" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_04" clip-path="url(#step-4-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="239.047" y="151.386" width="62" height="10" fill="var(--light-black)"/>
+																		<rect x="244.047" y="156.386" width="60" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_05" clip-path="url(#step-5-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="301.047" y="121.386" width="43" height="10" fill="var(--light-black)"/>
+																		<rect x="306.047" y="126.386" width="41" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+																<g class="step step_06" clip-path="url(#step-6-clip)">
+																	<g class="step__inner">
+																		<rect class="step__shadow" opacity="0.15" x="344.047" y="93.3857" width="30" height="10" fill="var(--light-black)"/>
+																		<rect x="349.047" y="98.3857" width="28" height="8" stroke="var(--light-black)" stroke-width="2"/>
+																	</g>
+																</g>
+															</g>
+															<g class="star-1">
+																<path class="star__shadow" opacity="0.15" d="M30.0781 162.438L0 154.938L4.6875 139.859L33.6719 152.359L31.25 119H47.0312L44.2969 152.828L73.0469 140.562L77.8125 155.875L47.2656 163.062L67.8125 188.375L54.9219 197.828L38.3594 169L21.875 196.969L8.90625 187.984L30.0781 162.438Z" fill="var(--light-black)"/>
+																<path d="M3.75806 159.908L32.2939 167.023L12.1363 191.346L11.4407 192.186L12.3368 192.806L25.3055 201.791L26.1901 202.404L26.7365 201.477L42.3483 174.988L58.0548 202.326L58.6117 203.296L59.5132 202.635L72.4039 193.181L73.2509 192.56L72.5889 191.745L53.0472 167.671L82.0415 160.848L83.0863 160.603L82.7673 159.578L78.0017 144.265L77.6727 143.208L76.6545 143.643L49.427 155.259L52.028 123.081L52.1153 122H51.0312H35.25H34.1748L34.2526 123.072L36.5552 154.789L9.08351 142.941L8.06263 142.501L7.73258 143.563L3.04508 158.641L2.73078 159.652L3.75806 159.908Z" stroke="var(--card-snowflake-color)" stroke-width="2"/>
+															</g>
+															<path class="star-2" d="M344.078 43.4375L314 35.9375L318.688 20.8594L347.672 33.3594L345.25 0H361.031L358.297 33.8281L387.047 21.5625L391.812 36.875L361.266 44.0625L381.812 69.375L368.922 78.8281L352.359 50L335.875 77.9688L322.906 68.9844L344.078 43.4375Z" fill="var(--card-snowflake-color)"/>
+															<g class="card-animation-boxes">
+																<rect class="card-animation-box" x="107.023" y="172.386" width="13" height="13" fill="var(--card-snowflake-color)"/>
+																<rect class="card-animation-box" x="169.094" y="125.386" width="13" height="13" transform="rotate(22.9417 169.094 125.386)" fill="var(--card-snowflake-color)"/>
+																<rect class="card-animation-box" x="238.516" y="135.174" width="13" height="13" transform="rotate(-34.1442 238.516 135.174)" fill="var(--card-snowflake-color)"/>
+															</g>
+														</svg>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="card-03" class="about-us-card about-us-card_t3">
+										<div class="about-us-card__container">
+											<div class="about-us-card__inner">
+												<div class="about-us-card__body">
+													<div class="about-us-card__star">
+														<svg>
+															<use href="./img/snowflake.svg#1"></use>
+														</svg>
+													</div>
+													<div class="tg-h3 about-us-card__msg">
+														<div>Evolution is the most powerful force in the Universe and the only process that continues continuously, stimulating the development of everything from the tiniest particle to a massive galaxy.</div>
+													</div>
+												</div>
+												<div class="reveal-wrap">
+														<div class="reveal-wrap__inner">
+															<div class="reveal-wrap__item about-us-card__decor"></div>
+														</div>
+													</div>
+											</div>
+										</div>
+									</div>
+									<div id="card-04" class="about-us-card about-us-card_t4">
+										<div class="about-us-card__container">
+											<div class="about-us-card__inner">
+												<div class="about-us-card__body">
+													<div class="about-us-card__star">
+														<svg>
+															<use href="./img/snowflake.svg#1"></use>
+														</svg>
+													</div>
+													<div class="tg-h2 about-us-card__msg uppercase">
+														<div class="reveal-wrap">
+															<div class="reveal-wrap__inner">
+																<div class="reveal-wrap__item">Achieve</div>
+															</div>
+														</div>
+														<div class="reveal-wrap">
+															<div class="reveal-wrap__inner">
+																<div class="reveal-wrap__item">ambitions</div>
+															</div>
+														</div>
+													</div>
+													<div class="reveal-wrap">
+														<div class="reveal-wrap__inner">
+															<div class="reveal-wrap__item about-us-card__decor"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="our-offer" class="our-offer" data-track-intersection>
+				<div class="section-container section-container_decor our-offer__container">
+					<div class="section-container__inner our-offer__inner">
+						<h2 id="our-offer-msg" class="tg-h0 our-offer-msg">We<div class="our-offer-msg__star-wrap"><svg id="our-offer-msg-star" class="animated-star our-offer-msg__star" viewBox="0 0 384 388">
+	<g mask="url(#our-offer-msg-star-mask)">
+		<rect class="animated-star__bg" x="0" y="0" width="384" height="384" fill="var(--color, currentColor)"/>
+		<circle class="animated-star__fill our-offer-msg__star-fill" cx="192" cy="200" r="0" fill="var(--fill-color, #FF0000)"/>
+		<path d="M148.914 213.881L0.867188 176.965L23.9395 102.749L166.603 164.275L154.682 0.0771484H232.359L218.9 166.583L360.41 106.21L383.867 181.58L233.513 216.957L334.646 341.548L271.198 388.077L189.675 246.182L108.538 383.847L44.7045 339.625L148.914 213.881Z" class="animated-star__body" stroke="var(--stroke-color, #FF0000)" fill="none"/>
+	</g>
+	<mask id="our-offer-msg-star-mask">
+		<path d="M148.914 213.881L0.867188 176.965L23.9395 102.749L166.603 164.275L154.682 0.0771484H232.359L218.9 166.583L360.41 106.21L383.867 181.58L233.513 216.957L334.646 341.548L271.198 388.077L189.675 246.182L108.538 383.847L44.7045 339.625L148.914 213.881Z" fill="white"/>
+	</mask>
+</svg></div>offer<br>the following<br><div class="our-offer-msg__lightning"><svg id="our-offer-msg-lightning" class="animated-lightning" viewBox="0 0 59 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<g class="animated-lightning__body">
+		<g clip-path="url(#our-offer-msg-lightning-clip)">
+			<path class="animated-lightning__p1" d="M0 0V59.73H29.43L0 0Z" fill="var(--color, currentColor)"/>
+		</g>
+		<path class="animated-lightning__p2" d="M29.4297 59.73L58.8497 119.46V59.73H29.4297Z" fill="var(--color, currentColor)"/>
+	</g>
+	<defs>
+		<clipPath id="our-offer-msg-lightning-clip"><rect x="0" y="0" width="29.43" height="59.73"/></clipPath>
+	</defs>
+</svg></div>brand<div class="our-offer-msg__infinity-wrap"><svg><use class="our-offer-msg__infinity" href="./img/decor-symbols.svg#infinity"></use></svg></div><br>development services</h2>
+						<a href="competencies.html" class="btn form__submit-btn contact-form__submit-btn contact-form__submit-btn_desc">
+							Check our competincies
+							<div class="ref-arrow-icon ref-arrow-icon_horizontal">
+								<span class="icon-cubic-nav-arrow-right"></span>
+								<span class="icon-cubic-nav-arrow-right"></span>
+							</div>
+						</a>
+						<a href="competencies-mob.html" class="btn form__submit-btn contact-form__submit-btn contact-form__submit-btn_mob">
+							Check our competincies
+							<div class="ref-arrow-icon ref-arrow-icon_horizontal">
+								<span class="icon-cubic-nav-arrow-right"></span>
+								<span class="icon-cubic-nav-arrow-right"></span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</main>
+		<div class="drawers-group" data-drawers-group="system">
+			<section class="cookies-panel" data-drawer="cookies-agreement">
+				<div class="cookies-panel__container" data-elem="drawer.panel" data-scrollable>
+					<form id="cookies-approval" class="cookies-panel__form">
+						<h2 class="tg-regular">This websites uses <a href="cookies.html" class="simple-text-link">cookies</a></h2>
+						<div class="cookies-panel__group">
+							<div class="cookies-panel__options">
+								<label class="cookies-option">
+									<span class="tg-service cookies-option__label">Strictly necessary</span>
+									<span class="switch">
+										<input type="checkbox" name="necessary" checked="checked">
+										<div class="switch__thumb"></div>
+									</span>
+								</label>
+								<label class="cookies-option">
+									<span class="tg-service cookies-option__label">Funcitionality</span>
+									<span class="switch">
+										<input type="checkbox" name="functionality" checked="checked">
+										<div class="switch__thumb"></div>
+									</span>
+								</label>
+								<label class="cookies-option">
+									<span class="tg-service cookies-option__label">Analytics</span>
+									<span class="switch">
+										<input type="checkbox" name="analytics" checked="checked">
+										<div class="switch__thumb"></div>
+									</span>
+								</label>
+							</div>
+							<div class="cookies-panel__actions">
+								<button type="button" class="btn cookies-panel__accept-btn" data-drawer-close="cookies-agreement">Accept</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</section><!-- CHAT -->
+			<div data-lenis-prevent class="linnikov-chat" id="linnikov-chat" data-drawer="ai-chat">
+				<div class="linnikov-chat__panel" data-elem="drawer.panel">
+					<!-- chat header -->
+					<div class="linnikov-chat__header">
+						<button type="button" class="linnikov-chat__header-button linnikov-chat__header-button_hidden" data-drawer-close="ai-chat">
+							<span class="icon-lightbox-cursor-left"></span><span class="header-button__cap">Close</span>
+						</button>
+						<img src="./img/chat/Linnikov_AI.svg" alt="Linnikov AI" loading="lazy" class="linnikov-chat__header-logo">
+						<button type="button" class="drawer-close-btn linnikov-chat__header-button" data-drawer-close="ai-chat"><div class="drawer-close-btn__inner">Close<span class="icon-cubic-plus"></span></div></button>
+					</div>
+					<!-- end chat header -->
+			
+					<!-- chat body -->
+					<div class="linnikov-chat__body">
+						<svg id="chat-cartoon" fill="currentColor" class="chat-cartoon linnikov-chat__cartoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 513.64 261.24">
+							<path d="M20.3805 93.9299C18.4105 93.7799 16.1405 93.8199 13.9605 93.4099C5.55052 91.8099 0.180516 85.5399 0.0605159 76.9899C-0.0094841 71.7599 -0.159484 66.4599 0.600516 61.3199C1.67052 54.0699 7.66052 48.7999 15.0405 48.3299C21.5105 47.9099 28.0305 48.0699 34.5305 48.1199C36.3105 48.1299 37.3405 47.5699 38.3705 46.0899C55.8705 20.9399 79.6905 5.23993 110.061 1.13993C147.441 -3.91007 179.201 7.88993 204.491 36.1299C208.141 40.1999 211.261 44.7499 214.841 49.3499C226.921 40.8299 240.661 36.3799 255.861 36.8099C271.001 37.2399 284.401 42.4399 296.291 51.8899C301.591 43.0799 307.661 35.1699 315.051 28.3599C333.271 11.5699 354.631 1.82993 379.451 0.299928C412.521 -1.74007 440.611 9.31993 463.501 33.2299C467.451 37.3499 470.711 42.1499 474.191 46.7099C474.961 47.7199 475.571 48.2099 476.971 48.1799C483.471 48.0399 489.971 47.9599 496.471 48.1199C506.721 48.3699 513.6 55.4599 513.61 65.6799C513.61 70.4099 513.801 75.2099 513.141 79.8699C511.991 88.0199 505.281 93.5299 497.001 93.7699C495.181 93.8199 493.361 93.7699 491.681 93.7699C491.681 98.3599 491.801 102.74 491.661 107.1C490.771 136.03 479.861 160.56 458.991 180.6C442.931 196.02 423.741 205.4 401.721 208.29C370.531 212.39 342.541 204.53 318.531 183.93C299.151 167.3 287.501 146.18 283.321 121.01C281.521 110.18 281.401 99.2599 283.391 88.4699C284.121 84.5199 281.791 82.4799 279.851 80.2499C266.681 65.0199 242.341 64.7199 228.761 79.5599C228.071 80.3199 227.661 81.8399 227.871 82.8499C237.041 126.39 218.051 170.63 180.041 194.07C142.401 217.29 92.2405 213.79 58.5505 185.46C37.4405 167.72 24.8505 145.13 21.3405 117.79C20.3405 110 20.6705 102.04 20.3805 93.9499V93.9299ZM200.111 104.94C200.531 64.0399 166.701 30.0499 125.421 29.8899C84.4505 29.7299 50.9705 62.9099 50.5505 104.21C50.1505 144.58 82.8105 179.12 125.061 179.33C165.491 179.52 199.691 147.1 200.111 104.94ZM312.131 104.59C312.131 145.75 345.441 179.11 386.791 179.35C427.831 179.59 461.741 145.74 461.701 104.56C461.671 63.4999 428.031 29.9099 386.891 29.8799C345.821 29.8499 312.131 63.5099 312.131 104.58V104.59Z"/>
+							<path d="M253.959 261.24C230.129 260.59 211.349 250.6 197.899 230.82C195.369 227.09 195.389 222.91 197.769 219.93C200.329 216.73 204.379 215.38 207.989 217.07C209.769 217.9 211.509 219.4 212.589 221.04C219.569 231.63 229.109 238.69 241.329 241.92C253.369 245.1 265.009 243.78 276.179 238.14C285.549 233.41 292.209 226.05 297.519 217.19C300.019 213.02 304.989 212.09 309.279 214.58C313.209 216.86 314.729 221.64 312.599 225.84C306.999 236.86 298.679 245.44 288.139 251.75C277.679 258.01 266.289 261.3 253.959 261.25V261.24Z"/>
+							<path class="chat-cartoon__eye_left" d="M125.91 127.67C113.26 127.66 102.98 117.41 103 104.81C103.02 92.2 113.29 81.99 125.96 82C138.63 82 148.84 92.2 148.86 104.86C148.88 117.44 138.58 127.68 125.91 127.67Z"/>
+							<path class="chat-cartoon__eye_right" d="M386.94 127.67C374.21 127.71 364.04 117.62 364 104.91C363.96 92.21 374.09 82.02 386.79 82C399.52 81.98 409.7 92.09 409.73 104.76C409.75 117.49 399.66 127.63 386.94 127.67Z"/>
+						</svg>
+							<div class="linnikov-chat__decor-line linnikov-chat__decor-line_1"></div>
+							<div class="linnikov-chat__decor-line linnikov-chat__decor-line_2"></div>
+							<div class="linnikov-chat__decor-line linnikov-chat__decor-line_3"></div>
+							<div class="linnikov-chat__decor-line linnikov-chat__decor-line_4"></div>
+							<div class="linnikov-chat__body-content">
+									<div class="linnikov-chat__line">
+											<div class="linnikov-chat__line-icon">
+													<img src="./img/chat/chat_icon.svg" alt="Icon" loading="lazy">
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>What brings you here today?</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>22:22</p>
+													</div>
+											</div>
+									</div>
+									<div class="linnikov-chat__line linnikov-chat__line_right">
+											<div class="linnikov-chat__line-name">
+													<p>API</p>
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>22:22</p>
+													</div>
+											</div>
+									</div>
+			
+									<div class="linnikov-chat__line linnikov-chat__line_no-full">
+											<div class="linnikov-chat__line-icon">
+													<img src="./img/chat/chat_icon.svg" alt="Icon" loading="lazy">
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>22:22</p>
+													</div>
+											</div>
+									</div>
+			
+									<div class="linnikov-chat__line linnikov-chat__line_no-full">
+											<div class="linnikov-chat__line-icon">
+													<img src="./img/chat/chat_icon.svg" alt="Icon" loading="lazy">
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>Were you able to answer your question using the Help Center?</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>Bot</p>
+															<p>Just now.</p>
+													</div>
+											</div>
+									</div>
+			
+									<div class="linnikov-chat__line">
+											<div class="linnikov-chat__line-icon">
+													<img src="./img/chat/chat_icon.svg" alt="Icon" loading="lazy">
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>What brings you here today?</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>22:22</p>
+													</div>
+											</div>
+									</div>
+			
+									<div class="linnikov-chat__line linnikov-chat__line_right">
+											<div class="linnikov-chat__line-name">
+													<p>API</p>
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>22:22</p>
+													</div>
+											</div>
+									</div>
+			
+									<div class="linnikov-chat__line linnikov-chat__line_no-full">
+											<div class="linnikov-chat__line-icon">
+													<img src="./img/chat/chat_icon.svg" alt="Icon" loading="lazy">
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>22:22</p>
+													</div>
+											</div>
+									</div>
+			
+									<div class="linnikov-chat__line linnikov-chat__line_no-full">
+											<div class="linnikov-chat__line-icon">
+													<img src="./img/chat/chat_icon.svg" alt="Icon" loading="lazy">
+											</div>
+											<div class="linnikov-chat__line-body">
+													<div class="linnikov-chat__line-body-message">
+															<p>Were you able to answer your question using the Help Center?</p>
+													</div>
+													<div class="linnikov-chat__line-body-info">
+															<p>Bot</p>
+															<p>Just now.</p>
+													</div>
+											</div>
+									</div>
+			
+							</div>
+							<!-- submit form -->
+							<form action="" class="linnikov-chat__form">
+									<input type="text" name="chat_message" class="linnikov-chat__form-field" placeholder="Type message" autocomplete="off">
+									<button type="submit" class="linnikov-chat__form-button">
+											<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M17.4898 8.90622L4.36484 1.41482C4.1436 1.29071 3.88983 1.23686 3.63726 1.2604C3.38468 1.28395 3.14525 1.38379 2.95076 1.54665C2.75628 1.70951 2.61594 1.92769 2.54841 2.17221C2.48087 2.41673 2.48933 2.676 2.57265 2.9156L4.99452 9.98357C4.99421 9.98616 4.99421 9.98878 4.99452 9.99138C4.99409 9.99397 4.99409 9.99661 4.99452 9.99919L2.57265 17.0828C2.50592 17.2713 2.48538 17.473 2.51274 17.6711C2.5401 17.8691 2.61458 18.0577 2.72991 18.221C2.84525 18.3844 2.99808 18.5176 3.17557 18.6097C3.35307 18.7017 3.55005 18.7498 3.74999 18.75C3.96692 18.7494 4.18004 18.6929 4.36874 18.5859L17.4867 11.082C17.6802 10.9736 17.8414 10.8157 17.9537 10.6244C18.066 10.4332 18.1254 10.2155 18.1258 9.99369C18.1262 9.7719 18.0676 9.554 17.956 9.36234C17.8443 9.17069 17.6837 9.01219 17.4906 8.9031L17.4898 8.90622ZM3.74999 17.5V17.4929L6.10468 10.625H10.625C10.7908 10.625 10.9497 10.5591 11.0669 10.4419C11.1841 10.3247 11.25 10.1657 11.25 9.99997C11.25 9.83421 11.1841 9.67524 11.0669 9.55803C10.9497 9.44082 10.7908 9.37497 10.625 9.37497H6.11093L3.75468 2.50935L3.74999 2.49997L16.875 9.98669L3.74999 17.5Z"/>
+											</svg>
+									</button>
+							</form>
+							<!-- end submit form -->
+					</div>
+					<!-- end chat body -->
+				</div>
+			</div>
+			<!-- END CHAT --><section class="drawer drawer_right request-drawer" data-drawer="request">
+				<div data-lenis-prevent class="drawer__panel request-drawer__panel" data-elem="drawer.panel" data-scrollable>
+					<section class="section-container section-container_decor request-drawer__body">
+						<div class="request-drawer__header">
+							<div class="request-drawer__close-btn reveal-wrap">
+								<div class="reveal-wrap__inner">
+									<div class="reveal-wrap__item">
+										<button class="drawer-close-btn" data-drawer-close="request"><div class="drawer-close-btn__inner">Close panel<span class="icon-cubic-plus"></span></div></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<form id="request-form" class="request-form request-drawer__form">
+							<div class="request-form__header">
+								<h1 class="tg-h1 request-form__title">Request</h1>
+								<div class="tg-h3 request-form__msg">Make your brand the first choice among many connect with us</div>
+							</div>
+							<div class="tg-regular request-form__body">
+								<div class="field-with-title request-form__category-select">
+									<div>Select category</div>
+									<div class="inline-select">
+										<fieldset class="inline-select__inner">
+											<label class="text-checkbox" aria-role="button">
+												<input type="checkbox" name="category" value="branding" aria-hidden="true">
+												<div class="text-checkbox__body">Branding</div>
+											</label>
+											<label class="text-checkbox" aria-role="button">
+												<input type="checkbox" name="category" value="rebranding" aria-hidden="true">
+												<div class="text-checkbox__body">Rebranding</div>
+											</label>
+											<label class="text-checkbox" aria-role="button">
+												<input type="checkbox" name="category" value="website" aria-hidden="true">
+												<div class="text-checkbox__body">Website</div>
+											</label>
+											<label class="text-checkbox" aria-role="button">
+												<input type="checkbox" name="category" value="packaging" aria-hidden="true">
+												<div class="text-checkbox__body">Packaging </div>
+											</label>
+											<label class="text-checkbox" aria-role="button">
+												<input type="checkbox" name="category" value="design" aria-hidden="true">
+												<div class="text-checkbox__body">Design</div>
+											</label>
+											<label class="text-checkbox" aria-role="button">
+												<input type="checkbox" name="category" value="Other" aria-hidden="true">
+												<div class="text-checkbox__body">Other</div>
+											</label>
+										</fieldset>
+										<div class="disclosure field-disclosure">
+											<div class="disclosure__body">
+												<div class="disclosure__inner field-disclosure__inner form-field form-field_width-limit" data-elem="disclosure.inner">
+													<textarea name="category--other-desc" class="text-input text-input_p-0" rows="1" data-autoheight="true" placeholder="Your short answer"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="contact-form__row request-form__row_col2">
+									<div class="animated-separator"></div>
+									<div class="field-wrap_t field-wrap_b field-wrap_save">
+										<div class="form-field form-field_width-limit contact-form__field">
+											<input name="contact--name" class="contact-form-input" type="text" placeholder="Name">
+										</div>
+									</div>
+									<div class="animated-separator request-form__separator_desc"></div>
+									<div class="field-wrap_t field-wrap_b field-wrap_save">
+										<div class="form-field form-field_width-limit contact-form__field">
+											<input name="contact--email" class="contact-form-input" required data-rule-custom-email data-msg-custom-email="Isn't valid email address" type="text" placeholder="E-mail" data-mask="email">
+										</div>
+									</div>
+								</div>
+								<div class="contact-form__row">
+									<div class="animated-separator"></div>
+									<div class="field-wrap_t field-wrap_b field-wrap_save">
+										<div class="form-field form-field_width-limit contact-form__field">
+											<textarea id="contact--message" class="contact-form-input" name="message" rows="1" data-autoheight="true" placeholder="Message"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="animated-separator"></div>
+							</div>
+							<div class="tg-regular request-form__footer">
+								<div class="field-with-title request-form__attachments">
+									<label for="attachments">Attachments</label>
+									<div class="form-field">
+										<div class="attachments" data-component="file-input">
+											<label class="attachments__body">
+												<input name="attachments" multiple="true" type="file">
+												<span class="icon-attachment attachments__icon"></span>
+												<div class="tg-regular attachments__cap">Upload files for us</div>
+											</label>
+											<ul class="attachments__list" data-elem="file-input.list"></ul>
+										</div>
+									</div>
+								</div>
+								<div class="form-field">
+									<label class="checkbox option-field">
+										<input type="checkbox" name="agreement" required="true">
+										<div class="checkbox__body">
+											<div class="checkbox__effect"></div>
+											<div class="checkbox__inner">
+												<div class="checkbox__decor"></div>
+												<div class="checkbox__thumb"></div>
+											</div>
+											<div class="checkbox__right-border"><div class="checkbox__border-spacer"></div></div>
+										</div>
+										<span class="tg-regular checkbox__cap">Consent to <a href="https://linnikov.agency/policy/" class="simple-text-link">personal data processing</a></span>
+									</label>
+								</div>
+							</div>
+							<div class="request-form__actions">
+								<button type="submit" class="btn form__submit-btn" data-elem="submit-btn">
+									Send A BRIEF
+									<div class="ref-arrow-icon ref-arrow-icon_horizontal">
+										<span class="icon-cubic-nav-arrow-right"></span>
+										<span class="icon-cubic-nav-arrow-right"></span>
+									</div>
+								</button>
+							</div>
+						</form>
+						<div class="request-drawer-banner request-drawer__banner">
+							<div class="img-wrap img-wrap_top-left request-drawer-banner__inner">
+								<div class="img-wrap__inner">
+									<picture>
+										<source srcset="./img/request/banner-diagonal.webp">
+										<img src="./img/request/banner-diagonal.jpg" onload="this.parentElement.closest(`.request-drawer-banner`)?.classList.add(`_loaded`);" alt="Linnikov works set" loading="lazy">
+									</picture>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</section>
+			<div class="tg-h3 form-messages form-messages_fixed form__messages request-form__messages" data-component="form-messages" data-for="request-form">
+				<div class="section-container form-messages__inner">
+					<div class="form-messages__panel">
+						<div class="form-msg form-msg_success" data-elem="msg" data-type="success" data-default="Thank you for submitting. Check your email and enjoy!"></div>
+						<div class="form-msg form-msg_error" data-elem="msg" data-type="error" data-default="Error."></div>
+					</div>
+				</div>
+			</div><section class="drawer drawer_center popup popup_lite-ver lite-version-drawer" data-drawer="lite-version">
+				<div data-lenis-prevent class="drawer__panel popup__panel" data-elem="drawer.panel" data-scrollable>
+					<section class="tg-h3 popup__body">
+						<div class="popup__close-btn">
+							<button class="drawer-close-btn" data-drawer-close="lite-version"><div class="drawer-close-btn__inner">Close panel<span class="icon-cubic-plus"></span></div></button>
+						</div>
+						<div class="lite-version-drawer__star-wrap"><svg id="lite-version-drawer__star" class="animated-star lite-version-drawer__star" viewBox="0 0 384 388">
+				<g mask="url(#lite-version-drawer__star-mask)">
+					<rect class="animated-star__bg" x="0" y="0" width="384" height="384" fill="var(--color, currentColor)"/>
+					<circle class="animated-star__fill" cx="192" cy="200" r="0" fill="var(--fill-color, #FF0000)"/>
+					<path d="M148.914 213.881L0.867188 176.965L23.9395 102.749L166.603 164.275L154.682 0.0771484H232.359L218.9 166.583L360.41 106.21L383.867 181.58L233.513 216.957L334.646 341.548L271.198 388.077L189.675 246.182L108.538 383.847L44.7045 339.625L148.914 213.881Z" class="animated-star__body" stroke="var(--stroke-color, #FF0000)" fill="none"/>
+				</g>
+				<mask id="lite-version-drawer__star-mask">
+					<path d="M148.914 213.881L0.867188 176.965L23.9395 102.749L166.603 164.275L154.682 0.0771484H232.359L218.9 166.583L360.41 106.21L383.867 181.58L233.513 216.957L334.646 341.548L271.198 388.077L189.675 246.182L108.538 383.847L44.7045 339.625L148.914 213.881Z" fill="white"/>
+				</mask>
+			</svg></div>
+						
+						<div class="reveal-wrap">
+							<div class="reveal-wrap__inner">
+								<div class="lite-version-drawer__msg reveal-wrap__item">To quickly load pages please switch to the</div>
+							</div>
+						</div>
+						<div class="reveal-wrap">
+							<div class="reveal-wrap__inner">
+								<a href="" class="text-btn lite-version-drawer__link reveal-wrap__item" data-component="animated-link">
+									<svg id="lite-version-drawer-link__lightning_1" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g class="animated-cubic-lightning__body" clip-path="url(#lite-version-drawer-link__lightning_1-clip)" transform="rotate(30 6.8 30) translate(-3)">
+											<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+											<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										</g>
+										<defs>
+											<clipPath id="lite-version-drawer-link__lightning_1-clip">
+												<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+												<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+											</clipPath>
+										</defs>
+									</svg>						<div class="text-btn__cap">Light Version</div>
+									<svg id="lite-version-drawer-link__lightning_2" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g class="animated-cubic-lightning__body" clip-path="url(#lite-version-drawer-link__lightning_2-clip)" transform="rotate(30 6.8 30) translate(-3)">
+											<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+											<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>
+											<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>
+										</g>
+										<defs>
+											<clipPath id="lite-version-drawer-link__lightning_2-clip">
+												<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
+												<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
+											</clipPath>
+										</defs>
+									</svg>					</a>
+							</div>
+						</div>
+					</section>
+				</div>
+			</section>		</div>
+		<div id="toasts" class="toasts"></div><div class="cursor" data-component="cursor">
+			<span data-elem="current" class="icon-cubic-plus-big"></span>
+			<span data-elem="next"></span>
+		</div><div class="ref-to-clipboard">
+			<div class="ref-to-clipboard__tips">
+				<div class="ref-to-clipboard__tips-body"></div>
+			</div>
+		</div>	<div id="cta-widget" class="cta-widget">
+				<button type="button" class="cta-widget-btn" data-drawer-open="request">
+					<svg class="cta-widget-arrow cta-widget__icon" viewBox="0 0 12 20" xmlns="http://www.w3.org/2000/svg">
+						<g class="cta-widget-arrow__rgb cta-widget-arrow__rgb_red">
+							<rect class="cta-widget-arrow__tip" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__tip" y="16" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="4" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="12" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__nose" x="8" y="8" width="4" height="4" fill="var(--color, currentColor)"/>
+						</g>
+						<g class="cta-widget-arrow__rgb cta-widget-arrow__rgb_green">
+							<rect class="cta-widget-arrow__tip" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__tip" y="16" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="4" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="12" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__nose" x="8" y="8" width="4" height="4" fill="var(--color, currentColor)"/>
+						</g>
+						<g class="cta-widget-arrow__rgb cta-widget-arrow__rgb_blue">
+							<rect class="cta-widget-arrow__tip" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__tip" y="16" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="4" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="12" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__nose" x="8" y="8" width="4" height="4" fill="var(--color, currentColor)"/>
+						</g>
+					</svg>
+					<div class="text-rgb-shake cta-widget-btn__cap">
+						<div class="text-rgb-shake__main">Request</div>
+						<div class="text-rgb-shake__set" aria-hidden="true">
+							<div>Request</div>
+							<div>Request</div>
+							<div>Request</div>
+						</div>
+					</div>
+				</button>
+				<button type="button" class="cta-widget-btn" data-drawer-open="ai-chat">
+					<div class="text-rgb-shake cta-widget-btn__cap">
+						<div class="text-rgb-shake__main">AI chat</div>
+						<div class="text-rgb-shake__set" aria-hidden="true">
+							<div>AI chat</div>
+							<div>AI chat</div>
+							<div>AI chat</div>
+						</div>
+					</div>
+					<svg class="cta-widget-arrow cta-widget__icon" viewBox="0 0 12 20" xmlns="http://www.w3.org/2000/svg">
+						<g class="cta-widget-arrow__rgb cta-widget-arrow__rgb_red">
+							<rect class="cta-widget-arrow__tip" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__tip" y="16" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="4" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="12" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__nose" x="8" y="8" width="4" height="4" fill="var(--color, currentColor)"/>
+						</g>
+						<g class="cta-widget-arrow__rgb cta-widget-arrow__rgb_green">
+							<rect class="cta-widget-arrow__tip" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__tip" y="16" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="4" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="12" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__nose" x="8" y="8" width="4" height="4" fill="var(--color, currentColor)"/>
+						</g>
+						<g class="cta-widget-arrow__rgb cta-widget-arrow__rgb_blue">
+							<rect class="cta-widget-arrow__tip" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__tip" y="16" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="4" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__middle" x="4" y="12" width="4" height="4" fill="var(--color, currentColor)"/>
+							<rect class="cta-widget-arrow__nose" x="8" y="8" width="4" height="4" fill="var(--color, currentColor)"/>
+						</g>
+					</svg>
+				</button>
+			</div>		<footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+			<div class="section-container section-container_decor footer__container">
+				<div class="footer__inner">
+					<div class="footer__top">
+						<span class="footer__copyright">All rights reserved. <span itemprop="copyrightHolder">Linnikov agency</span>. <span itemprop="copyrightYear">2024</span>&nbsp;©</span>
+						<div class="footer-talk-to-us footer__talk-to-us">
+							<div itemscope itemtype="http://schema.org/SiteNavigationElement">
+								<div class="footer-talk-to-us__links">
+									<a itemprop="url" href="." target="_blank" class="footer-link footer-link_pale">Contact</a>
+									<a itemprop="url" href="." target="_blank" class="footer-link footer-link_pale">Privacy Notice</a>
+									<a itemprop="url" href="." target="_blank" class="footer-link footer-link_pale">Cookie Policy</a>
+								</div>
+							</div>
+						</div>
+						<div class="footer-socials footer__socials">
+							<a itemprop="sameAs" href="https://www.linkedin.com/company/linnikov" target="_blank" class="footer-link"><div class="ref-arrow-icon ref-arrow-icon_horizontal">
+									<span class="icon-cubic-nav-arrow-right"></span>
+									<span class="icon-cubic-nav-arrow-right"></span>
+								</div>Linkedin</a>
+							<a itemprop="sameAs" href="https://www.instagram.com/linnikov.agency/" target="_blank" class="footer-link"><div class="ref-arrow-icon ref-arrow-icon_horizontal">
+									<span class="icon-cubic-nav-arrow-right"></span>
+									<span class="icon-cubic-nav-arrow-right"></span>
+								</div>Instagram</a>
+							<a itemprop="sameAs" href="https://www.facebook.com/linnikov.agency/" target="_blank" class="footer-link">
+								<div class="ref-arrow-icon ref-arrow-icon_horizontal">
+									<span class="icon-cubic-nav-arrow-right"></span>
+									<span class="icon-cubic-nav-arrow-right"></span>
+								</div>Facebook</a>
+						</div>
+						<div id="footer-go-up" class="footer__go-up-area">
+							<button type="button" class="footer-go-up">
+								<div class="footer-go-up__icon">
+									<span class="icon-cubic-nav-arrow-right"></span>
+								</div>
+								<div class="footer-go-up__caption">Back to top</div>
+							</button>
+						</div>
+					</div>
+					<div id="footer-sticky-container" class="footer__group">
+						<div id="footer-cta-msg-section" class="footer__middle">
+							<a href="" target="_blank" class="footer-cta-msg footer__cta-msg">
+								<div class="line">
+									<div class="reveal-wrap">
+										<div class="reveal-wrap__inner"><div>LET’S&nbsp;</div></div>
+									</div>
+									<div class="reveal-wrap">
+										<div class="reveal-wrap__inner">
+											<span id="footer-cta-msg-part" class="changing-words">
+												<span class="text-rgb-shake">
+													<span>CREATE</span>
+													<span class="text-rgb-shake__set" aria-hidden="true">
+														<span>CREATE</span>
+														<span>CREATE</span>
+														<span>CREATE</span>
+													</span>
+												</span>
+												<span class="text-rgb-shake">
+													<span>WORK</span>
+													<span class="text-rgb-shake__set" aria-hidden="true">
+														<span>WORK</span>
+														<span>WORK</span>
+														<span>WORK</span>
+													</span>
+												</span>
+												<span class="text-rgb-shake">
+													<span>GET</span>
+													<span class="text-rgb-shake__set" aria-hidden="true">
+														<span>GET</span>
+														<span>GET</span>
+														<span>GET</span>
+													</span>
+												</span>
+												<span class="text-rgb-shake">
+													<span>WOW</span>
+													<span class="text-rgb-shake__set" aria-hidden="true">
+														<span>WOW</span>
+														<span>WOW</span>
+														<span>WOW</span>
+													</span>
+												</span>
+												<span class="text-rgb-shake">
+													<span>DISCOVER</span>
+													<span class="text-rgb-shake__set" aria-hidden="true">
+														<span>DISCOVER</span>
+														<span>DISCOVER</span>
+														<span>DISCOVER</span>
+													</span>
+												</span>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="line">
+									<div class="reveal-wrap">
+										<div class="reveal-wrap__inner"><div>TOGETHER&nbsp;</div></div>
+									</div>
+									<div class="reveal-wrap">
+										<div class="reveal-wrap__inner">
+											<span class="ref-arrow-icon footer-cta-msg__arrow">
+												<span class="icon-cubic-ref-arrow"></span>
+												<span class="icon-cubic-ref-arrow"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="section-decor footer-decor footer__decor">
+								<div class="section-decor__inner footer-decor__inner">
+									<div class="reveal-wrap section-decor__item footer-decor__item">
+										<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+									</div>
+									<div class="reveal-wrap section-decor__item footer-decor__item">
+										<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+									</div>
+									<div class="reveal-wrap section-decor__item footer-decor__item">
+										<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+									</div>
+									<div class="reveal-wrap section-decor__item footer-decor__item">
+										<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+									</div>
+								</div>
+								<div class="section-decor__rgb-set">
+									<div class="section-decor footer-decor">
+										<div class="section-decor__inner footer-decor__inner">
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+										</div>
+									</div>
+									<div class="section-decor footer-decor">
+										<div class="section-decor__inner footer-decor__inner">
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+										</div>
+									</div>
+									<div class="section-decor footer-decor">
+										<div class="section-decor__inner footer-decor__inner">
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+											<div class="reveal-wrap section-decor__item footer-decor__item">
+												<div class="reveal-wrap__inner"><div class="section-decor__item-body footer-decor__item-body"></div></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="footer-logo-section" class="footer__bottom">
+							<a href="." class="logo footer__logo">
+								<figure>
+									<img src="./img/logo-dark.svg" class="logo__img" alt="Light Logo">
+									<figcaption aria-hidden="true">Main page</figcaption>
+								</figure>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>	</body>
+</html>
