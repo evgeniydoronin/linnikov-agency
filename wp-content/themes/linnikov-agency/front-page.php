@@ -1,36 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1" interactive-widget="resizes-visual">
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/polyfills/ResizeObserver/ResizeObserver.global.js"></script>
-  <script defer="defer" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/jqueryValidate/jquery.validate.min.js"></script>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/inputmask.min.js"></script>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/fancybox/jquery.fancybox.min.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
-  <script defer="defer" src="https://player.vimeo.com/api/player.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/vanilla-drawers@1.1.21/dist/drawers.umd.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
-  <script defer="defer" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/gsap-premium/SplitText.min.js"></script>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/gsap-premium/PhysicsPropsPlugin.min.js"></script>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/gsap-premium/MorphSVGPlugin.js"></script>
-  <script defer="defer" src="https://unpkg.com/mobx@6.12.3/dist/mobx.umd.production.min.js"></script>
+<?php get_header(); ?>
 
-
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/git-src/build/libs/fancybox/jquery.fancybox.min.css">
-  <title>Linnikov agency</title>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/js/common.min.js"></script>
-  <script defer="defer" src="<?php echo get_template_directory_uri(); ?>/git-src/build/js/home.min.js"></script>
-  <link href="<?php echo get_template_directory_uri(); ?>/git-src/build/css/common.min.css" rel="stylesheet">
-  <link href="<?php echo get_template_directory_uri(); ?>/git-src/build/css/home.min.css" rel="stylesheet">
-</head>
 <body class="home">
 <header class="header header_fixed home__header">
   <div class="section-container section-container_decor header__container">
@@ -2082,4 +2051,5 @@
   </footer>
 </div>
 </body>
-</html>
+
+<?php get_footer();

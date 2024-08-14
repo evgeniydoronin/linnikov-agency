@@ -85,49 +85,55 @@ if (!function_exists('dequeue_jquery_migrate')) {
 // Function to enqueue styles and scripts
 if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 	function linnikov_agency_enqueue_styles_and_scripts(): void {
-		// Polyfills and libraries
-		wp_enqueue_script('resize-observer-polyfill', get_template_directory_uri() . '/git-src/build/libs/polyfills/ResizeObserver/ResizeObserver.global.js', array(), null, false);
 
-		// Deregister WordPress's default jQuery
-		wp_deregister_script('jquery');
+    // Deregister WordPress's default jQuery and register your own version
+    wp_deregister_script('jquery');
+    wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.7.1.min.js', array(), null, false);
 
-		// Enqueue the desired version of jQuery
-		wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.7.1.min.js', array(), null, false);
+    // Enqueue other scripts
+    wp_enqueue_script('resize-observer-polyfill', get_template_directory_uri() . '/git-src/build/libs/polyfills/ResizeObserver/ResizeObserver.global.js', array(), null, false);
+    wp_enqueue_script('jquery-validate', get_template_directory_uri() . '/git-src/build/libs/jqueryValidate/jquery.validate.min.js', array('jquery'), null, false);
+    wp_enqueue_script('inputmask', get_template_directory_uri() . '/git-src/build/libs/inputmask.min.js', array('jquery'), null, false);
+    wp_enqueue_script('fancybox', get_template_directory_uri() . '/git-src/build/libs/fancybox/jquery.fancybox.min.js', array('jquery'), null, false);
+    wp_enqueue_script('tom-select', 'https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js', array(), null, false);
+    wp_enqueue_script('vimeo-player', 'https://player.vimeo.com/api/player.js', array(), null, false);
+    wp_enqueue_script('vanilla-drawers', 'https://cdn.jsdelivr.net/npm/vanilla-drawers@1.1.21/dist/drawers.umd.js', array(), null, false);
+    wp_enqueue_script('gsap-core', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', array(), null, false);
+    wp_enqueue_script('gsap-flip', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js', array('gsap-core'), null, false);
+    wp_enqueue_script('gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', array('gsap-core'), null, false);
+    wp_enqueue_script('gsap-observer', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js', array('gsap-core'), null, false);
+    wp_enqueue_script('gsap-custom-ease', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js', array('gsap-core'), null, false);
+    wp_enqueue_script('gsap-scrollto', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js', array('gsap-core'), null, false);
+    wp_enqueue_script('gsap-splittext', get_template_directory_uri() . '/git-src/build/libs/gsap-premium/SplitText.min.js', array('gsap-core'), null, false);
+    wp_enqueue_script('gsap-physics-props', get_template_directory_uri() . '/git-src/build/libs/gsap-premium/PhysicsPropsPlugin.min.js', array('gsap-core'), null, false);
+    wp_enqueue_script('gsap-morphsvg', get_template_directory_uri() . '/git-src/build/libs/gsap-premium/MorphSVGPlugin.js', array('gsap-core'), null, false);
+    wp_enqueue_script('mobx', 'https://unpkg.com/mobx@6.12.3/dist/mobx.umd.production.min.js', array(), null, false);
 
-		// Additional scripts
-		wp_enqueue_script('jquery-validate', get_template_directory_uri() . '/git-src/build/libs/jqueryValidate/jquery.validate.min.js', array('jquery'), null, false);
-		wp_enqueue_script('inputmask', get_template_directory_uri() . '/git-src/build/libs/inputmask.min.js', array('jquery'), null, false);
-		wp_enqueue_script('fancybox', get_template_directory_uri() . '/git-src/build/libs/fancybox/jquery.fancybox.min.js', array('jquery'), null, false);
-		wp_enqueue_script('tom-select', 'https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js', array(), null, false);
-		wp_enqueue_script('vimeo-player', 'https://player.vimeo.com/api/player.js', array(), null, false);
-		wp_enqueue_script('vanilla-drawers', 'https://cdn.jsdelivr.net/npm/vanilla-drawers@1.1.21/dist/drawers.umd.js', array(), null, false);
-		wp_enqueue_script('gsap-core', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', array(), null, false);
-		wp_enqueue_script('gsap-flip', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js', array('gsap-core'), null, false);
-		wp_enqueue_script('gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', array('gsap-core'), null, false);
-		wp_enqueue_script('gsap-observer', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js', array('gsap-core'), null, false);
-		wp_enqueue_script('gsap-custom-ease', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js', array('gsap-core'), null, false);
-		wp_enqueue_script('gsap-scrollto', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js', array('gsap-core'), null, false);
-		wp_enqueue_script('gsap-splittext', get_template_directory_uri() . '/git-src/build/libs/gsap-premium/SplitText.min.js', array('gsap-core'), null, false);
-		wp_enqueue_script('gsap-physics-props', get_template_directory_uri() . '/git-src/build/libs/gsap-premium/PhysicsPropsPlugin.min.js', array('gsap-core'), null, false);
-		wp_enqueue_script('gsap-morphsvg', get_template_directory_uri() . '/git-src/build/libs/gsap-premium/MorphSVGPlugin.js', array('gsap-core'), null, false);
-		wp_enqueue_script('mobx', 'https://unpkg.com/mobx@6.12.3/dist/mobx.umd.production.min.js', array(), null, false);
-		wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array(), null, false);
+    // Enqueue styles
+    wp_enqueue_style('fancybox-css', get_template_directory_uri() . '/git-src/build/libs/fancybox/jquery.fancybox.min.css');
+    wp_enqueue_style('common-css', get_template_directory_uri() . '/git-src/build/css/common.min.css');
 
-		// Styles
-		wp_enqueue_style('fancybox-css', get_template_directory_uri() . '/git-src/build/libs/fancybox/jquery.fancybox.min.css');
-		wp_enqueue_style('common-css', get_template_directory_uri() . '/git-src/build/css/common.min.css');
+    // Enqueue main scripts
+    wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array(), null, false);
 
-		// Enqueue specific scripts and styles for the front page
-		if (is_front_page()) {
-			wp_enqueue_style('home-style', get_template_directory_uri() . '/git-src/build/css/home.min.css');
-			wp_enqueue_script('home-script', get_template_directory_uri() . '/git-src/build/js/home.min.js', array('jquery'), null, true);
-		}
+    // Conditionally enqueue for front-page.php
+    if (is_front_page()) {
+      wp_enqueue_script('home-js', get_template_directory_uri() . '/git-src/build/js/home.min.js', array(), null, false);
+      wp_enqueue_style('home-css', get_template_directory_uri() . '/git-src/build/css/home.min.css');
+    }
 
-		// Enqueue specific scripts and styles for the contact page
-		if (is_page('contact')) {
-			wp_enqueue_style('contact-style', get_template_directory_uri() . '/git-src/build/css/contact.min.css');
-			wp_enqueue_script('contact-script', get_template_directory_uri() . '/git-src/build/js/contact.min.js', array('jquery'), null, true);
-		}
+//    // Conditionally enqueue for a single work page (single-work.php)
+//    if (is_singular('work')) {
+//      wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
+//      wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
+//    }
+//
+//    // Conditionally enqueue for the works archive page (archive-work.php)
+//    if (is_post_type_archive('work')) {
+//      wp_enqueue_script('archive-work-js', get_template_directory_uri() . '/git-src/build/js/archive-work.min.js', array(), null, false);
+//      wp_enqueue_style('archive-work-css', get_template_directory_uri() . '/git-src/build/css/archive-work.min.css');
+//    }
+
 	}
 	add_action('wp_enqueue_scripts', 'linnikov_agency_enqueue_styles_and_scripts');
 }
@@ -158,35 +164,5 @@ if (!function_exists('linnikov_agency_register_menus')) {
 // Add support for post thumbnails
 add_theme_support('post-thumbnails');
 
-// Function to initialize widget areas
-if (!function_exists('linnikov_agency_widgets_init')) {
-	function linnikov_agency_widgets_init(): void {
-		register_sidebar(array(
-			'name' => __('Sidebar', 'linnikov-agency'),
-			'id' => 'sidebar-1',
-			'description' => __('Main sidebar that appears on the right.', 'linnikov-agency'),
-			'before_widget' => '<div class="widget %2$s">',
-			'after_widget' => '</div>',
-			'before_title' => '<h2 class="widget-title">',
-			'after_title' => '</h2>',
-		));
-	}
-	add_action('widgets_init', 'linnikov_agency_widgets_init');
-}
-
 // Add support for title tag
 add_theme_support('title-tag');
-
-// Function to set up custom logo support
-if (!function_exists('linnikov_agency_custom_logo_setup')) {
-	function linnikov_agency_custom_logo_setup(): void {
-		$defaults = array(
-			'height'      => 100,
-			'width'       => 400,
-			'flex-height' => true,
-			'flex-width'  => true,
-		);
-		add_theme_support('custom-logo', $defaults);
-	}
-	add_action('after_setup_theme', 'linnikov_agency_custom_logo_setup');
-}
