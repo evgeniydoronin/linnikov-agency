@@ -1,0 +1,64 @@
+html {
+	--white: white;
+	--deep-black: black;
+	--black: #0B0B0B;
+	--red: #BA0000;
+	--green: #008000;
+	--blue: #0000FF;
+	--purple-rose: #EA33F7;
+	--purple: #9747FF;
+	--light-gray: #929292;
+	--container-border: #{rgba($color: #FFF, $alpha: 0.2)};
+	--dark-bg: #181818;
+	--works-avard-card-bg: #424242;
+	--bg-light-grey: #F0F0F0;
+	--blended-container-border: #{rgba($color: black, $alpha: 0.2)};
+	--grey-semi-clear: rgba(139, 139, 139, 0.6);
+	--scroll-indicator-color:rgb(201, 201, 201);
+	--card-snowflake-color: #0000FF;
+	--attention-color: #FF3D2D;
+	--drawer-underlay: rgba(0, 0, 0, 0.60);
+}
+html[data-theme=light] {
+	--light-black: #000;
+	--light-semi-black: #888888;
+	--light-grey: #929292;
+	--light-bg-white: #FFF;
+	--light-bg-dark: #000;
+	--light-white: #FFF;
+	--selection-color: #FFF;
+	--light-bg-grey-light: #F0F0F0;
+	--light-bg-white-light: #FFF;
+	--light-dark-bg: #FFF;
+	--light-container-border: #{rgba($color: #0B0B0B, $alpha: 0.2)};
+	--dark-container-border: #{rgba($color: #FFF, $alpha: 0.2)};
+	--inverted-container-border: #{rgba($color: #FFF, $alpha: 0.2)};
+	--light-black-to-grey: #0B0B0B;
+	--light-white-semi-transparent: rgba(255,255,255, 0.6);
+	--about-us-card-shadow-color: #04041134;
+	--about-us-avard-card-bg: black;
+	--default-checkbox-effect-color: rgba(0, 0, 0, 0.5);
+	--text-checkbox-hover-color: #E6E6E6;
+}
+html[data-theme=dark] {
+	--light-bg-grey-light: #181818;
+	--light-black: #FFF;
+	--light-white: #000000;
+	--light-bg-white: #000;
+	--light-bg-dark: #FFF;
+	--light-grey: #929292;
+	--light-semi-black: #FFF;
+	--selection-color: #0B0B0B;
+	--light-dark-bg: #FFF;
+	--light-bg-grey-light: #181818;
+	--light-bg-white-light: #181818;
+	--light-container-border: #{rgba($color: #FFF, $alpha: 0.2)};
+	--dark-container-border: #{rgba($color: #0B0B0B, $alpha: 0.2)};
+	--inverted-container-border: #{rgba($color: #0B0B0B, $alpha: 0.2)};
+	--light-black-to-grey: #424242;
+	--light-white-semi-transparent: rgba(0,0,0, 0.6);
+	--about-us-card-shadow-color: #acacac6e;
+	--about-us-avard-card-bg: #424242;
+	--default-checkbox-effect-color: rgba(255, 255, 255, 0.75);
+	--text-checkbox-hover-color: #E6E6E6; // #929292;
+}

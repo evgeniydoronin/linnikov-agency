@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	{{> ../../shared/partials/head
+		title='Works'
+	}}
+	<body class="works">
+		{{> ../../shared/partials/header}}
+		<main>
+			<section class="hero">
+				<div class="section-container section-container_decor hero__container">
+					<h1 class="tg-h1">Works</h1>
+				</div>
+			</section>
+			<section class="top-cases works__top-cases" id="top-cases">
+				<div class="section-container section-container_decor top-cases__container">
+					<nav class="materials-filter_center top-cases__filter top-cases__filter_center">
+						<div class="tg-control uppercase materials-filter__inner">
+							<a href="#all" class="text-btn" data-component="animated-link">
+								{{> ../../shared/partials/animated-cubic-lightning id="materials-filter__lightning_1" class="text-btn__lightning"}}
+								</span><div class="text-btn__cap">All</div>
+							</a>
+							<a href="#branding" class="text-btn" data-component="animated-link">
+								{{> ../../shared/partials/animated-cubic-lightning id="materials-filter__lightning_2" class="text-btn__lightning"}}
+								</span><div class="text-btn__cap">Branding</div>
+							</a>
+							<a href="#packaging" class="text-btn" data-component="animated-link">
+								{{> ../../shared/partials/animated-cubic-lightning id="materials-filter__lightning_3" class="text-btn__lightning"}}
+								</span><div class="text-btn__cap">Packaging</div>
+							</a>
+							<a href="#digital" class="text-btn" data-component="animated-link">
+								{{> ../../shared/partials/animated-cubic-lightning id="materials-filter__lightning_4" class="text-btn__lightning"}}
+								</span><div class="text-btn__cap">Digital</div>
+							</a>
+						</div>
+					</nav>
+					<div class="top-cases__body" data-top-cases-elem="body">
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Iguana" data-category="branding, packaging">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/iguana@2x.webp">
+									<img src="@img/home/iguana@2x.jpg" alt="Iguana" loading="lazy">
+								</picture>
+							</div>
+						</a>
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Khush" data-category="branding, digital">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/khush@2x.webp">
+									<img src="@img/home/khush@2x.jpg" alt="Khush" loading="lazy">
+								</picture>
+							</div>
+						</a>
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Project name" data-category="branding, digital">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/the-moon@2x.webp">
+									<img src="@img/home/the-moon@2x.jpg" alt="Project preview" loading="lazy">
+								</picture>
+							</div>
+						</a>
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Project name" data-category="branding">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/rgb-pot@1.5x.webp">
+									<img src="@img/home/rgb-pot@1.5x.jpg" alt="Project preview" loading="lazy">
+								</picture>
+							</div>
+						</a>
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Aromanty" data-category="branding">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/aromanty@1.5x.webp">
+									<img src="@img/home/aromanty@1.5x.jpg" alt="Aromanty" loading="lazy">
+								</picture>
+							</div>
+						</a>
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Project name" data-category="branding">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/glass-letters@1.5x.webp">
+									<img src="@img/home/glass-letters@1.5x.jpg" alt="Project preview" loading="lazy">
+								</picture>
+							</div>
+						</a>
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Project name" data-category="branding, digital">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/spf30@1.5x.webp">
+									<img src="@img/home/spf30@1.5x.jpg" alt="Project preview" loading="lazy">
+								</picture>
+							</div>
+						</a>
+						<a href="." class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="Project name" data-category="branding, digital, packaging">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" srcset="@img/home/gusto-pastila-01@1.5x.webp">
+									<img src="@img/home/gusto-pastila-01@1.5x.jpg" alt="Project preview" loading="lazy">
+								</picture>
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div class="drawers-group" data-drawers-group="system">
+			{{> ../../shared/partials/common-drawers}}
+		</div>
+		{{> ../../shared/partials/common}}
+		{{> ../../shared/partials/footer}}
+	</body>
+</html>

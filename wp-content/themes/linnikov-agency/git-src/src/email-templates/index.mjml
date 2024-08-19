@@ -1,0 +1,38 @@
+<mjml>
+		<mj-head>
+     	<mj-font name="Raleway" href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular700&display=swap"/>
+			<mj-attributes>
+				<mj-all font-family="Open Sans" font-size="15px"/>
+				<mj-class name="title" align="center" font-size="36px" color="#52AE32" font-weight="700" line-height: "114.682%"/>
+				<mj-class name="paragraph" align="center" font-size="15px" color="#000" line-height="1.3" />
+				<mj-class name="btn" align="center" font-size="15px" color="#FFF" background-color="#F3712B" line-height="2" padding="15px 37px"/>
+				<mj-class name="center" align="center"/>
+			</mj-attributes>
+			<mj-style>
+				.contact > span {
+					padding-right: 0.3em;
+				}
+				a {
+					display: inline-block;
+					color: #000;
+					text-align: center;
+					text-decoration: none;
+				}
+				a:hover {
+					text-decoration: underline !important;
+				}
+			</mj-style>
+   	</mj-head>
+	<mj-body>
+		<mj-section>
+			<mj-column>
+				<mj-text padding-top="0px" padding-bottom="20px">
+					<h1 style="margin-bottom: 40px;">Index of templates:</h1>
+				</mj-text>
+				<mj-text padding-top="0px" padding-bottom="20px">
+					<a href="./get-catalogue.html" target="_blank">Personal presentation</a>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+	</mj-body>
+</mjml>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	{{> ../../shared/partials/head
+		title='Competencies'
+		scripts=(array 'https://code.createjs.com/1.0.0/createjs.min.js, libs/animated-icons/01.js, libs/animated-icons/02.js, libs/animated-icons/03.js, libs/animated-icons/04.js, libs/animated-icons/05.js, libs/animated-icons/06.js, libs/animated-icons/07.js, libs/animated-icons/08.js')
+	}}
+	<body class="competencies">
+		{{> ../../shared/partials/header}}
+		<main>
+			<section class="hero">
+				<div class="section-container section-container_decor hero__container">
+					<h1 class="tg-h1">Competencies</h1>
+				</div>
+			</section>
+			{{> ../../shared/partials/categories-grid}}
+			{{> ../../shared/partials/levels-composition class="competencies__levels-composition"}}
+			<div id="cs-animation">
+				<section class="cs-mob-animation">
+					<div class="section-container section-container_decor">
+						<div class="section-container__inner cs-mob-animation__padding-top">
+							<div class="cs-mob-tg-h1 cs-mob-msg-01 cs-mob-animation__msg-01">
+								<div class="cs-mob-msg-01__left">Feeling</div>
+								<div class="reveal-wrap cs-mob-msg-01__mid"><div class="reveal-wrap__inner"><div class="reveal-wrap__item">></div></div></div>
+								<div class="cs-mob-msg-01__right">Thinking</div>
+							</div>
+							<div class="cs-mob-tg-h2 cs-mob-msg-02 cs-mob-animation__msg-02">
+								<span data-will-reveal="true">On a daily basis, an individual is required to make over</span>
+							</div>
+							<div class="cs-mob-msg-03 cs-mob-animation__msg-03">
+								<div class="tg-huge cs-mob-msg-03__top">35,000</div>
+								<div class="cs-mob-tg-h2 cs-mob-msg-03__bottom"><span data-will-reveal="true">decisions.</span></div>
+							</div>
+							<div class="cs-mob-msg-04 cs-mob-animation__msg-04">
+								<div class="tg-huge cs-mob-msg-04__top">80%</div>
+								<div class="cs-mob-tg-h2 cs-mob-msg-04__bottom">
+									<span data-will-reveal="true">of these choices are made based on emotional impulses rather than rational thought processes.</span>
+								</div>
+							</div>
+							<div class="cs-mob-tg-h1 cs-mob-msg-05 cs-mob-animation__msg-05">
+								<span data-will-reveal="true">Trigger сhange</span>
+							</div>
+							<div class="cs-mob-msg-06 cs-mob-animation__msg-06">
+								<div class="cs-mob-tg-h2 cs-mob-msg-06__top"><span data-will-reveal="true">Most advertising targets rational thinking: the other</span></div>
+								<div class="tg-huge cs-mob-msg-06__bottom">
+									<span data-will-reveal="true">20%</span>
+								</div>
+							</div>
+							<div class="cs-mob-tg-h2 cs-mob-msg-07 cs-mob-animation__msg-07">
+								<span data-will-reveal="true">But appealing to our highly cognitive brain does not influence the biases that trigger real changes in consumer behavior.</span>
+							</div>
+							<div class="cs-mob-animation__diagram">
+								<div class="pie-diagram pie-diagram_inverted">
+									<svg class="pie-diagram__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+										<circle cx="150" cy="150" r="75" class="pie-diagram__a"></circle>
+										<circle cx="150" cy="150" r="75" class="pie-diagram__b"></circle>
+										<path d="M150 300 V150 L200 280" fill="none" class="pie-diagram__edge"></path>
+									</svg>
+									<div class="pie-diagram__labels">
+										<div class="pie-diagram__label pie-diagram__label_a">
+											<div class="reveal-wrap pie-diagram__value"><div class="reveal-wrap__inner"><div class="reveal-wrap__item">80<sub>%</sub></div></div></div>
+											<div class="reveal-wrap pie-diagram__name"><div class="reveal-wrap__inner"><div class="reveal-wrap__item">feeling</div></div></div>
+										</div>
+										<div class="pie-diagram__label pie-diagram__label_b">
+											<div class="reveal-wrap pie-diagram__value"><div class="reveal-wrap__inner"><div class="reveal-wrap__item">20<sub>%</sub></div></div></div>
+											<div class="reveal-wrap pie-diagram__name"><div class="reveal-wrap__inner"><div class="reveal-wrap__item">thinking</div></div></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="inverted-background cs-mob-closing">
+					<div class="section-container section-container_decor section-container_inverted cs-mob-closing__container">
+						<div class="section-container__inner">
+							<div class="cs-mob-animation__msg-08">
+								<div class="cs-mob-tg-h2 cs-mob-msg-08">
+									<span data-will-reveal="true">To create unique experiences and evoke trustful emotions, we use the following tools:</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			{{> ../../shared/partials/competencies-tools}}
+			{{> ../../shared/partials/competencies-faq}}
+		</main>
+		<div class="drawers-group" data-drawers-group="system">
+			{{> ../../shared/partials/common-drawers}}
+		</div>
+		{{> ../../shared/partials/common}}
+		{{> ../../shared/partials/footer}}
+	</body>
+</html>

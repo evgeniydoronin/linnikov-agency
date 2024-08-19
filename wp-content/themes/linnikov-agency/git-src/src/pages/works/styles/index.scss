@@ -1,0 +1,11 @@
+@import "../../../shared/styles/mixins.scss";
+@import "../../../shared/styles/config.scss";
+
+.works {
+	&__top-cases .top-cases__container {
+		padding-bottom: 160px;
+		@media (max-width: $mbpM) {
+			padding-bottom: 62px;
+		}
+	}
+}
