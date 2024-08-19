@@ -1,0 +1,21 @@
+@import "../../../shared/styles/mixins.scss";
+@import "../../../shared/styles/config.scss";
+@import "../../../common/styles/index.scss";
+body {
+
+}
+.container {
+	max-width: 1400px;
+	padding: 15px;
+	margin: auto;
+}
+.pages {
+	& > h3 {
+		font-size: 30px;
+		font-weight: 500;
+		margin-bottom: 20px;
+	}
+	& > ul > li:not(:last-child) {
+		margin-bottom: 20px;
+	}
+}

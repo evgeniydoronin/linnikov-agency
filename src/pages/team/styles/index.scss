@@ -1,0 +1,351 @@
+@import "../../../shared/styles/mixins.scss";
+@import "../../../shared/styles/config.scss";
+.team-board-poiner-tip {
+	--team-board-tip-width: 124px;
+	display: flex;
+	align-items: center;
+	width: var(--team-board-tip-width);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.1;
+	letter-spacing: -0.03;
+	text-transform: uppercase;
+	color: var(--light-white);
+	background-color: var(--light-black);
+	padding: 10px 15px;
+	pointer-events: none;
+	overflow: hidden;
+	opacity: 0;
+	html.is-mobile & {
+		display: none;
+	}
+	&._show &__cap {
+		animation: team-board-tip-cap-move 0.6s forwards;
+	}
+	&__icon {
+		margin-right: 10px;
+	}
+	@keyframes team-board-tip-cap-move {
+		0% { transform: translateX(10px); }
+		65% { transform: translateX(10px); }
+		100% { transform: translateX(0px); }
+	}
+	@media (any-hover: hover) {
+		&._show{
+			animation: show-team-board-tip 0.6s ease-in-out forwards;
+		}
+		&:not(._show) {
+			animation: hide-team-board-tip 0.4s ease-in-out forwards;
+		}
+	}
+	@keyframes show-team-board-tip {
+		0% { opacity: 0; width: 46px; }
+		65% { opacity: 1; width: 46px; }
+		100% { opacity: 1; width: var(--team-board-tip-width); }
+	}
+	@keyframes hide-team-board-tip {
+		from { opacity: 1; scale: 1; }
+		to { opacity: 0; scale: 0.5; }
+	}
+}
+.team-board-filter {
+	color: var(--light-black);
+	&__inner {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: -20px;
+		margin-top: -10px;
+		& > * {
+			margin-left: 20px;
+			margin-top: 10px;
+		}
+	}
+}
+.team-board-filter-btn {
+	display: inline-flex;
+	align-items: center;
+	transition: opacity 0.4s, color 0.4s;
+	padding: 0 0.1em;
+	overflow: hidden;
+	&__icon {
+		width: 0.75em;
+		height: 0.75em;
+		margin-right: 4px;
+	}
+	html[data-theme="light"] &._active {
+		opacity: 0.3;
+	}
+	html[data-theme="dark"] &._active {
+		color: var(--light-gray);
+	}
+	&__cap {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		transition: transform 0.4s;
+		min-width: 9em * 0.56;
+	}
+	&__cap::after {
+		content: "View team";
+		position: absolute;
+		left: 0;
+		top: 100%;
+		white-space: nowrap;
+	}
+	&._active &__cap {
+		transform: translateY(-100%);
+	}
+}
+
+.team-member-photo {
+	--height-ratio: 150%;
+}
+.team-board-card {
+	position: relative;
+	left: 0;
+	top: 0;
+	transition: opacity 0.4s;
+	&:not(#{&}_selected) {
+		opacity: 0.2;
+	}
+	&._active {
+		opacity: 1;
+	}
+	&__img {
+		@media (max-width: $mbpT) {
+			margin-bottom: 20px;
+		}
+		background-color: var(--deep-black);
+	}
+	&__title {
+		margin-bottom: 5px;
+		@media (max-width: $mbpT) {
+			color: var(--light-black);
+		}
+	}
+	&__role {
+		color: var(--white);
+		@media (max-width: $mbpT) {
+			color: var(--light-black);
+		}
+	}
+	&_selected &__info {
+		--save-space: 0em;
+		display: inline-grid;
+		position: absolute;
+		width: calc(100% - 60px);
+		bottom: 30px;
+		left: 30px;
+	}
+	&_selected &__img img {
+		animation: member-card-img-reveal 0.4s ease-in-out forwards;
+	}
+	@keyframes member-card-img-reveal {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+	&:not(#{&}_selected) :where(#{&}__title, #{&}__role) {
+		@media (min-width: ($mbpT + 1px)) {
+			display: none;
+		}
+	}
+}
+.team-board {
+	color: var(--white);
+	@media (max-width: $mbpT) {
+		overflow: hidden;
+	}
+	&__container {
+		position: relative;
+		left: 0;
+		top: 0;
+		display: grid;
+		grid-template-columns: 8.616fr 3.6fr;
+		gap: 30px 20px;
+		@media (max-width: 1700px) {
+			grid-template-columns: 8.65fr 3.6fr;
+		}
+		@media (max-width: 1450px) {
+			grid-template-columns: 8.68fr 3.6fr;
+		}
+		@media (max-width: 1200px) {
+			grid-template-columns: auto 300px;
+		}
+		@media (max-width: $mbpT) {
+			grid-template-columns: 1fr;
+		}
+	}
+	&__tip {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 1000;
+	}
+	&__right {
+		align-self: start;
+		display: grid;
+		gap: 18px;
+		position: sticky;
+		top: 0;
+		@media (max-width: $mbpT) {
+			display: none;
+		}
+	}
+	&__decor {
+		--decor-height: 2px;
+		--decor-color: var(--light-black);
+	}
+	&__members {
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		gap: 20px;
+		width: 100%;
+		min-width: 0;
+		@media (max-width: 1440px) {
+			grid-template-columns: repeat(5, 1fr);
+		}
+		@media (max-width: 1200px) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+		@media (max-width: $mbpT) {
+			grid-template-columns: none;
+			grid-auto-flow: column;
+			gap: 0;
+		}
+		& > * {
+			@media (min-width: 1440px) {
+				&:where(:nth-child(22n + 1), :nth-child(22n + 10), :nth-child(22n + 19)) {
+					grid-column: 1/2;
+				}
+				&:where(:nth-child(22n + 5), :nth-child(22n + 11), :nth-child(22n + 14), :nth-child(22n + 20)) {
+					grid-column: 2/3;
+				}
+				&:where(:nth-child(22n + 2), :nth-child(22n + 6), :nth-child(22n + 15)) {
+					grid-column: 3/4;
+				}
+				&:where(:nth-child(22n + 3), :nth-child(22n + 7), :nth-child(22n + 16)) {
+					grid-column: 4/5;
+				}
+				&:where(:nth-child(22n + 12), :nth-child(22n + 21)) {
+					grid-column: 5/6;
+				}
+				&:where(:nth-child(22n + 8), :nth-child(22n + 13), :nth-child(22n + 17), :nth-child(22n + 22)) {
+					grid-column: 6/7;
+				}
+				&:where(:nth-child(22n + 4), :nth-child(22n + 9), :nth-child(22n + 18)) {
+					grid-column: 7/8;
+				}
+			}
+			@media (min-width: 1201px) and (max-width: 1440px) {
+				&:where(:nth-child(22n + 1), :nth-child(22n + 8), :nth-child(22n + 14), :nth-child(22n + 20)) {
+					grid-column: 1/2;
+				}
+				&:where(:nth-child(22n + 5), :nth-child(22n + 11), :nth-child(22n + 15), :nth-child(22n + 17)) {
+					grid-column: 2/3;
+				}
+				&:where(:nth-child(22n + 2), :nth-child(22n + 6), :nth-child(22n + 12), :nth-child(22n + 18)) {
+					grid-column: 3/4;
+				}
+				&:where(:nth-child(22n + 3), :nth-child(22n + 9), :nth-child(22n + 13), :nth-child(22n + 19), :nth-child(22n + 21)) {
+					grid-column: 4/5;
+				}
+				&:where(:nth-child(22n + 4), :nth-child(22n + 7), :nth-child(22n + 10), :nth-child(22n + 16), :nth-child(22n + 22)) {
+					grid-column: 5/6;
+				}
+			}
+			@media (min-width: ($mbpT + 1)) and (max-width: 1200px) {
+				&:where(:nth-child(22n + 1), :nth-child(22n + 8), :nth-child(22n + 13), :nth-child(22n + 15), :nth-child(22n + 18)) {
+					grid-column: 1/2;
+				}
+				&:where(:nth-child(22n + 4), :nth-child(22n + 6), :nth-child(22n + 10), :nth-child(22n + 14), :nth-child(22n + 19), :nth-child(22n + 21)) {
+					grid-column: 2/3;
+				}
+				&:where(:nth-child(22n + 2), :nth-child(22n + 7), :nth-child(22n + 11), :nth-child(22n + 16)) {
+					grid-column: 3/4;
+				}
+				&:where(:nth-child(22n + 3), :nth-child(22n + 5), :nth-child(22n + 9), :nth-child(22n + 12), :nth-child(22n + 17), :nth-child(22n + 20), :nth-child(22n + 22)) {
+					grid-column: 4/5;
+				}
+			}
+		}
+	}
+}
+.member-profile-info {
+	--decor-color: var(--light-black);
+	--decor-height: 2px;
+	display: grid;
+	gap: 20px;
+	max-width: 440px;
+	@media (max-width: $mbpMM) {
+		max-width: 100%;
+	}
+	&__title {
+		margin-bottom: 5px;
+	}
+	&__role {
+		color: var(--light-gray);
+	}
+}
+.member-profile-drawer {
+	color: var(--light-black);
+	z-index: 2000;
+	&__container {
+		display: grid;
+		align-content: start;
+		min-height: 100%;
+		grid-template-columns: 1fr 1fr;
+		padding-bottom: 100px;
+		border-right: none;
+		&::before {
+			content: none;
+		}
+		@media (max-width: $mbpT) {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+	}
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		grid-column: 2/span 1;
+		padding: 46px 0;
+		border-bottom: 0.5px solid var(--inc-decor-color);
+		@media (max-width: $mbpT) {
+			grid-column: 1/span 1;
+		}
+		// @media (max-width: $mbpT) {
+		// 	margin-bottom: 100px;
+		// }
+		@media (max-width: $mbpM) {
+			padding: 21px 0;
+		}
+	}
+	&__info {
+		padding-right: 40px;
+	}
+	&__title {
+		display: inline-grid;
+		grid-auto-flow: column;
+		gap: 10px;
+	}
+	&__close-btn {
+		--color: var(--light-black);
+		transform: translateX(50%);
+	}
+	&__desc {
+		transform: translateY(-0.3em);
+		padding-top: 150px;
+		@media (max-width: $mbpT) {
+			grid-row: 2/span 1;
+			margin-bottom: 60px;
+		}
+		& blockquote {
+			margin-bottom: 60px;
+		}
+		& > * {
+			max-width: 700px;
+		}
+	}
+}

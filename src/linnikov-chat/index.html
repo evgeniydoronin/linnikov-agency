@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linnikov Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+
+    <!-- this for test -->
+    <a href="#linnikov-chat" data-open-chat>Show Chat</a>
+    <br>
+    <button type="button" id="toggle-chat-color">toggle chat color</button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* toggle chat color */
+            const toggleBtn = document.getElementById('toggle-chat-color');
+            const chat = document.getElementById('linnikov-chat');
+
+            if (toggleBtn && chat) {
+                toggleBtn.addEventListener('click', () => {
+                    chat.classList.toggle('linnikov-chat_dark');
+                })
+            }
+        });
+    </script>
+    <!-- end this for test -->
+
+
+    <!-- CHAT -->
+    <div class="linnikov-chat" id="linnikov-chat">
+        <!-- chat header -->
+        <div class="linnikov-chat__header">
+            <button type="button" class="linnikov-chat__header-button" data-close-chat>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.3333 4.16663L7.09663 9.62367C6.86897 9.82288 6.86897 10.177 7.09663 10.3762L13.3333 15.8333" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <img src="img/Linnikov_AI.svg" alt="Linnikov AI" loading="lazy" class="linnikov-chat__header-logo" width="123.5" height="32">
+
+            <button type="button" class="linnikov-chat__header-button" data-close-chat>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 5L15 15" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M15 5L5.00002 15" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <!-- end chat header -->
+
+        <!-- chat body -->
+        <div class="linnikov-chat__body">
+					<svg id="chat-cartoon" class="linnikov-chat__cartoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 513.64 261.24">
+						<path class="cls-1" d="M20.38,93.93c-1.97-.15-4.24-.11-6.42-.52C5.55,91.81.18,85.54.06,76.99c-.07-5.23-.22-10.53.54-15.67,1.07-7.25,7.06-12.52,14.44-12.99,6.47-.42,12.99-.26,19.49-.21,1.78.01,2.81-.55,3.84-2.03C55.87,20.94,79.69,5.24,110.06,1.14c37.38-5.05,69.14,6.75,94.43,34.99,3.65,4.07,6.77,8.62,10.35,13.22,12.08-8.52,25.82-12.97,41.02-12.54,15.14.43,28.54,5.63,40.43,15.08,5.3-8.81,11.37-16.72,18.76-23.53C333.27,11.57,354.63,1.83,379.45.3c33.07-2.04,61.16,9.02,84.05,32.93,3.95,4.12,7.21,8.92,10.69,13.48.77,1.01,1.38,1.5,2.78,1.47,6.5-.14,13-.22,19.5-.06,10.25.25,17.13,7.34,17.14,17.56,0,4.73.19,9.53-.47,14.19-1.15,8.15-7.86,13.66-16.14,13.9-1.82.05-3.64,0-5.32,0,0,4.59.12,8.97-.02,13.33-.89,28.93-11.8,53.46-32.67,73.5-16.06,15.42-35.25,24.8-57.27,27.69-31.19,4.1-59.18-3.76-83.19-24.36-19.38-16.63-31.03-37.75-35.21-62.92-1.8-10.83-1.92-21.75.07-32.54.73-3.95-1.6-5.99-3.54-8.22-13.17-15.23-37.51-15.53-51.09-.69-.69.76-1.1,2.28-.89,3.29,9.17,43.54-9.82,87.78-47.83,111.22-37.64,23.22-87.8,19.72-121.49-8.61-21.11-17.74-33.7-40.33-37.21-67.67-1-7.79-.67-15.75-.96-23.84ZM200.11,104.94c.42-40.9-33.41-74.89-74.69-75.05-40.97-.16-74.45,33.02-74.87,74.32-.4,40.37,32.26,74.91,74.51,75.12,40.43.19,74.63-32.23,75.05-74.39ZM312.13,104.59c0,41.16,33.31,74.52,74.66,74.76,41.04.24,74.95-33.61,74.91-74.79-.03-41.06-33.67-74.65-74.81-74.68-41.07-.03-74.76,33.63-74.76,74.7Z"/>
+						<path class="cls-1" d="M253.96,261.24c-23.83-.65-42.61-10.64-56.06-30.42-2.53-3.73-2.51-7.91-.13-10.89,2.56-3.2,6.61-4.55,10.22-2.86,1.78.83,3.52,2.33,4.6,3.97,6.98,10.59,16.52,17.65,28.74,20.88,12.04,3.18,23.68,1.86,34.85-3.78,9.37-4.73,16.03-12.09,21.34-20.95,2.5-4.17,7.47-5.1,11.76-2.61,3.93,2.28,5.45,7.06,3.32,11.26-5.6,11.02-13.92,19.6-24.46,25.91-10.46,6.26-21.85,9.55-34.18,9.5Z"/>
+						<path class="cls-1" d="M147.64,137.34c-12.65-.01-22.93-10.26-22.91-22.86.02-12.61,10.29-22.82,22.96-22.81,12.67,0,22.88,10.2,22.9,22.86.02,12.58-10.28,22.82-22.95,22.81Z"/>
+						<path class="cls-1" d="M359.4,137.34c-12.73.04-22.9-10.05-22.94-22.76-.04-12.7,10.09-22.89,22.79-22.91,12.73-.02,22.91,10.09,22.94,22.76.02,12.73-10.07,22.87-22.79,22.91Z"/>
+					</svg>
+            <div class="linnikov-chat__decor-line linnikov-chat__decor-line_1"></div>
+            <div class="linnikov-chat__decor-line linnikov-chat__decor-line_2"></div>
+            <div class="linnikov-chat__decor-line linnikov-chat__decor-line_3"></div>
+            <div class="linnikov-chat__decor-line linnikov-chat__decor-line_4"></div>
+            <div data-lenis-prevent class="linnikov-chat__body-content">
+                <div class="linnikov-chat__line">
+                    <div class="linnikov-chat__line-icon">
+                        <img src="img/chat_icon.svg" alt="Icon" loading="lazy">
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>What brings you here today?</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>22:22</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linnikov-chat__line linnikov-chat__line_right">
+                    <div class="linnikov-chat__line-name">
+                        <p>API</p>
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>22:22</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linnikov-chat__line linnikov-chat__line_no-full">
+                    <div class="linnikov-chat__line-icon">
+                        <img src="img/chat_icon.svg" alt="Icon" loading="lazy">
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>22:22</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linnikov-chat__line linnikov-chat__line_no-full">
+                    <div class="linnikov-chat__line-icon">
+                        <img src="img/chat_icon.svg" alt="Icon" loading="lazy">
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>Were you able to answer your question using the Help Center?</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>Bot</p>
+                            <p>Just now.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linnikov-chat__line">
+                    <div class="linnikov-chat__line-icon">
+                        <img src="img/chat_icon.svg" alt="Icon" loading="lazy">
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>What brings you here today?</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>22:22</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linnikov-chat__line linnikov-chat__line_right">
+                    <div class="linnikov-chat__line-name">
+                        <p>API</p>
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>22:22</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linnikov-chat__line linnikov-chat__line_no-full">
+                    <div class="linnikov-chat__line-icon">
+                        <img src="img/chat_icon.svg" alt="Icon" loading="lazy">
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>For API-related support, please check out the <a href="#">Help Center</a> to see if any of the articles are relevant to your issue.</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>22:22</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="linnikov-chat__line linnikov-chat__line_no-full">
+                    <div class="linnikov-chat__line-icon">
+                        <img src="img/chat_icon.svg" alt="Icon" loading="lazy">
+                    </div>
+                    <div class="linnikov-chat__line-body">
+                        <div class="linnikov-chat__line-body-message">
+                            <p>Were you able to answer your question using the Help Center?</p>
+                        </div>
+                        <div class="linnikov-chat__line-body-info">
+                            <p>Bot</p>
+                            <p>Just now.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- submit form -->
+            <form action="" class="linnikov-chat__form">
+                <input type="text" name="chat_message" class="linnikov-chat__form-field" placeholder="Type message" autocomplete="off">
+                <button type="submit" class="linnikov-chat__form-button">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.4898 8.90622L4.36484 1.41482C4.1436 1.29071 3.88983 1.23686 3.63726 1.2604C3.38468 1.28395 3.14525 1.38379 2.95076 1.54665C2.75628 1.70951 2.61594 1.92769 2.54841 2.17221C2.48087 2.41673 2.48933 2.676 2.57265 2.9156L4.99452 9.98357C4.99421 9.98616 4.99421 9.98878 4.99452 9.99138C4.99409 9.99397 4.99409 9.99661 4.99452 9.99919L2.57265 17.0828C2.50592 17.2713 2.48538 17.473 2.51274 17.6711C2.5401 17.8691 2.61458 18.0577 2.72991 18.221C2.84525 18.3844 2.99808 18.5176 3.17557 18.6097C3.35307 18.7017 3.55005 18.7498 3.74999 18.75C3.96692 18.7494 4.18004 18.6929 4.36874 18.5859L17.4867 11.082C17.6802 10.9736 17.8414 10.8157 17.9537 10.6244C18.066 10.4332 18.1254 10.2155 18.1258 9.99369C18.1262 9.7719 18.0676 9.554 17.956 9.36234C17.8443 9.17069 17.6837 9.01219 17.4906 8.9031L17.4898 8.90622ZM3.74999 17.5V17.4929L6.10468 10.625H10.625C10.7908 10.625 10.9497 10.5591 11.0669 10.4419C11.1841 10.3247 11.25 10.1657 11.25 9.99997C11.25 9.83421 11.1841 9.67524 11.0669 9.55803C10.9497 9.44082 10.7908 9.37497 10.625 9.37497H6.11093L3.75468 2.50935L3.74999 2.49997L16.875 9.98669L3.74999 17.5Z"/>
+                    </svg>
+                </button>
+            </form>
+            <!-- end submit form -->
+        </div>
+        <!-- end chat body -->
+    </div>
+    <!-- END CHAT -->
+
+    <script src="chat.js" defer></script>
+</body>
+</html>

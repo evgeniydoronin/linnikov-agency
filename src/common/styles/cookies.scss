@@ -1,0 +1,85 @@
+.cookies-panel {
+	position: fixed;
+	left: 0;
+	top: 100%;
+	width: 100%;
+	max-height: var(--window-inner-height, 100vh);
+	z-index: 1100;
+	color: var(--light-white);
+	background-color: var(--light-black);
+	transition: transform 0.4s;
+	overflow: auto;
+	&.drawer_open {
+		transform: translateY(-100%);
+	}
+	&__container {
+		padding: 24px 50px;
+		@media (max-width: 1200px) {
+			padding: 50px;
+		}
+		@media (max-width: $mbpM) {
+			padding: 20px;
+		}
+	}
+	&__form {
+		display: grid;
+		grid-auto-flow: column;
+		justify-content: space-between;
+		align-items: center;
+		gap: 40px;
+		@media (max-width: 1200px) {
+			grid-auto-flow: row;
+		}
+		@media (max-width: $mbpM) {
+			gap: 20px;
+		}
+	}
+	&__accept-btn {
+		--btn-padding: 6px 10px;
+		--btn-font-size: 16px;
+		letter-spacing: -0.03em;
+		border: 1px solid var(--light-white);
+	}
+	&__manage-btn {
+		text-transform: uppercase;
+		@media (min-width: ($mbpM + 1px)) {
+			display: none;
+		}
+	}
+	&__options, &__actions {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: center;
+		gap: 40px;
+		@media (max-width: $mbpM) {
+			gap: 20px;
+		}
+	}
+	&__options {
+		@media (max-width: $mbpM) {
+			display: none;
+		}
+	}
+	&__group {
+		display: grid;
+		grid-auto-flow: column;
+		justify-items: start;
+		align-items: center;
+		gap: 40px;
+		@media (max-width: 1200px) {
+			grid-auto-flow: row;
+		}
+		@media (max-width: $mbpM) {
+			gap: 20px;
+		}
+	}
+}
+.cookies-option {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 12px;
+	&__label {
+		text-transform: uppercase;
+	}
+}

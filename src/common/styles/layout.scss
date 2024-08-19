@@ -1,0 +1,78 @@
+html {
+	--container-margin: 50px;
+	--scrollbar-width: 0px;
+	@media (max-width: $mbpT) {
+		--container-margin: 48px;
+	}
+	@media (max-width: $mbpM) {
+		--container-margin: 30px;
+	}
+	@media (max-width: $mbpMM) {
+		--container-margin: 20px;
+	}
+	@media (max-width: $mbpSM) {
+		--container-margin: 16px;
+	}
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	overflow-x: hidden;
+	&:not(.is-mobile, .ua-mac) {
+		--scrollbar-width: 17px;
+	}
+	&.scroll-lock-by-drawer:not(.is-mobile, .ua-mac) {
+		padding-right: var(--scrollbar-width);
+	}
+}
+body {
+	display: flex;
+	flex-direction: column;
+	line-height: 1;
+	font-family: $fontFamily;
+	background-color: var(--light-white);
+}
+main {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+}
+.page-section {
+	display: flex;
+	flex-direction: column;
+}
+
+.section-container {
+	--inc-decor-color: var(--decor-color, var(--light-container-border, #{rgba($color: #0B0B0B, $alpha: 0.2)}));
+	flex: 1 1 auto;
+	position: relative;
+	left: 0;
+	top: 0;
+	width: calc(100% - var(--container-margin) * 2);
+	margin: 0 var(--container-margin);
+	&_decor {
+		border-width: 0 0.5px 0 0.5px;
+		border-style: solid;
+		border-color: var(--inc-decor-color);
+	}
+	&_vertical-decor {
+		border-top-width: 0.5px;
+		border-bottom-width: 0.5px;
+	}
+	&_decor::before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: 0.5px;
+		height: 100%;
+		background-color: var(--inc-decor-color);
+	}
+	&_inverted {
+		--decor-color: var(--inverted-container-border);
+	}
+	&__inner {
+		max-width: 1400px;
+		width: 100%;
+		margin: auto;
+	}
+}

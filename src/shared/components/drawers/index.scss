@@ -1,0 +1,105 @@
+.scroll-lock-by-drawer {
+	overflow: hidden;
+}
+.drawers {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+.drawer {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	visibility: hidden;
+	&_full {
+		perspective: 800px;
+		overflow: hidden;
+	}
+	&_center {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: var(--z-index);
+	}
+	html.content-is-loaded & {
+		transition: visibility 0.6s, background-color 0.6s;
+	}
+	html.content-is-loaded &:where(.drawer_open, .drawer_opening, .drawer_closing) {
+		visibility: visible;
+	}
+	html.content-is-loaded &_modal:where(.drawer_open, .drawer_opening) {
+		transition: background-color 0.4s;
+		background-color: var(--drawer-underlay);
+	}
+	&_full:not(.drawer_open, .drawer_opening, .drawer_closing),
+	&_center:not(.drawer_open, .drawer_opening, .drawer_closing) {
+		visibility: hidden;
+	}
+	&_full &__panel {
+		height: 100vh;
+		overflow-x: hidden;
+		visibility: hidden;
+		opacity: 0;
+		transform-origin: 100vh center;
+		transform: rotate3d(1, 0, 0, 5deg) translate3d(0, 0, -50px);
+		scroll-behavior: smooth;
+	}
+	&_center &__panel {
+		visibility: hidden;
+		opacity: 0;
+		transform: translate3d(0, 50px, 0);
+	}
+	&_center.drawer_open &__panel {
+		visibility: visible;
+		opacity: 1;
+		transform: none;
+	}
+	&_full.transition &__panel {
+		transition: visibility 0.4s, opacity 0.4s, transform 0.4s;
+	}
+	&_center.transition &__panel {
+		transition: visibility 0.4s, opacity 0.4s, transform 0.4s;
+	}
+	&_full.drawer_open &__panel {
+		visibility: visible;
+		opacity: 1;
+		transform: none;
+	}
+	&_right &__panel {
+		// Отступ слева, что бы было видно подкладку
+		@include aval(--underlay-space, 80, 140, "start", 769, 1680);
+		@media (max-width: $mbpM) {
+			--underlay-space: 0px;
+		}
+		position: absolute;
+		left: 100%;
+		top: 0;
+		z-index: 0;
+		height: 100vh;
+		width: 100%;
+		max-width: max(calc(100% - var(--underlay-space)));
+		transition: transform cubic-bezier(0.7, 0, 0.16, 1) 0.6s;
+		background-color: var(--light-white);
+		overflow: auto;
+		will-change: transform;
+	}
+	&_right.drawer_open &__panel {
+		transform: translate3d(-100%, 0, 0);
+	}
+	&_full &__header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+	}
+	&_full &__close-btn {
+		position: absolute;
+		right: 30px;
+		top: 30px;
+	}
+}

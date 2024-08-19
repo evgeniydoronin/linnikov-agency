@@ -1,0 +1,117 @@
+<header class="header {{class}}">
+	<div class="section-container section-container_decor header__container">
+		<div class="header__main">
+			<nav class="header-nav header-nav_left header__left">
+				<div class="header-nav__inner">
+					<a href="works.html" class="header-link text-btn" data-component="animated-link">
+						<div class="text-btn__cap">Works</div>
+					</a>
+					<button type="button" data-submenu-elem="header-submenu<-ref->about" class="header-link text-btn header-link_ref header-nav__item" data-component="animated-link">
+						<div class="text-btn__cap">About</div>
+						<span class="icon-cubic-check-arrow"></span>
+					</button>
+					<a href="competencies.html" class="header-link text-btn header-link_desc" data-component="animated-link"><div class="text-btn__cap">Competencies</div></a>
+					<a href="competencies-mob.html" class="header-link text-btn header-link_mob" data-component="animated-link"><div class="text-btn__cap">Competencies</div></a>
+				</div>
+			</nav>
+			<a href="." class="logo header__logo {{logo-class}}">
+				<figure>
+					<img src="@img/logo-dark.svg" class="logo__img" alt="Light Logo">
+					<figcaption aria-hidden="true">Main page</figcaption>
+				</figure>
+			</a>
+			<nav class="header-nav header-nav_right header__right">
+				<div class="header-nav__inner">
+					<a href="contact.html" class="header-link text-btn" data-component="animated-link"><div class="text-btn__cap">Contact</div></a>
+					{{> ../../shared/partials/theme-switch form-name="header-theme-switch" class="header__theme-switch" mix-blend-mode=true}}
+				</div>
+			</nav>
+			<button type="button" class="burger-btn header__burger-btn" data-drawer-toggle="burger-menu">
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+		<nav id="header-submenu" class="header-submenu header__submenu" data-component="disclosure" data-component="submenu">
+			<div class="header-submenu__inner">
+				<div class="header-submenu__body" data-elem="disclosure.inner">
+					<section class="header-submenu__section" data-submenu-elem="body->about">
+						<a href="about-us.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">About us</div></a>
+						<a href="team.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">Team</div></a>
+						<a href="ideas.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">Ideas</div></a>
+						<a href="news.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">News</div></a>
+						<a href="careers.html" class="header-link text-btn header-link_sub-menu" data-component="animated-link"><div class="text-btn__cap">Careers</div></a>
+					</section>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
+<div class="header-underlay">
+	{{!-- <div>
+		<section class="section-container section-container_decor"></section>
+	</div> --}}
+</div>
+<div data-lenis-prevent id="burger-menu" class="burger-menu" data-drawer="burger-menu">
+	<div class="burger-menu__panel" data-elem="drawer.panel" data-scrollable>
+		<div class="section-container burger-menu__container">
+			<div class="burger-menu__inner">
+				<div class="burger-menu__header">
+					<a href="." class="logo burger-menu__logo">
+						<figure>
+							<img src="@img/logo-bright.svg" class="logo__img" alt="Light Logo">
+							<figcaption aria-hidden="true">Main page</figcaption>
+						</figure>
+					</a>
+					<button type="button" class="drawer-close-btn burger-menu__close-btn" data-drawer-close="burger-menu"><div class="drawer-close-btn__inner">Close burger menu<span class="icon-cubic-plus"></span></div></button>
+				</div>
+				<nav class="burger-menu__nav">
+					<div class="burger-menu__nav-section">
+						<a href="works.html" class="header-link reveal-wrap"><div class="reveal-wrap__inner"><div class="line">WORKS</div></div></a>
+					</div>
+					<div class="disclosure burger-menu__nav-section" data-component="disclosure">
+						<button type="button" class="reveal-wrap header-link header-link_ref header-link_pointer burger-menu__disclosure-btn" data-elem="disclosure.toggle-btn">
+							<div class="reveal-wrap__inner"><div class="line">About<span class="icon-cubic-check-arrow"></span></div></div>
+						</button>
+						<div class="disclosure__body">
+							<div class="disclosure__inner" data-elem="disclosure.inner">
+								<div class="burger-submenu">
+									<div class="burger-submenu__inner">
+										<a href="about-us.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">About us</div></div></a>
+										<a href="team.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">Team</div></div></a>
+										<a href="ideas.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">Ideas</div></div></a>
+										<a href="news.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">News</div></div></a>
+										<a href="careers.html" class="reveal-wrap header-link header-link_sub-menu"><div class="reveal-wrap__inner"><div class="line">Careers</div></div></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="burger-menu__nav-section">
+						<a href="competencies.html" class="reveal-wrap header-link header-link_desc"><div class="reveal-wrap__inner"><div class="line">Competencies</div></div></a>
+						<a href="competencies-mob.html" class="reveal-wrap header-link header-link_mob"><div class="reveal-wrap__inner"><div class="line">Competencies</div></div></a>
+					</div>
+					<div class="burger-menu__nav-section">
+						<a href="contact.html" class="reveal-wrap header-link"><div class="reveal-wrap__inner"><div class="line">Contact</div></div></a>
+					</div>
+				</nav>
+				{{> ../../shared/partials/theme-switch form-name="burger-theme-switch" class="burger-menu__theme-switch"}}
+			</div>
+		</div>
+	</div>
+</div>
+<section class="burger-btn-layer">
+	<div class="section-container burger-btn-layer__container">
+		<div class="burger-btn-layer__inner">
+			<a href="." class="logo burger-btn-layer__logo {{logo-class}}">
+				<figure>
+					<img src="@img/logo-bright.svg" class="logo__img" alt="Light Logo">
+					<figcaption aria-hidden="true">Main page</figcaption>
+				</figure>
+			</a>
+			<button type="button" class="burger-btn burger-btn-layer__btn" data-drawer-toggle="burger-menu">
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</div>
+</section>
