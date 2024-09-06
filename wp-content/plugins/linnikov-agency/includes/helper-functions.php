@@ -96,8 +96,72 @@ function linnikov_agency_enqueue_admin_scripts($hook) {
 
   // Проверяем, что мы находимся на странице редактирования кастомного типа записи 'work'
   if (($hook == 'post.php' || $hook == 'post-new.php') && $post_type == 'work') {
+    wp_enqueue_script('wp-i18n');
+    // Подключаем скрипты медиабиблиотеки
+    wp_enqueue_media();
     // Подключаем jQuery UI Sortable
     wp_enqueue_script('jquery-ui-sortable');
+
+    // Подключаем стили для админки
+    wp_enqueue_style('linnikov-agency-admin-styles', plugins_url('/css/admin-styles.css', __DIR__));
   }
 }
 add_action('admin_enqueue_scripts', 'linnikov_agency_enqueue_admin_scripts');
+
+function linnikov_agency_work_template($template) {
+  if (is_singular('work')) {
+    $custom_template = locate_template('templates/single-work.php');
+    if ($custom_template) {
+      return $custom_template;
+    }
+  }
+  return $template;
+}
+add_filter('template_include', 'linnikov_agency_work_template');
+
+//	•	Отключает автоматическое добавление и удаление <p> и <br>.
+//	•	Убирает ограничения на элементы и атрибуты HTML.
+//	•	Убирает принудительное добавление блоков (например, параграфов).
+function custom_tiny_mce_options($initArray) {
+  // Отключаем удаление пустых параграфов
+  $initArray['wpautop'] = false;
+  $initArray['remove_redundant_brs'] = false;
+
+  // Отключаем удаление невалидных элементов
+  $initArray['valid_elements'] = '*[*]';
+
+  // Отключаем принудительное удаление p и br
+  $initArray['forced_root_block'] = false;
+
+  return $initArray;
+}
+add_filter('tiny_mce_before_init', 'custom_tiny_mce_options');
+
+// SVG
+function linnikov_agency_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'linnikov_agency_mime_types');
+
+function linnikov_agency_fix_svg() {
+  echo '<style>
+        .attachment-266x266, .thumbnail img {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>';
+}
+add_action('admin_head', 'linnikov_agency_fix_svg');
+
+function linnikov_agency_svg_mime_type($data, $file, $filename, $mimes) {
+  $ext = pathinfo($filename, PATHINFO_EXTENSION);
+  if ($ext === 'svg') {
+    $data['ext'] = 'svg';
+    $data['type'] = 'image/svg+xml';
+  }
+  return $data;
+}
+add_filter('wp_check_filetype_and_ext', 'linnikov_agency_svg_mime_type', 10, 4);
+
+

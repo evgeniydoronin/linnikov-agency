@@ -7,3 +7,14 @@
   <title><?php wp_title('|', true, 'right'); ?></title>
 	<?php wp_head(); ?>
 </head>
+<body class="<?php
+if (is_singular('work')) {
+  echo 'single-work';
+} elseif (is_page_template('templates/single-work.php')) {
+  echo 'template-single-work';
+} elseif (is_page_template('templates/another-template.php')) {
+  echo 'template-another';
+} else {
+  echo 'default-class'; // Добавьте свой класс по умолчанию, если это необходимо
+}
+?>">

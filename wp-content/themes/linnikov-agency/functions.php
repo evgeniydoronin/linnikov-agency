@@ -122,11 +122,11 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       wp_enqueue_style('home-css', get_template_directory_uri() . '/git-src/build/css/home.min.css');
     }
 
-//    // Conditionally enqueue for a single work page (single-work.php)
-//    if (is_singular('work')) {
-//      wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
-//      wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
-//    }
+    // Conditionally enqueue for a single work page (single-work.php)
+    if (is_singular('work')) {
+      wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
+      wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
+    }
 //
 //    // Conditionally enqueue for the works archive page (archive-work.php)
 //    if (is_post_type_archive('work')) {
