@@ -38,7 +38,7 @@ class VersionSelect {
 		autorun(() => {
 			this.rebuild();
 		});
-		window.app.resizeObserver.on("resize", () => this.rebuild());
+		window.app.windowResizeObserver.on("resize", () => this.rebuild());
 	}
 	rebuild() {
 		if (this.updateDom()) return;

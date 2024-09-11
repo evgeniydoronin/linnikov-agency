@@ -6,7 +6,7 @@ export class NineTiles {
 		this.dom = { root: getTargetElem(target) };
 		this.dom.inner = this.dom.root.querySelector(".nine-tiles__inner");
 		this.dom.activeTile = this.dom.root.querySelector(".nine-tiles__inner *:nth-child(5)");
-		window.app.resizeObserver.on("resize", () => this.rebuildAnimation());
+		window.app.windowResizeObserver.on("resize", () => this.rebuildAnimation());
 		this.rebuildAnimation();
 	}
 	rebuildAnimation() {

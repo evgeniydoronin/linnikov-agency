@@ -27,7 +27,7 @@ class FallingLeafAnimation {
 		this.widthMedia = matchMedia("(min-width: 1025px)");
 		this.recalcVars();
 		this.rebuild();
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 	}
 	onResize() {
 		this.recalcVars();
@@ -245,7 +245,7 @@ class OurOfferMsgAnimation {
 		this.dom.lightning = this.dom.root.querySelector(`#our-offer-msg .our-offer-msg__lightning`);
 		this.dom.infinity = this.dom.root.querySelector(`#our-offer-msg .our-offer-msg__infinity`);
 		this.modifyDom();
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		this.rebuild();
 	}
 	@action
@@ -320,7 +320,7 @@ class AboutUsMotto {
 		this.initAnimationsOnHover();
 		this.rebuildAnimation();
 		this.rescale();
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 	}
 	onResize() {
 		this.rescale();

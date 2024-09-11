@@ -20,7 +20,7 @@ class Animation {
 		this.prepareMsg06();
 		this.prepareMsg07();
 		this.prepareMsg08();
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		this.onResize();
 	}
 	prepareMsg02() {

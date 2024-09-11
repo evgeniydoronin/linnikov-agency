@@ -81,7 +81,7 @@ class SingleLineScrollSlider {
 		this.onResize();
 	}
 	execResizeObserver() {
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 	}
 	onResize() {
 		this.updateBcrs();
@@ -175,7 +175,7 @@ class TwoLinesScrollSlider {
 		});
 	}
 	execResizeObserver() {
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 	}
 	onResize() {
 		this.updateBcrs();

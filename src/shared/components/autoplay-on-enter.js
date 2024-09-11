@@ -27,7 +27,7 @@ export class Autoplay {
 		});
 	}
 	initRelatedLogic() {
-		window.app.resizeObserver.on("resize", () => this.onViewportResize());
+		window.app.windowResizeObserver.on("resize", () => this.onViewportResize());
 	}
 	onViewportResize() {
 		this.setVisible(this.isVisible());

@@ -1,7 +1,7 @@
 
 
 import { delay, getTargetElem, parseCssValue } from "../../../shared/scripts/utils.js";
-import { AnimatedIcon } from "./animatedIcon.js";
+import { AnimatedIcon } from '../../../shared/components/animatedIcon.js';
 import EventEmitter from "../../../shared/scripts/patterns/EventEmitter.js";
 import throttle from "lodash.throttle";
 
@@ -26,7 +26,7 @@ class CategoryCard extends EventEmitter {
 	}
 	handlePointerEnter = (event) => {
 		if (this.icon.active) return;
-		this.icon.start(this.hasHoverDevice);
+		this.icon.restart(false);
 	}
 	handlePointerLeave = (event) => {
 		this.icon.stop();

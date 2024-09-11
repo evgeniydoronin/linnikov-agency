@@ -34,6 +34,21 @@ import debounce from "lodash.debounce";
 
 const { observable, flow, action, autorun, reaction, runInAction } = window.mobx;
 
+class ResizeObserverMod extends ResizeObserver {
+	_map = new WeakMap();
+	constructor() {
+		super((entries) => entries.forEach(({ target }) => this._map.has(target) && this._map.get(target)()));
+	}
+	observe(target, callback) {
+		this._map.set(target, callback);
+		super.observe(target);
+	}
+	unobserve(target) {
+		this._map.remove(target);
+		super.unobserve(target);
+	}
+}
+
 class State {
 	@observable accessor lightMode = !isFullMode();
 	@observable accessor landscape = false;
@@ -252,7 +267,8 @@ function init() {
 	initFieldWraps();
 	initTitleChanger();
 	initAnimatedLinks();
-	window.app.resizeObserver = new WindowResizeObserver();
+	window.app.windowResizeObserver = new WindowResizeObserver();
+	window.app.resizeObserver = new ResizeObserverMod();
 	document.documentElement.classList.add("content-is-loaded");
 	initLenis();
 	window.app.drawers.init({
@@ -796,7 +812,7 @@ class FooterLogoAnimation {
 			container: document.querySelector("#footer-sticky-container"),
 			logoSection: document.querySelector("#footer-logo-section"),
 		};
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		this.rebuild();
 	}
 	@action setCompleted(next) {

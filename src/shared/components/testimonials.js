@@ -42,7 +42,7 @@ class Card {
 		this.name = this.dom.root.getAttribute("data-name");
 		this.owner.cardsIndex[this.name] = this;
 		this.initAsync();
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		this.dom.root.classList.add("_initialized");
 	}
 	async initAsync() {
@@ -144,7 +144,7 @@ export class Testimonials {
 		this.dom.body = this.dom.root.querySelector(".testimonials__body");
 		this.initHeaderSlider();
 		if (app.state.isMobile) this.initBodySlider();
-		//window.app.resizeObserver.on("resize", () => this.rebuild());
+		//window.app.windowResizeObserver.on("resize", () => this.rebuild());
 		//this.rebuild();
 		this.cardsIndex = {};
 		this.cards = Array.from(this.dom.root.querySelectorAll(".testimonials-card")).map((elem, idx) => new Card(this, elem, idx));

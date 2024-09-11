@@ -9,7 +9,7 @@ export class InteractiveVideoSection {
 		this.dom.video = this.dom.root.querySelector(".video-section__video");
 		this.dom.root.registerModule("interactiveVideoSection", this);
 		this.media = matchMedia("(min-width: 1025px)");
-		window.app.resizeObserver.on("resize", () => this.rebuild());
+		window.app.windowResizeObserver.on("resize", () => this.rebuild());
 		this.rebuild();
 		this.dom.root.classList.add("video-section_initialized");
 	}

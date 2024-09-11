@@ -1,4 +1,4 @@
-import { getTargetElem } from "../../../shared/scripts/utils.js";
+import { getTargetElem } from "../scripts/utils.js";
 
 export class AnimatedIcon {
 	active = false;
@@ -14,26 +14,28 @@ export class AnimatedIcon {
 		this.spriteSheet = this.composition.getSpriteSheet();
 		this.stage = new this.lib.Stage(this.dom.canvas);
 		this.root = new this.lib[`_${this.id}`]();
+		window.stages = window.stages || {};
+		
+		window.stages[this.id] = this.stage;
 		this.composition.setRoot(this.root);
 		this.composition.setStage(this.stage);
 		this.stage.addChild(this.root);
-		this.setInitialScale();
+		this.setScale();
 		AdobeAn.compositionLoaded(this.lib.properties.id);
 
-		this.stage.setAutoPlay(false);
+		this.stage.setAutoPlay(true);
 
 		createjs.Ticker.framerate = this.lib.properties.fps;
 		createjs.Ticker.addEventListener("tick", this.handleTick);
-
-		if (this.id === "03") window.icon = this;
 	}
-	setInitialScale() {
-		const baseRatio = 2, baseScale = 2.5;
-		this.stage.scaleX = baseScale * baseRatio;
+	setScale() {
+		const baseRatio = 1, baseScale = 1;
+		this.stage.scaleX = baseScale;
 		this.stage.scaleY = baseScale;
 		this.stage.tickOnUpdate = false;
 		this.stage.update();
 		this.stage.tickOnUpdate = true;
+		this.dom.root.style.setProperty("--v-ratio", `${this.lib.properties.height / this.lib.properties.width * 100}%`);
 	}
 	handleTick = () => {
 		this.stage.update();
@@ -49,6 +51,10 @@ export class AnimatedIcon {
 		this.active = true;
 		this.infinite = infinite;
 		this.stage.play();
+	}
+	restart(infinite) {
+		this.stage.seek(0);
+		this.start(infinite);
 	}
 	stop(immediate) {
 		if (!this.stage) return;

@@ -5,7 +5,7 @@ class TextReveal {
 	@observable accessor active = false;
 	constructor(root) {
 		this.root = root;
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		this.onResize();
 	}
 	async onResize() {
@@ -57,7 +57,7 @@ class InViewTextReveal {
 		this.root = elem;
 		this.textReveal = new TextReveal(elem);
 		this.threshold = threshold || elem.getAttribute("data-threshold") || "65%";
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		this.onResize();
 		autorun(() => {
 			this.root.classList.toggle("_in-view", this.active);
