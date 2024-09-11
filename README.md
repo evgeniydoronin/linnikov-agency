@@ -19,6 +19,7 @@
 
 ```bash
 git subtree pull --prefix=wp-content/themes/linnikov-agency https://github.com/techno-trump/linnikov-agency.git main --squash
+```
 
 ### После обновления от донора нужно сделать:
 - заменить в файле wp-content/themes/linnikov-agency/git-src/build/js/common.min.js
