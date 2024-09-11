@@ -55,8 +55,8 @@ function linnikov_agency_hero_meta_box_callback($post)
   // Получаем сохраненные значения (если они есть)
   $hero_image_webp = get_post_meta($post->ID, '_linnikov_agency_hero_image_webp', true);
 
-  // Используем первое изображение для предпросмотра, если оно существует
-  $preview_image = $hero_image_webp ? esc_attr($hero_image_webp) : '';
+  // Используем изображение 'portfolio.jpeg' по умолчанию
+  $preview_image = get_template_directory_uri() . '/src/img/portfolio.jpeg';
 
   // HTML для полей загрузки изображений
   ?>
@@ -79,7 +79,7 @@ function linnikov_agency_hero_meta_box_callback($post)
       <label for="linnikov_agency_hero_image_webp" style="display:block; margin-bottom: 5px;">
         <p style="margin-bottom: 0"><?php _e('WebP', 'linnikov-agency'); ?></p>
         <!-- Элемент <img> для предпросмотра изображения -->
-        <img src="<?php echo $preview_image; ?>" alt="WebP Preview" id="current_hero_image_preview" style="display:block; margin-top: 5px; width: 150px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
+        <img src="<?php echo $hero_image_webp; ?>" alt="WebP Preview" id="current_hero_image_preview" style="display:block; margin-top: 5px; width: 150px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
       </label>
       <input type="text" name="linnikov_agency_hero_image_webp" id="linnikov_agency_hero_image_webp"
              value="<?php echo esc_attr($hero_image_webp); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
@@ -174,6 +174,9 @@ function linnikov_agency_slider_meta_box_callback($post)
     $slider_images = [['webp' => '']]; // Если нет изображений, используем пустой массив
   }
 
+  // Используем изображение 'portfolio.jpeg' по умолчанию
+  $preview_image = get_template_directory_uri() . '/src/img/portfolio2.jpeg';
+
   // HTML для полей загрузки изображений
   ?>
   <div style="display: flex; align-items: center;">
@@ -182,7 +185,7 @@ function linnikov_agency_slider_meta_box_callback($post)
       <span class="eye-icon" style="font-size: 20px;">👁️</span>
       <div class="image-preview-tooltip"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-        <img src="" alt="Preview" id="slider_hero_image_preview" style="max-width: 600px; display: none;">
+        <img src="<?php echo $preview_image; ?>" alt="Preview" id="slider_hero_image_preview" style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
       </div>
     </div>
   </div>
@@ -331,6 +334,9 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
   $video_url = get_post_meta($post->ID, '_linnikov_agency_work_video_url', true);
   $video_poster_webp = get_post_meta($post->ID, '_linnikov_agency_work_video_poster_webp', true);
 
+  // Используем изображение 'portfolio.jpeg' по умолчанию
+  $preview_image = get_template_directory_uri() . '/src/img/portfolio3.jpeg';
+
   // Инициализация массива для изображений, если он пустой
   if (!is_array($pictures) || empty($pictures)) {
     $pictures = [
@@ -349,7 +355,7 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
       <span class="eye-icon" style="font-size: 20px;">👁️</span>
       <div class="image-preview-tooltip-tails"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-        <img src="" alt="Preview" id="work_picture_preview" style="max-width: 600px; display: none;">
+        <img src="<?php echo $preview_image; ?>" alt="Preview" id="work_picture_preview" style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
       </div>
     </div>
   </div>
@@ -542,8 +548,8 @@ function linnikov_agency_two_lines_scroll_slider_meta_box_callback($post)
     ];
   }
 
-  // Определяем изображение для предпросмотра
-  $preview_image = $pictures[0]['webp'];
+  // Используем изображение 'portfolio.jpeg' по умолчанию
+  $preview_image = get_template_directory_uri() . '/src/img/portfolio4.jpeg';
   ?>
 
   <div style="display: flex; align-items: center; margin-bottom: 20px;">
@@ -831,6 +837,9 @@ function linnikov_agency_nine_tiles_meta_box_callback($post)
     ];
   }
 
+  // Используем изображение 'portfolio.jpeg' по умолчанию
+  $preview_image = get_template_directory_uri() . '/src/img/portfolio5.jpeg';
+
   ?>
 
   <div style="display: flex; align-items: center; margin-bottom: 20px;">
@@ -839,7 +848,7 @@ function linnikov_agency_nine_tiles_meta_box_callback($post)
       <span class="eye-icon" style="font-size: 20px;">👁️</span>
       <div class="image-preview-tooltip-nine-tiles"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-        <img src="" alt="Preview" style="max-width: 600px;" id="nine_tiles_preview">
+        <img src="<?php echo esc_attr($preview_image); ?>" alt="Preview" style="max-width: 600px;" id="nine_tiles_preview">
       </div>
     </div>
   </div>
