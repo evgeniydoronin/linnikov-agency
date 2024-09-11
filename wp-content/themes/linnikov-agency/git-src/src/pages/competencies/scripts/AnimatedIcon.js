@@ -50,6 +50,10 @@ export class AnimatedIcon {
 		this.infinite = infinite;
 		this.stage.play();
 	}
+	restart(infinite) {
+		this.cycle = 0;
+		this.start(infinite);
+	}
 	stop(immediate) {
 		if (!this.stage) return;
 		if (immediate) this.immediateStop();

@@ -43,7 +43,7 @@ class MainAnimation {
 		this.dom.refP4 = this.dom.ref.querySelector(".mail-ref-apart__p4"); // Низ
 		this.dom.refP5 = this.dom.ref.querySelector(".mail-ref-apart__p5"); // Часть низа для дальнейщего скрытия
 		this.dom.refP6 = this.dom.ref.querySelector(".mail-ref-apart__p6"); // Всегда видимая часть низа
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		this.onResize();
 	}
 	onResize() {

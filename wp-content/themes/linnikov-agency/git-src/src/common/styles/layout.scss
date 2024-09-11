@@ -74,5 +74,23 @@ main {
 		max-width: 1400px;
 		width: 100%;
 		margin: auto;
+		&_bottom-space, &_space {
+			padding-bottom: 120px;
+			@media (max-width: $mbpT) {
+				padding-bottom: 80px;
+			}
+			@media (max-width: $mbpM) {
+				padding-bottom: 60px;
+			}
+		}
+		&_space {
+			padding-top: 120px;
+			@media (max-width: $mbpT) {
+				padding-top: 80px;
+			}
+			@media (max-width: $mbpM) {
+				padding-top: 60px;
+			}
+		}
 	}
 }

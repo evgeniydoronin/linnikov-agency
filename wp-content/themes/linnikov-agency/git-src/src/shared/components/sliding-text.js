@@ -52,7 +52,7 @@ export class SlidingText {
 				}
 			}
 		});
-		window.app.resizeObserver.on("resize", () => this.onResize());
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
 		setTimeout(() => this.onResize(), 0);
 	}
 	@action

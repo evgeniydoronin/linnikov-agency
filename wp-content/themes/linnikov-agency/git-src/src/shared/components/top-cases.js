@@ -38,12 +38,12 @@ export default class TopCases {
 		this.currentCategory = category;
 		const visibleCards = this.selectVisibleCards();
 		const categoryCards = this.selectCategoryCards(category);
-		this.unbindFancybox();
+		//this.unbindFancybox();
 		this.markParity(visibleCards);
 		await this.animateHidding(visibleCards);
 		this.markParity(categoryCards);
 		await this.animateShowing(categoryCards);
-		this.bindFancybox();
+		//this.bindFancybox();
 	}
 	async animateHidding(cards) {
 		cards.forEach(elem => elem.classList.remove("showing"));
