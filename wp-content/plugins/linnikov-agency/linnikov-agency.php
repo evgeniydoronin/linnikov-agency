@@ -26,3 +26,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
 
 // Include Helper Functions
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
+
+// Подключаем файлы админки
+include plugin_dir_path(__FILE__) . 'admin/settings-page.php';

@@ -127,12 +127,24 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
       wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
     }
-//
-//    // Conditionally enqueue for the works archive page (archive-work.php)
-//    if (is_post_type_archive('work')) {
-//      wp_enqueue_script('archive-work-js', get_template_directory_uri() . '/git-src/build/js/archive-work.min.js', array(), null, false);
-//      wp_enqueue_style('archive-work-css', get_template_directory_uri() . '/git-src/build/css/archive-work.min.css');
-//    }
+
+    // Conditionally enqueue for a page-ideas.php
+    if (is_page_template('templates/page-ideas.php')) {
+      wp_enqueue_script('page-ideas-js', get_template_directory_uri() . '/git-src/build/js/ideas.min.js', array(), null, false);
+      wp_enqueue_style('page-ideas-css', get_template_directory_uri() . '/git-src/build/css/ideas.min.css');
+    }
+
+    // Conditionally enqueue for a page-about-us.php
+    if (is_page_template('templates/page-about-us.php')) {
+      wp_enqueue_script('page-about-js', get_template_directory_uri() . '/git-src/build/js/about-us.min.js', array(), null, false);
+      wp_enqueue_style('page-about-css', get_template_directory_uri() . '/git-src/build/css/about-us.min.css');
+    }
+
+    // Conditionally enqueue for the works archive page (works.php)
+    if (is_post_type_archive('work')) {
+      wp_enqueue_script('works-js', get_template_directory_uri() . '/git-src/build/js/works.min.js', array(), null, false);
+      wp_enqueue_style('works-css', get_template_directory_uri() . '/git-src/build/css/works.min.css');
+    }
 
 	}
 	add_action('wp_enqueue_scripts', 'linnikov_agency_enqueue_styles_and_scripts');

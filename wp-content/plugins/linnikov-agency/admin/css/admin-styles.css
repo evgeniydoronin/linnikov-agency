@@ -1,0 +1,22 @@
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+
+#sortable li {
+    margin: 0 0 10px 0;
+    padding: 10px;
+    padding-left: 2em;
+    font-size: 1.4em;
+    height: 60px;
+    cursor: move;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+}
+
+.ui-state-highlight {
+    height: 1.5em;
+    line-height: 1.2em;
+}
