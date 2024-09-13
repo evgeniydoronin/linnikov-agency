@@ -1,14 +1,4 @@
 <?php
-// Remove the WordPress version number from the head section
-remove_action('wp_head', 'wp_generator');
-
-// Remove the WordPress REST API link tag and oEmbed discovery links
-remove_action('wp_head', 'rest_output_link_wp_head');
-remove_action('wp_head', 'wp_oembed_add_discovery_links');
-
-// Remove RSD link from the header
-remove_action('wp_head', 'rsd_link');
-
 // Function to dequeue unnecessary WordPress styles and scripts
 if (!function_exists('dequeue_unnecessary_wp_assets')) {
 	function dequeue_unnecessary_wp_assets(): void {
@@ -28,6 +18,16 @@ if (!function_exists('dequeue_unnecessary_wp_assets')) {
 		// Remove global styles
 		remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
 		remove_action('wp_footer', 'wp_enqueue_global_styles');
+
+    // Remove the WordPress version number from the head section
+    remove_action('wp_head', 'wp_generator');
+
+    // Remove the WordPress REST API link tag and oEmbed discovery links
+    remove_action('wp_head', 'rest_output_link_wp_head');
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+
+    // Remove RSD link from the header
+    remove_action('wp_head', 'rsd_link');
 	}
 	add_action('wp_enqueue_scripts', 'dequeue_unnecessary_wp_assets', 100);
 }
@@ -122,16 +122,28 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       wp_enqueue_style('home-css', get_template_directory_uri() . '/git-src/build/css/home.min.css');
     }
 
-    // Conditionally enqueue for a single work page (single-work.php)
+    // Conditionally enqueue for the works archive page (works.php)
+    if (is_post_type_archive('work')) {
+      wp_enqueue_script('works-js', get_template_directory_uri() . '/git-src/build/js/works.min.js', array(), null, false);
+      wp_enqueue_style('works-css', get_template_directory_uri() . '/git-src/build/css/works.min.css');
+    }
+
+    // Conditionally enqueue for a single WORK page (single-work.php)
     if (is_singular('work')) {
       wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
       wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
     }
 
-    // Conditionally enqueue for a page-ideas.php
-    if (is_page_template('templates/page-ideas.php')) {
-      wp_enqueue_script('page-ideas-js', get_template_directory_uri() . '/git-src/build/js/ideas.min.js', array(), null, false);
-      wp_enqueue_style('page-ideas-css', get_template_directory_uri() . '/git-src/build/css/ideas.min.css');
+    // Conditionally enqueue for the NEWS archive page (news.php)
+    if (is_post_type_archive('news')) {
+      wp_enqueue_script('news-js', get_template_directory_uri() . '/git-src/build/js/news.min.js', array(), null, false);
+      wp_enqueue_style('news-css', get_template_directory_uri() . '/git-src/build/css/news.min.css');
+    }
+
+    // Conditionally enqueue for a single work page (single-news.php)
+    if (is_singular('news')) {
+      wp_enqueue_script('single-news-js', get_template_directory_uri() . '/git-src/build/js/single-post.min.js', array(), null, false);
+      wp_enqueue_style('single-news-css', get_template_directory_uri() . '/git-src/build/css/single-post.min.css');
     }
 
     // Conditionally enqueue for a page-about-us.php
@@ -140,10 +152,22 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       wp_enqueue_style('page-about-css', get_template_directory_uri() . '/git-src/build/css/about-us.min.css');
     }
 
-    // Conditionally enqueue for the works archive page (works.php)
-    if (is_post_type_archive('work')) {
-      wp_enqueue_script('works-js', get_template_directory_uri() . '/git-src/build/js/works.min.js', array(), null, false);
-      wp_enqueue_style('works-css', get_template_directory_uri() . '/git-src/build/css/works.min.css');
+    // Conditionally enqueue for a page-team.php
+    if (is_page_template('templates/page-team.php')) {
+      wp_enqueue_script('page-team-js', get_template_directory_uri() . '/git-src/build/js/team.min.js', array(), null, false);
+      wp_enqueue_style('page-team-css', get_template_directory_uri() . '/git-src/build/css/team.min.css');
+    }
+
+    // Conditionally enqueue for a page-ideas.php
+    if (is_page_template('templates/page-ideas.php')) {
+      wp_enqueue_script('page-ideas-js', get_template_directory_uri() . '/git-src/build/js/ideas.min.js', array(), null, false);
+      wp_enqueue_style('page-ideas-css', get_template_directory_uri() . '/git-src/build/css/ideas.min.css');
+    }
+
+    // Conditionally enqueue for a page-careers.php
+    if (is_page_template('templates/page-careers.php')) {
+      wp_enqueue_script('page-careers-js', get_template_directory_uri() . '/git-src/build/js/careers.min.js', array(), null, false);
+      wp_enqueue_style('page-careers-css', get_template_directory_uri() . '/git-src/build/css/careers.min.css');
     }
 
 	}
@@ -178,3 +202,24 @@ add_theme_support('post-thumbnails');
 
 // Add support for title tag
 add_theme_support('title-tag');
+
+function linnikov_get_news_categories() {
+  $categories = get_terms(array(
+    'taxonomy' => 'news_category',  // Замените на вашу таксономию
+    'hide_empty' => false,
+  ));
+
+  $category_map = array();
+  foreach ($categories as $category) {
+    $category_map[$category->slug] = $category->term_id;
+  }
+
+  // Выводим JavaScript-код с данными категорий
+  ?>
+  <script>
+      const categoryMap = <?php echo json_encode($category_map); ?>;
+      console.log('Category Map:', categoryMap); // Выводим объект в консоль
+  </script>
+  <?php
+}
+add_action('wp_footer', 'linnikov_get_news_categories');

@@ -21,8 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Include Custom Post Types
 require_once plugin_dir_path( __FILE__ ) . 'includes/post-types.php';
 
-// Include Meta Boxes
+// Include Meta Boxes WORKS
 require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
+
+// Include Meta Boxes NEWS
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-news.php';
 
 // Include Helper Functions
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';

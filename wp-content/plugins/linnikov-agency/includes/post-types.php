@@ -24,7 +24,7 @@ function linnikov_agency_create_post_types() {
     'labels' => $work_labels,
     'public' => true,
     'has_archive' => true,
-    'supports' => array('title', 'editor', 'thumbnail'),
+    'supports' => array('title', 'thumbnail'),
     'show_in_rest' => true,
     'rewrite' => array('slug' => 'works'),
   );
@@ -54,7 +54,7 @@ function linnikov_agency_create_post_types() {
     'labels' => $news_labels,
     'public' => true,
     'has_archive' => true,
-    'supports' => array('title', 'editor', 'thumbnail'),
+    'supports' => array('title', 'thumbnail'),
     'show_in_rest' => true,
     'rewrite' => array('slug' => 'news'),
   );
@@ -118,3 +118,33 @@ function linnikov_agency_create_news_tags_taxonomy() {
   register_taxonomy('news_tag', 'news', $news_args);
 }
 add_action('init', 'linnikov_agency_create_news_tags_taxonomy');
+
+// Register Custom Taxonomy for 'news' post type
+function linnikov_agency_create_news_categories_taxonomy() {
+  $news_category_labels = array(
+    'name' => __('News Categories', 'linnikov-agency'),
+    'singular_name' => __('News Category', 'linnikov-agency'),
+    'search_items' => __('Search News Categories', 'linnikov-agency'),
+    'all_items' => __('All News Categories', 'linnikov-agency'),
+    'parent_item' => __('Parent News Category', 'linnikov-agency'),
+    'parent_item_colon' => __('Parent News Category:', 'linnikov-agency'),
+    'edit_item' => __('Edit News Category', 'linnikov-agency'),
+    'update_item' => __('Update News Category', 'linnikov-agency'),
+    'add_new_item' => __('Add New News Category', 'linnikov-agency'),
+    'new_item_name' => __('New News Category Name', 'linnikov-agency'),
+    'menu_name' => __('News Categories', 'linnikov-agency'),
+  );
+
+  $news_category_args = array(
+    'hierarchical' => true, // Иерархическая таксономия как категории
+    'labels' => $news_category_labels,
+    'show_ui' => true, // Показать пользовательский интерфейс
+    'show_admin_column' => true, // Показать в колонке администратора
+    'query_var' => true,
+    'rewrite' => array('slug' => 'news-category'),
+    'show_in_rest' => true, // Показать в REST API для поддержки Gutenberg
+  );
+
+  register_taxonomy('news_category', 'news', $news_category_args); // Регистрируем таксономию 'news_category' для типа записи 'news'
+}
+add_action('init', 'linnikov_agency_create_news_categories_taxonomy');

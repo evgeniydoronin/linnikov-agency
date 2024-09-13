@@ -6,10 +6,623 @@
 
 get_header();
 ?>
-<h1>Team</h1>
+
+  <div>
+    <main>
+      <?php
+      // Navigation
+      $about_navigation = locate_template('templates/general/about-navigation.php');
+
+      if ($about_navigation) {
+        require $about_navigation;
+      }
+      ?>
+      <section id="team-board" class="team-board" data-component="team-board">
+        <div class="section-container section-container_decor team-board__container">
+          <div class="team-board-poiner-tip team-board__tip">
+            <span class="team-board-poiner-tip__icon icon-cubic-plus"></span>
+            <div class="team-board-poiner-tip__cap">Profile</div>
+          </div>
+          <ul class="team-board__members" data-elem="team-board.members">
+            <li class="team-board-card keen-slider__slide" data-id="1" data-category="Leadership, Strategy">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="2" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Irina Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="3" data-category="Leadership, Strategy">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="4" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="5" data-category="Strategy, Development">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="1" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="2" data-category="Leadership, Development">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="3" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="4" data-category="Strategy">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="5" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="1" data-category="Strategy">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="2" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="3" data-category="Leadership, Management">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="4" data-category="Creative, Management">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="5" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="1" data-category="Creative">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="2" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="3" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="4" data-category="Creative">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="5" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="1" data-category="Leadership">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+            <li class="team-board-card keen-slider__slide" data-id="2" data-category="Creative">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title">Dmytro Lynnyk</div>
+                <div class="tg-h4 team-board-card__role">creative director, co-faunder</div>
+              </div>
+            </li>
+          </ul>
+          <div class="team-board__right">
+            <div class="team-board-card team-board-card_selected team-board__selected">
+              <div class="img-wrap img-wrap_cover team-board-card__img team-member-photo">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.webp">
+                    <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.jpg" alt="One of the heroes">
+                  </picture>
+                </div>
+              </div>
+              <div class="team-board-card__info">
+                <div class="tg-h4 team-board-card__title reveal-wrap">
+                  <div class="reveal-wrap__inner">
+                    <div class="reveal-wrap__item">Dmytro Lynnyk</div>
+                  </div>
+                </div>
+                <div class="tg-h4 team-board-card__role reveal-wrap">
+                  <div class="reveal-wrap__inner">
+                    <div class="reveal-wrap__item">creative director, co-faunder</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="double-cubic-decor team-board__decor"></div>
+            <div class="team-board-filter team-board__filter" data-elem="team-booard.filter">
+              <div class="team-board-filter__inner">
+                <button type="button" class="tg-h4 team-board-filter-btn" data-category="Leadership">
+                  <svg class="team-board-filter-btn__icon" data-component="morph-ref-icon" viewBox="0 0 20 22"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M3.36311 3.10174L6.39702 0.0678244L9.39746 3.06826L6.36355 6.10218L3.36311 3.10174ZM15.4318 3.03479L12.4314 0.0343513L9.39746 3.06826L12.3979 6.0687L0.00148475 18.4651L3.00192 21.4656L15.3983 9.06914L15.3481 18.1207L19.615 18.097L19.689 4.77324L19.9659 1.5011L18.4657 0.000878304L15.4318 3.03479Z"
+                          fill="currentColor"/>
+                  </svg>
+                  <div class="team-board-filter-btn__cap">Leadership</div>
+                </button>
+                <button type="button" class="tg-h4 team-board-filter-btn" data-category="Creative">
+                  <svg class="team-board-filter-btn__icon" data-component="morph-ref-icon" viewBox="0 0 20 22"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M3.36311 3.10174L6.39702 0.0678244L9.39746 3.06826L6.36355 6.10218L3.36311 3.10174ZM15.4318 3.03479L12.4314 0.0343513L9.39746 3.06826L12.3979 6.0687L0.00148475 18.4651L3.00192 21.4656L15.3983 9.06914L15.3481 18.1207L19.615 18.097L19.689 4.77324L19.9659 1.5011L18.4657 0.000878304L15.4318 3.03479Z"
+                          fill="currentColor"/>
+                  </svg>
+                  <div class="team-board-filter-btn__cap">Creative</div>
+                </button>
+                <button type="button" class="tg-h4 team-board-filter-btn" data-category="Strategy">
+                  <svg class="team-board-filter-btn__icon" data-component="morph-ref-icon" viewBox="0 0 20 22"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M3.36311 3.10174L6.39702 0.0678244L9.39746 3.06826L6.36355 6.10218L3.36311 3.10174ZM15.4318 3.03479L12.4314 0.0343513L9.39746 3.06826L12.3979 6.0687L0.00148475 18.4651L3.00192 21.4656L15.3983 9.06914L15.3481 18.1207L19.615 18.097L19.689 4.77324L19.9659 1.5011L18.4657 0.000878304L15.4318 3.03479Z"
+                          fill="currentColor"/>
+                  </svg>
+                  <div class="team-board-filter-btn__cap">Strategy</div>
+                </button>
+                <button type="button" class="tg-h4 team-board-filter-btn" data-category="Management">
+                  <svg class="team-board-filter-btn__icon" data-component="morph-ref-icon" viewBox="0 0 20 22"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M3.36311 3.10174L6.39702 0.0678244L9.39746 3.06826L6.36355 6.10218L3.36311 3.10174ZM15.4318 3.03479L12.4314 0.0343513L9.39746 3.06826L12.3979 6.0687L0.00148475 18.4651L3.00192 21.4656L15.3983 9.06914L15.3481 18.1207L19.615 18.097L19.689 4.77324L19.9659 1.5011L18.4657 0.000878304L15.4318 3.03479Z"
+                          fill="currentColor"/>
+                  </svg>
+                  <div class="team-board-filter-btn__cap">Management</div>
+                </button>
+                <button type="button" class="tg-h4 team-board-filter-btn" data-category="Development">
+                  <svg class="team-board-filter-btn__icon" data-component="morph-ref-icon" viewBox="0 0 20 22"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M3.36311 3.10174L6.39702 0.0678244L9.39746 3.06826L6.36355 6.10218L3.36311 3.10174ZM15.4318 3.03479L12.4314 0.0343513L9.39746 3.06826L12.3979 6.0687L0.00148475 18.4651L3.00192 21.4656L15.3983 9.06914L15.3481 18.1207L19.615 18.097L19.689 4.77324L19.9659 1.5011L18.4657 0.000878304L15.4318 3.03479Z"
+                          fill="currentColor"/>
+                  </svg>
+                  <div class="team-board-filter-btn__cap">Development</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="drawers-group" data-drawers-group="team-members">
+          <section class="drawer drawer_right member-profile-drawer" data-modal="true" data-drawer="member-1">
+            <div data-lenis-prevent class="drawer__panel" data-elem="drawer.panel" data-scrollable>
+              <section class="section-container section-container_decor member-profile-drawer__container">
+                <div class="member-profile-drawer__header">
+                  <h2 class="member-profile-drawer__title">
+                    <span class="icon-cubic-plus"></span>
+                    <div class="uppercase">Profile</div>
+                  </h2>
+                  <button class="drawer-close-btn member-profile-drawer__close-btn" data-drawer-close="member-1">
+                    <div class="drawer-close-btn__inner">Close panel<span class="icon-cubic-plus"></span></div>
+                  </button>
+                </div>
+                <div class="member-profile-drawer__info">
+                  <div class="member-profile-info">
+                    <div class="img-wrap team-member-photo">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.webp">
+                          <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/1.jpg" alt="One of the heroes">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="double-cubic-decor member-profile-info__decor"></div>
+                    <div class="member-profile-info__identity">
+                      <div class="tg-h4 member-profile-info__title">Dmytro Lynnyk</div>
+                      <div class="tg-h4 member-profile-info__role">creative director, co-faunder</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="member-profile-drawer__desc">
+                  <blockquote class="tg-h3">With 13 years of industry experience, Raphael finds inspiration in the pursuit
+                    of new and different perspectives.
+                  </blockquote>
+                  <p class="tg-regular">In his downtime, he unwinds with street photography, playing the piano, and
+                    indulging in enriching literature. Raphael’s continuous learning and exploration shaped his approach
+                    to visualizing the world around him. His commitment to embracing challenges fosters an innovative
+                    approach to captivating visual narratives.</p>
+                </div>
+              </section>
+            </div>
+          </section>
+          <section class="drawer drawer_right member-profile-drawer" data-modal="true" data-drawer="member-2">
+            <div data-lenis-prevent class="drawer__panel" data-elem="drawer.panel" data-scrollable>
+              <section class="section-container section-container_decor member-profile-drawer__container">
+                <div class="member-profile-drawer__header">
+                  <h2 class="member-profile-drawer__title">
+                    <span class="icon-cubic-plus"></span>
+                    <div class="uppercase">Profile</div>
+                  </h2>
+                  <button class="drawer-close-btn member-profile-drawer__close-btn" data-drawer-close="member-2">
+                    <div class="drawer-close-btn__inner">Close panel<span class="icon-cubic-plus"></span></div>
+                  </button>
+                </div>
+                <div class="member-profile-drawer__info">
+                  <div class="member-profile-info">
+                    <div class="img-wrap team-member-photo">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.webp">
+                          <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/2.jpg" alt="One of the heroes">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="double-cubic-decor member-profile-info__decor"></div>
+                    <div class="member-profile-info__identity">
+                      <div class="tg-h4 member-profile-info__title">Dmytro Lynnyk</div>
+                      <div class="tg-h4 member-profile-info__role">creative director, co-faunder</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="member-profile-drawer__desc">
+                  <blockquote class="tg-h3">With 13 years of industry experience, Raphael finds inspiration in the pursuit
+                    of new and different perspectives.
+                  </blockquote>
+                  <p class="tg-regular">In his downtime, he unwinds with street photography, playing the piano, and
+                    indulging in enriching literature. Raphael’s continuous learning and exploration shaped his approach
+                    to visualizing the world around him. His commitment to embracing challenges fosters an innovative
+                    approach to captivating visual narratives.</p>
+                </div>
+              </section>
+            </div>
+          </section>
+          <section class="drawer drawer_right member-profile-drawer" data-modal="true" data-drawer="member-3">
+            <div data-lenis-prevent class="drawer__panel" data-elem="drawer.panel" data-scrollable>
+              <section class="section-container section-container_decor member-profile-drawer__container">
+                <div class="member-profile-drawer__header">
+                  <h2 class="member-profile-drawer__title">
+                    <span class="icon-cubic-plus"></span>
+                    <div class="uppercase">Profile</div>
+                  </h2>
+                  <button class="drawer-close-btn member-profile-drawer__close-btn" data-drawer-close="member-3">
+                    <div class="drawer-close-btn__inner">Close panel<span class="icon-cubic-plus"></span></div>
+                  </button>
+                </div>
+                <div class="member-profile-drawer__info">
+                  <div class="member-profile-info">
+                    <div class="img-wrap team-member-photo">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.webp">
+                          <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/3.jpg" alt="One of the heroes">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="double-cubic-decor member-profile-info__decor"></div>
+                    <div class="member-profile-info__identity">
+                      <div class="tg-h4 member-profile-info__title">Dmytro Lynnyk</div>
+                      <div class="tg-h4 member-profile-info__role">creative director, co-faunder</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="member-profile-drawer__desc">
+                  <blockquote class="tg-h3">With 13 years of industry experience, Raphael finds inspiration in the pursuit
+                    of new and different perspectives.
+                  </blockquote>
+                  <p class="tg-regular">In his downtime, he unwinds with street photography, playing the piano, and
+                    indulging in enriching literature. Raphael’s continuous learning and exploration shaped his approach
+                    to visualizing the world around him. His commitment to embracing challenges fosters an innovative
+                    approach to captivating visual narratives.</p>
+                </div>
+              </section>
+            </div>
+          </section>
+          <section class="drawer drawer_right member-profile-drawer" data-modal="true" data-drawer="member-4">
+            <div data-lenis-prevent class="drawer__panel" data-elem="drawer.panel" data-scrollable>
+              <section class="section-container section-container_decor member-profile-drawer__container">
+                <div class="member-profile-drawer__header">
+                  <h2 class="member-profile-drawer__title">
+                    <span class="icon-cubic-plus"></span>
+                    <div class="uppercase">Profile</div>
+                  </h2>
+                  <button class="drawer-close-btn member-profile-drawer__close-btn" data-drawer-close="member-4">
+                    <div class="drawer-close-btn__inner">Close panel<span class="icon-cubic-plus"></span></div>
+                  </button>
+                </div>
+                <div class="member-profile-drawer__info">
+                  <div class="member-profile-info">
+                    <div class="img-wrap team-member-photo">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.webp">
+                          <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/4.jpg" alt="One of the heroes">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="double-cubic-decor member-profile-info__decor"></div>
+                    <div class="member-profile-info__identity">
+                      <div class="tg-h4 member-profile-info__title">Dmytro Lynnyk</div>
+                      <div class="tg-h4 member-profile-info__role">creative director, co-faunder</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="member-profile-drawer__desc">
+                  <blockquote class="tg-h3">With 13 years of industry experience, Raphael finds inspiration in the pursuit
+                    of new and different perspectives.
+                  </blockquote>
+                  <p class="tg-regular">In his downtime, he unwinds with street photography, playing the piano, and
+                    indulging in enriching literature. Raphael’s continuous learning and exploration shaped his approach
+                    to visualizing the world around him. His commitment to embracing challenges fosters an innovative
+                    approach to captivating visual narratives.</p>
+                </div>
+              </section>
+            </div>
+          </section>
+          <section class="drawer drawer_right member-profile-drawer" data-modal="true" data-drawer="member-5">
+            <div data-lenis-prevent class="drawer__panel" data-elem="drawer.panel" data-scrollable>
+              <section class="section-container section-container_decor member-profile-drawer__container">
+                <div class="member-profile-drawer__header">
+                  <h2 class="member-profile-drawer__title">
+                    <span class="icon-cubic-plus"></span>
+                    <div class="uppercase">Profile</div>
+                  </h2>
+                  <button class="drawer-close-btn member-profile-drawer__close-btn" data-drawer-close="member-5">
+                    <div class="drawer-close-btn__inner">Close panel<span class="icon-cubic-plus"></span></div>
+                  </button>
+                </div>
+                <div class="member-profile-drawer__info">
+                  <div class="member-profile-info">
+                    <div class="img-wrap team-member-photo">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.webp">
+                          <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/team/5.jpg" alt="One of the heroes">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="double-cubic-decor member-profile-info__decor"></div>
+                    <div class="member-profile-info__identity">
+                      <div class="tg-h4 member-profile-info__title">Dmytro Lynnyk</div>
+                      <div class="tg-h4 member-profile-info__role">creative director, co-faunder</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="member-profile-drawer__desc">
+                  <blockquote class="tg-h3">With 13 years of industry experience, Raphael finds inspiration in the pursuit
+                    of new and different perspectives.
+                  </blockquote>
+                  <p class="tg-regular">In his downtime, he unwinds with street photography, playing the piano, and
+                    indulging in enriching literature. Raphael’s continuous learning and exploration shaped his approach
+                    to visualizing the world around him. His commitment to embracing challenges fosters an innovative
+                    approach to captivating visual narratives.</p>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
 
 <?php
-get_template_part('templates/general/drawers-group-ideas');
+get_template_part('templates/general/drawers-group');
 get_template_part('templates/general/toasts');
 get_template_part('templates/general/cursor');
 get_template_part('templates/general/ref-to-clipboard');

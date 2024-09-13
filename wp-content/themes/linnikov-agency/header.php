@@ -12,12 +12,18 @@ if (is_singular('work')) {
   echo 'single-work';
 } elseif (is_page_template('templates/single-work.php')) {
   echo 'template-single-work';
+} elseif (is_page_template('templates/page-about-us.php')) {
+  echo 'about-us';
 } elseif (is_page_template('templates/page-ideas.php')) {
   echo 'ideas';
+} elseif (is_page_template('templates/page-careers.php')) {
+  echo 'careers-page';
+} elseif (is_page_template('templates/page-team.php')) {
+  echo 'team-page';
 } elseif (is_post_type_archive('work')) {
   echo 'works';
-} else {
-  echo 'default-class'; // Добавьте свой класс по умолчанию, если это необходимо
+} elseif (is_post_type_archive('news')) {
+  echo 'news';
 }
 ?>">
 

@@ -9,6 +9,7 @@ get_header();
 
   <main>
     <?php
+    // Navigation
     $about_navigation = locate_template('templates/general/about-navigation.php');
 
     if ($about_navigation) {
@@ -848,7 +849,7 @@ get_header();
   </main>
 
 <?php
-get_template_part('templates/general/drawers-group-ideas');
+get_template_part('templates/general/drawers-group-subscribe');
 get_template_part('templates/general/toasts');
 get_template_part('templates/general/cursor');
 get_template_part('templates/general/ref-to-clipboard');

@@ -1,3 +1,33 @@
+.count-up-cell-item {
+    display: grid;
+    grid-template-columns: 100px 100px 1fr;
+}
+
+.count-up-cell-item button {
+    justify-self: flex-end;
+}
+button.red {
+    background-color: #dc3232 !important;
+    color: white !important;
+}
+
+.count_up_buttons {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 120px 150px;
+}
+
+.award-item-content {
+    display: grid;
+    margin-bottom: 10px;
+}
+.award-item-content > input[type="button"] {
+    max-width: fit-content;
+}
+button.add-award {
+    margin-top: 20px !important;
+}
+
 #sortable {
     list-style-type: none;
     margin: 0;
@@ -19,4 +49,26 @@
 .ui-state-highlight {
     height: 1.5em;
     line-height: 1.2em;
+}
+
+.image-preview img {
+    max-width: 100px; /* Ограничение ширины превью */
+    height: auto;
+    margin-top: 10px;
+    display: block;
+}
+
+.linnikov-image-upload-container {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.linnikov-agency-remove-image {
+    background-color: #dc3232 !important;
+    color: white !important;
+}
+.button_box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
 }

@@ -1,33 +1,70 @@
 <?php
-function linnikov_agency_register_settings_page() {
+// Register the main theme settings menu and its pages in the admin menu
+function linnikov_agency_register_theme_settings_page() {
+  // Main Theme Settings section (top-level menu item)
   add_menu_page(
-    __('Work Archive Settings', 'linnikov-agency'),
-    __('Work Archive', 'linnikov-agency'),
-    'manage_options',
-    'work-archive-settings',
-    'linnikov_agency_render_settings_page',
-    'dashicons-admin-generic',
-    20
+    __('Theme Settings', 'linnikov-agency'),  // Page title
+    __('Theme Settings', 'linnikov-agency'),  // Menu title
+    'manage_options',  // Capability required
+    'theme-settings',  // Menu slug
+    'linnikov_agency_render_social_media_settings_page',  // No function to render content
+    'dashicons-admin-customizer',  // Menu icon
+    20  // Menu position
+  );
+
+
+  // Adding Work Archive Settings page under Theme Settings
+  add_submenu_page(
+    'theme-settings',  // Parent slug
+    __('Work Archive Settings', 'linnikov-agency'),  // Page title
+    __('Work Archive Settings', 'linnikov-agency'),  // Menu title
+    'manage_options',  // Capability required
+    'work-archive-settings',  // Submenu slug
+    'linnikov_agency_render_work_archive_settings_page'  // Function to render the submenu page
   );
 }
-add_action('admin_menu', 'linnikov_agency_register_settings_page');
+add_action('admin_menu', 'linnikov_agency_register_theme_settings_page');
 
-function linnikov_agency_render_settings_page() {
+// Function to render the main "Theme Settings" page
+function linnikov_agency_render_theme_settings_page() {
   if (!current_user_can('manage_options')) {
     return;
   }
 
-  // Подключаем HTML шаблон из partials
-  include plugin_dir_path(__FILE__) . 'partials/settings-page.php';
+  echo '<div class="wrap">';
+  echo '<h1>' . __('Theme Settings', 'linnikov-agency') . '</h1>';
+
+  // Include the HTML template from partials
+  include plugin_dir_path(__FILE__) . 'partials/theme-settings-page.php';  // Ensure this file exists
+
+  echo '</div>';
 }
 
-function linnikov_agency_enqueue_admin_assets($hook) {
-  if ($hook !== 'toplevel_page_work-archive-settings') {
+// Function to render the "Social Media Settings" page
+function linnikov_agency_render_social_media_settings_page() {
+  if (!current_user_can('manage_options')) {
     return;
   }
 
-  // Подключаем стили и скрипты
-  wp_enqueue_style('linnikov-admin-styles', plugin_dir_url(__FILE__) . 'css/admin-styles.css');
-  wp_enqueue_script('linnikov-admin-scripts', plugin_dir_url(__FILE__) . 'js/admin-scripts.js', array('jquery', 'jquery-ui-sortable'), null, true);
+  echo '<div class="wrap">';
+  echo '<h1>' . __('General Theme Settings', 'linnikov-agency') . '</h1>';
+
+  // Include the HTML template from partials
+  include plugin_dir_path(__FILE__) . 'partials/social-media-settings-page.php';
+
+  echo '</div>';
 }
-add_action('admin_enqueue_scripts', 'linnikov_agency_enqueue_admin_assets');
+
+// Function to render the "Work Archive Settings" page
+function linnikov_agency_render_work_archive_settings_page() {
+  if (!current_user_can('manage_options')) {
+    return;
+  }
+
+  echo '<div class="wrap">';
+
+  // Include the HTML template from partials
+  include plugin_dir_path(__FILE__) . 'partials/settings-page.php';  // Ensure this file exists
+
+  echo '</div>';
+}

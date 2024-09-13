@@ -14,19 +14,26 @@
           </div>
         </div>
         <div class="footer-socials footer__socials">
-          <a itemprop="sameAs" href="https://www.linkedin.com/company/linnikov" target="_blank" class="footer-link">
+          <?php
+          // Получаем сохраненные URL-адреса социальных сетей из настроек
+          $facebook_url = get_option('linnikov_agency_facebook_url');
+          $twitter_url = get_option('linnikov_agency_twitter_url');
+          $linkedin_url = get_option('linnikov_agency_linkedin_url');
+          $instagram_url = get_option('linnikov_agency_instagram_url');
+          ?>
+          <a itemprop="sameAs" href="<?php echo esc_url($linkedin_url); ?>" target="_blank" class="footer-link">
             <div class="ref-arrow-icon ref-arrow-icon_horizontal">
               <span class="icon-cubic-nav-arrow-right"></span>
               <span class="icon-cubic-nav-arrow-right"></span>
             </div>
             Linkedin</a>
-          <a itemprop="sameAs" href="https://www.instagram.com/linnikov.agency/" target="_blank" class="footer-link">
+          <a itemprop="sameAs" href="<?php echo esc_url($instagram_url); ?>" target="_blank" class="footer-link">
             <div class="ref-arrow-icon ref-arrow-icon_horizontal">
               <span class="icon-cubic-nav-arrow-right"></span>
               <span class="icon-cubic-nav-arrow-right"></span>
             </div>
             Instagram</a>
-          <a itemprop="sameAs" href="https://www.facebook.com/linnikov.agency/" target="_blank" class="footer-link">
+          <a itemprop="sameAs" href="<?php echo esc_url($facebook_url); ?>" target="_blank" class="footer-link">
             <div class="ref-arrow-icon ref-arrow-icon_horizontal">
               <span class="icon-cubic-nav-arrow-right"></span>
               <span class="icon-cubic-nav-arrow-right"></span>

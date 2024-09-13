@@ -26,3 +26,5 @@ git subtree pull --prefix=wp-content/themes/linnikov-agency https://github.com/t
 > "e.innerHTML='<use href="/wp-content/themes/linnikov-agency/git-src/build/img/decor-symbols.svg#'"
 - заменить в файле wp-content/themes/linnikov-agency/git-src/src/common/scripts/logo.js  
 > // SVG file url url: "../wp-content/themes/linnikov-agency/img/rgb-logo.svg",
+- заменить в файле wp-content/themes/linnikov-agency/git-src/build/js/team.min.js
+> все вхождения "<source srcset="./img/team" на "<source srcset="/wp-content/themes/linnikov-agency/git-src/build/img/team"

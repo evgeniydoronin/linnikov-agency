@@ -1,34 +1,5 @@
 <?php
 
-// Добавление метабокса для редактирования Permalink
-if (!function_exists('linnikov_agency_add_permalink_meta_box')) {
-  function linnikov_agency_add_permalink_meta_box()
-  {
-    add_meta_box('edit_permalink', __('Permalink', 'linnikov-agency'), 'linnikov_agency_permalink_meta_box', 'work', 'side', 'high');
-  }
-
-  add_action('add_meta_boxes', 'linnikov_agency_add_permalink_meta_box');
-}
-
-// Функция вывода метабокса с полем редактирования Permalink
-if (!function_exists('linnikov_agency_permalink_meta_box')) {
-  function linnikov_agency_permalink_meta_box($post)
-  {
-    $permalink = get_permalink($post);
-    $slug = basename(untrailingslashit($permalink));
-    ?>
-    <div id="linnikov-agency-permalink-box">
-      <label for="editable-slug"><?php _e('Permalink:', 'linnikov-agency'); ?></label>
-      <input type="text" id="editable-slug" name="post_name" value="<?php echo esc_attr($slug); ?>"/>
-      <p><a href="<?php echo esc_url($permalink); ?>" target="_blank"><?php echo $permalink; ?></a></p>
-      <button type="button" class="button button-primary"
-              id="save-permalink-button"><?php _e('Save Permalink', 'linnikov-agency'); ?></button>
-    </div>
-    <?php
-    // Nonce для безопасности
-    wp_nonce_field('save_permalink_nonce', 'linnikov_agency_permalink_nonce');
-  }
-}
 
 // 1. Блок: hero.
 // Добавляем метабокс для изображения Hero

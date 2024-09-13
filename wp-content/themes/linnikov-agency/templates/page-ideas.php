@@ -8,27 +8,15 @@ get_header();
 ?>
 
   <main>
-    <section class="hero">
-      <div class="section-container section-container_decor hero__container">
-        <nav id="nav" class="tg-control materials-filter_center hero__nav">
-          <div class="tg-control uppercase materials-filter__inner">
-            <?php
-            if (has_nav_menu('about-menu')) {
-              wp_nav_menu(array(
-                'theme_location' => 'about-menu',  // Локация зарегистрированного меню
-                'menu_class' => 'ideas-page-menu',  // Класс для меню страницы "Ideas"
-                'container' => false,  // Убираем обертку div
-                'items_wrap' => '%3$s',  // Убираем обертки ul и li
-                'walker' => new Custom_Nav_Walker(),  // Используем кастомный Walker
-                'fallback_cb' => false,  // Отключаем автоматический вывод, если меню не задано
-              ));
-            }
-            ?>
-          </div>
-        </nav>
-        <h1 class="tg-h1">Ideas</h1>
-      </div>
-    </section>
+    <?php
+    // Navigation
+    $about_navigation = locate_template('templates/general/about-navigation.php');
+
+    if ($about_navigation) {
+      require $about_navigation;
+    }
+    ?>
+
     <section id="ideas-grid" class="ideas-grid" data-component="materials-grid">
       <div class="section-container section-container_decor ideas-grid__container">
         <div class="ideas-grid__body" data-elem="materials-grid.body">
@@ -326,7 +314,7 @@ get_header();
   </main>
 
 <?php
-get_template_part('templates/general/drawers-group-ideas');
+get_template_part('templates/general/drawers-group-subscribe');
 get_template_part('templates/general/toasts');
 get_template_part('templates/general/cursor');
 get_template_part('templates/general/ref-to-clipboard');
