@@ -65,7 +65,7 @@
       <div class="tg-big hero__sub-motto">
         We always look forward to see brave, creative, professional emplyees in our team.
       </div>
-    <?php elseif (is_page_template('templates/page-team.php')) : ?>
+    <?php elseif (is_post_type_archive('templates/page-team.php')) : ?>
       <h1 class="tg-h1">Team</h1>
       <div id="team-motto" class="tg-h0 motto">Amazing
         <div class="motto__star-wrap">

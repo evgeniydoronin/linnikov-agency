@@ -12,7 +12,7 @@
     <section class="materials-grid news-grid" id="news-grid" data-component="materials-grid">
       <div class="materials-grid__content news-grid__content" data-elem="materials-grid.body">
         <!-- Категория All -->
-        <div class="materials-grid__category news-grid__category" data-category="all" style="display: block;"> <!-- По умолчанию отображаемая категория -->
+        <div class="materials-grid__category news-grid__category" data-category="all" style="display: block;">
           <div class="news-grid__category-grid">
             <?php
             // Запрос для получения 10 последних постов
@@ -39,9 +39,17 @@
               wp_reset_postdata();
             endif;
             ?>
-          </div>
-          <div class="news-grid__load-more-btn-area">
-            <!-- Кнопка для загрузки еще -->
+
+            <!-- Контейнер кнопки "Load more" в самом конце -->
+            <div class="news-grid__load-more-btn-area">
+              <a href="#" type="button" class="btn" data-materials-grid-elem="load-more-btn" data-category="all">
+                Load more
+                <div class="ref-arrow-icon ref-arrow-icon_horizontal">
+                  <span class="icon-cubic-nav-arrow-right"></span>
+                  <span class="icon-cubic-nav-arrow-right"></span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -52,13 +60,163 @@
           <div class="materials-grid__category news-grid__category" data-category="<?php echo $category; ?>" style="display: none;">
             <div class="news-grid__category-grid">
               <!-- Контент категории будет подгружаться через AJAX -->
-            </div>
-            <div class="news-grid__load-more-btn-area">
-              <!-- Кнопка для загрузки еще -->
+              <div class="news-grid__load-more-btn-area">
+                <a href="#" type="button" class="btn" data-materials-grid-elem="load-more-btn" data-category="<?php echo $category; ?>">
+                  Load more
+                  <div class="ref-arrow-icon ref-arrow-icon_horizontal">
+                    <span class="icon-cubic-nav-arrow-right"></span>
+                    <span class="icon-cubic-nav-arrow-right"></span>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         <?php endforeach; ?>
       </div>
+
+      <script>
+          document.addEventListener('DOMContentLoaded', function () {
+              const loadedCategories = {}; // Инициализация состояния загруженных категорий
+              const offsetCounts = { all: 10, read: 0, watch: 0, listen: 0 }; // Счётчик смещения для каждой категории
+
+              // Устанавливаем по умолчанию активный фильтр и отображаем категорию "all"
+              const defaultCategory = 'all';
+              activateFilter(defaultCategory);
+
+              // Добавление события клика для фильтров категорий
+              document.querySelectorAll('.news-filters a').forEach(function (filterLink) {
+                  filterLink.addEventListener('click', function (e) {
+                      e.preventDefault();
+
+                      const category = this.getAttribute('href').substring(1); // Получаем имя категории из href
+                      console.log('Выбранная категория:', category); // Проверка выбранной категории
+
+                      // Делаем активным текущий фильтр
+                      activateFilter(category);
+
+                      // Скрываем все секции категорий и кнопки "Load more"
+                      document.querySelectorAll('.materials-grid__category').forEach(function (section) {
+                          section.style.display = 'none'; // Скрываем все категории
+                      });
+
+                      // Скрываем все кнопки "Load more"
+                      document.querySelectorAll('.news-grid__load-more-btn-area').forEach(function (btnArea) {
+                          btnArea.style.display = 'none'; // Скрываем все кнопки "Load more"
+                      });
+
+                      // Показываем секцию выбранной категории
+                      const selectedSection = document.querySelector(`[data-category="${category}"]`);
+                      if (selectedSection) {
+                          selectedSection.style.display = 'block'; // Показываем выбранную категорию
+                          console.log(`Отображаем секцию категории: ${category}`); // Проверка отображаемой секции
+                      }
+
+                      // Показываем только кнопку "Load more" текущей категории
+                      const loadMoreButtonArea = selectedSection.querySelector('.news-grid__load-more-btn-area');
+                      if (loadMoreButtonArea) {
+                          loadMoreButtonArea.style.display = 'flex';
+                      }
+
+                      // Проверяем, загружена ли категория
+                      if (!loadedCategories[category]) { // Если категория еще не загружена
+                          console.log(`Загружаем посты для категории: ${category}`); // Проверка загрузки постов для категории
+                          loadCategoryPosts(category); // Загрузка постов для выбранной категории
+                      }
+                  });
+              });
+
+              // Функция установки активного фильтра
+              function activateFilter(category) {
+                  // Удаляем класс 'active' у всех фильтров
+                  document.querySelectorAll('.news-filters a').forEach(function (filterLink) {
+                      filterLink.classList.remove('active');
+                  });
+
+                  // Добавляем класс 'active' выбранному фильтру
+                  document.querySelector(`.news-filters a[href="#${category}"]`).classList.add('active');
+                  console.log(`Активен фильтр: ${category}`); // Проверка активного фильтра
+              }
+
+              // Функция загрузки постов для категории с помощью AJAX
+              function loadCategoryPosts(category, loadMore = false) {
+                  const container = document.querySelector(`[data-category="${category}"] .news-grid__category-grid`);
+
+                  // URL запроса к API
+                  const urlBase = '/wp-json/wp/v2/news?per_page=10&_embed';
+                  let url = urlBase;
+
+                  // Если выбрана категория, отличная от 'all', добавляем параметр фильтрации по ID категории
+                  if (category !== 'all') {
+                      const categoryId = categoryMap[category]; // Получаем ID категории из динамического объекта
+                      if (categoryId) {
+                          url += `&news_category=${categoryId}`; // Используем параметр 'news_category' с ID категории
+                      } else {
+                          return; // Выход из функции, если ID не найден
+                      }
+                  }
+
+                  // Добавляем смещение в запрос для загрузки дополнительных постов
+                  if (loadMore) {
+                      url += `&offset=${offsetCounts[category]}`;
+                  }
+
+                  console.log('Request URL:', url); // Проверяем URL запроса
+
+                  fetch(url)
+                      .then(response => response.json())
+                      .then(posts => {
+                          console.log('Полученные посты:', posts); // Проверка полученных данных из API
+
+                          // Генерируем HTML для постов
+                          posts.forEach(post => {
+                              const imageUrl = post._embedded && post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : '';
+                              console.log('URL изображения:', imageUrl); // Проверка URL изображения
+                              const postHTML = `
+                                <a href="${post.link}" class="news-card news-grid__card">
+                                    <div class="img-wrap img-wrap_cover news-card__img">
+                                        <div class="img-wrap__inner">
+                                            <img src="${imageUrl}" alt="${post.title.rendered}" loading="lazy">
+                                        </div>
+                                    </div>
+                                    <div class="news-card__bottom">
+                                        <h4 class="news-card__title">${post.title.rendered}</h4>
+                                        <div class="news-card__date">${new Date(post.date).toLocaleDateString()}</div>
+                                    </div>
+                                </a>`;
+                              // Добавляем посты перед кнопкой "Load more"
+                              container.querySelector('.news-grid__load-more-btn-area').insertAdjacentHTML('beforebegin', postHTML);
+                          });
+
+                          // Увеличиваем смещение для следующего запроса
+                          offsetCounts[category] += 10;
+
+                          // Если получено меньше 10 постов, скрываем кнопку "Load more"
+                          if (posts.length < 10) {
+                              const loadMoreButtonArea = container.querySelector('.news-grid__load-more-btn-area');
+                              if (loadMoreButtonArea) {
+                                  loadMoreButtonArea.style.display = 'none';
+                              }
+                          }
+
+                          // Отмечаем категорию как загруженную
+                          loadedCategories[category] = true;
+                          console.log(`Категория ${category} загружена.`); // Подтверждение, что категория загружена
+                      })
+                      .catch(error => {
+                          console.error('Ошибка при загрузке постов:', error); // Проверка ошибок загрузки постов
+                      });
+              }
+
+              // Обработчик кнопки "Load more"
+              document.querySelectorAll('[data-materials-grid-elem="load-more-btn"]').forEach(function (btn) {
+                  btn.addEventListener('click', function (e) {
+                      e.preventDefault();
+                      const category = this.getAttribute('data-category');
+                      loadCategoryPosts(category, true); // Загружаем еще посты
+                  });
+              });
+          });
+      </script>
     </section>
     <section class="subscription">
       <div class="section-container section-container_decor subscription__container">
@@ -179,115 +337,7 @@
       </div>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const loadedCategories = {}; // Инициализация состояния загруженных категорий
 
-            // Устанавливаем по умолчанию активный фильтр и отображаем категорию "all"
-            const defaultCategory = 'all';
-            activateFilter(defaultCategory);
-
-            // Добавление события клика для фильтров категорий
-            document.querySelectorAll('.news-filters a').forEach(function (filterLink) {
-                filterLink.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const category = this.getAttribute('href').substring(1); // Получаем имя категории из href
-                    console.log('Выбранная категория:', category); // Проверка выбранной категории
-
-                    // Делаем активным текущий фильтр
-                    activateFilter(category);
-
-                    // Скрываем все секции категорий
-                    document.querySelectorAll('.materials-grid__category').forEach(function (section) {
-                        section.style.display = 'none'; // Скрываем все категории
-                    });
-
-                    // Показываем секцию выбранной категории
-                    const selectedSection = document.querySelector(`[data-category="${category}"]`);
-
-                    if (selectedSection) {
-                        selectedSection.style.display = 'block'; // Показываем выбранную категорию
-                        console.log(`Отображаем секцию категории: ${category}`); // Проверка отображаемой секции
-                    }
-
-                    // Проверяем, загружена ли категория
-                    if (!loadedCategories[category]) { // Если категория еще не загружена
-                        console.log(`Загружаем посты для категории: ${category}`); // Проверка загрузки постов для категории
-                        loadCategoryPosts(category); // Загрузка постов для выбранной категории
-                    }
-                });
-            });
-
-            // Функция установки активного фильтра
-            function activateFilter(category) {
-                // Удаляем класс 'active' у всех фильтров
-                document.querySelectorAll('.news-filters a').forEach(function (filterLink) {
-                    filterLink.classList.remove('active');
-                });
-
-                // Добавляем класс 'active' выбранному фильтру
-                document.querySelector(`.news-filters a[href="#${category}"]`).classList.add('active');
-                console.log(`Активен фильтр: ${category}`); // Проверка активного фильтра
-            }
-
-            // Функция загрузки постов для категории с помощью AJAX
-            function loadCategoryPosts(category) {
-                const container = document.querySelector(`[data-category="${category}"] .news-grid__category-grid`);
-                container.innerHTML = ''; // Очистить контейнер перед загрузкой новых постов
-
-                console.log('Selected category:', category); // Проверяем переданный category
-                console.log('Selected categoryMap:', categoryMap); // Проверяем переданный category
-
-                const urlBase = '/wp-json/wp/v2/news?per_page=10&_embed'; // Базовый URL для запроса
-                let url = urlBase;
-
-                // Если выбрана категория, отличная от 'all', добавляем параметр фильтрации по ID категории
-                if (category !== 'all') {
-                    const categoryId = categoryMap[category]; // Получаем ID категории из динамического объекта
-                    if (categoryId) {
-                        url += `&news_category=${categoryId}`; // Используем параметр 'news_category' с ID категории
-                    } else {
-                        return; // Выход из функции, если ID не найден
-                    }
-                }
-
-                console.log('Request URL:', url); // Проверяем URL запроса
-
-                fetch(url)
-                    .then(response => response.json())
-                    .then(posts => {
-                        console.log('Полученные посты:', posts); // Проверка полученных данных из API
-
-                        // Генерируем HTML для постов
-                        posts.forEach(post => {
-                            const imageUrl = post._embedded && post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : '';
-                            console.log('URL изображения:', imageUrl); // Проверка URL изображения
-                            const postHTML = `
-                        <a href="${post.link}" class="news-card news-grid__card">
-                            <div class="img-wrap img-wrap_cover news-card__img">
-                                <div class="img-wrap__inner">
-                                    <img src="${imageUrl}" alt="${post.title.rendered}" loading="lazy">
-                                </div>
-                            </div>
-                            <div class="news-card__bottom">
-                                <h4 class="news-card__title">${post.title.rendered}</h4>
-                                <div class="news-card__date">${new Date(post.date).toLocaleDateString()}</div>
-                            </div>
-                        </a>`;
-                            container.innerHTML += postHTML;
-                        });
-
-                        // Отмечаем категорию как загруженную
-                        loadedCategories[category] = true;
-                        console.log(`Категория ${category} загружена.`); // Подтверждение, что категория загружена
-                    })
-                    .catch(error => {
-                        console.error('Ошибка при загрузке постов:', error); // Проверка ошибок загрузки постов
-                    });
-            }
-        });
-    </script>
 
   </main>
 

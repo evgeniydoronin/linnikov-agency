@@ -27,6 +27,9 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/meta-boxes.php';
 // Include Meta Boxes NEWS
 require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-news.php';
 
+// Include Meta Boxes TEAM
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-team.php';
+
 // Include Helper Functions
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 

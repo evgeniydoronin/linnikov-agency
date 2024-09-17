@@ -60,6 +60,35 @@ function linnikov_agency_create_post_types() {
   );
 
   register_post_type('news', $news_args);
+
+  $team_labels = array(
+    'name' => __('Team Members', 'linnikov-agency'),
+    'singular_name' => __('Team Member', 'linnikov-agency'),
+    'menu_name' => __('Team', 'linnikov-agency'),
+    'name_admin_bar' => __('Team Member', 'linnikov-agency'),
+    'add_new' => __('Add New', 'linnikov-agency'),
+    'add_new_item' => __('Add New Team Member', 'linnikov-agency'),
+    'new_item' => __('New Team Member', 'linnikov-agency'),
+    'edit_item' => __('Edit Team Member', 'linnikov-agency'),
+    'view_item' => __('View Team Member', 'linnikov-agency'),
+    'all_items' => __('All Team Members', 'linnikov-agency'),
+    'search_items' => __('Search Team Members', 'linnikov-agency'),
+    'parent_item_colon' => __('Parent Team Members:', 'linnikov-agency'),
+    'not_found' => __('No team members found.', 'linnikov-agency'),
+    'not_found_in_trash' => __('No team members found in Trash.', 'linnikov-agency'),
+  );
+
+  $team_args = array(
+    'labels' => $team_labels,
+    'public' => true,
+    'has_archive' => true,
+    'supports' => array('title', 'thumbnail'),
+    'show_in_rest' => true,
+    'rewrite' => array('slug' => 'teams'),
+    'menu_icon' => 'dashicons-groups', // Иконка для админ-панели
+  );
+
+  register_post_type('team', $team_args);
 }
 add_action('init', 'linnikov_agency_create_post_types');
 
@@ -148,3 +177,32 @@ function linnikov_agency_create_news_categories_taxonomy() {
   register_taxonomy('news_category', 'news', $news_category_args); // Регистрируем таксономию 'news_category' для типа записи 'news'
 }
 add_action('init', 'linnikov_agency_create_news_categories_taxonomy');
+
+// Register Custom Taxonomy for 'team' post type
+function linnikov_agency_create_team_tags_taxonomy() {
+  $team_tag_labels = array(
+    'name' => __('Team Tags', 'linnikov-agency'),
+    'singular_name' => __('Team Tag', 'linnikov-agency'),
+    'search_items' => __('Search Team Tags', 'linnikov-agency'),
+    'all_items' => __('All Team Tags', 'linnikov-agency'),
+    'edit_item' => __('Edit Team Tag', 'linnikov-agency'),
+    'update_item' => __('Update Team Tag', 'linnikov-agency'),
+    'add_new_item' => __('Add New Team Tag', 'linnikov-agency'),
+    'new_item_name' => __('New Team Tag Name', 'linnikov-agency'),
+    'menu_name' => __('Team Tags', 'linnikov-agency'),
+  );
+
+  $team_tag_args = array(
+    'hierarchical' => true, // Теги не иерархические, в отличие от категорий
+    'labels' => $team_tag_labels,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'update_count_callback' => '_update_post_term_count',
+    'query_var' => true,
+    'rewrite' => array('slug' => 'team-tag'),
+    'show_in_rest' => true, // Показать в REST API для поддержки редактора Gutenberg
+  );
+
+  register_taxonomy('team_tag', 'team', $team_tag_args);
+}
+add_action('init', 'linnikov_agency_create_team_tags_taxonomy');
