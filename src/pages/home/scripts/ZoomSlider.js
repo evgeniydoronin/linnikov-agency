@@ -2,6 +2,21 @@ import { getTargetElem } from "../../../shared/scripts/utils.js";
 import { throttle } from "../../../shared/scripts/patterns/throttle.js";
 import EventEmitter from "../../../shared/scripts/patterns/EventEmitter.js";
 
+function createAnimationFrameLoop(callback) {
+	let id = null, canceled = false;
+	const innerCallback = (ts) => {
+		callback(ts);
+		if (!canceled) id = requestAnimationFrame(innerCallback);
+	}
+	id = requestAnimationFrame(innerCallback);
+	return {
+		cancel: () => {
+				canceled = true;
+				cancelAnimationFrame(id);
+			}
+	}
+}
+
 const zoomTransition = 0.4;
 const initialForce = 0.3;
 const handlers = {
@@ -434,6 +449,7 @@ class ZoomSlider extends EventEmitter {
 		animation: false,
 		status: "idle",
 		scrollLeft: 0,
+		lastRecalc: null,
 		prevBodyHeight: null,
 		prevBodyWidth: null,
 	}
@@ -531,13 +547,13 @@ class ZoomSlider extends EventEmitter {
 	}
 	play() {
 		if (this.state.status === "paused" || this.state.status === "idle") {
-			this.state.status === "play";
+			this.state.status = "play";
 			this.startAnimation();
 		}
 	}
 	stop() {
 		if (this.state.status === "paused" || this.state.status === "play") {
-			this.state.status === "idle";
+			this.state.status = "idle";
 			this.stopAnimation();
 		}
 	}
@@ -570,12 +586,13 @@ class ZoomSlider extends EventEmitter {
 		}
 		const worker = () => {
 			if (!this.state.animation) {
-				if (interval) clearInterval(interval);
+				clearInterval(this.intervalId);
 				return;
 			};
-			if (!this.state.pointerDown) recalc();
+			if (!this.state.pointerDown) requestAnimationFrame(() => recalc());
 		}
-		let interval = setInterval(worker, 20);
+		clearInterval(this.intervalId);
+		this.intervalId = setInterval(worker, 30);
 		this.state.animation = true;
 	}
 	stopAnimation() {

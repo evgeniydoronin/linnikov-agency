@@ -662,7 +662,7 @@ html {
 		left: 0;
 		top: calc(100% + 10px);
 		z-index: 1;
-		color: #FFF;
+		color: var(--light-black);
 		font-size: 16px;
 		font-weight: 500;
 		line-height: 110%;
@@ -670,7 +670,7 @@ html {
 		height: auto;
 		//letter-spacing: -0.048em;
 		text-transform: uppercase;
-		mix-blend-mode: difference;
+		//mix-blend-mode: difference;
 		white-space: nowrap;
 		pointer-events: none;
 	}
@@ -3525,5 +3525,9 @@ textarea::placeholder, input::placeholder {
 	[data-elem="overlay"] {
 		width: 100%;
 		padding-top: var(--v-ratio, 100%);
+	}
+	&_doc {
+		flex: 1 1 100%;
+		margin: -10% 10% 0 5%;
 	}
 }

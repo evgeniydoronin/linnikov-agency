@@ -52,6 +52,7 @@ class ResizeObserverMod extends ResizeObserver {
 class State {
 	@observable accessor lightMode = !isFullMode();
 	@observable accessor landscape = false;
+	@observable accessor theme = null;
 	isMobile = Boolean(isMobile.any());
 	isIOS = Boolean(isMobile.iOS());
 	pointerType = detectPointerEvents.hasApi ? "pointer" : "mouse";
@@ -63,6 +64,10 @@ class State {
 		const mediaMatch = matchMedia("(orientation: landscape)");
 		mediaMatch.addEventListener("change", handler);
 		handler(mediaMatch);
+	}
+	@action
+	setTheme(next) {
+		this.theme = next;
 	}
 }
 window.app = (window.app || {});
@@ -404,6 +409,7 @@ function initThemes() {
 		});
 	}
 	function setTheme(theme) {
+		window.app.state.setTheme(theme);
 		themeSwitchElems.forEach(elem => {
 			var next = theme === "light";
 			if (elem.theme.checked == next) return;

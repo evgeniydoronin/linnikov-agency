@@ -29,6 +29,7 @@
 			<script defer="defer" src="libs/animated-icons/10.js"></script>
 			<script defer="defer" src="libs/animated-icons/11.js"></script>
 			<script defer="defer" src="libs/animated-icons/12.js"></script>
+			<script defer="defer" src="libs/animated-icons/13.js"></script>
 		<title>Brand archetypes</title>
 	<script defer="defer" src="./js/common.min.js"></script><script defer="defer" src="./js/brand-archetypes.min.js"></script><link href="./css/common.min.css" rel="stylesheet"><link href="./css/brand-archetypes.min.css" rel="stylesheet"></head>	<body class="archetypes">
 		<header class="header">
@@ -318,10 +319,16 @@
 						</div>
 						<div class="archetypes-slider__controls">
 							<button id="archetypes-slider-prev" type="button" class="archetypes-slider__prev-btn archetypes-slider-btn">
-								<span class="icon-cubic-nav-arrow-left"></span>
+								<div class="ref-arrow-icon ref-arrow-icon_horizontal ref-arrow-icon_flip">
+									<span class="icon-cubic-nav-arrow-right"></span>
+									<span class="icon-cubic-nav-arrow-right"></span>
+								</div>
 							</button>
 							<button id="archetypes-slider-next" type="button" class="archetypes-slider__next-btn archetypes-slider-btn">
-								<span class="icon-cubic-nav-arrow-right"></span>
+								<div class="ref-arrow-icon ref-arrow-icon_horizontal">
+									<span class="icon-cubic-nav-arrow-right"></span>
+									<span class="icon-cubic-nav-arrow-right"></span>
+								</div>
 							</button>
 						</div>
 					</div>
@@ -340,48 +347,51 @@
 					</div>
 				</div>
 			</section>
-			<section class="overflow-hidden tg-regular">
-				<div class="section-container section-container_decor">
-					<div id="ideas-slider" class="section-container__inner section-container__inner_bottom-space la-slider">
-						<div class="la-slider__body">
-							<div class="la-slider__slide la-idea-frame">
-								<div class="la-idea-frame__fig">
-									<div data-component="animated-icon" data-id="10" class="la-animation">
-										<canvas width="820" height="820"></canvas>
-										<div data-elem="overlay"></div>
+			<section id="ideas-animation" class="tg-regular la-archetypes-ideas">
+				<div class="section-container section-container_decor la-archetypes-ideas__decor"></div>
+				<div class="section-container la-archetypes-ideas__container">
+					<div class="section-container__inner la-archetypes-ideas__inner">
+						<div class="la-archetypes-ideas__body">
+							<div class="la-archetypes-ideas__slider">
+								<div class="la-archetypes-ideas__slide la-idea-frame">
+									<div class="la-idea-frame__fig">
+										<div data-component="animated-icon" data-id="10" class="la-animation">
+											<canvas width="820" height="820"></canvas>
+											<div data-elem="overlay"></div>
+										</div>
+									</div>
+									<div class="la-idea-frame__text">
+										<h2 class="tg-h2">The world is overloaded with advertising</h2>
+										<p>Nowadays, an average American encounters 6,000 advertisements daily, while a European sees about 4,000. Given that we can barely remember one or two ads from the last day, week, or month, it's apparent that there's a disconnect. Our brains have adapted to cope with the information overload they encounter every second. They don't react to mere facts.</p>
 									</div>
 								</div>
-								<div class="la-idea-frame__text">
-									<h2 class="tg-h2">The world is overloaded with advertising</h2>
-									<p>Nowadays, an average American encounters 6,000 advertisements daily, while a European sees about 4,000. Given that we can barely remember one or two ads from the last day, week, or month, it's apparent that there's a disconnect. Our brains have adapted to cope with the information overload they encounter every second. They don't react to mere facts.</p>
-								</div>
-							</div>
-							<div class="la-slider__slide la-idea-frame">
-								<div class="la-idea-frame__fig">
-									<div data-component="animated-icon" data-id="11" class="la-animation">
-										<canvas width="980" height="680"></canvas>
-										<div data-elem="overlay"></div>
+								<div class="la-archetypes-ideas__slide la-idea-frame">
+									<div class="la-idea-frame__fig">
+										<div data-component="animated-icon" data-id="11" class="la-animation">
+											<canvas width="980" height="680"></canvas>
+											<div data-elem="overlay"></div>
+										</div>
+									</div>
+									<div class="la-idea-frame__text">
+										<h2 class="tg-h2">Filtration by the brain</h2>
+										<p>In fact, we remember or consciously register less than 1% of what our eyes see. If we were to quantify the volume of information we encounter in 24 hours, it could fill 176 newspapers. In these circumstances, businesspeople have realized that they have only two main strategic paths for development: either to lower prices or to infuse their products with a unique sense of meaning.</p>
 									</div>
 								</div>
-								<div class="la-idea-frame__text">
-									<h2 class="tg-h2">Filtration by the brain</h2>
-									<p>In fact, we remember or consciously register less than 1% of what our eyes see. If we were to quantify the volume of information we encounter in 24 hours, it could fill 176 newspapers. In these circumstances, businesspeople have realized that they have only two main strategic paths for development: either to lower prices or to infuse their products with a unique sense of meaning.</p>
-								</div>
-							</div>
-							<div class="la-slider__slide la-idea-frame">
-								<div class="la-idea-frame__fig">
-									<div data-component="animated-icon" data-id="12" class="la-animation">
-										<canvas width="980" height="680"></canvas>
-										<div data-elem="overlay"></div>
+								<div class="la-archetypes-ideas__slide la-idea-frame">
+									<div class="la-idea-frame__fig">
+										<div data-component="animated-icon" data-id="12" class="la-animation">
+											<canvas width="980" height="680"></canvas>
+											<div data-elem="overlay"></div>
+										</div>
 									</div>
-								</div>
-								<div class="la-idea-frame__text">
-									<h2 class="tg-h2">The meaning as a brand asset</h2>
-									<p>BRAND MEANING is the most precious and irreplaceable asset of your brand. The significance your brand holds for people is arguably as important, if not more so, than its functional aspects. This is because meaning resonates on an emotional level, conveying messages like "it feels the same as I do" or "this is for me." </p>
+									<div class="la-idea-frame__text">
+										<h2 class="tg-h2">The meaning as a brand asset</h2>
+										<p>BRAND MEANING is the most precious and irreplaceable asset of your brand. The significance your brand holds for people is arguably as important, if not more so, than its functional aspects. This is because meaning resonates on an emotional level, conveying messages like "it feels the same as I do" or "this is for me." </p>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="la-slider__progress-bar slider-progress-bar">
+						<div class="la-archetypes-ideas__progress-bar slider-progress-bar">
 							<div class="slider-progress-bar__thumb double-cubic-decor"></div>
 						</div>
 					</div>
@@ -487,10 +497,9 @@
 					<div class="section-container__inner section-container__inner_space tg-regular">
 						<div class="la-article__section">
 							<div class="la-article__block la-article__block_doc">
-								<div class="img-wrap la-artice-img la-artice-img_doc">
-									<div class="img-wrap__inner">
-										<img src="./img/brand-archetypes/doc.jpg" alt="Doc">
-									</div>
+								<div id="doc-animation" data-component="animated-icon" data-id="13" style="--v-ratio: 100%;" class="la-animation la-animation_doc">
+									<canvas width="820" height="820"></canvas>
+									<div data-elem="overlay"></div>
 								</div>
 							</div>
 						</div>
@@ -595,9 +604,9 @@
 					</div>
 				</div>
 			</section>
-			<section>
+			<section class="overflow-hidden la-article">
 				<div class="section-container section-container_decor">
-					<div class="section-container__inner section-container__inner_bottom-space la-article tg-regular">
+					<div class="section-container__inner section-container__inner_bottom-space tg-regular">
 						<h2 class="tg-h1 la-article__title la-article__title_left">How to Choose Your<br>Archetype</h2>
 						<div class="la-article__section">
 							<div class="la-article__block la-article_small-gap la-article__block_even">
@@ -622,7 +631,7 @@
 								<p>If you’re looking to stand out from the competition, your goal is to avoid clichés and overused tropes. Consider choosing a secondary archetype to add more depth to your brand’s messaging. For example, Balenciaga doesn’t just rely on the “Lover” archetype; they also tap into the “Rebel.” This strategy allows the brand to stay unpredictable and break away from conventional standards.</p>
 								<p>You analyze competitors of MindPath — an app for finding and selecting doctors. You discover that the “Sage” archetype is the most commonly used. You realize that competitors are not utilizing the “Caregiver” and “Creator” archetypes, which resonate with your target audience.</p>
 							</div>
-							<div class="la-article__block la-article_small-gap la-article__block_even la-article__block_mob-first-row">
+							<div class="la-article__block la-article_small-gap la-article__block_even la-article__block_img-set">
 								<div class="la-article-img-set">
 									<div class="img-wrap la-article-img-set__item">
 										<div class="img-wrap__inner">
@@ -642,6 +651,30 @@
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
+			</section>
+			<section class="la-article-task">
+				<div class="section-container section-container_decor">
+					<div class="section-container__inner section-container__inner_space tg-regular">
+						<div class="la-article-task__title">Task</div>
+						<div class="la-article-task__task">Let's practice. Determine the appropriate archetype for Midjourney.</div>
+						<div class="la-article-interactive la-article-interactive_checked la-article-task__interactive">
+							<div class="tg-h3 la-article-interactive__prompt">Choose one of the options</div>
+							<div class="la-article-interactive__answers">
+								<div class="la-article-interactive-answer la-article-interactive-answer_selected">
+									<div class="la-article-interactive-answer__text">Ruler</div>
+									<div class="la-article-interactive-answer__description">No. Midjourney allows users to immerse themselves in the creative process, explore new visual ideas, and bring them to life. The Ruler archetype is typically associated with power, control, and governance, which does not align with the nature of Midjourney. The correct answer is: Creator.</div>
+									<div class="icon-check-arrow la-article-interactive-answer__arrow"></div>
+								</div>
+								<div class="la-article-interactive-answer la-article-interactive-answer_correct">
+									<div class="la-article-interactive-answer__text">Ruler</div>
+									<div class="la-article-interactive-answer__description">No. Midjourney allows users to immerse themselves in the creative process, explore new visual ideas, and bring them to life. The Ruler archetype is typically associated with power, control, and governance, which does not align with the nature of Midjourney. The correct answer is: Creator.</div>
+									<div class="icon-check-arrow la-article-interactive-answer__arrow"></div>
+								</div>
+							</div>
+						</div>
+						<div class="la-article-task__tip">And also, keep a note for yourself on when each archetype is best suited. With it, you can return to the materials from the article at any time and choose the appropriate archetype for the company.</div>
 					</div>
 				</div>
 			</section>

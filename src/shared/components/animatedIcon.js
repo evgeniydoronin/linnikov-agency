@@ -39,6 +39,9 @@ export class AnimatedIcon {
 	}
 	handleTick = () => {
 		this.stage.update();
+		if (this.id === "13" && this.root.currentFrame === this.root.totalFrames - 1) {
+			return this.stage.stop();
+		}
 		if (!this.infinite && this.root.totalFrames === this.root.currentFrame + 1) {
 			this.immediateStop();
 		}

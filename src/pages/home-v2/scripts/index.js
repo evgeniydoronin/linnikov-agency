@@ -115,7 +115,36 @@ class AnimatedLogo {
 		});
 	}
 }
-
+class AboutSurogat {
+	@observable accessor mode = null;
+	constructor() {
+		const elem = document.querySelector("#about-surogat");
+		const handler = ({ matches }) => this.setMode(matches ? "mob" : "tablet");
+		const mediaMatch = matchMedia("(max-width: 768px)");
+		mediaMatch.addEventListener("change", handler);
+		handler(mediaMatch);
+		autorun(() => {
+			if (!this.mode) return;
+			if (window.app.state.theme === "light") {
+				if (this.mode === "mob") {
+					elem.src = "https://player.vimeo.com/video/967022528?loop=1&background=1";
+				} else {
+					elem.src = "https://player.vimeo.com/video/967014831?h=e617bda1ec&loop=1&background=1";
+				}
+			} else {
+				if (this.mode === "mob") {
+					elem.src = "https://player.vimeo.com/video/967007739?h=e617bda1ec&loop=1&background=1";
+				} else {
+					elem.src = "https://player.vimeo.com/video/967017856?h=e617bda1ec&loop=1&background=1";
+				}
+			}
+		});
+	}
+	@action
+	setMode(next) {
+		this.mode = next;
+	}
+}
 function init() {
 	window.slider = new ZoomSlider("#cases-slider");
 	const sliderControl = new ZoomSliderControl("#cases-slider-control", slider);
@@ -136,6 +165,7 @@ function init() {
 	initAboutSection();
 	reflectWelcomeAnimationCompletion();
 	initViewportScrollTrigger();
+	new AboutSurogat();
 }
 function initViewportScrollTrigger() {
 	var about = document.querySelector("#about");
