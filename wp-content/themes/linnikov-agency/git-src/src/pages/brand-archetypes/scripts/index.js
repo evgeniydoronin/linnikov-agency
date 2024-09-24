@@ -1,24 +1,79 @@
 import KeenSlider from 'keen-slider';
 import { AnimatedIcon } from '../../../shared/components/animatedIcon.js';
+import debounce from 'lodash.debounce';
 
 const { observable, action, computed, autorun } = mobx;
 
 document.addEventListener("DOMContentLoaded", init);
+class IdeasAnimation {
+	constructor(root) {
+		this.dom = {
+			root,
+			body: root.querySelector(".la-archetypes-ideas__body"),
+			slider: root.querySelector(".la-archetypes-ideas__slider")
+		};
+		this.progressBar = new SliderProgressBar(document.querySelector(".la-archetypes-ideas__progress-bar"), {
+			slidesNumber: 3,
+			activeSlide: 0,
+		});
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
+		this.rebuild();
+	}
+	onResize() {
+		this.rebuild();
+	}
+	rebuild = debounce(() => {
+		this.ctx?.revert();
+		this.ctx = gsap.context(() => {
+			const sliderWidth = this.dom.body.offsetWidth;
+			gsap.set(".la-archetypes-ideas__slide", {
+				width: `${sliderWidth}px`
+			});
+			ScrollTrigger.create({
+				trigger: this.dom.root,
+				start: "top top",
+				end: "bottom bottom",
+				markers: true,
+				onUpdate: (self) => {
+					if (self.progress === 0) {
+						gsap.to(".la-archetypes-ideas__slider", {
+							x: 0,
+							duration: 0.5,
+						});
+						this.progressBar.setActiveSlide(0);
+					} else if (self.progress < 0.5) {
+						gsap.to(".la-archetypes-ideas__slider", {
+							x: `-${sliderWidth + window.innerWidth * 0.15}px`,
+							duration: 0.5,
+						});
+						this.progressBar.setActiveSlide(1);
+					} else {
+						gsap.to(".la-archetypes-ideas__slider", {
+							x: `-${sliderWidth * 2 + window.innerWidth * 0.3}px`,
+							duration: 0.5,
+						});
+						this.progressBar.setActiveSlide(2);
+					}
+				}
+			});
+			function calcThumbShift(activeSlide) {
+				return (this.width - this.thumbWidth) / 2 * activeSlide;
+			}
+		});
+	}, 25);
+}
 class SliderProgressBar {
 	@observable accessor width = null;
 	@observable accessor slidesNumber = null;
 	@observable accessor activeSlide = null;
-	constructor(root, slider) {
+	constructor(root, initialState) {
 		this._dom = { root, thumb: root.querySelector(".slider-progress-bar__thumb") };
-		this._slider = slider;
+		this.setWidth(this._dom.root.offsetWidth);
+		this.setSlidesNumber(initialState.slidesNumber);
+		this.setActiveSlide(initialState.activeSlide);
 		this.init();
 	}
 	init() {
-		this.setSlidesNumber(this._slider.slides.length);
-		this.setActiveSlide(this._slider.track.details.rel);
-		this.setWidth(this._dom.root.offsetWidth);
-		this._slider.on("optionsChanged", () => this.setSlidesNumber(this._slider.slides.length));
-		this._slider.on("slideChanged", () => this.setActiveSlide(this._slider.track.details.rel));
 		autorun(() => this._dom.root.style.setProperty("--slides-number", this.slidesNumber));
 		autorun(() => this._dom.root.style.setProperty("--active-slide", this.activeSlide));
 		autorun(() => this._dom.root.style.setProperty("--thumb-width", `${this.thumbWidth}px`));
@@ -45,54 +100,41 @@ class SliderProgressBar {
 	get thumbShift() {
 		return this.slidesNumber > 1 ? (this.width - this.thumbWidth) / (this.slidesNumber - 1) * this.activeSlide : 0;
 	}
-	update() {
-
-	}
 }
 class IdeaFrame {
-	@observable accessor sliderAnimationCompleted = true;
-	@observable accessor active = false;
-	constructor(root, slider) {
+	constructor(root) {
 		this.fig = root.querySelector(`[data-component="animated-icon"]`);
 		this.animation = new AnimatedIcon(this.fig);
-		const isActive = () => slider.slides[slider.track.details.rel] === root;
-		this.setActive(isActive());
-		slider.on("animationStarted", () => this.setSliderAnimationCompleted(false));
-		slider.on("animationEnded", () => this.setSliderAnimationCompleted(true));
-		slider.on("slideChanged", () => this.setActive(isActive()));
-
-		autorun(() => {
-			if (this.active && this.sliderAnimationCompleted) {
-				this.animation.restart(true);
-			} else {
-				this.animation.stop();
-			}
-		})
-	}
-	@action
-	setSliderAnimationCompleted(next) {
-		this.sliderAnimationCompleted = next;
-	}
-	@action
-	setActive(next) {
-		this.active = next;
+		this.animation.restart(true);
 	}
 }
 function init() {
 	initMainSlider();
-	const ideasSlider = initIdeasSlider();
-}
-function initIdeasSlider() {
-	const root = document.querySelector("#ideas-slider");
-	const slider = new KeenSlider(
-		root.querySelector(".la-slider__body"),
-		{
-			selector: ".la-slider__slide",
+	let docAnimationActivated = false;
+	initIdeasAnimation();
+	new IdeasAnimation(document.querySelector("#ideas-animation"));
+	const docAnimationElem = document.querySelector("#doc-animation");
+	const docAnimation = new AnimatedIcon(docAnimationElem);
+	const observer = new IntersectionObserver((entries) => {
+		if (entries[0]?.isIntersecting && !docAnimationActivated) {
+			docAnimationActivated = true;
+			docAnimation.restart(false);
 		}
-	);
-	slider.slides.forEach(slide => new IdeaFrame(slide, slider));
-	const progressBar = new SliderProgressBar(root.querySelector(".slider-progress-bar"), slider);
-	return slider;
+	}, { threshold: 0 });
+	observer.observe(docAnimationElem);
+}
+function initIdeasAnimation() {
+	// const root = document.querySelector("#ideas-slider");
+	// const slider = new KeenSlider(
+	// 	root.querySelector(".la-slider__body"),
+	// 	{
+	// 		selector: ".la-slider__slide",
+	// 	}
+	// );
+	document.querySelectorAll(".la-archetypes-ideas .la-idea-frame")
+		.forEach(slide => new IdeaFrame(slide));
+
+	gsap.createCo
 }
 function initMainSlider() {
 	const slider = new KeenSlider(

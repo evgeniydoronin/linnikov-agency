@@ -169,9 +169,15 @@ function initViewportScrollTrigger() {
 		const logoSpacerTop = getPageTop(logoSpacer);
 		const logoSpacerBottom = getPageBottom(logoSpacer);
 		if (window.scrollY >= 0 && window.scrollY < logoSpacerTop) {
-			scrollTo(window.app.state.isMobile ? aboutTop : logoSpacerTop, true);
+			if (window.app.state.isMobile) {
+				scrollTo(aboutTop, true);
+				window.slider.stop();
+			} else {
+				scrollTo(logoSpacerTop, true);
+			}
 		} else if (window.scrollY >= logoSpacerTop && window.scrollY < logoSpacerBottom) {
 			scrollTo(aboutTop, true);
+			window.slider.stop();
 		}
 	};
 	const handleDown = () => {
@@ -182,6 +188,7 @@ function initViewportScrollTrigger() {
 		} else if (window.scrollY >= logoSpacerTop && window.scrollY <= logoSpacerBottom) {
 			scrollTo(window.app.state.isMobile ? 0 : logoSpacerTop, false);
 		}
+		window.slider.play();
 	};
 	Observer.create({
 		target: window,

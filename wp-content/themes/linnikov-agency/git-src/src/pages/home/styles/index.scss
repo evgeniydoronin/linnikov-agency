@@ -781,15 +781,16 @@
 		--slide-size-m: 300px;
 		--slide-size-s: 150px;
 		--slide-size-mm: 150px;
-		position: relative;
-		top: 0;
-		left: var(--translate-x, 0);
-		will-change: left;
+		// position: relative;
+		// top: 0;
+		// left: var(--translate-x, 0);
+		// will-change: left;
 		display: flex;
 		touch-action: pan-y;
 		user-select: none;
 		height: calc(100vh - 50px - 91px);
 		cursor: grab;
+		transform: translate3d(var(--translate-x, 0), 0, 0);
 		@media (max-width: 600px) {
 			height: calc(100vh - 50px - 64px);
 		}

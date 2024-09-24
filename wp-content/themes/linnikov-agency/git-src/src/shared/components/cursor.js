@@ -5,6 +5,7 @@ const iconsMapping = {
 	"fancybox-next": "icon-lightbox-cursor-right",
 }
 export class Cursor {
+	lastTickTs = null;
 	constructor() {
 		this.dom = { root: document.querySelector("[data-component=cursor]") };
 		this.dom.current = this.dom.root.querySelector("[data-elem=current]");
@@ -14,12 +15,16 @@ export class Cursor {
 		window.addEventListener(`${app.state.pointerType}enter`, (e) => this.pointerHandler(e));
 		this.worker();
 	}
-	worker() {
+	worker(ts) {
+		if (this.lastTickTs !== null && ts - this.lastTickTs < 25) {
+			return requestAnimationFrame((ts) => this.worker(ts));
+		}
+		this.lastTickTs = ts;
 		const hoveredElems = document.querySelectorAll(":hover");
 		if (hoveredElems.length) {
 			this.updateCursorOverTarget(hoveredElems[hoveredElems.length - 1]);
 		}
-		requestAnimationFrame(() => this.worker());
+		requestAnimationFrame((ts) => this.worker(ts));
 	}
 	updateCursorOverTarget(target) {
 		if (this.lastTarget === target) return;

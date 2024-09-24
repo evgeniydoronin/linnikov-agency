@@ -155,6 +155,38 @@ export class Form {
 	}
 }
 
+class FormField {
+	constructor(target) {
+		this.dom = { input: getTargetElem(target) };
+		this.dom.wrap = this.dom.input.closest(".form-field");
+		try {
+			this.disclosure = new Disclosure(this.dom.input.closest(".field-disclosure"));
+		} catch(ex) {
+			console.log("No disclosure for field", ex);
+		}
+	}
+	clear() {
+		this.dom.input.value = null;
+	}
+	setRequired(next) {
+		if (next) {
+			this.dom.input.setAttribute("required", true);
+		} else {
+			this.dom.input.removeAttribute("required");
+		}
+	}
+	setHidden(next) {
+		if (this.disclosure) {
+			this.disclosure.toggle(!next);
+		} else {
+			if (next) {
+				this.dom.wrap.classList.add("_hidden");
+			} else {
+				this.dom.wrap.classList.remove("_hidden");
+			}
+		}
+	}
+}
 export class SignUpForm extends Form {
 	constructor(selector) {
 		super(selector);
@@ -213,38 +245,6 @@ export class WriteUsForm extends Form {
 		}
 	}
 }
-class FormField {
-	constructor(target) {
-		this.dom = { input: getTargetElem(target) };
-		this.dom.wrap = this.dom.input.closest(".form-field");
-		try {
-			this.disclosure = new Disclosure(this.dom.input.closest(".field-disclosure"));
-		} catch(ex) {
-			console.log("No disclosure for field", ex);
-		}
-	}
-	clear() {
-		this.dom.input.value = null;
-	}
-	setRequired(next) {
-		if (next) {
-			this.dom.input.setAttribute("required", true);
-		} else {
-			this.dom.input.removeAttribute("required");
-		}
-	}
-	setHidden(next) {
-		if (this.disclosure) {
-			this.disclosure.toggle(!next);
-		} else {
-			if (next) {
-				this.dom.wrap.classList.add("_hidden");
-			} else {
-				this.dom.wrap.classList.remove("_hidden");
-			}
-		}
-	}
-}
 export class ContactForm extends Form {
 	constructor(selector) {
 		super(selector);
@@ -272,7 +272,6 @@ export class ContactForm extends Form {
 		});
 	}
 }
-
 export class BriefForm extends Form {
 	constructor(selector) {
 		super(selector);

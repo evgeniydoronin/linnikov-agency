@@ -18,7 +18,7 @@ export class WorksSlider {
 		this.initInViewTracker();
 		this.initGestures();
 		this.initAction();
-		window?.app?.resizeObserver.on("resize", () => this.onViewportResize());
+		window?.app?.windowResizeObserver.on("resize", () => this.onViewportResize());
 		this.dom.root.classList.add("_initialized");
 		setTimeout(() => this.initAnimation(), 0);
 	}
