@@ -167,9 +167,27 @@ class Custom_Nav_Walker extends Walker_Nav_Menu
             $output .= '</div>';
             $output .= '</a>';
         } else if ($args->menu_class === 'ideas-page-menu') {
-            $output .= '<a href="' . esc_url($item->url) . '"' . $class_names . ' data-component="animated-link">';
-            $output .= '<div class="text-btn__cap">' . apply_filters('the_title', $item->title, $item->ID) . '</div>';
-            $output .= '</a>';
+          // Создаем уникальные ID для SVG-элементов
+          $lightning_id = 'page-nav__lightning_' . $item->ID;
+
+          // Генерируем HTML для активного и неактивного пункта меню в ideas-page-menu
+          $output .= '<a href="' . esc_url($item->url) . '" class="text-btn' . ($item->current ? ' _active' : '') . '" data-component="animated-link"' . $class_names . '>';
+          $output .= '<svg id="' . $lightning_id . '" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">';
+          $output .= '<g class="animated-cubic-lightning__body" clip-path="url(#' . $lightning_id . '-clip)" transform="rotate(30 6.8 30) translate(-3)">';
+          $output .= '<rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>';
+          $output .= '<rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>';
+          $output .= '<rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)"/>';
+          $output .= '<rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)"/>';
+          $output .= '</g>';
+          $output .= '<defs>';
+          $output .= '<clipPath id="' . $lightning_id . '-clip">';
+          $output .= '<rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>';
+          $output .= '<rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>';
+          $output .= '</clipPath>';
+          $output .= '</defs>';
+          $output .= '</svg>';
+          $output .= '<div class="text-btn__cap">' . apply_filters('the_title', $item->title, $item->ID) . '</div>';
+          $output .= '</a>';
         }
     }
 }

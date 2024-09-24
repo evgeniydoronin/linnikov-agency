@@ -262,7 +262,6 @@ get_header();
     // Получаем ID связанных работ
     $related_works = get_post_meta(get_the_ID(), '_linnikov_agency_related_works', true);
 
-
     if (is_array($related_works) && !empty($related_works)) {
       // Получаем посты, соответствующие сохраненным ID
       $args = array(
