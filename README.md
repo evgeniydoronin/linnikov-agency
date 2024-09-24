@@ -18,7 +18,7 @@
 Для обновления верстки выполните следующие команды:
 
 ```bash
-git subtree pull --prefix=wp-content/themes/linnikov-agency https://github.com/techno-trump/linnikov-agency.git main --squash
+git subtree pull --prefix=wp-content/themes/linnikov-agency/git-src https://github.com/techno-trump/linnikov-agency.git main --squash
 ```
 
 ### После обновления от донора нужно сделать:
