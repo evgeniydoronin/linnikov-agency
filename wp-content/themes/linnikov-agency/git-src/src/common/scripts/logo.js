@@ -2,7 +2,7 @@
 window.LinnikovLOGO = {
 
     // SVG file url
-    url: "../wp-content/themes/linnikov-agency/img/rgb-logo.svg",
+    url: "../wp-content/themes/linnikov-agency/git-src/build/img/rgb-logo.svg",
 
     // timer in ms, letters animation effect
     timerStep: 50,
