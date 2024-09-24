@@ -24,7 +24,10 @@ git subtree pull --prefix=wp-content/themes/linnikov-agency/git-src https://gith
 ### После обновления от донора нужно сделать:
 - заменить в файле wp-content/themes/linnikov-agency/git-src/build/js/common.min.js
 > "e.innerHTML='<use href="/wp-content/themes/linnikov-agency/git-src/build/img/decor-symbols.svg#'"
+> window.LinnikovLOGO={url:"/wp-content/themes/linnikov-agency/git-src/build/img/rgb-logo.svg"
+
 - заменить в файле wp-content/themes/linnikov-agency/git-src/src/common/scripts/logo.js  
 > // SVG file url url: "../wp-content/themes/linnikov-agency/img/rgb-logo.svg",
+
 - заменить в файле wp-content/themes/linnikov-agency/git-src/build/js/team.min.js
 > найти функцию и полностью заменить на этот код: renderPictureContent(){return'<source srcset="'.concat(this.board.hoveredCard.memberId,'"><img src="').concat(this.board.hoveredCard.memberId,'">')}

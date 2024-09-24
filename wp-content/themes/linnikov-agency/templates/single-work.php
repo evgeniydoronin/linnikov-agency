@@ -262,6 +262,7 @@ get_header();
     // Получаем ID связанных работ
     $related_works = get_post_meta(get_the_ID(), '_linnikov_agency_related_works', true);
 
+
     if (is_array($related_works) && !empty($related_works)) {
       // Получаем посты, соответствующие сохраненным ID
       $args = array(
@@ -272,12 +273,55 @@ get_header();
       );
       $works_query = new WP_Query($args);
 
-      if ($works_query->have_posts()) : ?>
-        <section class="more-works single-work__more-works" id="more-works">
-          <div class="section-container section-container_decor more-works__container"></div>
-          <h2>More works</h2>
+      if ($works_query->have_posts()) :
 
-        </section>
+        ?>
+          <section class="more-works single-work__more-works" id="more-works">
+              <div class="section-container section-container_decor more-works__container"></div>
+              <h2>More works</h2>
+              <div class="more-works__body" data-elem="works-slider.body">
+                <?php
+                // Цикл для вывода постов
+                while ($works_query->have_posts()) : $works_query->the_post();
+                  // Получаем изображение из метаполя
+                  $hero_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_hero_image_webp', true);
+
+                  // Если метаполе не пустое, выводим картинку
+                  if ($hero_image_webp) : ?>
+                      <a href="<?php the_permalink(); ?>" data-title="<?php the_title(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_top more-works__item"
+                         data-elem="works-slider.slide">
+                          <div class="img-wrap__inner">
+                              <picture>
+                                  <source type="image/webp" srcset="<?php echo esc_url($hero_image_webp); ?>">
+                                  <img src="<?php echo esc_url($hero_image_webp); ?>" alt="<?php the_title(); ?>">
+                              </picture>
+                          </div>
+                      </a>
+                  <?php endif;
+                endwhile; ?>
+              </div>
+              <div class="more-works__footer">
+                  <div class="section-container">
+                      <div class="double-cubic-decor more-works__decor"></div>
+                      <div class="tg-h3 more-works__nav">
+                          <button type="button" class="text-btn" data-elem="works-slider.prev">
+                              <div class="ref-arrow-icon ref-arrow-icon_horizontal ref-arrow-icon_flip">
+                                  <span class="icon-cubic-nav-arrow-right"></span>
+                                  <span class="icon-cubic-nav-arrow-right"></span>
+                              </div>
+                              Prev
+                          </button>
+                          <button type="button" class="text-btn" data-elem="works-slider.next">
+                              Next
+                              <div class="ref-arrow-icon ref-arrow-icon_horizontal">
+                                  <span class="icon-cubic-nav-arrow-right"></span>
+                                  <span class="icon-cubic-nav-arrow-right"></span>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </section>
         <?php wp_reset_postdata(); ?>
       <?php endif;
     }
@@ -498,6 +542,7 @@ get_header();
         </button>
       </div>
     </section>
+
   </main>
 
 <?php
