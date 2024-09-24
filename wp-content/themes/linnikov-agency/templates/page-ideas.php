@@ -20,105 +20,74 @@ get_header();
     <section id="ideas-grid" class="ideas-grid" data-component="materials-grid">
       <div class="section-container section-container_decor ideas-grid__container">
         <div class="ideas-grid__body" data-elem="materials-grid.body">
-          <a href="." class="idea-card ideas-grid__card" data-column="1" data-category="strategy">
-            <div class="idea-card__img">
-              <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/PSIHOTIP.svg" alt="Psychotypes">
-            </div>
-            <div class="idea-card__body">
-              <div class="idea-card__category">
-                <span class="icon-cubic-zip"></span>Strategy
-              </div>
-              <h4 class="idea-card__title">Psychotypes</h4>
-            </div>
-          </a>
-          <a href="." class="idea-card ideas-grid__card" data-column="2" data-category="design">
-            <div class="idea-card__img">
-              <picture>
-                <source type="image/avif" srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-02.avif">
-                <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-02.jpg"
-                     alt="Design is not what we make. Design is what we make possible.">
-              </picture>
-            </div>
-            <div class="idea-card__body">
-              <div class="idea-card__category">
-                <span class="icon-cubic-zip"></span>Design
-              </div>
-              <h4 class="idea-card__title">Design is not what we make. Design is what we make possible.</h4>
-            </div>
-          </a>
-          <a href="." class="idea-card ideas-grid__card" data-column="2" data-category="design">
-            <div class="idea-card__img">
-              <picture>
-                <source type="image/avif" srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-03.avif">
-                <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-03.jpg" alt="How to Slay aPlastic Dragon">
-              </picture>
-            </div>
-            <div class="idea-card__body">
-              <div class="idea-card__category">
-                <span class="icon-cubic-zip"></span>Design
-              </div>
-              <h4 class="idea-card__title">How to Slay aPlastic Dragon</h4>
-            </div>
-          </a>
-          <a href="." class="idea-card ideas-grid__card" data-column="1" data-category="strategy">
-            <div class="idea-card__img">
-              <picture>
-                <source type="image/avif" srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/archetypes.svg">
-                <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/archetypes.svg" alt="Archetypes">
-              </picture>
-            </div>
-            <div class="idea-card__body">
-              <div class="idea-card__category">
-                <span class="icon-cubic-zip"></span>Strategy
-              </div>
-              <h4 class="idea-card__title">Archetypes</h4>
-            </div>
-          </a>
-          <a href="." class="idea-card ideas-grid__card" data-column="1" data-category="strategy">
-            <div class="idea-card__img">
-              <picture>
-                <source type="image/avif" srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-05.avif">
-                <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-05.jpg"
-                     alt="Design is not what we make. Design is what we make possible.">
-              </picture>
-            </div>
-            <div class="idea-card__body">
-              <div class="idea-card__category">
-                <span class="icon-cubic-zip"></span>Strategy
-              </div>
-              <h4 class="idea-card__title">Design is not what we make. Design is what we make possible.</h4>
-            </div>
-          </a>
-          <a href="." class="idea-card ideas-grid__card" data-column="2" data-category="design">
-            <div class="idea-card__img">
-              <picture>
-                <source type="image/avif" srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-06.avif">
-                <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-06.jpg" alt="How to Slay aPlastic Dragon">
-              </picture>
-            </div>
-            <div class="idea-card__body">
-              <div class="idea-card__category">
-                <span class="icon-cubic-zip"></span>Design
-              </div>
-              <h4 class="idea-card__title">How to Slay aPlastic Dragon</h4>
-            </div>
-          </a>
-          <a href="." class="idea-card ideas-grid__card" data-column="3" data-category="business">
-            <div class="idea-card__img">
-              <picture>
-                <source type="image/avif" srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-07.avif">
-                <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/ideas/placeholder-07.jpg"
-                     alt="Cora’s fearless Founder, Molly Hayward, on how being audacious attracts new audiences">
-              </picture>
-            </div>
-            <div class="idea-card__body">
-              <div class="idea-card__category">
-                <span class="icon-cubic-zip"></span>Business
-              </div>
-              <h4 class="idea-card__title">Cora’s fearless Founder, Molly Hayward, on how being audacious attracts new
-                audiences</h4>
-            </div>
-          </a>
+          <?php
+          // WP_Query для получения всех постов типа ideas, отсортированных по метаполю '_ideas_order'
+          $args = array(
+            'post_type' => 'ideas',
+            'posts_per_page' => -1,
+            'meta_key' => '_ideas_order',      // Используем метаполе для сортировки
+            'orderby' => 'meta_value_num',     // Сортируем по числовому значению метаполя
+            'order' => 'ASC',
+          );
+
+          $ideas_query = new WP_Query($args);
+
+          if ($ideas_query->have_posts()) :
+            $post_count = 1; // Счётчик постов для data-column
+            while ($ideas_query->have_posts()) : $ideas_query->the_post();
+
+              // Получаем привязанные теги (только первый тег, если их несколько)
+              $tags = get_the_terms(get_the_ID(), 'idea_tag');
+              $first_tag = $tags && !is_wp_error($tags) ? $tags[0] : null;
+              $tag_slug = $first_tag ? $first_tag->slug : 'uncategorized'; // Слаг тега или 'uncategorized'
+              $tag_name = $first_tag ? $first_tag->name : 'Uncategorized'; // Название тега или 'Uncategorized'
+
+              // Получаем метаполе '_ideas_order' для вывода в data-column
+              $ideas_order = get_post_meta(get_the_ID(), '_ideas_order', true);
+
+              // Получаем изображение и проверяем его тип
+              $featured_img_id = get_post_thumbnail_id();
+              $featured_img = wp_get_attachment_image_src($featured_img_id, 'full');
+              $featured_img_avif = wp_get_attachment_image_src($featured_img_id, 'full', false, array('type' => 'image/avif'));
+              $image_type = wp_check_filetype($featured_img[0])['ext']; // Расширение файла (jpg, avif, svg и т.д.)
+
+              ?>
+
+                <a href="<?php the_permalink(); ?>" class="idea-card ideas-grid__card" data-column="<?php echo $ideas_order; ?>" data-category="<?php echo esc_attr($tag_slug); ?>">
+                    <div class="idea-card__img">
+                        <picture>
+                          <?php
+                          // Проверяем формат изображения
+                          if ($image_type === 'avif') : ?>
+                              <source type="image/avif" srcset="<?php echo esc_url($featured_img_avif[0]); ?>">
+                              <img src="<?php echo esc_url($featured_img[0]); ?>" alt="<?php the_title(); ?>">
+                          <?php elseif ($image_type === 'svg') : ?>
+                              <img src="<?php echo esc_url($featured_img[0]); ?>" type="image/svg+xml" alt="<?php the_title(); ?>">
+                          <?php elseif ($image_type === 'jpg' || $image_type === 'jpeg') : ?>
+                              <img src="<?php echo esc_url($featured_img[0]); ?>" alt="<?php the_title(); ?>">
+                          <?php elseif ($image_type === 'png') : ?>
+                              <img src="<?php echo esc_url($featured_img[0]); ?>" alt="<?php the_title(); ?>">
+                          <?php else : ?>
+                              <!-- Если формат неизвестен, просто выводим изображение как стандартное -->
+                              <img src="<?php echo esc_url($featured_img[0]); ?>" alt="<?php the_title(); ?>">
+                          <?php endif; ?>
+                        </picture>
+                    </div>
+                    <div class="idea-card__body">
+                        <div class="idea-card__category">
+                            <span class="icon-cubic-zip"></span><?php echo esc_html($tag_name); ?>
+                        </div>
+                        <h4 class="idea-card__title"><?php the_title(); ?></h4>
+                    </div>
+                </a>
+
+              <?php
+            endwhile;
+            wp_reset_postdata();
+          else :
+            echo '<p>' . __('No ideas found', 'linnikov-agency') . '</p>';
+          endif;
+          ?>
         </div>
       </div>
     </section>
@@ -140,169 +109,64 @@ get_header();
     <section class="fixed-materials-filter ideas-grid__filter" data-component="materials-filter" data-for="ideas-grid">
       <div class="fixed-materials-filter__panel">
         <div class="section-container fixed-materials-filter__container">
-          <nav class="tg-control uppercase keen-slider fixed-materials-filter__slider" data-elem="slider">
-            <a href="#all" class="keen-slider__slide text-btn" data-component="animated-link">
-              <svg id="ideas-filter__lightning_2" class="animated-cubic-lightning text-btn__lightning"
-                   viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_2-clip)"
-                   transform="rotate(30 6.8 30) translate(-3)">
-                  <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                </g>
-                <defs>
-                  <clipPath id="ideas-filter__lightning_2-clip">
-                    <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
-                    <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <div class="text-btn__cap">All</div>
-            </a>
-            <a href="#strategy" class="keen-slider__slide text-btn" data-component="animated-link">
-              <svg id="ideas-filter__lightning_3" class="animated-cubic-lightning text-btn__lightning"
-                   viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_3-clip)"
-                   transform="rotate(30 6.8 30) translate(-3)">
-                  <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                </g>
-                <defs>
-                  <clipPath id="ideas-filter__lightning_3-clip">
-                    <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
-                    <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <div class="text-btn__cap">Strategy</div>
-            </a>
-            <a href="#design" class="keen-slider__slide text-btn" data-component="animated-link">
-              <svg id="ideas-filter__lightning_4" class="animated-cubic-lightning text-btn__lightning"
-                   viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_4-clip)"
-                   transform="rotate(30 6.8 30) translate(-3)">
-                  <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                </g>
-                <defs>
-                  <clipPath id="ideas-filter__lightning_4-clip">
-                    <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
-                    <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <div class="text-btn__cap">Design</div>
-            </a>
-            <a href="#business" class="keen-slider__slide text-btn" data-component="animated-link">
-              <svg id="ideas-filter__lightning_5" class="animated-cubic-lightning text-btn__lightning"
-                   viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_5-clip)"
-                   transform="rotate(30 6.8 30) translate(-3)">
-                  <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                </g>
-                <defs>
-                  <clipPath id="ideas-filter__lightning_5-clip">
-                    <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
-                    <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <div class="text-btn__cap">Business</div>
-            </a>
-            <a href="#success-stories" class="keen-slider__slide text-btn" data-component="animated-link">
-              <svg id="ideas-filter__lightning_6" class="animated-cubic-lightning text-btn__lightning"
-                   viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_6-clip)"
-                   transform="rotate(30 6.8 30) translate(-3)">
-                  <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                </g>
-                <defs>
-                  <clipPath id="ideas-filter__lightning_6-clip">
-                    <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
-                    <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <div class="text-btn__cap">Success stories</div>
-            </a>
-            <a href="#work-culture" class="keen-slider__slide text-btn" data-component="animated-link">
-              <svg id="ideas-filter__lightning_7" class="animated-cubic-lightning text-btn__lightning"
-                   viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_7-clip)"
-                   transform="rotate(30 6.8 30) translate(-3)">
-                  <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                </g>
-                <defs>
-                  <clipPath id="ideas-filter__lightning_7-clip">
-                    <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
-                    <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <div class="text-btn__cap">WORK CULTURE</div>
-            </a>
-            <a href="#trends" class="keen-slider__slide text-btn" data-component="animated-link">
-              <svg id="ideas-filter__lightning_8" class="animated-cubic-lightning text-btn__lightning"
-                   viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_8-clip)"
-                   transform="rotate(30 6.8 30) translate(-3)">
-                  <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20"
-                        fill="var(--color, currentColor)"/>
-                  <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10"
-                        fill="var(--color, currentColor)"/>
-                </g>
-                <defs>
-                  <clipPath id="ideas-filter__lightning_8-clip">
-                    <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)"/>
-                    <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              <div class="text-btn__cap">Trends</div>
-            </a>
-          </nav>
+            <?php
+            // Получаем теги с записями (связанные с хотя бы одной записью)
+            $args = array(
+                'taxonomy' => 'idea_tag',
+                'hide_empty' => true, // Убедись, что тег связан с хотя бы одной записью
+                'meta_key' => 'ideas_tag_order', // Используем метаполе для сортировки
+                'orderby' => 'meta_value_num',   // Сортировка по сохранённому порядку
+                'order' => 'ASC',
+            );
+            $tags = get_terms($args);
+
+            // Начальное значение для номера в ID (начиная с 3, как в твоём примере)
+            $id_number = 3;
+            ?>
+
+            <nav class="tg-control uppercase keen-slider fixed-materials-filter__slider" data-elem="slider">
+                <!-- Первая ссылка с "All" - оставляем без изменений -->
+                <a href="#all" class="keen-slider__slide text-btn" data-component="animated-link">
+                    <svg id="ideas-filter__lightning_2" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_2-clip)" transform="rotate(30 6.8 30) translate(-3)">
+                            <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)" />
+                            <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)" />
+                            <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)" />
+                            <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)" />
+                        </g>
+                        <defs>
+                            <clipPath id="ideas-filter__lightning_2-clip">
+                                <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)" />
+                                <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <div class="text-btn__cap">All</div>
+                </a>
+
+                <?php if (!empty($tags)) : ?>
+                    <?php foreach ($tags as $tag) : ?>
+                        <a href="#<?php echo esc_attr($tag->slug); ?>" class="keen-slider__slide text-btn" data-component="animated-link">
+                            <svg id="ideas-filter__lightning_<?php echo $id_number; ?>" class="animated-cubic-lightning text-btn__lightning" viewBox="0 -1 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g class="animated-cubic-lightning__body" clip-path="url(#ideas-filter__lightning_<?php echo $id_number; ?>-clip)" transform="rotate(30 6.8 30) translate(-3)">
+                                    <rect class="animated-cubic-lightning__top" x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)" />
+                                    <rect class="animated-cubic-lightning__bottom" x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)" />
+                                    <rect class="animated-cubic-lightning__top" x="0" y="40" width="3.4" height="20" fill="var(--color, currentColor)" />
+                                    <rect class="animated-cubic-lightning__bottom" x="3.4" y="50" width="3.4" height="10" fill="var(--color, currentColor)" />
+                                </g>
+                                <defs>
+                                    <clipPath id="ideas-filter__lightning_<?php echo $id_number; ?>-clip">
+                                        <rect x="0" y="0" width="3.4" height="20" fill="var(--color, currentColor)" />
+                                        <rect x="3.4" y="20" width="3.4" height="10" fill="var(--color, currentColor)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <div class="text-btn__cap"><?php echo esc_html($tag->name); ?></div>
+                        </a>
+                        <?php $id_number++; // Увеличиваем номер для следующего тега ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </nav>
         </div>
         <div class="fixed-materials-filter__tips slider-tips" data-elem="tips">
           <button class="icon-cubic-nav-arrow-left slider-tips__arrow-left" data-elem="materials-filter.prev"></button>

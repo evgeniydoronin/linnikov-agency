@@ -30,6 +30,12 @@ require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-news.php';
 // Include Meta Boxes TEAM
 require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-team.php';
 
+// Include Meta Boxes IDEA
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-ideas.php';
+
+// Include Meta Boxes for About Us
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-about-us.php';
+
 // Include Helper Functions
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 

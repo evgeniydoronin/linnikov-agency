@@ -53,8 +53,6 @@ function linnikov_agency_add_news_metaboxes() {
 }
 add_action('add_meta_boxes', 'linnikov_agency_add_news_metaboxes');
 
-// Callback функции для метабоксов
-
 // Callback функция для метабокса Секции 1: Одна колонка
 function linnikov_agency_news_section_1_callback($post) {
   // Nonce поле для проверки

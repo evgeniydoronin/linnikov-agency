@@ -246,6 +246,18 @@ get_header();
                   });
               });
 
+              document.querySelectorAll('.member-profile-drawer').forEach(function(drawer) {
+                  // Добавляем событие клика на сам drawer
+                  drawer.addEventListener('click', function(event) {
+                      const panel = drawer.querySelector('.drawer__panel');
+
+                      // Если клик произошел вне .drawer__panel
+                      if (!panel.contains(event.target)) {
+                          drawer.classList.remove('drawer_open');
+                      }
+                  });
+              });
+
               // Обработчик для закрытия профиля по клику на кнопку "Close"
               document.querySelectorAll('.drawer-close-btn.member-profile-drawer__close-btn').forEach(function (button) {
                   button.addEventListener('click', function () {

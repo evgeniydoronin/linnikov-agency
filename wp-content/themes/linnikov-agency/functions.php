@@ -192,6 +192,7 @@ if (!function_exists('linnikov_agency_register_menus')) {
 		register_nav_menus(array(
 			'header-menu' => __('Header Menu', 'linnikov-agency'),
 			'footer-menu' => __('Footer Menu', 'linnikov-agency'),
+            'about-menu' => __('About Menu', 'linnikov-agency'),
 		));
 	}
 	add_action('init', 'linnikov_agency_register_menus');
@@ -223,3 +224,4 @@ function linnikov_get_news_categories() {
   <?php
 }
 add_action('wp_footer', 'linnikov_get_news_categories');
+

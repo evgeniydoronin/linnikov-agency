@@ -45,6 +45,12 @@ button.add-award {
     border: 1px solid #ccc;
     background: #f9f9f9;
 }
+.drag-handle {
+    cursor: move;
+    display: flex;
+    align-items: center;
+}
+
 
 .ui-state-highlight {
     height: 1.5em;
