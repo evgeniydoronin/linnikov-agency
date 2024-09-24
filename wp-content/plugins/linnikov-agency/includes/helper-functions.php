@@ -32,8 +32,8 @@ function linnikov_agency_work_template($template)
     }
 
     // Проверка для страницы, использующей шаблон 'page-ideas.php'
-    if (is_page_template('page-ideas.php')) {
-        $page_template = locate_template('templates/page-ideas.php');
+    if (is_post_type_archive('ideas')) {
+        $page_template = locate_template('templates/archive-ideas.php');
         if ($page_template) {
             return $page_template;
         }

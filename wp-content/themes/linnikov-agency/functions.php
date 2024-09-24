@@ -159,7 +159,7 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
     }
 
     // Conditionally enqueue for a page-ideas.php
-    if (is_page_template('templates/page-ideas.php')) {
+    if (is_post_type_archive('ideas')) {
       wp_enqueue_script('page-ideas-js', get_template_directory_uri() . '/git-src/build/js/ideas.min.js', array(), null, false);
       wp_enqueue_style('page-ideas-css', get_template_directory_uri() . '/git-src/build/css/ideas.min.css');
     }
