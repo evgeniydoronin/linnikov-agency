@@ -1,7 +1,8 @@
 <?php
 
 // Универсальная функция для добавления метабоксов
-function linnikov_agency_add_meta_box($id, $title, $callback) {
+function linnikov_agency_add_meta_box($id, $title, $callback)
+{
   add_meta_box(
     $id,         // ID метабокса
     $title,      // Заголовок метабокса
@@ -13,7 +14,8 @@ function linnikov_agency_add_meta_box($id, $title, $callback) {
 }
 
 // Добавляем метабоксы для секций только на странице "About Us"
-function linnikov_agency_register_meta_boxes($post) {
+function linnikov_agency_register_meta_boxes($post)
+{
   global $post; // Получаем глобальный объект поста
 
   // Проверяем, что это страница с шаблоном "About Us"
@@ -38,12 +40,19 @@ function linnikov_agency_register_meta_boxes($post) {
       __('Our Awards', 'linnikov-agency'),
       'linnikov_agency_awards_meta_box_callback'
     );
+//    linnikov_agency_add_meta_box(
+//      'linnikov_agency_achieve_ambitions_meta_box',
+//      __('Achieve Ambitions', 'linnikov-agency'),
+//      'linnikov_agency_achieve_ambitions_meta_box_callback'
+//    );
   }
 }
+
 add_action('add_meta_boxes', 'linnikov_agency_register_meta_boxes');
 
 // Callback для метабокса видео
-function linnikov_agency_video_meta_box_callback($post) {
+function linnikov_agency_video_meta_box_callback($post)
+{
   // Получаем сохраненные данные
   $video_url = get_post_meta($post->ID, '_linnikov_agency_video_url', true);
   $poster_url = get_post_meta($post->ID, '_linnikov_agency_video_poster', true);
@@ -75,7 +84,8 @@ function linnikov_agency_video_meta_box_callback($post) {
 }
 
 // Callback для метабокса Agency in Numbers
-function linnikov_agency_numbers_meta_box_callback($post) {
+function linnikov_agency_numbers_meta_box_callback($post)
+{
   // Получаем сохраненные данные
   $count_up_sections = get_post_meta($post->ID, '_linnikov_agency_count_up_sections', true);
 
@@ -146,7 +156,8 @@ function linnikov_agency_numbers_meta_box_callback($post) {
 }
 
 // Callback для метабокса Testimonials
-function linnikov_agency_testimonials_meta_box_callback($post) {
+function linnikov_agency_testimonials_meta_box_callback($post)
+{
   // Получаем сохраненные данные
   $testimonials = get_post_meta($post->ID, '_linnikov_agency_testimonials', true);
 
@@ -202,7 +213,8 @@ function linnikov_agency_testimonials_meta_box_callback($post) {
 }
 
 // Callback для метабокса Our Awards
-function linnikov_agency_awards_meta_box_callback($post) {
+function linnikov_agency_awards_meta_box_callback($post)
+{
   // Получаем сохраненные данные
   $awards = get_post_meta($post->ID, '_linnikov_agency_awards', true);
 
@@ -295,8 +307,62 @@ function linnikov_agency_awards_meta_box_callback($post) {
   echo '</div>';
 }
 
+// Callback для метабокса Achieve Ambitions
+function linnikov_agency_achieve_ambitions_meta_box_callback($post) {
+  // Получаем сохраненные данные
+  $ambitions = get_post_meta($post->ID, '_linnikov_agency_achieve_ambitions', true);
+
+  // Nonce для безопасности
+  wp_nonce_field(basename(__FILE__), 'linnikov_agency_achieve_ambitions_nonce');
+
+  // Начало HTML метабокса
+  echo '<div style="padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; margin-bottom: 20px;">';
+  echo '<h4>' . __('Achieve Ambitions', 'linnikov-agency') . '</h4>';
+  echo '<ul id="achieve-ambitions-list" style="list-style: none; margin: 0; padding: 0;">';
+
+  if (is_array($ambitions) && !empty($ambitions)) {
+    foreach ($ambitions as $index => $ambition) {
+      echo '<li style="margin-bottom: 20px; padding: 15px; border: 1px solid #ccc;" data-index="' . esc_attr($index) . '">';
+
+      // Поле для описания достижения
+      echo '<label>' . __('Ambition Description', 'linnikov-agency') . '</label>';
+      echo '<textarea name="achieve_ambitions[' . esc_attr($index) . '][description]" rows="4" style="width:100%;">' . esc_textarea($ambition['description']) . '</textarea>';
+
+      echo '</li>';
+    }
+  }
+
+  echo '</ul>';
+  echo '<button type="button" class="button add-achieve-ambition" style="margin-top: 10px;">' . __('Add New Ambition', 'linnikov-agency') . '</button>';
+  echo '</div>'; // Закрываем общий блок
+
+  // Встраиваем скрипт для динамического добавления новых полей
+  ?>
+  <script>
+      jQuery(document).ready(function ($) {
+          // Функция для добавления новой секции Achieve Ambition с уникальным индексом
+          function addAchieveAmbitionSection() {
+              let index = Date.now(); // Используем временную метку для уникального индекса
+              let newSection = `
+            <li class="achieve-ambition-section" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ccc;" data-index="` + index + `">
+                <label><?php echo esc_html__('Ambition Description', 'linnikov-agency'); ?></label>
+                <textarea name="achieve_ambitions[` + index + `][description]" rows="4" style="width:100%;"></textarea>
+            </li>`;
+              $('#achieve-ambitions-list').append(newSection);
+          }
+
+          // Обработка добавления новой секции
+          $('.add-achieve-ambition').on('click', function () {
+              addAchieveAmbitionSection();
+          });
+      });
+  </script>
+  <?php
+}
+
 // Универсальная функция для проверки безопасности перед сохранением
-function linnikov_agency_check_nonce_and_permissions($post_id, $nonce_field_name, $nonce_action) {
+function linnikov_agency_check_nonce_and_permissions($post_id, $nonce_field_name, $nonce_action)
+{
   // Проверка nonce
   if (!isset($_POST[$nonce_field_name]) || !wp_verify_nonce($_POST[$nonce_field_name], $nonce_action)) {
     return false; // Не сохраняем, если nonce не валиден
@@ -316,7 +382,8 @@ function linnikov_agency_check_nonce_and_permissions($post_id, $nonce_field_name
 }
 
 // Функция для сохранения метабокса Video Section
-function linnikov_agency_save_video_meta_box($post_id) {
+function linnikov_agency_save_video_meta_box($post_id)
+{
   // Используем универсальную функцию для проверки
   if (!linnikov_agency_check_nonce_and_permissions($post_id, 'linnikov_agency_video_nonce', basename(__FILE__))) {
     return; // Прерываем, если проверка не пройдена
@@ -332,10 +399,12 @@ function linnikov_agency_save_video_meta_box($post_id) {
     update_post_meta($post_id, '_linnikov_agency_video_poster', esc_url_raw($_POST['linnikov_agency_video_poster']));
   }
 }
+
 add_action('save_post', 'linnikov_agency_save_video_meta_box');
 
 // Функция для сохранения метабокса Agency in Numbers
-function linnikov_agency_save_numbers_meta_box($post_id) {
+function linnikov_agency_save_numbers_meta_box($post_id)
+{
   // Используем универсальную функцию для проверки
   if (!linnikov_agency_check_nonce_and_permissions($post_id, 'linnikov_agency_numbers_nonce', basename(__FILE__))) {
     return; // Прерываем, если проверка не пройдена
@@ -354,10 +423,12 @@ function linnikov_agency_save_numbers_meta_box($post_id) {
     delete_post_meta($post_id, '_linnikov_agency_count_up_sections');
   }
 }
+
 add_action('save_post', 'linnikov_agency_save_numbers_meta_box');
 
 // Функция для сохранения данных метабокса Testimonials
-function linnikov_agency_save_testimonials_meta_box($post_id) {
+function linnikov_agency_save_testimonials_meta_box($post_id)
+{
   // Используем универсальную функцию для проверки безопасности
   if (!linnikov_agency_check_nonce_and_permissions($post_id, 'linnikov_agency_testimonials_nonce', basename(__FILE__))) {
     return; // Прерываем, если проверка не пройдена
@@ -379,10 +450,12 @@ function linnikov_agency_save_testimonials_meta_box($post_id) {
     delete_post_meta($post_id, '_linnikov_agency_testimonials');
   }
 }
+
 add_action('save_post', 'linnikov_agency_save_testimonials_meta_box');
 
 // Функция для сохранения метабокса Our Awards
-function linnikov_agency_save_awards_meta_box($post_id) {
+function linnikov_agency_save_awards_meta_box($post_id)
+{
   // Используем универсальную функцию для проверки безопасности
   if (!linnikov_agency_check_nonce_and_permissions($post_id, 'linnikov_agency_awards_nonce', basename(__FILE__))) {
     return; // Прерываем, если проверка не пройдена
@@ -397,13 +470,33 @@ function linnikov_agency_save_awards_meta_box($post_id) {
       $clean_data[$index]['reviews'] = sanitize_text_field($award['reviews']);
       $clean_data[$index]['award_name'] = sanitize_text_field($award['award_name']);
       $clean_data[$index]['link'] = esc_url_raw($award['link']);
-            $clean_data[$index]['year'] = sanitize_text_field($award['year']);
-            $clean_data[$index]['description'] = sanitize_textarea_field($award['description']);
-            $clean_data[$index]['image'] = esc_url_raw($award['image']);
-        }
+      $clean_data[$index]['year'] = sanitize_text_field($award['year']);
+      $clean_data[$index]['description'] = sanitize_textarea_field($award['description']);
+      $clean_data[$index]['image'] = esc_url_raw($award['image']);
+    }
     update_post_meta($post_id, '_linnikov_agency_awards', $clean_data);
   } else {
     delete_post_meta($post_id, '_linnikov_agency_awards');
   }
 }
+
 add_action('save_post', 'linnikov_agency_save_awards_meta_box');
+
+// Функция для сохранения метабокса Achieve Ambitions
+function linnikov_agency_save_achieve_ambitions_meta_box($post_id) {
+  if (!linnikov_agency_check_nonce_and_permissions($post_id, 'linnikov_agency_achieve_ambitions_nonce', basename(__FILE__))) {
+    return; // Прерываем, если проверка не пройдена
+  }
+
+  // Сохранение данных
+  if (isset($_POST['achieve_ambitions']) && is_array($_POST['achieve_ambitions'])) {
+    $clean_data = array();
+    foreach ($_POST['achieve_ambitions'] as $index => $ambition) {
+      $clean_data[$index]['description'] = sanitize_textarea_field($ambition['description']);
+    }
+    update_post_meta($post_id, '_linnikov_agency_achieve_ambitions', $clean_data);
+  } else {
+    delete_post_meta($post_id, '_linnikov_agency_achieve_ambitions');
+  }
+}
+add_action('save_post', 'linnikov_agency_save_achieve_ambitions_meta_box');
