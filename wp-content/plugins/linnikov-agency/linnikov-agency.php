@@ -36,6 +36,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-ideas.php';
 // Include Meta Boxes for About Us
 require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-about-us.php';
 
+// Include Meta Boxes for Competencies
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-competencies.php';
+
 // Include Helper Functions
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 

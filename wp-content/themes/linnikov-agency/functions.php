@@ -170,6 +170,28 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       wp_enqueue_style('page-careers-css', get_template_directory_uri() . '/git-src/build/css/careers.min.css');
     }
 
+    // Conditionally enqueue for a page-competencies.php
+    if (is_page_template('templates/page-competencies.php')) {
+      if (function_exists('wp_is_mobile')) {
+        if (wp_is_mobile()) {
+          wp_enqueue_script('page-competencies-js', get_template_directory_uri() . '/git-src/build/js/competencies-mob.min.js', array('jquery'), null, false);
+          wp_enqueue_style('page-competencies-css', get_template_directory_uri() . '/git-src/build/css/competencies-mob.min.css');
+        } else {
+          wp_enqueue_script('page-competencies-js', get_template_directory_uri() . '/git-src/build/js/competencies.min.js', array('jquery'), null, false);
+          wp_enqueue_style('page-competencies-css', get_template_directory_uri() . '/git-src/build/css/competencies.min.css');
+        }
+      }
+      wp_enqueue_script('createjs', 'https://code.createjs.com/1.0.0/createjs.min.js', array('gsap-core', 'jquery'), null, false);
+      wp_enqueue_script('animated-icons-01', get_template_directory_uri() . '/git-src/build/libs/animated-icons/01.js', array('jquery'), null, false);
+      wp_enqueue_script('animated-icons-02', get_template_directory_uri() . '/git-src/build/libs/animated-icons/02.js', array('jquery'), null, false);
+      wp_enqueue_script('animated-icons-03', get_template_directory_uri() . '/git-src/build/libs/animated-icons/03.js', array('jquery'), null, false);
+      wp_enqueue_script('animated-icons-04', get_template_directory_uri() . '/git-src/build/libs/animated-icons/04.js', array('jquery'), null, false);
+      wp_enqueue_script('animated-icons-05', get_template_directory_uri() . '/git-src/build/libs/animated-icons/05.js', array('jquery'), null, false);
+      wp_enqueue_script('animated-icons-06', get_template_directory_uri() . '/git-src/build/libs/animated-icons/06.js', array('jquery'), null, false);
+      wp_enqueue_script('animated-icons-07', get_template_directory_uri() . '/git-src/build/libs/animated-icons/07.js', array('jquery'), null, false);
+      wp_enqueue_script('animated-icons-08', get_template_directory_uri() . '/git-src/build/libs/animated-icons/08.js', array('jquery'), null, false);
+    }
+
 	}
 	add_action('wp_enqueue_scripts', 'linnikov_agency_enqueue_styles_and_scripts');
 }

@@ -20,6 +20,8 @@ if (is_singular('work')) {
   echo 'careers-page';
 } elseif (is_page_template('templates/page-team.php')) {
   echo 'team-page';
+} elseif (is_page_template('templates/page-competencies.php')) {
+  echo 'competencies';
 } elseif (is_post_type_archive('work')) {
   echo 'works';
 } elseif (is_post_type_archive('news')) {
@@ -40,15 +42,15 @@ if (is_singular('work')) {
             <div class="text-btn__cap">About</div>
             <span class="icon-cubic-check-arrow"></span>
           </button>
-          <a href="competencies.html" class="header-link text-btn header-link_desc" data-component="animated-link">
-            <div class="text-btn__cap">Competencies 3</div>
+          <a href="/competencies" class="header-link text-btn header-link_desc" data-component="animated-link">
+            <div class="text-btn__cap">Competencies</div>
           </a>
-          <a href="competencies-mob.html" class="header-link text-btn header-link_mob" data-component="animated-link">
-            <div class="text-btn__cap">Competencies 2</div>
+          <a href="/competencies" class="header-link text-btn header-link_mob" data-component="animated-link">
+            <div class="text-btn__cap">Competencies</div>
           </a>
         </div>
       </nav>
-      <a href="." class="logo header__logo">
+      <a href="<?php echo get_home_url(); ?>" class="logo header__logo">
         <figure>
           <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/logo-dark.svg" class="logo__img"
                alt="Light Logo">
@@ -57,7 +59,7 @@ if (is_singular('work')) {
       </a>
       <nav class="header-nav header-nav_right header__right">
         <div class="header-nav__inner">
-          <a href="contact.html" class="header-link text-btn" data-component="animated-link">
+          <a href="/contact" class="header-link text-btn" data-component="animated-link">
             <div class="text-btn__cap">Contact</div>
           </a>
           <form name="header-theme-switch" class="theme-switch header__theme-switch" data-component="theme-switch">
@@ -160,19 +162,19 @@ if (is_singular('work')) {
             </div>
           </div>
           <div class="burger-menu__nav-section">
-            <a href="competencies.html" class="reveal-wrap header-link header-link_desc">
+            <a href="/competencies" class="reveal-wrap header-link header-link_desc">
               <div class="reveal-wrap__inner">
                 <div class="line">Competencies</div>
               </div>
             </a>
-            <a href="competencies-mob.html" class="reveal-wrap header-link header-link_mob">
+            <a href="/competencies" class="reveal-wrap header-link header-link_mob">
               <div class="reveal-wrap__inner">
                 <div class="line">Competencies</div>
               </div>
             </a>
           </div>
           <div class="burger-menu__nav-section">
-            <a href="contact.html" class="reveal-wrap header-link">
+            <a href="/contact" class="reveal-wrap header-link">
               <div class="reveal-wrap__inner">
                 <div class="line">Contact</div>
               </div>
