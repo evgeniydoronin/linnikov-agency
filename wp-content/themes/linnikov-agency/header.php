@@ -12,6 +12,8 @@ if (is_singular('work')) {
   echo 'single-work';
 } elseif (is_page_template('templates/single-work.php')) {
   echo 'template-single-work';
+} elseif (is_page_template('templates/single-vacancies.php')) {
+  echo 'designer-application';
 } elseif (is_page_template('templates/page-about-us.php')) {
   echo 'about-us';
 } elseif (is_page_template('templates/page-ideas.php')) {

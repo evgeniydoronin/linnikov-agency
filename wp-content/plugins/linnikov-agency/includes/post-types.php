@@ -122,6 +122,37 @@ function linnikov_agency_create_post_types()
 
     register_post_type('ideas', $ideas_args);
 
+  // Labels for Vacancies post type
+  $vacancies_labels = array(
+    'name' => __('Vacancies', 'linnikov-agency'),
+    'singular_name' => __('Vacancy', 'linnikov-agency'),
+    'menu_name' => __('Vacancies', 'linnikov-agency'),
+    'name_admin_bar' => __('Vacancy', 'linnikov-agency'),
+    'add_new' => __('Add New', 'linnikov-agency'),
+    'add_new_item' => __('Add New Vacancy', 'linnikov-agency'),
+    'new_item' => __('New Vacancy', 'linnikov-agency'),
+    'edit_item' => __('Edit Vacancy', 'linnikov-agency'),
+    'view_item' => __('View Vacancy', 'linnikov-agency'),
+    'all_items' => __('All Vacancies', 'linnikov-agency'),
+    'search_items' => __('Search Vacancies', 'linnikov-agency'),
+    'parent_item_colon' => __('Parent Vacancies:', 'linnikov-agency'),
+    'not_found' => __('No vacancies found.', 'linnikov-agency'),
+    'not_found_in_trash' => __('No vacancies found in Trash.', 'linnikov-agency'),
+  );
+
+  // Arguments for Vacancies post type
+  $vacancies_args = array(
+    'labels' => $vacancies_labels,
+    'public' => true,
+    'has_archive' => true,
+    'supports' => array('title', 'thumbnail'),
+    'show_in_rest' => true,
+    'rewrite' => array('slug' => 'vacancies'),
+    'menu_icon' => 'dashicons-businessperson',
+  );
+
+  register_post_type('vacancies', $vacancies_args);
+
 
 }
 
@@ -280,3 +311,103 @@ function linnikov_agency_create_ideas_tags_taxonomy()
 }
 
 add_action('init', 'linnikov_agency_create_ideas_tags_taxonomy');
+
+// Register Taxonomies for Vacancies
+function linnikov_agency_register_vacancies_taxonomies()
+{
+  // Категория 1: Опыт
+  $experience_labels = array(
+    'name' => __('Experience', 'linnikov-agency'),
+    'singular_name' => __('Experience', 'linnikov-agency'),
+    'search_items' => __('Search Experiences', 'linnikov-agency'),
+    'all_items' => __('All Experiences', 'linnikov-agency'),
+    'edit_item' => __('Edit Experience', 'linnikov-agency'),
+    'view_item' => __('View Experience', 'linnikov-agency'),
+    'update_item' => __('Update Experience', 'linnikov-agency'),
+    'add_new_item' => __('Add New Experience', 'linnikov-agency'),
+    'new_item_name' => __('New Experience', 'linnikov-agency'),
+    'menu_name' => __('Experience', 'linnikov-agency'),
+  );
+
+  $experience_args = array(
+    'labels' => $experience_labels,
+    'hierarchical' => true, // Используем теги, а не категории
+    'show_in_rest' => true,
+    'rewrite' => array('slug' => 'experience'),
+  );
+
+  register_taxonomy('experience', array('vacancies'), $experience_args);
+
+  // Категория 2: Типы проектов
+  $project_types_labels = array(
+    'name' => __('Project Types', 'linnikov-agency'),
+    'singular_name' => __('Project Type', 'linnikov-agency'),
+    'search_items' => __('Search Project Types', 'linnikov-agency'),
+    'all_items' => __('All Project Types', 'linnikov-agency'),
+    'edit_item' => __('Edit Project Type', 'linnikov-agency'),
+    'view_item' => __('View Project Type', 'linnikov-agency'),
+    'update_item' => __('Update Project Type', 'linnikov-agency'),
+    'add_new_item' => __('Add New Project Type', 'linnikov-agency'),
+    'new_item_name' => __('New Project Type', 'linnikov-agency'),
+    'menu_name' => __('Project Types', 'linnikov-agency'),
+  );
+
+  $project_types_args = array(
+    'labels' => $project_types_labels,
+    'hierarchical' => true,
+    'show_in_rest' => true,
+    'rewrite' => array('slug' => 'project-types'),
+  );
+
+  register_taxonomy('project_types', array('vacancies'), $project_types_args);
+
+  // Категория 3: Инструменты
+  $tools_labels = array(
+    'name' => __('Tools', 'linnikov-agency'),
+    'singular_name' => __('Tool', 'linnikov-agency'),
+    'search_items' => __('Search Tools', 'linnikov-agency'),
+    'all_items' => __('All Tools', 'linnikov-agency'),
+    'edit_item' => __('Edit Tool', 'linnikov-agency'),
+    'view_item' => __('View Tool', 'linnikov-agency'),
+    'update_item' => __('Update Tool', 'linnikov-agency'),
+    'add_new_item' => __('Add New Tool', 'linnikov-agency'),
+    'new_item_name' => __('New Tool', 'linnikov-agency'),
+    'menu_name' => __('Tools', 'linnikov-agency'),
+  );
+
+  $tools_args = array(
+    'labels' => $tools_labels,
+    'hierarchical' => true,
+    'show_in_rest' => true,
+    'rewrite' => array('slug' => 'tools'),
+  );
+
+  register_taxonomy('tools', array('vacancies'), $tools_args);
+
+  // Категория 4: Лейблы для категории тегов контактов
+  $contact_tags_labels = array(
+    'name' => __('Contact Tags', 'linnikov-agency'),
+    'singular_name' => __('Contact Tag', 'linnikov-agency'),
+    'search_items' => __('Search Contact Tags', 'linnikov-agency'),
+    'all_items' => __('All Contact Tags', 'linnikov-agency'),
+    'edit_item' => __('Edit Contact Tag', 'linnikov-agency'),
+    'view_item' => __('View Contact Tag', 'linnikov-agency'),
+    'update_item' => __('Update Contact Tag', 'linnikov-agency'),
+    'add_new_item' => __('Add New Contact Tag', 'linnikov-agency'),
+    'new_item_name' => __('New Contact Tag', 'linnikov-agency'),
+    'menu_name' => __('Contact Tags', 'linnikov-agency'),
+  );
+
+  // Аргументы для регистрации таксономии
+  $contact_tags_args = array(
+    'labels' => $contact_tags_labels,
+    'hierarchical' => true, // Иерархическая структура
+    'show_in_rest' => true, // Отображать в REST API
+    'rewrite' => array('slug' => 'contact-tags'),
+  );
+
+  // Регистрируем таксономию для постов типа Vacancies
+  register_taxonomy('contact_tags', array('vacancies'), $contact_tags_args);
+}
+
+add_action('init', 'linnikov_agency_register_vacancies_taxonomies');

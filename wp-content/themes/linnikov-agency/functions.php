@@ -192,6 +192,18 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       wp_enqueue_script('animated-icons-08', get_template_directory_uri() . '/git-src/build/libs/animated-icons/08.js', array('jquery'), null, false);
     }
 
+    // Conditionally enqueue for a page-careers.php
+    if (is_page_template('templates/page-privacy-policy.php')) {
+      wp_enqueue_script('page-privacy-policy-js', get_template_directory_uri() . '/git-src/build/js/privacy-policy.min.js', array(), null, false);
+      wp_enqueue_style('page-privacy-policy-css', get_template_directory_uri() . '/git-src/build/css/privacy-policy.min.css');
+    }
+
+    // Conditionally enqueue for a page-careers.php
+    if (is_singular('vacancies')) {
+      wp_enqueue_script('page-privacy-policy-js', get_template_directory_uri() . '/git-src/build/js/designer-application.min.js', array(), null, false);
+      wp_enqueue_style('page-privacy-policy-css', get_template_directory_uri() . '/git-src/build/css/designer-application.min.css');
+    }
+
 	}
 	add_action('wp_enqueue_scripts', 'linnikov_agency_enqueue_styles_and_scripts');
 }
