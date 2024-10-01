@@ -117,43 +117,43 @@ function linnikov_agency_news_section_3_callback($post) {
   $image_3 = get_post_meta($post->ID, '_linnikov_news_section_3_image_3', true);
   $content = get_post_meta($post->ID, '_linnikov_news_section_3_content', true);
 
-  // Стиль для секции и заголовок
+  // Начало секции
   echo '<div style="padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; margin-bottom: 20px;">';
 
   // Поле загрузки первой картинки
-  echo '<div class="linnikov-image-upload-container" id="image-upload-container-3-1">';
+  echo '<div class="linnikov-image-upload-container" id="section3_image-upload-container-1">';
   echo '<label for="linnikov_news_section_3_image_1">' . __('Image 1 (WebP)', 'linnikov-agency') . '</label><br>';
   echo '<input type="hidden" id="linnikov_news_section_3_image_1" name="linnikov_news_section_3_image_1" value="' . esc_attr($image_1) . '" />';
-  echo '<div class="image-preview"><img src="' . esc_url($image_1) . '" style="' . ( !empty($image_1) ? 'display: block;' : 'display: none;' ) . ' " /></div>';
+  echo '<div id="section3_preview_image_1" class="image-preview"><img src="' . esc_url($image_1) . '" style="' . ( !empty($image_1) ? 'display: block;' : 'display: none;' ) . ' " /></div>';
   echo '<div class="button_box">';
-  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_3_image_1">' . __('Upload Image', 'linnikov-agency') . '</button>';
-  echo '<button type="button" class="button linnikov-agency-remove-image" data-target="#linnikov_news_section_3_image_1">' . __('Remove Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_3_image_1" data-preview="#section3_preview_image_1" data-remove-button="#section3_remove_image_1">' . __('Upload Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-remove-image" id="section3_remove_image_1" data-target="#linnikov_news_section_3_image_1" data-preview="#section3_preview_image_1" style="' . ( !empty($image_1) ? 'display: block;' : 'display: none;' ) . '">' . __('Remove Image', 'linnikov-agency') . '</button>';
   echo '</div>';
-  echo '</div>';
+  echo '</div>'; // Закрываем контейнер первой картинки
 
   // Поле загрузки второй картинки
-  echo '<div class="linnikov-image-upload-container" id="image-upload-container-3-2">';
+  echo '<div class="linnikov-image-upload-container" id="section3_image-upload-container-2">';
   echo '<label for="linnikov_news_section_3_image_2">' . __('Image 2 (WebP)', 'linnikov-agency') . '</label><br>';
   echo '<input type="hidden" id="linnikov_news_section_3_image_2" name="linnikov_news_section_3_image_2" value="' . esc_attr($image_2) . '" />';
-  echo '<div class="image-preview"><img src="' . esc_url($image_2) . '" style="' . ( !empty($image_2) ? 'display: block;' : 'display: none;' ) . ' " /></div>';
+  echo '<div id="section3_preview_image_2" class="image-preview"><img src="' . esc_url($image_2) . '" style="' . ( !empty($image_2) ? 'display: block;' : 'display: none;' ) . ' " /></div>';
   echo '<div class="button_box">';
-  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_3_image_2">' . __('Upload Image', 'linnikov-agency') . '</button>';
-  echo '<button type="button" class="button linnikov-agency-remove-image" data-target="#linnikov_news_section_3_image_2">' . __('Remove Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_3_image_2" data-preview="#section3_preview_image_2" data-remove-button="#section3_remove_image_2">' . __('Upload Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-remove-image" id="section3_remove_image_2" data-target="#linnikov_news_section_3_image_2" data-preview="#section3_preview_image_2" style="' . ( !empty($image_2) ? 'display: block;' : 'display: none;' ) . '">' . __('Remove Image', 'linnikov-agency') . '</button>';
   echo '</div>';
-  echo '</div>';
+  echo '</div>'; // Закрываем контейнер второй картинки
 
   // Поле загрузки третьей картинки
-  echo '<div class="linnikov-image-upload-container" id="image-upload-container-3-3">';
+  echo '<div class="linnikov-image-upload-container" id="section3_image-upload-container-3">';
   echo '<label for="linnikov_news_section_3_image_3">' . __('Image 3 (WebP)', 'linnikov-agency') . '</label><br>';
   echo '<input type="hidden" id="linnikov_news_section_3_image_3" name="linnikov_news_section_3_image_3" value="' . esc_attr($image_3) . '" />';
-  echo '<div class="image-preview"><img src="' . esc_url($image_3) . '" style="' . ( !empty($image_3) ? 'display: block;' : 'display: none;' ) . ' " /></div>';
+  echo '<div id="section3_preview_image_3" class="image-preview"><img src="' . esc_url($image_3) . '" style="' . ( !empty($image_3) ? 'display: block;' : 'display: none;' ) . ' " /></div>';
   echo '<div class="button_box">';
-  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_3_image_3">' . __('Upload Image', 'linnikov-agency') . '</button>';
-  echo '<button type="button" class="button linnikov-agency-remove-image" data-target="#linnikov_news_section_3_image_3">' . __('Remove Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_3_image_3" data-preview="#section3_preview_image_3" data-remove-button="#section3_remove_image_3">' . __('Upload Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-remove-image" id="section3_remove_image_3" data-target="#linnikov_news_section_3_image_3" data-preview="#section3_preview_image_3" style="' . ( !empty($image_3) ? 'display: block;' : 'display: none;' ) . '">' . __('Remove Image', 'linnikov-agency') . '</button>';
   echo '</div>';
-  echo '</div>';
+  echo '</div>'; // Закрываем контейнер третьей картинки
 
-  // Редактор контента
+  // Поле для текста
   wp_editor(
     $content,
     'linnikov_agency_section_3_content',
@@ -164,7 +164,7 @@ function linnikov_agency_news_section_3_callback($post) {
     )
   );
 
-  echo '</div>';
+  echo '</div>'; // Закрываем основной контейнер секции
 }
 
 // Callback функция для метабокса Секции 4: Большая врезка
@@ -192,17 +192,17 @@ function linnikov_agency_news_section_5_callback($post) {
   $content_2 = get_post_meta($post->ID, '_linnikov_news_section_5_content_2', true);
   $image_2 = get_post_meta($post->ID, '_linnikov_news_section_5_image_2', true);
 
-  // Стиль для секции и заголовок
+  // Начало секции
   echo '<div style="padding: 15px; background-color: #f9f9f9; border: 1px solid #ddd; margin-bottom: 20px;">';
 
   // Поле загрузки первой картинки
-  echo '<div class="linnikov-image-upload-container" id="image-upload-container-1">';
+  echo '<div class="linnikov-image-upload-container" id="section5_image-upload-container-1">';
   echo '<label for="linnikov_news_section_5_image_1">' . __('Image 1 (WebP)', 'linnikov-agency') . '</label><br>';
   echo '<input type="hidden" id="linnikov_news_section_5_image_1" name="linnikov_news_section_5_image_1" value="' . esc_attr($image_1) . '" />';
-  echo '<div class="image-preview"><img src="' . esc_url($image_1) . '" style="' . ( !empty($image_1) ? 'display: block;' : 'display: none;' ) . '" /></div>';
+  echo '<div id="section5_preview_image_1" class="image-preview"><img src="' . esc_url($image_1) . '" style="' . ( !empty($image_1) ? 'display: block;' : 'display: none;' ) . '" /></div>';
   echo '<div class="button_box">';
-  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_5_image_1">' . __('Upload Image', 'linnikov-agency') . '</button>';
-  echo '<button type="button" class="button linnikov-agency-remove-image" data-target="#linnikov_news_section_5_image_1">' . __('Remove Image', 'linnikov-agency') . '</button>'; // Кнопка удаления
+  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_5_image_1" data-preview="#section5_preview_image_1" data-remove-button="#section5_remove_image_1">' . __('Upload Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-remove-image" id="section5_remove_image_1" data-target="#linnikov_news_section_5_image_1" data-preview="#section5_preview_image_1" style="' . ( !empty($image_1) ? 'display: block;' : 'display: none;' ) . '">' . __('Remove Image', 'linnikov-agency') . '</button>';
   echo '</div>';
   echo '</div>'; // Закрываем контейнер первой картинки
 
@@ -229,13 +229,13 @@ function linnikov_agency_news_section_5_callback($post) {
   );
 
   // Поле загрузки второй картинки
-  echo '<div class="linnikov-image-upload-container" id="image-upload-container-2">';
+  echo '<div class="linnikov-image-upload-container" id="section5_image-upload-container-2">';
   echo '<label for="linnikov_news_section_5_image_2">' . __('Image 2 (WebP)', 'linnikov-agency') . '</label><br>';
   echo '<input type="hidden" id="linnikov_news_section_5_image_2" name="linnikov_news_section_5_image_2" value="' . esc_attr($image_2) . '" />';
-  echo '<div class="image-preview"><img src="' . esc_url($image_2) . '" style="' . ( !empty($image_2) ? 'display: block;' : 'display: none;' ) . '" /></div>';
+  echo '<div id="section5_preview_image_2" class="image-preview"><img src="' . esc_url($image_2) . '" style="' . ( !empty($image_2) ? 'display: block;' : 'display: none;' ) . '" /></div>';
   echo '<div class="button_box">';
-  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_5_image_2">' . __('Upload Image', 'linnikov-agency') . '</button>';
-  echo '<button type="button" class="button linnikov-agency-remove-image" data-target="#linnikov_news_section_5_image_2">' . __('Remove Image', 'linnikov-agency') . '</button>'; // Кнопка удаления
+  echo '<button type="button" class="button linnikov-agency-upload-image" data-target="#linnikov_news_section_5_image_2" data-preview="#section5_preview_image_2" data-remove-button="#section5_remove_image_2">' . __('Upload Image', 'linnikov-agency') . '</button>';
+  echo '<button type="button" class="button linnikov-agency-remove-image" id="section5_remove_image_2" data-target="#linnikov_news_section_5_image_2" data-preview="#section5_preview_image_2" style="' . ( !empty($image_2) ? 'display: block;' : 'display: none;' ) . '">' . __('Remove Image', 'linnikov-agency') . '</button>';
   echo '</div>';
   echo '</div>'; // Закрываем контейнер второй картинки
 

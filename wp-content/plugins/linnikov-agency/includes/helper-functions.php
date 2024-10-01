@@ -280,3 +280,16 @@ function linnikov_move_comments_menu()
 
 add_action('admin_menu', 'linnikov_move_comments_menu');
 
+
+function linnikov_agency_allow_custom_html($allowed_tags) {
+  // Добавляем разрешенные теги и атрибуты
+  $allowed_tags['span'] = array(
+    'itemprop' => true, // Разрешаем атрибут itemprop
+    'class' => true,    // Разрешаем атрибут class
+  );
+  $allowed_tags['br'] = array(); // Разрешаем тег <br> без атрибутов
+
+  return $allowed_tags;
+}
+add_filter('wp_kses_allowed_html', 'linnikov_agency_allow_custom_html', 10, 1);
+

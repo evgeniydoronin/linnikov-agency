@@ -42,8 +42,17 @@ require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-competencies.php';
 // Include Meta Boxes for Vacancies
 require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-vacancies.php';
 
+// Include Meta Boxes for Careers
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-careers.php';
+
+// Include Meta Boxes for Contact
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-contact.php';
+
 // Include Helper Functions
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
+
+// Подключаем формы
+include plugin_dir_path(__FILE__) . 'includes/forms.php';
 
 // Подключаем файлы админки
 include plugin_dir_path(__FILE__) . 'admin/settings-page.php';

@@ -20,6 +20,8 @@ if (is_singular('work')) {
   echo 'ideas';
 } elseif (is_page_template('templates/page-careers.php')) {
   echo 'careers-page';
+} elseif (is_page_template('templates/page-contact.php')) {
+  echo 'contact-page';
 } elseif (is_page_template('templates/page-team.php')) {
   echo 'team-page';
 } elseif (is_page_template('templates/page-competencies.php')) {
@@ -44,10 +46,10 @@ if (is_singular('work')) {
             <div class="text-btn__cap">About</div>
             <span class="icon-cubic-check-arrow"></span>
           </button>
-          <a href="/competencies" class="header-link text-btn header-link_desc" data-component="animated-link">
+          <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="header-link text-btn header-link_desc" data-component="animated-link">
             <div class="text-btn__cap">Competencies</div>
           </a>
-          <a href="/competencies" class="header-link text-btn header-link_mob" data-component="animated-link">
+          <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="header-link text-btn header-link_mob" data-component="animated-link">
             <div class="text-btn__cap">Competencies</div>
           </a>
         </div>
@@ -61,7 +63,7 @@ if (is_singular('work')) {
       </a>
       <nav class="header-nav header-nav_right header__right">
         <div class="header-nav__inner">
-          <a href="/contact" class="header-link text-btn" data-component="animated-link">
+          <a href="<?php echo esc_url(site_url('/contact/')); ?>" class="header-link text-btn" data-component="animated-link">
             <div class="text-btn__cap">Contact</div>
           </a>
           <form name="header-theme-switch" class="theme-switch header__theme-switch" data-component="theme-switch">
@@ -164,19 +166,19 @@ if (is_singular('work')) {
             </div>
           </div>
           <div class="burger-menu__nav-section">
-            <a href="/competencies" class="reveal-wrap header-link header-link_desc">
+            <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="reveal-wrap header-link header-link_desc">
               <div class="reveal-wrap__inner">
                 <div class="line">Competencies</div>
               </div>
             </a>
-            <a href="/competencies" class="reveal-wrap header-link header-link_mob">
+            <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="reveal-wrap header-link header-link_mob">
               <div class="reveal-wrap__inner">
                 <div class="line">Competencies</div>
               </div>
             </a>
           </div>
           <div class="burger-menu__nav-section">
-            <a href="/contact" class="reveal-wrap header-link">
+            <a href="<?php echo esc_url(site_url('/contact/')); ?>" class="reveal-wrap header-link">
               <div class="reveal-wrap__inner">
                 <div class="line">Contact</div>
               </div>

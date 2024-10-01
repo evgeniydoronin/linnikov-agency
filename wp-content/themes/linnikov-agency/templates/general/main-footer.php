@@ -3,13 +3,13 @@
     <div class="footer__inner">
       <div class="footer__top">
         <span class="footer__copyright">All rights reserved. <span
-            itemprop="copyrightHolder">Linnikov agency</span>. <span itemprop="copyrightYear">2024</span>&nbsp;©</span>
+            itemprop="copyrightHolder">Linnikov agency</span>. <span itemprop="copyrightYear"><?php echo date('Y'); ?></span>&nbsp;©</span>
         <div class="footer-talk-to-us footer__talk-to-us">
           <div itemscope itemtype="http://schema.org/SiteNavigationElement">
             <div class="footer-talk-to-us__links">
-              <a itemprop="url" href="." target="_blank" class="footer-link footer-link_pale">Contact</a>
-              <a itemprop="url" href="." target="_blank" class="footer-link footer-link_pale">Privacy Notice</a>
-              <a itemprop="url" href="." target="_blank" class="footer-link footer-link_pale">Cookie Policy</a>
+              <a itemprop="url" href="<?php echo esc_url(site_url('/contact/')); ?>" target="_blank" class="footer-link footer-link_pale">Contact</a>
+              <a itemprop="url" href="<?php echo esc_url(site_url('/privacy-policy/')); ?>" target="_blank" class="footer-link footer-link_pale">Privacy Notice</a>
+              <a itemprop="url" href="<?php echo esc_url(site_url('/cookie-policy/')); ?>" target="_blank" class="footer-link footer-link_pale">Cookie Policy</a>
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
       </div>
       <div id="footer-sticky-container" class="footer__group">
         <div id="footer-cta-msg-section" class="footer__middle">
-          <a href="" target="_blank" class="footer-cta-msg footer__cta-msg">
+          <a href="<?php echo esc_url(site_url('/')); ?>" target="_blank" class="footer-cta-msg footer__cta-msg">
             <div class="line">
               <div class="reveal-wrap">
                 <div class="reveal-wrap__inner">
@@ -221,7 +221,7 @@
           </div>
         </div>
         <div id="footer-logo-section" class="footer__bottom">
-          <a href="." class="logo footer__logo">
+          <a href="<?php echo esc_url(site_url('/')); ?>" class="logo footer__logo">
             <figure>
               <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/logo-dark.svg" class="logo__img" alt="Light Logo">
               <figcaption aria-hidden="true">Main page</figcaption>

@@ -188,44 +188,71 @@ class FormField {
 	}
 }
 export class SignUpForm extends Form {
-	constructor(selector) {
-		super(selector);
+    constructor(selector) {
+        super(selector);
 
-		this.dom.closeBtn = this.dom.root.querySelector("[data-elem=close-btn]");
-		this.dom.closeBtn.addEventListener("click", () => this.onClose());
-	}
-	async submitHandler(form, event) {
-		// const response = await fetch("...", {
-		// 		type: "POST",
-		// 		body: new FormData(form)
-		// 	});
-		const response = await new Promise((resolve) => setTimeout(() => resolve({ ok: true }), 1000));
-		if (response.ok) {
-			this.hideSubmitBtn();
-			this.showCloseBtn();
-			this.showMessage("success");
-			return null;
-		} else {
-			throw new Error(`Error (status: ${response.status}) sending the form: ${response.statusText}`);
-		}
-	}
-	onClose() {
-		this.hideCloseBtn();
-		this.showSubmitBtn();
-		this.hideMessages();
-	}
-	hideSubmitBtn() {
-		this.dom.submitBtn.classList.add("hidden");
-	}
-	showSubmitBtn() {
-		this.dom.submitBtn.classList.remove("hidden");
-	}
-	showCloseBtn() {
-		this.dom.closeBtn.classList.add("active");
-	}
-	hideCloseBtn() {
-		this.dom.closeBtn.classList.remove("active");
-	}
+        this.dom.closeBtn = this.dom.root.querySelector("[data-elem=close-btn]");
+        this.dom.closeBtn.addEventListener("click", () => this.onClose());
+    }
+
+    // Отправка формы через AJAX
+    async submitHandler(form, event) {
+        event.preventDefault(); // Отключение стандартного действия формы
+
+        try {
+            // Создаем FormData из формы
+            const formData = new FormData(form);
+            formData.append('action', 'submit_contact_form'); // Добавляем действие для AJAX
+            formData.append('nonce', ajax_params.nonce); // Добавляем nonce для защиты
+
+            // Отправка данных на сервер
+            const response = await fetch(ajax_params.ajax_url, {
+                method: 'POST',
+                body: formData
+            });
+
+            // Проверяем, что запрос выполнен успешно
+            if (response.ok) {
+                const result = await response.json();
+                if (result.success) {
+                    // Успешная отправка формы
+                    this.hideSubmitBtn();
+                    this.showCloseBtn();
+                    this.showMessage("success", result.data); // Показать сообщение об успехе
+                } else {
+                    // Ошибка при отправке формы
+                    this.showMessage("error", result.data); // Показать сообщение об ошибке
+                }
+            } else {
+                throw new Error(`Error: ${response.status}`);
+            }
+        } catch (error) {
+            console.error("Error while submitting the form:", error);
+            this.showMessage("error", "Failed to submit the form.");
+        }
+    }
+
+    onClose() {
+        this.hideCloseBtn();
+        this.showSubmitBtn();
+        this.hideMessages();
+    }
+
+    hideSubmitBtn() {
+        this.dom.submitBtn.classList.add("hidden");
+    }
+
+    showSubmitBtn() {
+        this.dom.submitBtn.classList.remove("hidden");
+    }
+
+    showCloseBtn() {
+        this.dom.closeBtn.classList.add("active");
+    }
+
+    hideCloseBtn() {
+        this.dom.closeBtn.classList.remove("active");
+    }
 }
 export class WriteUsForm extends Form {
 	constructor(selector) {

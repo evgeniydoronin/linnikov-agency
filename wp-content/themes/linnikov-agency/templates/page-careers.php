@@ -21,46 +21,47 @@ get_header();
         <div class="section-container section-container_decor">
           <div class="related-posts__inner">
             <ul class="related-posts__list">
-              <li class="related-posts__item">
-                <a href="." class="related-post-ref">
-                  <div class="ref-arrow-icon ref-arrow-icon_horizontal">
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                  </div>
-                  Designer
-                </a>
-                <div class="related-posts__separator"></div>
-              </li>
-              <li class="related-posts__item">
-                <a href="." class="related-post-ref">
-                  <div class="ref-arrow-icon ref-arrow-icon_horizontal">
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                  </div>
-                  Strategist
-                </a>
-                <div class="related-posts__separator"></div>
-              </li>
-              <li class="related-posts__item">
-                <a href="." class="related-post-ref">
-                  <div class="ref-arrow-icon ref-arrow-icon_horizontal">
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                  </div>
-                  Project-Manager
-                </a>
-                <div class="related-posts__separator"></div>
-              </li>
-              <li class="related-posts__item">
-                <a href="." class="related-post-ref">
-                  <div class="ref-arrow-icon ref-arrow-icon_horizontal">
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                    <span class="icon-cubic-nav-arrow-right"></span>
-                  </div>
-                  Art-Director
-                </a>
-                <div class="related-posts__separator"></div>
-              </li>
+              <?php
+              // Получаем текущий пост (страницу "Карьеры")
+              global $post;
+
+              // Получаем ID выбранных вакансий, сохраненных в метаполе
+              $selected_vacancies = get_post_meta($post->ID, '_linnikov_agency_careers_vacancies', true);
+
+              // Проверяем, есть ли выбранные вакансии
+              if (!empty($selected_vacancies)) {
+                echo '<ul class="related-posts__list">';
+
+                // Проходим по каждому ID вакансии и выводим его
+                foreach ($selected_vacancies as $vacancy_id) {
+                  // Получаем пост вакансии по ID
+                  $vacancy = get_post($vacancy_id);
+
+                  // Проверяем, что пост существует и опубликован
+                  if ($vacancy && $vacancy->post_status === 'publish') {
+                    $vacancy_url = get_permalink($vacancy_id);
+                    $vacancy_title = esc_html($vacancy->post_title);
+                    ?>
+                    <li class="related-posts__item">
+                      <a href="<?php echo esc_url($vacancy_url); ?>" class="related-post-ref">
+                        <div class="ref-arrow-icon ref-arrow-icon_horizontal">
+                          <span class="icon-cubic-nav-arrow-right"></span>
+                          <span class="icon-cubic-nav-arrow-right"></span>
+                        </div>
+                        <?php echo $vacancy_title; ?>
+                      </a>
+                      <div class="related-posts__separator"></div>
+                    </li>
+                    <?php
+                  }
+                }
+
+                echo '</ul>';
+              } else {
+                // Если вакансий не выбрано, выводим сообщение
+                echo '<p>' . __('No vacancies selected.', 'linnikov-agency') . '</p>';
+              }
+              ?>
             </ul>
           </div>
         </div>

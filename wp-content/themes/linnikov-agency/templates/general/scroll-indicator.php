@@ -1,0 +1,4 @@
+<div class="scroll-indicator-container">
+  <div class="scroll-indicator">
+  </div>
+</div>

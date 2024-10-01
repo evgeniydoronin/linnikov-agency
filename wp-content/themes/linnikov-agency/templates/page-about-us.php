@@ -739,7 +739,7 @@ get_header();
               </div>
             </div>
           </h2>
-          <a href="competencies.html"
+          <a href="<?php echo esc_url(site_url('/competencies/')); ?>"
              class="btn form__submit-btn contact-form__submit-btn contact-form__submit-btn_desc">
             Check our competincies
             <div class="ref-arrow-icon ref-arrow-icon_horizontal">
@@ -747,7 +747,7 @@ get_header();
               <span class="icon-cubic-nav-arrow-right"></span>
             </div>
           </a>
-          <a href="competencies-mob.html"
+          <a href="<?php echo esc_url(site_url('/competencies/')); ?>"
              class="btn form__submit-btn contact-form__submit-btn contact-form__submit-btn_mob">
             Check our competincies
             <div class="ref-arrow-icon ref-arrow-icon_horizontal">
@@ -761,7 +761,7 @@ get_header();
   </main>
 
 <?php
-get_template_part('templates/general/drawers-group-subscribe');
+get_template_part('templates/general/drawers-group');
 get_template_part('templates/general/toasts');
 get_template_part('templates/general/cursor');
 get_template_part('templates/general/ref-to-clipboard');

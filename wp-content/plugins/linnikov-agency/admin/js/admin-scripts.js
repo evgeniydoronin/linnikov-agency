@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     /////////////////////////////////////////////
 
     // Сортировка элементов (оставляем как есть)
@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
         $('#sortable').sortable({
             handle: '.drag-handle', // Используем только .drag-handle для перетаскивания
             placeholder: "ui-state-highlight",
-            update: function(event, ui) {
+            update: function (event, ui) {
                 var order = $(this).sortable('toArray').toString();
                 $('#work_order').val(order);
             }
@@ -29,59 +29,117 @@ jQuery(document).ready(function($) {
     /////////////////////////////////////////////
 
     // Универсальная функция для загрузки изображения
-    var mediaUploader;
-    $(document).on('click', '.linnikov-agency-upload-image', function(e) {
+    $(document).on('click', '.linnikov-agency-upload-image', function (e) {
         e.preventDefault();
+
         var button = $(this);
         var targetInput = $(button.data('target')); // Получаем целевое скрытое поле для URL изображения
         var previewContainer = $(button.data('preview')); // Элемент для превью изображения
+        var removeButton = $(button.data('remove-button')); // Кнопка удаления
 
-        // Открытие медиабиблиотеки
-        if (mediaUploader) {
-            mediaUploader.open();
-            return;
-        }
-
-        mediaUploader = wp.media({
+        // Создаем новый экземпляр медиазагрузчика для каждой загрузки
+        var mediaUploader = wp.media({
             title: 'Выберите изображение',
             button: {
                 text: 'Использовать это изображение'
             },
             multiple: false // Только одно изображение за раз
-        })
-            .on('select', function() {
-                var attachment = mediaUploader.state().get('selection').first().toJSON();
-                console.log('Выбрано изображение:', attachment); // Отладка
+        });
 
-                // Сохраняем URL изображения
-                targetInput.val(attachment.url); // Установка URL в скрытое поле
+        // Когда изображение выбрано, обработка выбора
+        mediaUploader.on('select', function () {
+            var attachment = mediaUploader.state().get('selection').first().toJSON();
 
-                // Убедимся, что есть контейнер для превью и обновим его
-                if (previewContainer.length) {
-                    previewContainer.html('<img src="' + attachment.url + '" style="max-width: 200px;">').show(); // Обновляем превью
-                } else {
-                    console.log('Элемент превью не найден.');
-                }
+            // Сохраняем URL изображения в скрытое поле
+            targetInput.val(attachment.url);
 
-                console.log('Изображение установлено:', attachment.url); // Отладка
-                $(button.data('remove-button')).show(); // Показываем кнопку удаления
-            })
-            .open();
+            // Обновляем превью изображения
+            if (previewContainer.length) {
+                previewContainer.html('<img src="' + attachment.url + '" style="max-width: 200px;">').show();
+            }
+
+            // Показываем кнопку удаления
+            if (removeButton.length) {
+                removeButton.show();
+            }
+        });
+
+        // Открытие медиазагрузчика
+        mediaUploader.open();
     });
 
     // Универсальная функция для удаления изображения
-    $(document).on('click', '.linnikov-agency-remove-image', function(e) {
+    $(document).on('click', '.linnikov-agency-remove-image', function (e) {
         e.preventDefault();
+
         var button = $(this);
         var targetInput = $(button.data('target')); // Получаем целевое скрытое поле для URL изображения
         var previewContainer = $(button.data('preview')); // Элемент для превью изображения
 
-        targetInput.val(''); // Очистка поля URL
+        // Очищаем поле и скрываем превью
+        targetInput.val('');
         if (previewContainer.length) {
-            previewContainer.html('').hide(); // Скрываем превью
+            previewContainer.html('').hide();
         }
-        button.hide(); // Скрываем кнопку удаления
+
+        // Скрываем кнопку удаления
+        button.hide();
     });
+
+    // // Универсальная функция для загрузки изображения
+    // var mediaUploader;
+    // $(document).on('click', '.linnikov-agency-upload-image', function(e) {
+    //     e.preventDefault();
+    //     var button = $(this);
+    //     var targetInput = $(button.data('target')); // Получаем целевое скрытое поле для URL изображения
+    //     var previewContainer = $(button.data('preview')); // Элемент для превью изображения
+    //
+    //     // Открытие медиабиблиотеки
+    //     if (mediaUploader) {
+    //         mediaUploader.open();
+    //         return;
+    //     }
+    //
+    //     mediaUploader = wp.media({
+    //         title: 'Выберите изображение',
+    //         button: {
+    //             text: 'Использовать это изображение'
+    //         },
+    //         multiple: false // Только одно изображение за раз
+    //     })
+    //         .on('select', function() {
+    //             var attachment = mediaUploader.state().get('selection').first().toJSON();
+    //             console.log('Выбрано изображение:', attachment); // Отладка
+    //
+    //             // Сохраняем URL изображения
+    //             targetInput.val(attachment.url); // Установка URL в скрытое поле
+    //
+    //             // Убедимся, что есть контейнер для превью и обновим его
+    //             if (previewContainer.length) {
+    //                 previewContainer.html('<img src="' + attachment.url + '" style="max-width: 200px;">').show(); // Обновляем превью
+    //             } else {
+    //                 console.log('Элемент превью не найден.');
+    //             }
+    //
+    //             console.log('Изображение установлено:', attachment.url); // Отладка
+    //             $(button.data('remove-button')).show(); // Показываем кнопку удаления
+    //         })
+    //         .open();
+    // });
+    //
+    // // Универсальная функция для удаления изображения
+    // $(document).on('click', '.linnikov-agency-remove-image', function(e) {
+    //     e.preventDefault();
+    //     var button = $(this);
+    //     var targetInput = $(button.data('target')); // Получаем целевое скрытое поле для URL изображения
+    //     var previewContainer = $(button.data('preview')); // Элемент для превью изображения
+    //
+    //     targetInput.val(''); // Очистка поля URL
+    //     if (previewContainer.length) {
+    //         previewContainer.html('').hide(); // Скрываем превью
+    //     }
+    //     button.hide(); // Скрываем кнопку удаления
+    // });
 
     //////////////////////////////////////////////
 
@@ -169,80 +227,3 @@ jQuery(document).ready(function($) {
     });
 
 });
-
-// jQuery(document).ready(function($) {
-//
-//
-//
-//
-//     /////////////////////////////////////////////
-//
-//
-//     if ($('#sortable').length) {
-//         $('#sortable').sortable({
-//             handle: '.drag-handle', // Используем только .drag-handle для перетаскивания
-//             placeholder: "ui-state-highlight",
-//             update: function(event, ui) {
-//                 var order = $(this).sortable('toArray').toString();
-//                 $('#work_order').val(order);
-//             }
-//         });
-//         $('#sortable').disableSelection(); // Отключение возможности выделения текста
-//     }
-//
-//     // Отслеживаем изменение заголовка поста
-//     $('#title').on('input', function () {
-//         var newTitle = $(this).val();
-//         // Проверка, что поле слаг доступно
-//         if ($('#editable-post-name').length > 0) {
-//             // Генерация слага из нового заголовка
-//             var newSlug = newTitle.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_]+/g, '-').replace(/^-+|-+$/g, '');
-//             $('#editable-post-name').text(newSlug);
-//             $('#post_name').val(newSlug); // Устанавливаем новое значение слага в скрытом поле
-//         }
-//     });
-//
-//     // Обработка загрузки изображения
-//     $('.linnikov-agency-upload-image').click(function(e) {
-//         e.preventDefault();
-//         var button = $(this);
-//         var targetInput = $(button.data('target')); // Получаем целевое скрытое поле для URL изображения
-//         var container = button.closest('.linnikov-image-upload-container'); // Получаем родительский контейнер
-//         var imagePreview = container.find('.image-preview img'); // Получаем элемент изображения для превью
-//
-//         var customUploader = wp.media({
-//             title: 'Выберите изображение',
-//             button: {
-//                 text: 'Использовать это изображение'
-//             },
-//             multiple: false // Только одно изображение за раз
-//         })
-//             .on('select', function() {
-//                 var attachment = customUploader.state().get('selection').first().toJSON();
-//                 console.log('Выбрано изображение:', attachment); // Отладочное сообщение
-//
-//                 if (attachment.subtype === 'webp') {  // Проверка на формат изображения webp
-//                     targetInput.val(attachment.url); // Устанавливаем URL в скрытое поле
-//                     imagePreview.attr('src', attachment.url).show(); // Обновляем URL превью
-//                     console.log('Изображение установлено:', attachment.url); // Отладочное сообщение
-//                 } else {
-//                     alert('Пожалуйста, выберите изображение в формате WEBP.'); // Предупреждение, если не webp
-//                 }
-//             })
-//             .open();
-//     });
-//
-//     // Обработка удаления изображения
-//     $('.linnikov-agency-remove-image').click(function(e) {
-//         e.preventDefault();
-//         var button = $(this);
-//         var targetInput = $(button.data('target')); // Получаем целевое скрытое поле для URL изображения
-//         var container = button.closest('.linnikov-image-upload-container'); // Получаем родительский контейнер
-//         var imagePreview = container.find('.image-preview img'); // Получаем элемент изображения для превью
-//
-//         targetInput.val(''); // Очистить URL в скрытом поле
-//         imagePreview.attr('src', '').hide(); // Скрыть превью
-//     });
-//
-//
-// });
