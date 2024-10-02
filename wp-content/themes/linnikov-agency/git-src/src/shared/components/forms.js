@@ -292,7 +292,7 @@ export class ContactForm extends Form {
 		}
 	}
 	initLogic() {
-		this.dom.root.querySelector(`[name="category"][value="Other"]`).addEventListener("change", ({ target }) => {
+		this.dom.root.querySelector(`[name="category[]"][value="Other"]`).addEventListener("change", ({ target }) => {
 			this.categoryOtherDesc.setHidden(!target.checked);
 			this.categoryOtherDesc.setRequired(target.checked);
 			if (!target.checked) this.categoryOtherDesc.clear();
@@ -308,12 +308,12 @@ export class BriefForm extends Form {
 		this.initLogic();
 	}
 	initLogic() {
-		this.dom.root.querySelector(`[name="category"][value="Other"]`).addEventListener("change", ({ target }) => {
+		this.dom.root.querySelector(`[name="category[]"][value="Other"]`).addEventListener("change", ({ target }) => {
 			this.categoryOtherDesc.setHidden(!target.checked);
 			this.categoryOtherDesc.setRequired(target.checked);
 			if (!target.checked) this.categoryOtherDesc.clear();
 		});
-		this.dom.root.querySelector(`[name="source"][value="Other"]`).addEventListener("change", ({ target }) => {
+		this.dom.root.querySelector(`[name="source[]"][value="Other"]`).addEventListener("change", ({ target }) => {
 			this.sourceOtherDesc.setHidden(!target.checked);
 			this.sourceOtherDesc.setRequired(target.checked);
 			if (!target.checked) this.sourceOtherDesc.clear();
