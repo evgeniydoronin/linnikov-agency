@@ -8,7 +8,9 @@
 	<?php wp_head(); ?>
 </head>
 <body class="<?php
-if (is_singular('work')) {
+if (is_front_page()) {
+  echo 'home';
+} elseif (is_singular('work')) {
   echo 'single-work';
 } elseif (is_page_template('templates/single-work.php')) {
   echo 'template-single-work';
@@ -26,6 +28,8 @@ if (is_singular('work')) {
   echo 'team-page';
 } elseif (is_page_template('templates/page-competencies.php')) {
   echo 'competencies';
+}  elseif (is_page_template('templates/page-brief.php')) {
+  echo 'brief-page';
 } elseif (is_post_type_archive('work')) {
   echo 'works';
 } elseif (is_post_type_archive('news')) {
@@ -33,7 +37,33 @@ if (is_singular('work')) {
 }
 ?>">
 
-<header class="header">
+<?php
+// Инициализируем массив для классов
+$classes = ['header'];
+
+// Добавляем классы на основе условий
+if (is_front_page()) {
+  $classes[] = 'header_fixed';
+  $classes[] = 'home__header';
+}
+
+if (is_single()) {
+  $classes[] = '';
+}
+
+if (is_page('about')) {
+  $classes[] = '';
+}
+
+if (is_404()) {
+  $classes[] = '';
+}
+
+// Преобразуем массив в строку для атрибута class
+$header_classes = implode(' ', $classes);
+?>
+
+<header class="<?php echo esc_attr($header_classes); ?>">
   <div class="section-container section-container_decor header__container">
     <div class="header__main">
       <nav class="header-nav header-nav_left header__left">

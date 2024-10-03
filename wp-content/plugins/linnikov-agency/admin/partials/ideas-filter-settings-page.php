@@ -10,7 +10,7 @@ $args = array(
     'orderby' => 'meta_value_num',
     'meta_key' => 'ideas_tag_order',
     'order' => 'ASC',
-    'hide_empty' => false,
+    'hide_empty' => true,
 );
 $tags = get_terms($args);
 ?>
@@ -21,6 +21,7 @@ $tags = get_terms($args);
         <?php wp_nonce_field('linnikov_agency_save_ideas_tags_order_nonce', '_wpnonce_linnikov_agency_save_ideas_tags_order'); ?>
         <ul id="sortable-ideas">
             <?php
+
             if (!empty($tags)) :
                 foreach ($tags as $tag) :
                     ?>

@@ -136,8 +136,21 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Conditionally enqueue for the NEWS archive page (news.php)
     if (is_post_type_archive('news')) {
-      wp_enqueue_script('news-js', get_template_directory_uri() . '/git-src/build/js/news.min.js', array(), null, false);
+      wp_enqueue_script('linnikov-news', get_template_directory_uri() . '/git-src/build/js/news.min.js', array(), null, false);
       wp_enqueue_style('news-css', get_template_directory_uri() . '/git-src/build/css/news.min.css');
+
+      $terms = get_terms(array(
+        'taxonomy' => 'news_category',
+        'hide_empty' => false,
+      ));
+
+      $category_map = array();
+      foreach ($terms as $term) {
+        $category_map[$term->slug] = $term->term_id;
+      }
+
+      // Передаем данные в JavaScript
+      wp_localize_script('linnikov-news', 'linnikov_category_map', $category_map);
     }
 
     // Conditionally enqueue for a single work page (single-news.php)
@@ -208,6 +221,12 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
     if (is_page_template('templates/page-contact.php')) {
       wp_enqueue_script('page-contact-js', get_template_directory_uri() . '/git-src/build/js/contact.min.js', array(), null, false);
       wp_enqueue_style('page-contact-css', get_template_directory_uri() . '/git-src/build/css/contact.min.css');
+    }
+
+    // Conditionally enqueue for a page-brief.php
+    if (is_page_template('templates/page-brief.php')) {
+      wp_enqueue_script('page-brief-js', get_template_directory_uri() . '/git-src/build/js/brief.min.js', array(), null, false);
+      wp_enqueue_style('page-brief-css', get_template_directory_uri() . '/git-src/build/css/brief.min.css');
     }
 
 	}

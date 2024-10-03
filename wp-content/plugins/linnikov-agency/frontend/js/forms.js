@@ -98,4 +98,65 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+    $('#designer-application-form').on('submit', function(e) {
+        e.preventDefault(); // Останавливаем стандартное действие отправки формы
+
+        var formData = new FormData(this);
+
+        // Собираем все выбранные значения чекбоксов "project_types[]" и "tools[]"
+        var project_types = [];
+        $('input[name="project_types[]"]:checked').each(function() {
+            project_types.push($(this).val());
+        });
+
+        var tools = [];
+        $('input[name="tools[]"]:checked').each(function() {
+            tools.push($(this).val());
+        });
+
+        // Добавляем массивы категорий и инструментов в данные формы
+        formData.delete('project_types[]'); // Удаляем старое поле, если оно было
+        project_types.forEach(function(type) {
+            formData.append('project_types[]', type);
+        });
+
+        formData.delete('tools[]'); // Удаляем старое поле, если оно было
+        tools.forEach(function(tool) {
+            formData.append('tools[]', tool);
+        });
+
+        // Добавляем дополнительные данные для запроса (например, nonce)
+        formData.append('action', 'submit_designer_form'); // Действие для PHP обработчика
+        formData.append('nonce', ajax_designer_params.nonce); // Наша nonce для безопасности
+
+        // Выводим все данные формы перед отправкой
+        console.log('Form data before send:');
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]);
+        }
+
+        // Очищаем предыдущие сообщения
+        $('.form-msg').text('').hide();
+
+        // Выполняем AJAX запрос
+        $.ajax({
+            url: ajax_designer_params.ajax_url,
+            type: 'POST',
+            data: formData,
+            processData: false, // Не обрабатываем данные, так как это FormData
+            contentType: false, // Не устанавливаем content-type, он будет установлен автоматически
+            success: function(response) {
+                if (response.success) {
+                    $('.form-msg_success').text(response.data).show();
+                    $('#designer-application-form')[0].reset(); // Сбросить форму
+                } else {
+                    $('.form-msg_error').text(response.data).show();
+                }
+            },
+            error: function() {
+                $('.form-msg_error').text('An error occurred. Please try again.').show();
+            }
+        });
+    });
 });

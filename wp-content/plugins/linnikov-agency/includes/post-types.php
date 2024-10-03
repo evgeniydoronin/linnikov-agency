@@ -188,36 +188,6 @@ function linnikov_agency_create_work_tags_taxonomy()
 
 add_action('init', 'linnikov_agency_create_work_tags_taxonomy');
 
-// Register Taxonomy for 'news' post type
-function linnikov_agency_create_news_tags_taxonomy()
-{
-    $news_labels = array(
-        'name' => __('News Tags', 'linnikov-agency'),
-        'singular_name' => __('News Tag', 'linnikov-agency'),
-        'search_items' => __('Search News Tags', 'linnikov-agency'),
-        'all_items' => __('All News Tags', 'linnikov-agency'),
-        'edit_item' => __('Edit News Tag', 'linnikov-agency'),
-        'update_item' => __('Update News Tag', 'linnikov-agency'),
-        'add_new_item' => __('Add New News Tag', 'linnikov-agency'),
-        'new_item_name' => __('New News Tag Name', 'linnikov-agency'),
-        'menu_name' => __('News Tags', 'linnikov-agency'),
-    );
-
-    $news_args = array(
-        'hierarchical' => true,
-        'labels' => $news_labels,
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'update_count_callback' => '_update_post_term_count',
-        'query_var' => true,
-        'rewrite' => array('slug' => 'news-tag'),
-    );
-
-    register_taxonomy('news_tag', 'news', $news_args);
-}
-
-add_action('init', 'linnikov_agency_create_news_tags_taxonomy');
-
 // Register Custom Taxonomy for 'news' post type
 function linnikov_agency_create_news_categories_taxonomy()
 {
@@ -398,16 +368,16 @@ function linnikov_agency_register_vacancies_taxonomies()
     'menu_name' => __('Contact Tags', 'linnikov-agency'),
   );
 
-  // Аргументы для регистрации таксономии
-  $contact_tags_args = array(
-    'labels' => $contact_tags_labels,
-    'hierarchical' => true, // Иерархическая структура
-    'show_in_rest' => true, // Отображать в REST API
-    'rewrite' => array('slug' => 'contact-tags'),
-  );
-
-  // Регистрируем таксономию для постов типа Vacancies
-  register_taxonomy('contact_tags', array('vacancies'), $contact_tags_args);
+//  // Аргументы для регистрации таксономии
+//  $contact_tags_args = array(
+//    'labels' => $contact_tags_labels,
+//    'hierarchical' => true, // Иерархическая структура
+//    'show_in_rest' => true, // Отображать в REST API
+//    'rewrite' => array('slug' => 'contact-tags'),
+//  );
+//
+//  // Регистрируем таксономию для постов типа Vacancies
+//  register_taxonomy('contact_tags', array('vacancies'), $contact_tags_args);
 }
 
 add_action('init', 'linnikov_agency_register_vacancies_taxonomies');

@@ -23,7 +23,7 @@ $vacancy_description = get_post_meta(get_the_ID(), '_vacancy_description', true)
           </div>
         </div>
       </section>
-      <form id="designer-application-form" class="tg-regular application-form">
+      <form id="designer-application-form" class="tg-regular application-form"  enctype="multipart/form-data">
         <div class="section-container section-container_decor application-form__container">
           <div class="form__body application-form__body" data-elem="body">
             <div class="animated-separator"></div>
@@ -69,7 +69,8 @@ $vacancy_description = get_post_meta(get_the_ID(), '_vacancy_description', true)
                       foreach ($terms_experience as $term) {
                         ?>
                         <label class="text-checkbox" aria-role="button">
-                          <input type="radio" name="experience" value="<?php echo esc_attr($term->slug); ?>" aria-hidden="true">
+                          <input type="radio" name="experience" value="<?php echo esc_attr($term->slug); ?>"
+                                 aria-hidden="true">
                           <div class="text-checkbox__body"><?php echo esc_html($term->name); ?></div>
                         </label>
                         <?php
@@ -100,7 +101,8 @@ $vacancy_description = get_post_meta(get_the_ID(), '_vacancy_description', true)
                       foreach ($terms_project_types as $term) {
                         ?>
                         <label class="text-checkbox" aria-role="button">
-                          <input type="checkbox" name="tools" value="<?php echo esc_attr($term->slug); ?>" aria-hidden="true">
+                          <input type="checkbox" name="project_types[]" value="<?php echo esc_attr($term->slug); ?>"
+                                 aria-hidden="true">
                           <div class="text-checkbox__body"><?php echo esc_html($term->name); ?></div>
                         </label>
                         <?php
@@ -128,7 +130,8 @@ $vacancy_description = get_post_meta(get_the_ID(), '_vacancy_description', true)
                       foreach ($terms_tools as $term) {
                         ?>
                         <label class="text-checkbox" aria-role="button">
-                          <input type="checkbox" name="tools" value="<?php echo esc_attr($term->slug); ?>" aria-hidden="true">
+                          <input type="checkbox" name="tools[]" value="<?php echo esc_attr($term->slug); ?>"
+                                 aria-hidden="true">
                           <div class="text-checkbox__body"><?php echo esc_html($term->name); ?></div>
                         </label>
                         <?php
@@ -196,8 +199,9 @@ $vacancy_description = get_post_meta(get_the_ID(), '_vacancy_description', true)
                         <div class="checkbox__border-spacer"></div>
                       </div>
                     </div>
-                    <span class="tg-regular checkbox__cap">Consent to <a href="<?php echo esc_url(site_url('/privacy-policy/')); ?>"
-                                                                         class="simple-text-link">personal data processing</a></span>
+                    <span class="tg-regular checkbox__cap">Consent to <a
+                          href="<?php echo esc_url(site_url('/privacy-policy/')); ?>"
+                          class="simple-text-link">personal data processing</a></span>
                   </label>
                 </div>
               </div>

@@ -25,7 +25,7 @@ get_header();
           $args = array(
             'post_type' => 'ideas',
             'posts_per_page' => -1,
-            'meta_key' => '_ideas_order',      // Используем метаполе для сортировки
+//            'meta_key' => '_ideas_order',      // Используем метаполе для сортировки
             'orderby' => 'meta_value_num',     // Сортируем по числовому значению метаполя
             'order' => 'ASC',
           );

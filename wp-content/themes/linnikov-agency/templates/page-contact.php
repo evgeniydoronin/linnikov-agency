@@ -79,27 +79,27 @@ get_header();
                           <div class="tg-regular inline-select">
                             <fieldset class="inline-select__inner">
                               <label class="text-checkbox" aria-role="button">
-                                <input type="checkbox" name="category" value="Branding" aria-hidden="true">
+                                <input type="checkbox" name="category[]" value="Branding" aria-hidden="true">
                                 <div class="text-checkbox__body">Branding</div>
                               </label>
                               <label class="text-checkbox" aria-role="button">
-                                <input type="checkbox" name="category" value="Rebranding" aria-hidden="true">
+                                <input type="checkbox" name="category[]" value="Rebranding" aria-hidden="true">
                                 <div class="text-checkbox__body">Rebranding</div>
                               </label>
                               <label class="text-checkbox" aria-role="button">
-                                <input type="checkbox" name="category" value="Packaging" aria-hidden="true">
+                                <input type="checkbox" name="category[]" value="Packaging" aria-hidden="true">
                                 <div class="text-checkbox__body">Packaging</div>
                               </label>
                               <label class="text-checkbox" aria-role="button">
-                                <input type="checkbox" name="category" value="Website" aria-hidden="true">
+                                <input type="checkbox" name="category[]" value="Website" aria-hidden="true">
                                 <div class="text-checkbox__body">Website</div>
                               </label>
                               <label class="text-checkbox" aria-role="button">
-                                <input type="checkbox" name="category" value="Design" aria-hidden="true">
+                                <input type="checkbox" name="category[]" value="Design" aria-hidden="true">
                                 <div class="text-checkbox__body">Design</div>
                               </label>
                               <label class="text-checkbox" aria-role="button">
-                                <input type="checkbox" name="category" value="Other" aria-hidden="true">
+                                <input type="checkbox" name="category[]" value="Other" aria-hidden="true">
                                 <div class="text-checkbox__body">Other</div>
                               </label>
                             </fieldset>
@@ -186,19 +186,19 @@ get_header();
                       <div class="tg-regular field-with-title__title">Select category</div>
                       <div class="tg-regular inline-select">
                         <fieldset class="inline-select__inner">
-                          <a href="" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief#Branding')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Branding</div>
                           </a>
-                          <a href="" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief#Rebranding')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Rebranding</div>
                           </a>
-                          <a href="" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief#Packaging')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Packaging</div>
                           </a>
-                          <a href="" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief#Website')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Website</div>
                           </a>
-                          <a href="" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief#Design')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Design</div>
                           </a>
                         </fieldset>
