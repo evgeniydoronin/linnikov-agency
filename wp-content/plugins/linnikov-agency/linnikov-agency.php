@@ -48,6 +48,12 @@ require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-careers.php';
 // Include Meta Boxes for Contact
 require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-contact.php';
 
+// Include Meta Boxes for Briefs
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-brief-branding.php';
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-brief-packaging.php';
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-brief-design.php';
+require_once plugin_dir_path(__FILE__) . 'includes/meta-boxes-brief-website.php';
+
 // Include Helper Functions
 require_once plugin_dir_path( __FILE__ ) . 'includes/helper-functions.php';
 

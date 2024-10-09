@@ -27,8 +27,10 @@ get_header();
             <?php
             // Запрос для получения всех постов типа 'team'
             $team_members = new WP_Query(array(
-              'post_type' => 'team',
-              'posts_per_page' => -1, // Получаем всех членов команды
+              'post_type' => 'team',     // Тип записи — 'team'
+              'posts_per_page' => -1,    // Получаем все записи
+              'orderby' => 'date',       // Сортируем по дате
+              'order' => 'ASC',         // Сортировка от новых к старым (по убыванию)
             ));
 
             if ($team_members->have_posts()) :
@@ -225,7 +227,7 @@ get_header();
                                   drawer.classList.add('drawer_closing');
 
                                   // Удаляем класс 'drawer_closing' через 1 секунду (время анимации)
-                                  setTimeout(function() {
+                                  setTimeout(function () {
                                       drawer.classList.remove('drawer_closing');
                                   }, 100);
                               }
@@ -237,7 +239,7 @@ get_header();
                               targetDrawer.classList.add('drawer_opening');
 
                               // После завершения анимации открытия меняем класс на 'drawer_open'
-                              setTimeout(function() {
+                              setTimeout(function () {
                                   targetDrawer.classList.remove('drawer_opening');
                                   targetDrawer.classList.add('drawer_open');
                               }, 100); // Время анимации
@@ -246,9 +248,9 @@ get_header();
                   });
               });
 
-              document.querySelectorAll('.member-profile-drawer').forEach(function(drawer) {
+              document.querySelectorAll('.member-profile-drawer').forEach(function (drawer) {
                   // Добавляем событие клика на сам drawer
-                  drawer.addEventListener('click', function(event) {
+                  drawer.addEventListener('click', function (event) {
                       const panel = drawer.querySelector('.drawer__panel');
 
                       // Если клик произошел вне .drawer__panel
@@ -271,7 +273,7 @@ get_header();
                               targetDrawer.classList.remove('drawer_open');
 
                               // Удаляем класс 'drawer_closing' через 1 секунду (время анимации)
-                              setTimeout(function() {
+                              setTimeout(function () {
                                   targetDrawer.classList.remove('drawer_closing');
                               }, 500);
                           }

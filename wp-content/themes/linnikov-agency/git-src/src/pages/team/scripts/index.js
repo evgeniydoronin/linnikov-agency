@@ -124,8 +124,7 @@ class SelectedMember {
 		});
 	}
 	renderPictureContent() {
-		// return'<source srcset="'.concat(this.board.hoveredCard.memberId,'"><img src="').concat(this.board.hoveredCard.memberId,'">')
-		// return `<source srcset="@#img/team/${this.board.hoveredCard.memberId}.webp"><img src="@#img/team/${this.board.hoveredCard.memberId}.jpg" alt="One of the heroes">`;
+		// return `<source srcset="@#img/team/${this.board.hoveredCard.memberId}.webp"><img src="${this.board.hoveredCard.memberId}.jpg" alt="One of the heroes">`;
 		return `<source srcset="${this.board.hoveredCard.memberId}"><img src="${this.board.hoveredCard.memberId}" alt="One of the heroes">`;
 	}
 	update() {

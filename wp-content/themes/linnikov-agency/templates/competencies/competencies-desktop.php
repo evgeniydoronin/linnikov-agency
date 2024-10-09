@@ -329,13 +329,15 @@
                         <div class="tg-h3 fs-frame__body competencies-tools__item-body"
                              data-elem="frames-stack.frame.body">
                           <?php echo $description; ?>
-                          <a href="<?php echo $link; ?>" class="tg-h4 competencies-tools__item-btn">
-                            <div class="ref-arrow-icon">
-                              <span class="icon-cubic-ref-arrow"></span>
-                              <span class="icon-cubic-ref-arrow"></span>
-                            </div>
-                            Learn more
-                          </a>
+                          <?php if (!empty($tool['link'])) : ?>
+                            <a href="<?php echo $link; ?>" class="tg-h4 competencies-tools__item-btn">
+                              <div class="ref-arrow-icon">
+                                <span class="icon-cubic-ref-arrow"></span>
+                                <span class="icon-cubic-ref-arrow"></span>
+                              </div>
+                              Learn more
+                            </a>
+                          <?php endif; ?>
                         </div>
                       </div>
                     </div>

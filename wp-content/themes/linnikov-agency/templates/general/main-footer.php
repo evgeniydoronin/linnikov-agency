@@ -51,7 +51,7 @@
       </div>
       <div id="footer-sticky-container" class="footer__group">
         <div id="footer-cta-msg-section" class="footer__middle">
-          <a href="<?php echo esc_url(site_url('/')); ?>" target="_blank" class="footer-cta-msg footer__cta-msg">
+          <a href="<?php echo esc_url(site_url('/contact/')); ?>" target="_self" class="footer-cta-msg footer__cta-msg">
             <div class="line">
               <div class="reveal-wrap">
                 <div class="reveal-wrap__inner">

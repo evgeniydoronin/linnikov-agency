@@ -48,19 +48,10 @@ class CounterCell {
 		symbol.textContent = char;
 		this.dom.wrapper.append(symbol);
 	}
-	// appendDecor(type) {
-	// 	const decor = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-	// 	decor.classList.add(`count-up-cell__decor`, `count-up-cell__decor_${type}`);
-	// 	decor.innerHTML = `<use href="@#img/decor-symbols.svg#${type}"></use>`;
-	// 	this.dom.wrapper.append(decor);
-	// }
 	appendDecor(type) {
 		const decor = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 		decor.classList.add(`count-up-cell__decor`, `count-up-cell__decor_${type}`);
-
-		// Используем абсолютный путь
 		decor.innerHTML = `<use href="${window.location.origin}/wp-content/themes/linnikov-agency/git-src/build/img/decor-symbols.svg#${type}"></use>`;
-
 		this.dom.wrapper.append(decor);
 	}
 	createTween() {

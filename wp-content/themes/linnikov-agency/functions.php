@@ -1,23 +1,24 @@
 <?php
 // Function to dequeue unnecessary WordPress styles and scripts
 if (!function_exists('dequeue_unnecessary_wp_assets')) {
-	function dequeue_unnecessary_wp_assets(): void {
-		// Dequeue styles
-		wp_dequeue_style('wp-block-library'); // WordPress block styles
-		wp_dequeue_style('wp-block-library-theme'); // WordPress block theme
-		wp_dequeue_style('wc-block-style'); // WooCommerce blocks
-		wp_dequeue_style('global-styles'); // Global styles (if any)
-		wp_dequeue_style('classic-theme-styles'); // Classic theme styles
+  function dequeue_unnecessary_wp_assets(): void
+  {
+    // Dequeue styles
+    wp_dequeue_style('wp-block-library'); // WordPress block styles
+    wp_dequeue_style('wp-block-library-theme'); // WordPress block theme
+    wp_dequeue_style('wc-block-style'); // WooCommerce blocks
+    wp_dequeue_style('global-styles'); // Global styles (if any)
+    wp_dequeue_style('classic-theme-styles'); // Classic theme styles
 
-		// Dequeue scripts and remove inline styles
-		wp_dequeue_script('wp-emoji'); // Emoji script
-		remove_action('wp_head', 'print_emoji_detection_script', 7);
-		remove_action('wp_print_styles', 'print_emoji_styles');
-		remove_action('wp_head', 'wp_print_styles', 9); // Remove styles from <head>
+    // Dequeue scripts and remove inline styles
+    wp_dequeue_script('wp-emoji'); // Emoji script
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('wp_head', 'wp_print_styles', 9); // Remove styles from <head>
 
-		// Remove global styles
-		remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
-		remove_action('wp_footer', 'wp_enqueue_global_styles');
+    // Remove global styles
+    remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+    remove_action('wp_footer', 'wp_enqueue_global_styles');
 
     // Remove the WordPress version number from the head section
     remove_action('wp_head', 'wp_generator');
@@ -28,63 +29,69 @@ if (!function_exists('dequeue_unnecessary_wp_assets')) {
 
     // Remove RSD link from the header
     remove_action('wp_head', 'rsd_link');
-	}
-	add_action('wp_enqueue_scripts', 'dequeue_unnecessary_wp_assets', 100);
+  }
+
+  add_action('wp_enqueue_scripts', 'dequeue_unnecessary_wp_assets', 100);
 }
 
 // Function to disable WordPress emojis
 if (!function_exists('disable_wp_emojicons')) {
-	function disable_wp_emojicons(): void {
-		// Remove emoji detection script and styles
-		remove_action('wp_head', 'print_emoji_detection_script', 7);
-		remove_action('admin_print_scripts', 'print_emoji_detection_script');
-		remove_action('wp_print_styles', 'print_emoji_styles');
-		remove_action('admin_print_styles', 'print_emoji_styles');
+  function disable_wp_emojicons(): void
+  {
+    // Remove emoji detection script and styles
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
 
-		// Remove emoji-related filters
-		remove_filter('the_content_feed', 'wp_staticize_emoji');
-		remove_filter('comment_text_rss', 'wp_staticize_emoji');
-		remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+    // Remove emoji-related filters
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 
-		// Remove TinyMCE emoji plugin
-		add_filter('tiny_mce_plugins', function($plugins) {
-			if (is_array($plugins)) {
-				return array_diff($plugins, array('wpemoji'));
-			} else {
-				return array();
-			}
-		});
+    // Remove TinyMCE emoji plugin
+    add_filter('tiny_mce_plugins', function ($plugins) {
+      if (is_array($plugins)) {
+        return array_diff($plugins, array('wpemoji'));
+      } else {
+        return array();
+      }
+    });
 
-		// Remove emoji CDN hostname from DNS prefetching hints
-		add_filter('wp_resource_hints', function($urls, $relation_type) {
-			if ('dns-prefetch' === $relation_type) {
-				$emoji_svg_url = apply_filters('emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/');
-				$urls = array_diff($urls, array($emoji_svg_url));
-			}
-			return $urls;
-		}, 10, 2);
-	}
-	add_action('init', 'disable_wp_emojicons');
+    // Remove emoji CDN hostname from DNS prefetching hints
+    add_filter('wp_resource_hints', function ($urls, $relation_type) {
+      if ('dns-prefetch' === $relation_type) {
+        $emoji_svg_url = apply_filters('emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/');
+        $urls = array_diff($urls, array($emoji_svg_url));
+      }
+      return $urls;
+    }, 10, 2);
+  }
+
+  add_action('init', 'disable_wp_emojicons');
 }
 
 // Function to dequeue jQuery Migrate
 if (!function_exists('dequeue_jquery_migrate')) {
-	function dequeue_jquery_migrate(&$scripts) {
-		// Check if jQuery is registered
-		if (isset($scripts->registered['jquery'])) {
-			// Remove the 'jquery-migrate' dependency
-			$scripts->registered['jquery']->deps = array_diff(
-				$scripts->registered['jquery']->deps,
-				['jquery-migrate']
-			);
-		}
-	}
-	add_action('wp_default_scripts', 'dequeue_jquery_migrate');
+  function dequeue_jquery_migrate(&$scripts)
+  {
+    // Check if jQuery is registered
+    if (isset($scripts->registered['jquery'])) {
+      // Remove the 'jquery-migrate' dependency
+      $scripts->registered['jquery']->deps = array_diff(
+        $scripts->registered['jquery']->deps,
+        ['jquery-migrate']
+      );
+    }
+  }
+
+  add_action('wp_default_scripts', 'dequeue_jquery_migrate');
 }
 
 // Function to enqueue styles and scripts
 if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
-	function linnikov_agency_enqueue_styles_and_scripts(): void {
+  function linnikov_agency_enqueue_styles_and_scripts(): void
+  {
 
     // Deregister WordPress's default jQuery and register your own version
     wp_deregister_script('jquery');
@@ -114,7 +121,8 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
     wp_enqueue_style('common-css', get_template_directory_uri() . '/git-src/build/css/common.min.css');
 
     // Enqueue main scripts
-    wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array(), null, false);
+    wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array('jquery'), filemtime(get_template_directory() . '/git-src/build/js/common.min.js'), false);
+//    wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array(), null, false);
 
     // Conditionally enqueue for front-page.php
     if (is_front_page()) {
@@ -167,7 +175,8 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Conditionally enqueue for a page-team.php
     if (is_page_template('templates/page-team.php')) {
-      wp_enqueue_script('page-team-js', get_template_directory_uri() . '/git-src/build/js/team.min.js', array(), null, false);
+//      wp_enqueue_script('page-team-js', get_template_directory_uri() . '/git-src/build/js/team.min.js', array(), null, false);
+      wp_enqueue_script('page-team-js', get_template_directory_uri() . '/git-src/build/js/team.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/team.min.js'), false);
       wp_enqueue_style('page-team-css', get_template_directory_uri() . '/git-src/build/css/team.min.css');
     }
 
@@ -219,42 +228,70 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Conditionally enqueue for a page-contact.php
     if (is_page_template('templates/page-contact.php')) {
-      wp_enqueue_script('page-contact-js', get_template_directory_uri() . '/git-src/build/js/contact.min.js', array(), null, false);
+//      wp_enqueue_script('page-contact-js', get_template_directory_uri() . '/git-src/build/js/contact.min.js', array(), null, false);
+      wp_enqueue_script('page-contact-js', get_template_directory_uri() . '/git-src/build/js/contact.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/contact.min.js'), false);
       wp_enqueue_style('page-contact-css', get_template_directory_uri() . '/git-src/build/css/contact.min.css');
     }
 
-    // Conditionally enqueue for a page-brief.php
-    if (is_page_template('templates/page-brief.php')) {
-      wp_enqueue_script('page-brief-js', get_template_directory_uri() . '/git-src/build/js/brief.min.js', array(), null, false);
-      wp_enqueue_style('page-brief-css', get_template_directory_uri() . '/git-src/build/css/brief.min.css');
+    // Вызов универсальной функции для страниц слайдера
+    enqueue_brief_assets('page-brief-branding.php', '_linnikov_agency_slider_branding_values', [100, 200, 300, 400, 500]);
+    enqueue_brief_assets('page-brief-packaging.php', '_linnikov_agency_slider_packaging_values', [100, 200, 300, 400, 500]);
+    enqueue_brief_assets('page-brief-design.php', '_linnikov_agency_slider_design_values', [100, 200, 300, 400, 500]);
+    enqueue_brief_assets('page-brief-website.php', '_linnikov_agency_slider_website_values', [100, 200, 300, 400, 500]);
+
+  }
+
+  add_action('wp_enqueue_scripts', 'linnikov_agency_enqueue_styles_and_scripts');
+}
+
+// Функция для подключения стилей и скриптов для слайдера
+function enqueue_brief_assets($template_name, $meta_key, $default_values) {
+  global $post;
+
+  if (is_page_template('templates/' . $template_name)) {
+    $slider_values = get_post_meta($post->ID, $meta_key, true);
+
+    // Если мета-поле пустое, используем значения по умолчанию
+    if (!is_array($slider_values)) {
+      $slider_values = $default_values;
     }
 
-	}
-	add_action('wp_enqueue_scripts', 'linnikov_agency_enqueue_styles_and_scripts');
+    // Передаем данные в JavaScript
+    wp_localize_script('common-js', 'briefSliderValues', array(
+      'values' => $slider_values
+    ));
+
+    wp_enqueue_script('page-brief-branding-js', get_template_directory_uri() . '/git-src/build/js/brief.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/brief.min.js'), false);
+    wp_enqueue_style('page-brief-branding-css', get_template_directory_uri() . '/git-src/build/css/brief.min.css');
+  }
 }
 
 // Function to add defer attribute to scripts
 if (!function_exists('add_defer_attribute')) {
-	function add_defer_attribute($tag, $handle) {
-		// Check if not in admin and tag contains 'src'
-		if (!is_admin() && strpos($tag, 'src') !== false) {
-			return str_replace('<script', '<script defer="defer"', $tag);
-		}
-		return $tag;
-	}
-	add_filter('script_loader_tag', 'add_defer_attribute', 10, 2);
+  function add_defer_attribute($tag, $handle)
+  {
+    // Check if not in admin and tag contains 'src'
+    if (!is_admin() && strpos($tag, 'src') !== false) {
+      return str_replace('<script', '<script defer="defer"', $tag);
+    }
+    return $tag;
+  }
+
+  add_filter('script_loader_tag', 'add_defer_attribute', 10, 2);
 }
 
 // Function to register menus
 if (!function_exists('linnikov_agency_register_menus')) {
-	function linnikov_agency_register_menus(): void {
-		register_nav_menus(array(
-			'header-menu' => __('Header Menu', 'linnikov-agency'),
-			'footer-menu' => __('Footer Menu', 'linnikov-agency'),
-            'about-menu' => __('About Menu', 'linnikov-agency'),
-		));
-	}
-	add_action('init', 'linnikov_agency_register_menus');
+  function linnikov_agency_register_menus(): void
+  {
+    register_nav_menus(array(
+      'header-menu' => __('Header Menu', 'linnikov-agency'),
+      'footer-menu' => __('Footer Menu', 'linnikov-agency'),
+      'about-menu' => __('About Menu', 'linnikov-agency'),
+    ));
+  }
+
+  add_action('init', 'linnikov_agency_register_menus');
 }
 
 // Add support for post thumbnails
@@ -263,7 +300,8 @@ add_theme_support('post-thumbnails');
 // Add support for title tag
 add_theme_support('title-tag');
 
-function linnikov_get_news_categories() {
+function linnikov_get_news_categories()
+{
   $categories = get_terms(array(
     'taxonomy' => 'news_category',  // Замените на вашу таксономию
     'hide_empty' => false,
@@ -282,5 +320,25 @@ function linnikov_get_news_categories() {
   </script>
   <?php
 }
+
 add_action('wp_footer', 'linnikov_get_news_categories');
+
+
+add_action('phpmailer_init', 'custom_phpmailer_init');
+
+use PHPMailer\PHPMailer\PHPMailer;
+
+function custom_phpmailer_init(PHPMailer $phpmailer)
+{
+  $phpmailer->isSMTP();
+  $phpmailer->Host = 'smtp.gmail.com';  // SMTP сервер Gmail
+  $phpmailer->SMTPAuth = true;
+  $phpmailer->Port = 587;  // Порт для TLS
+  $phpmailer->Username = 'evgenedoronin@gmail.com';  // Ваш Gmail логин
+  $phpmailer->Password = 'srem wmgy mfge nvsr';  // Пароль приложения (не обычный пароль)
+  $phpmailer->SMTPSecure = 'tls';  // Используйте TLS для безопасности
+  $phpmailer->From = 'evgenedoronin@linnikov.agency';  // Ваш адрес Gmail в качестве отправителя
+  $phpmailer->FromName = 'Evgene Doronin';  // Имя отправителя
+}
+
 

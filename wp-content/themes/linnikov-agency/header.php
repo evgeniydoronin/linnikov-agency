@@ -4,8 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1" interactive-widget="resizes-visual">
+  <!-- Favicon for all devices and platforms -->
+  <link rel="apple-touch-icon" sizes="180x180"
+        href="<?php echo get_template_directory_uri(); ?>/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32"
+        href="<?php echo get_template_directory_uri(); ?>/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16"
+        href="<?php echo get_template_directory_uri(); ?>/favicon/favicon-16x16.png">
+  <link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/favicon/site.webmanifest">
+  <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon/favicon.ico">
+  <link rel="icon" sizes="192x192"
+        href="<?php echo get_template_directory_uri(); ?>/favicon/android-chrome-192x192.png">
+  <link rel="icon" sizes="512x512"
+        href="<?php echo get_template_directory_uri(); ?>/favicon/android-chrome-512x512.png">
   <title><?php wp_title('|', true, 'right'); ?></title>
-	<?php wp_head(); ?>
+  <?php wp_head(); ?>
 </head>
 <body class="<?php
 if (is_front_page()) {
@@ -28,7 +41,9 @@ if (is_front_page()) {
   echo 'team-page';
 } elseif (is_page_template('templates/page-competencies.php')) {
   echo 'competencies';
-}  elseif (is_page_template('templates/page-brief.php')) {
+} elseif (is_page_template('templates/page-brief-branding.php') ||
+          is_page_template('templates/page-brief-packaging.php')
+) {
   echo 'brief-page';
 } elseif (is_post_type_archive('work')) {
   echo 'works';
@@ -68,7 +83,8 @@ $header_classes = implode(' ', $classes);
     <div class="header__main">
       <nav class="header-nav header-nav_left header__left">
         <div class="header-nav__inner">
-          <a href="<?php echo esc_url(get_post_type_archive_link('work')); ?>" class="header-link text-btn" data-component="animated-link">
+          <a href="<?php echo esc_url(get_post_type_archive_link('work')); ?>" class="header-link text-btn"
+             data-component="animated-link">
             <div class="text-btn__cap">Works</div>
           </a>
           <button type="button" data-submenu-elem="header-submenu<-ref->about"
@@ -76,10 +92,12 @@ $header_classes = implode(' ', $classes);
             <div class="text-btn__cap">About</div>
             <span class="icon-cubic-check-arrow"></span>
           </button>
-          <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="header-link text-btn header-link_desc" data-component="animated-link">
+          <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="header-link text-btn header-link_desc"
+             data-component="animated-link">
             <div class="text-btn__cap">Competencies</div>
           </a>
-          <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="header-link text-btn header-link_mob" data-component="animated-link">
+          <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="header-link text-btn header-link_mob"
+             data-component="animated-link">
             <div class="text-btn__cap">Competencies</div>
           </a>
         </div>
@@ -93,7 +111,8 @@ $header_classes = implode(' ', $classes);
       </a>
       <nav class="header-nav header-nav_right header__right">
         <div class="header-nav__inner">
-          <a href="<?php echo esc_url(site_url('/contact/')); ?>" class="header-link text-btn" data-component="animated-link">
+          <a href="<?php echo esc_url(site_url('/contact/')); ?>" class="header-link text-btn"
+             data-component="animated-link">
             <div class="text-btn__cap">Contact</div>
           </a>
           <form name="header-theme-switch" class="theme-switch header__theme-switch" data-component="theme-switch">
@@ -196,12 +215,14 @@ $header_classes = implode(' ', $classes);
             </div>
           </div>
           <div class="burger-menu__nav-section">
-            <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="reveal-wrap header-link header-link_desc">
+            <a href="<?php echo esc_url(site_url('/competencies/')); ?>"
+               class="reveal-wrap header-link header-link_desc">
               <div class="reveal-wrap__inner">
                 <div class="line">Competencies</div>
               </div>
             </a>
-            <a href="<?php echo esc_url(site_url('/competencies/')); ?>" class="reveal-wrap header-link header-link_mob">
+            <a href="<?php echo esc_url(site_url('/competencies/')); ?>"
+               class="reveal-wrap header-link header-link_mob">
               <div class="reveal-wrap__inner">
                 <div class="line">Competencies</div>
               </div>

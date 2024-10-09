@@ -83,10 +83,6 @@ get_header();
                                 <div class="text-checkbox__body">Branding</div>
                               </label>
                               <label class="text-checkbox" aria-role="button">
-                                <input type="checkbox" name="category[]" value="Rebranding" aria-hidden="true">
-                                <div class="text-checkbox__body">Rebranding</div>
-                              </label>
-                              <label class="text-checkbox" aria-role="button">
                                 <input type="checkbox" name="category[]" value="Packaging" aria-hidden="true">
                                 <div class="text-checkbox__body">Packaging</div>
                               </label>
@@ -155,7 +151,7 @@ get_header();
                       <div class="section-container form-messages__inner">
                         <div class="form-messages__panel">
                           <div class="form-msg form-msg_success" data-elem="msg" data-type="success"
-                               data-default="Thank you for submitting. Check your email and enjoy!"></div>
+                               data-default="Thank you for reaching out! We’ve sent you an email with the next steps. Check your inbox!"></div>
                           <div class="form-msg form-msg_error" data-elem="msg" data-type="error"
                                data-default="Error."></div>
                         </div>
@@ -186,19 +182,16 @@ get_header();
                       <div class="tg-regular field-with-title__title">Select category</div>
                       <div class="tg-regular inline-select">
                         <fieldset class="inline-select__inner">
-                          <a href="<?php echo esc_url(site_url('/brief#Branding')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-branding#Branding')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Branding</div>
                           </a>
-                          <a href="<?php echo esc_url(site_url('/brief#Rebranding')); ?>" class="text-checkbox">
-                            <div class="text-checkbox__body">Rebranding</div>
-                          </a>
-                          <a href="<?php echo esc_url(site_url('/brief#Packaging')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-packaging#Packaging')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Packaging</div>
                           </a>
-                          <a href="<?php echo esc_url(site_url('/brief#Website')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-website#Website')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Website</div>
                           </a>
-                          <a href="<?php echo esc_url(site_url('/brief#Design')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-design#Design')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Design</div>
                           </a>
                         </fieldset>

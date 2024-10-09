@@ -83,11 +83,28 @@ export class RangeInput {
 		return this._hoveredSection;
 	}
 	set activeStep(next) {
+		console.log(`Setting active step to: ${next}`); // Логирование значения шага
+		// Логируем текущее состояние до изменения
+		console.log(`Previous active step: ${this._activeStep}`);
+
+		// Удаляем класс "_selected" у предыдущего активного шага
 		this.dom.sections[this._activeStep]?.classList.remove("_selected");
+
+		// Устанавливаем новое значение активного шага
 		this._activeStep = next;
+
+		// Добавляем класс "_selected" новому активному шагу
 		this.dom.sections[next]?.classList.add("_selected");
+
+		// Устанавливаем значение ползунка, соответствующее текущему шагу
 		this.value = this.getStepValue(next);
+
+		// Обновляем позицию бегунка (thumb)
 		this.updateThumbPosition();
+
+		// Логируем состояние после изменения
+		console.log(`Active step successfully set to: ${this._activeStep}`);
+		console.log(`New value: ${this.value}`);
 	}
 	get activeStep() {
 		return this._activeStep;

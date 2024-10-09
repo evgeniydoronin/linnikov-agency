@@ -118,6 +118,8 @@ add_filter('tiny_mce_before_init', 'custom_tiny_mce_options');
 function linnikov_agency_mime_types($mimes)
 {
   $mimes['svg'] = 'image/svg+xml';
+  // Разрешаем загрузку AVIF файлов
+  $mimes['avif'] = 'image/avif';
   return $mimes;
 }
 

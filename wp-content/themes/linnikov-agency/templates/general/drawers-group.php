@@ -352,7 +352,7 @@
     <div class="section-container form-messages__inner">
       <div class="form-messages__panel">
         <div class="form-msg form-msg_success" data-elem="msg" data-type="success"
-             data-default="Thank you for submitting. Check your email and enjoy!"></div>
+             data-default="Thank you for reaching out! We’ve sent you an email with the next steps. Check your inbox!"></div>
         <div class="form-msg form-msg_error" data-elem="msg" data-type="error" data-default="Error."></div>
       </div>
     </div>
