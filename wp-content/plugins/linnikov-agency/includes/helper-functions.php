@@ -295,3 +295,4 @@ function linnikov_agency_allow_custom_html($allowed_tags) {
 }
 add_filter('wp_kses_allowed_html', 'linnikov_agency_allow_custom_html', 10, 1);
 
+

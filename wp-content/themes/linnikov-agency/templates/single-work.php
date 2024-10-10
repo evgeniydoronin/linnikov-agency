@@ -31,231 +31,282 @@ get_header();
       <?php endif; ?>
     </section>
 
-    <!--    2. Блок: single-line-scroll-slider.-->
-    <section id="single-line-scroll-slider" class="single-line-scroll-slider background">
-      <div class="section-container section-container_decor single-line-scroll-slider__container" data-elem="container">
-        <div class="single-line-scroll-slider__wrap" data-elem="wrap">
-          <div class="single-line-scroll-slider__inner" data-elem="inner">
-            <div class="section-container">
-              <?php
-              // Получаем данные из метаполя
-              $slider_images = get_post_meta(get_the_ID(), '_linnikov_agency_slider_images', true);
+    <?php
+    // Получаем ID текущего поста
+    $post_id = get_the_ID();
+    // Получаем сохранённый порядок контейнеров
+    $sorted_order = get_post_meta($post_id, '_sorted_container_order', true);
 
-              // Проверяем, есть ли сохраненные изображения
-              if (is_array($slider_images) && !empty($slider_images)) : ?>
-                <div class="single-line-scroll-slider__body" data-elem="body">
-                  <?php foreach ($slider_images as $image) : ?>
-                    <div class="single-line-scroll-slide">
-                      <a href="<?php echo esc_url($image['webp']); ?>"
-                         data-fancybox="work-media"
-                         srcset="<?php echo esc_url($image['webp']); ?>"
-                         data-caption="Iguana energy drink"
-                         class="img-wrap img-wrap_cover single-line-scroll-slide__img">
-                        <div class="img-wrap__inner">
-                          <picture>
-                            <?php if (!empty($image['webp'])) : ?>
-                              <source type="image/webp" srcset="<?php echo esc_url($image['webp']); ?>">
-                            <?php endif; ?>
-                            <img src="<?php echo esc_url($image['webp']); ?>" alt="Iguana energy drink">
-                          </picture>
-                        </div>
-                      </a>
-                    </div>
-                  <?php endforeach; ?>
-                </div>
-              <?php endif; ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    // Если порядок сохранён, разбиваем его в массив
+    if ($sorted_order) {
+      $containers = explode(',', $sorted_order);
+    } else {
+      // Если порядок не сохранён, используем стандартный порядок контейнеров
+      $containers = ['single-line-scroll-slider', 'work-pictures-tails', 'two-lines-scroll-slider', 'before-after-slider', 'nine-tiles'];
+    }
 
-    <!--    3. Блок: work-pictures-tails-->
-    <section class="work-pictures-tails background">
-      <?php
-      // Получаем данные из метаполей
-      $pictures = get_post_meta(get_the_ID(), '_linnikov_agency_work_pictures', true);
-      $video_url = get_post_meta(get_the_ID(), '_linnikov_agency_work_video_url', true);
-      $video_poster_webp = get_post_meta(get_the_ID(), '_linnikov_agency_work_video_poster_webp', true);
+    // Выводим контейнеры в соответствии с их порядком
+    foreach ($containers as $container) {
+      if ($container === 'single-line-scroll-slider') : ?>
+        <!--    2. Блок: single-line-scroll-slider.-->
+        <?php
+        // Проверяем, отключен ли слайдер
+        if (get_post_meta(get_the_ID(), '_disable_single_line_slider', true) !== 'on') : ?>
+          <section id="single-line-scroll-slider" class="single-line-scroll-slider background">
+            <div class="section-container section-container_decor single-line-scroll-slider__container"
+                 data-elem="container">
+              <div class="single-line-scroll-slider__wrap" data-elem="wrap">
+                <div class="single-line-scroll-slider__inner" data-elem="inner">
+                  <div class="section-container">
+                    <?php
+                    // Получаем данные из метаполя
+                    $slider_images = get_post_meta(get_the_ID(), '_linnikov_agency_slider_images', true);
 
-      // Проверяем, есть ли сохраненные изображения и видео
-      if (is_array($pictures) && !empty($pictures)) :
-        ?>
-        <div class="section-container section-container_decor work-pictures-tails__container"
-             id="work-pictures-tails-container">
-          <?php foreach ($pictures as $picture) : ?>
-            <a href="<?php echo esc_url($picture['webp']); ?>"
-               data-fancybox="work-media"
-               srcset="<?php echo esc_url($picture['webp']); ?>"
-               data-caption="Iguana energy drink"
-               class="img-wrap img-wrap_cover work-pictures-tails__item">
-              <div class="img-wrap__inner">
-                <picture>
-                  <?php if (!empty($picture['webp'])) : ?>
-                    <source type="image/webp" srcset="<?php echo esc_url($picture['webp']); ?>">
-                  <?php endif; ?>
-                  <img src="<?php echo esc_url($picture['webp']); ?>" alt="Iguana energy drink">
-                </picture>
-              </div>
-            </a>
-          <?php endforeach; ?>
-
-          <?php if (!empty($video_url)) : ?>
-            <a href="<?php echo esc_url($video_url); ?>" data-cursor="none"
-               data-fancybox="work-media" data-caption="Iguana energy drink"
-               class="work-video work-pictures-tails__item work-pictures-tails__item_video" data-component="work-video">
-              <div class="img-wrap img-wrap_cover work-video__poster">
-                <div class="img-wrap__inner">
-                  <picture>
-                    <source type="image/webp" src="<?php echo esc_url($video_poster_webp); ?>">
-                    <img src="<?php echo esc_url($video_poster_webp); ?>"
-                         alt="">
-                  </picture>
-                </div>
-              </div>
-              <div class="work-video__player-wrap">
-                <iframe data-elem="work-video.video"
-                        src="<?php echo esc_url($video_url); ?>"
-                        frameborder="0" allow="autoplay; fullscreen" class="work-video__player">
-                </iframe>
-              </div>
-              <button data-elem="work-video.playback-btn"
-                      class="work-video-play-btn work-video__btn work-video__btn_playback">
-                <div class="work-video-play-btn__title">Video play / pause</div>
-                <div class="work-video-play-btn__inner">
-                  <span class="icon-play work-video-play-btn__icon work-video-play-btn__icon_play"></span>
-                  <span class="icon-pause work-video-play-btn__icon work-video-play-btn__icon_pause"></span>
-                </div>
-              </button>
-            </a>
-          <?php endif; ?>
-        </div>
-      <?php endif; ?>
-    </section>
-
-    <!--    4. Блок: two-lines-scroll-slider-->
-    <section id="two-lines-scroll-slider" class="two-lines-scroll-slider single-work__two-lines-slider">
-      <div class="section-container section-container_decor two-lines-scroll-slider__container" data-elem="container">
-        <div class="two-lines-scroll-slider__wrap" data-elem="wrap">
-          <div class="two-lines-scroll-slider__inner" data-elem="inner">
-            <?php
-            $pictures = get_post_meta(get_the_ID(), '_linnikov_agency_two_lines_scroll_slider_images', true);
-
-            if (is_array($pictures) && !empty($pictures)): ?>
-              <div class="two-lines-scroll-slider__body" data-elem="body">
-                <?php foreach ($pictures as $picture): ?>
-                  <?php if (!empty($picture['webp'])): ?>
-                    <a href="<?php echo esc_url($picture['webp']); ?>"
-                       data-fancybox="work-media"
-                       data-srcset="<?php echo esc_url($picture['webp']); ?>"
-                       data-caption="Iguana energy drink"
-                       class="two-lines-scroll-slider-slide">
-                      <div class="img-wrap img-wrap_cover two-lines-scroll-slider-slide__img">
-                        <div class="img-wrap__inner">
-                          <picture>
-                            <?php if (!empty($picture['webp'])): ?>
-                              <source type="image/webp" srcset="<?php echo esc_url($picture['webp']); ?>">
-                            <?php endif; ?>
-                            <?php if (!empty($picture['webp'])): ?>
-                              <img src="<?php echo esc_url($picture['webp']); ?>" alt="">
-                            <?php endif; ?>
-                          </picture>
-                        </div>
+                    // Проверяем, есть ли сохраненные изображения
+                    if (is_array($slider_images) && !empty($slider_images)) : ?>
+                      <div class="single-line-scroll-slider__body" data-elem="body">
+                        <?php foreach ($slider_images as $image) : ?>
+                          <div class="single-line-scroll-slide">
+                            <a href="<?php echo esc_url($image['webp']); ?>"
+                               data-fancybox="work-media"
+                               srcset="<?php echo esc_url($image['webp']); ?>"
+                               data-caption="Iguana energy drink"
+                               class="img-wrap img-wrap_cover single-line-scroll-slide__img">
+                              <div class="img-wrap__inner">
+                                <picture>
+                                  <?php if (!empty($image['webp'])) : ?>
+                                    <source type="image/webp" srcset="<?php echo esc_url($image['webp']); ?>">
+                                  <?php endif; ?>
+                                  <img src="<?php echo esc_url($image['webp']); ?>" alt="Iguana energy drink">
+                                </picture>
+                              </div>
+                            </a>
+                          </div>
+                        <?php endforeach; ?>
                       </div>
-                    </a>
-                  <?php endif; ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        <?php endif; ?>
+      <?php endif;
+      if ($container === 'work-pictures-tails') : ?>
+        <!--    3. Блок: work-pictures-tails-->
+        <?php
+        // Проверяем, отключен ли слайдер
+        if (get_post_meta(get_the_ID(), '_disable_work_pictures_tails', true) !== 'on') : ?>
+          <section class="work-pictures-tails background">
+            <?php
+            // Получаем данные из метаполей
+            $pictures = get_post_meta(get_the_ID(), '_linnikov_agency_work_pictures', true);
+            $video_url = get_post_meta(get_the_ID(), '_linnikov_agency_work_video_url', true);
+            $video_poster_webp = get_post_meta(get_the_ID(), '_linnikov_agency_work_video_poster_webp', true);
+
+            // Проверяем, есть ли сохраненные изображения и видео
+            if (is_array($pictures) && !empty($pictures)) :
+              ?>
+              <div class="section-container section-container_decor work-pictures-tails__container"
+                   id="work-pictures-tails-container">
+                <?php foreach ($pictures as $picture) : ?>
+                  <a href="<?php echo esc_url($picture['webp']); ?>"
+                     data-fancybox="work-media"
+                     srcset="<?php echo esc_url($picture['webp']); ?>"
+                     data-caption="Iguana energy drink"
+                     class="img-wrap img-wrap_cover work-pictures-tails__item">
+                    <div class="img-wrap__inner">
+                      <picture>
+                        <?php if (!empty($picture['webp'])) : ?>
+                          <source type="image/webp" srcset="<?php echo esc_url($picture['webp']); ?>">
+                        <?php endif; ?>
+                        <img src="<?php echo esc_url($picture['webp']); ?>" alt="Iguana energy drink">
+                      </picture>
+                    </div>
+                  </a>
                 <?php endforeach; ?>
+
+                <?php if (!empty($video_url)) : ?>
+                  <a href="<?php echo esc_url($video_url); ?>" data-cursor="none"
+                     data-fancybox="work-media" data-caption="Iguana energy drink"
+                     class="work-video work-pictures-tails__item work-pictures-tails__item_video"
+                     data-component="work-video">
+                    <div class="img-wrap img-wrap_cover work-video__poster">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source type="image/webp" src="<?php echo esc_url($video_poster_webp); ?>">
+                          <img src="<?php echo esc_url($video_poster_webp); ?>"
+                               alt="">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="work-video__player-wrap">
+                      <iframe data-elem="work-video.video"
+                              src="<?php echo esc_url($video_url); ?>"
+                              frameborder="0" allow="autoplay; fullscreen" class="work-video__player">
+                      </iframe>
+                    </div>
+                    <button data-elem="work-video.playback-btn"
+                            class="work-video-play-btn work-video__btn work-video__btn_playback">
+                      <div class="work-video-play-btn__title">Video play / pause</div>
+                      <div class="work-video-play-btn__inner">
+                        <span class="icon-play work-video-play-btn__icon work-video-play-btn__icon_play"></span>
+                        <span class="icon-pause work-video-play-btn__icon work-video-play-btn__icon_pause"></span>
+                      </div>
+                    </button>
+                  </a>
+                <?php endif; ?>
               </div>
             <?php endif; ?>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!--    5. Блок: before-after-slider-->
-    <section class="before-after-slider single-work__before-after-slider" data-component="before-after-slider">
-      <?php
-      $before_after_images = get_post_meta(get_the_ID(), '_linnikov_agency_before_after_images', true);
-
-      if (is_array($before_after_images) && !empty($before_after_images)): ?>
-        <div class="before-after-slider__inner" data-elem="inner">
-          <?php if (!empty($before_after_images['after']['webp'])): ?>
-            <div class="before-after-slider__after" data-elem="after">
-              <div class="img-wrap img-wrap_cover">
-                <div class="img-wrap__inner">
-                  <picture>
-                    <?php if (!empty($before_after_images['after']['webp'])): ?>
-                      <source type="image/webp" srcset="<?php echo esc_url($before_after_images['after']['webp']); ?>">
-                    <?php endif; ?>
-                    <?php if (!empty($before_after_images['after']['webp'])): ?>
-                      <img src="<?php echo esc_url($before_after_images['after']['webp']); ?>" alt="After Image">
-                    <?php endif; ?>
-                  </picture>
-                </div>
-              </div>
-            </div>
-          <?php endif; ?>
-
-          <?php if (!empty($before_after_images['before']['webp'])): ?>
-            <div class="before-after-slider__before" data-elem="before">
-              <div class="img-wrap img-wrap_cover">
-                <div class="img-wrap__inner">
-                  <picture>
-                    <?php if (!empty($before_after_images['before']['webp'])): ?>
-                      <source type="image/webp" srcset="<?php echo esc_url($before_after_images['before']['webp']); ?>">
-                    <?php endif; ?>
-                    <?php if (!empty($before_after_images['before']['webp'])): ?>
-                      <img src="<?php echo esc_url($before_after_images['before']['webp']); ?>" alt="Before Image">
-                    <?php endif; ?>
-                  </picture>
-                </div>
-              </div>
-            </div>
-          <?php endif; ?>
-
-          <div class="before-after-slider__thumb" data-active="true" data-elem="thumb"></div>
-        </div>
-      <?php endif; ?>
-    </section>
-
-    <!--    6. Блок: nine-tiles-->
-    <section id="nine-tiles" class="nine-tiles" data-component="nine-tiles">
-      <div class="section-container section-container_decor nine-tiles__underlay"></div>
-      <div class="nine-tiles__inner">
+          </section>
+        <?php endif; ?>
+      <?php endif;
+      if ($container === 'two-lines-scroll-slider') : ?>
+        <!--    4. Блок: two-lines-scroll-slider-->
         <?php
-        // Получаем данные из метаполя
-        $items = get_post_meta(get_the_ID(), '_linnikov_agency_nine_tiles_items', true);
+        // Проверяем, отключен ли слайдер
+        if (get_post_meta(get_the_ID(), '_disable_two_lines_scroll_slider', true) !== 'on') : ?>
+          <section id="two-lines-scroll-slider" class="two-lines-scroll-slider single-work__two-lines-slider">
+            <div class="section-container section-container_decor two-lines-scroll-slider__container"
+                 data-elem="container">
+              <div class="two-lines-scroll-slider__wrap" data-elem="wrap">
+                <div class="two-lines-scroll-slider__inner" data-elem="inner">
+                  <?php
+                  $pictures = get_post_meta(get_the_ID(), '_linnikov_agency_two_lines_scroll_slider_images', true);
 
-        if (is_array($items) && !empty($items)) {
-          foreach ($items as $item) {
-            if ($item['type'] === 'image') {
-              // Выводим изображение
-              ?>
-              <div class="img-wrap img-wrap_cover">
-                <div class="img-wrap__inner">
-                  <picture>
-                    <?php if (!empty($item['webp'])): ?>
-                      <source type="image/webp" srcset="<?php echo esc_url($item['webp']); ?>">
-                    <?php endif; ?>
-                    <?php if (!empty($item['webp'])): ?>
-                      <img src="<?php echo esc_url($item['webp']); ?>" alt="Tile Image">
-                    <?php endif; ?>
-                  </picture>
+                  if (is_array($pictures) && !empty($pictures)): ?>
+                    <div class="two-lines-scroll-slider__body" data-elem="body">
+                      <?php foreach ($pictures as $picture): ?>
+                        <?php if (!empty($picture['webp'])): ?>
+                          <a href="<?php echo esc_url($picture['webp']); ?>"
+                             data-fancybox="work-media"
+                             data-srcset="<?php echo esc_url($picture['webp']); ?>"
+                             data-caption="Iguana energy drink"
+                             class="two-lines-scroll-slider-slide">
+                            <div class="img-wrap img-wrap_cover two-lines-scroll-slider-slide__img">
+                              <div class="img-wrap__inner">
+                                <picture>
+                                  <?php if (!empty($picture['webp'])): ?>
+                                    <source type="image/webp" srcset="<?php echo esc_url($picture['webp']); ?>">
+                                  <?php endif; ?>
+                                  <?php if (!empty($picture['webp'])): ?>
+                                    <img src="<?php echo esc_url($picture['webp']); ?>" alt="">
+                                  <?php endif; ?>
+                                </picture>
+                              </div>
+                            </div>
+                          </a>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
+            </div>
+          </section>
+        <?php endif; ?>
+      <?php endif;
+      if ($container === 'before-after-slider') : ?>
+        <!--    5. Блок: before-after-slider-->
+        <?php
+        // Проверяем, отключен ли слайдер
+        if (get_post_meta(get_the_ID(), '_disable_before_after_slider', true) !== 'on') : ?>
+          <section class="before-after-slider single-work__before-after-slider" data-component="before-after-slider">
+            <?php
+            $before_after_images = get_post_meta(get_the_ID(), '_linnikov_agency_before_after_images', true);
+
+            if (is_array($before_after_images) && !empty($before_after_images)): ?>
+              <div class="before-after-slider__inner" data-elem="inner">
+                <?php if (!empty($before_after_images['after']['webp'])): ?>
+                  <div class="before-after-slider__after" data-elem="after">
+                    <div class="img-wrap img-wrap_cover">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <?php if (!empty($before_after_images['after']['webp'])): ?>
+                            <source type="image/webp"
+                                    srcset="<?php echo esc_url($before_after_images['after']['webp']); ?>">
+                          <?php endif; ?>
+                          <?php if (!empty($before_after_images['after']['webp'])): ?>
+                            <img src="<?php echo esc_url($before_after_images['after']['webp']); ?>" alt="After Image">
+                          <?php endif; ?>
+                        </picture>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (!empty($before_after_images['before']['webp'])): ?>
+                  <div class="before-after-slider__before" data-elem="before">
+                    <div class="img-wrap img-wrap_cover">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <?php if (!empty($before_after_images['before']['webp'])): ?>
+                            <source type="image/webp"
+                                    srcset="<?php echo esc_url($before_after_images['before']['webp']); ?>">
+                          <?php endif; ?>
+                          <?php if (!empty($before_after_images['before']['webp'])): ?>
+                            <img src="<?php echo esc_url($before_after_images['before']['webp']); ?>"
+                                 alt="Before Image">
+                          <?php endif; ?>
+                        </picture>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+                <div class="before-after-slider__thumb" data-active="true" data-elem="thumb"></div>
+              </div>
+            <?php endif; ?>
+          </section>
+        <?php endif; ?>
+      <?php endif;
+      if ($container === 'nine-tiles') : ?>
+        <!--    6. Блок: nine-tiles-->
+        <?php
+        // Проверяем, отключен ли слайдер
+        if (get_post_meta(get_the_ID(), '_disable_nine_tiles', true) !== 'on') : ?>
+          <section id="nine-tiles" class="nine-tiles" data-component="nine-tiles">
+            <div class="section-container section-container_decor nine-tiles__underlay"></div>
+            <div class="nine-tiles__inner">
               <?php
-            } elseif ($item['type'] === 'video') {
-              // Выводим видео
+              // Получаем данные из метаполя
+              $items = get_post_meta(get_the_ID(), '_linnikov_agency_nine_tiles_items', true);
+
+              if (is_array($items) && !empty($items)) {
+                foreach ($items as $item) {
+                  if ($item['type'] === 'image') {
+                    // Выводим изображение
+                    ?>
+                    <div class="img-wrap img-wrap_cover">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <?php if (!empty($item['webp'])): ?>
+                            <source type="image/webp" srcset="<?php echo esc_url($item['webp']); ?>">
+                          <?php endif; ?>
+                          <?php if (!empty($item['webp'])): ?>
+                            <img src="<?php echo esc_url($item['webp']); ?>" alt="Tile Image">
+                          <?php endif; ?>
+                        </picture>
+                      </div>
+                    </div>
+                    <?php
+                  } elseif ($item['type'] === 'video') {
+                    // Выводим видео
+                    ?>
+                    <iframe src="<?php echo esc_url($item['video']); ?>" frameborder="0" allow="autoplay; fullscreen"
+                            class="nine-tiles__video"></iframe>
+                    <?php
+                  }
+                }
+              }
               ?>
-              <iframe src="<?php echo esc_url($item['video']); ?>" frameborder="0" allow="autoplay; fullscreen"
-                      class="nine-tiles__video"></iframe>
-              <?php
-            }
-          }
-        }
-        ?>
-      </div>
-    </section>
+            </div>
+          </section>
+        <?php endif; ?>
+      <?php endif;
+    }
+    ?>
+
 
     <!--    7. Блок: more-works-->
     <?php
@@ -275,52 +326,53 @@ get_header();
       if ($works_query->have_posts()) :
 
         ?>
-          <section class="more-works single-work__more-works" id="more-works">
-              <div class="section-container section-container_decor more-works__container"></div>
-              <h2>More works</h2>
-              <div class="more-works__body" data-elem="works-slider.body">
-                <?php
-                // Цикл для вывода постов
-                while ($works_query->have_posts()) : $works_query->the_post();
-                  // Получаем изображение из метаполя
-                  $hero_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_hero_image_webp', true);
+        <section class="more-works single-work__more-works" id="more-works">
+          <div class="section-container section-container_decor more-works__container"></div>
+          <h2>More works</h2>
+          <div class="more-works__body" data-elem="works-slider.body">
+            <?php
+            // Цикл для вывода постов
+            while ($works_query->have_posts()) : $works_query->the_post();
+              // Получаем изображение из метаполя
+              $hero_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_hero_image_webp', true);
 
-                  // Если метаполе не пустое, выводим картинку
-                  if ($hero_image_webp) : ?>
-                      <a href="<?php the_permalink(); ?>" data-title="<?php the_title(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_top more-works__item"
-                         data-elem="works-slider.slide">
-                          <div class="img-wrap__inner">
-                              <picture>
-                                  <source type="image/webp" srcset="<?php echo esc_url($hero_image_webp); ?>">
-                                  <img src="<?php echo esc_url($hero_image_webp); ?>" alt="<?php the_title(); ?>">
-                              </picture>
-                          </div>
-                      </a>
-                  <?php endif;
-                endwhile; ?>
-              </div>
-              <div class="more-works__footer">
-                  <div class="section-container">
-                      <div class="double-cubic-decor more-works__decor"></div>
-                      <div class="tg-h3 more-works__nav">
-                          <button type="button" class="text-btn" data-elem="works-slider.prev">
-                              <div class="ref-arrow-icon ref-arrow-icon_horizontal ref-arrow-icon_flip">
-                                  <span class="icon-cubic-nav-arrow-right"></span>
-                                  <span class="icon-cubic-nav-arrow-right"></span>
-                              </div>
-                              Prev
-                          </button>
-                          <button type="button" class="text-btn" data-elem="works-slider.next">
-                              Next
-                              <div class="ref-arrow-icon ref-arrow-icon_horizontal">
-                                  <span class="icon-cubic-nav-arrow-right"></span>
-                                  <span class="icon-cubic-nav-arrow-right"></span>
-                              </div>
-                          </button>
-                      </div>
+              // Если метаполе не пустое, выводим картинку
+              if ($hero_image_webp) : ?>
+                <a href="<?php the_permalink(); ?>" data-title="<?php the_title(); ?>"
+                   class="img-wrap img-wrap_cover case-poster case-poster_top more-works__item"
+                   data-elem="works-slider.slide">
+                  <div class="img-wrap__inner">
+                    <picture>
+                      <source type="image/webp" srcset="<?php echo esc_url($hero_image_webp); ?>">
+                      <img src="<?php echo esc_url($hero_image_webp); ?>" alt="<?php the_title(); ?>">
+                    </picture>
                   </div>
+                </a>
+              <?php endif;
+            endwhile; ?>
+          </div>
+          <div class="more-works__footer">
+            <div class="section-container">
+              <div class="double-cubic-decor more-works__decor"></div>
+              <div class="tg-h3 more-works__nav">
+                <button type="button" class="text-btn" data-elem="works-slider.prev">
+                  <div class="ref-arrow-icon ref-arrow-icon_horizontal ref-arrow-icon_flip">
+                    <span class="icon-cubic-nav-arrow-right"></span>
+                    <span class="icon-cubic-nav-arrow-right"></span>
+                  </div>
+                  Prev
+                </button>
+                <button type="button" class="text-btn" data-elem="works-slider.next">
+                  Next
+                  <div class="ref-arrow-icon ref-arrow-icon_horizontal">
+                    <span class="icon-cubic-nav-arrow-right"></span>
+                    <span class="icon-cubic-nav-arrow-right"></span>
+                  </div>
+                </button>
               </div>
-          </section>
+            </div>
+          </div>
+        </section>
         <?php wp_reset_postdata(); ?>
       <?php endif;
     }
@@ -495,12 +547,12 @@ get_header();
               </section>
 
               <?php if (is_array($awards) && !empty($awards)): ?>
-              <section class="work-details-content-section">
-                <span id="ap-awards" class="work-details-content-section__anchor"></span>
-                <h3>Awards</h3>
-                <?php
-                // Получаем данные из мета-поля
-                $awards = get_post_meta(get_the_ID(), '_linnikov_agency_awards', true);
+                <section class="work-details-content-section">
+                  <span id="ap-awards" class="work-details-content-section__anchor"></span>
+                  <h3>Awards</h3>
+                  <?php
+                  // Получаем данные из мета-поля
+                  $awards = get_post_meta(get_the_ID(), '_linnikov_agency_awards', true);
 
                   echo '<ul class="awards-showcase">';
 
@@ -520,8 +572,8 @@ get_header();
                   }
 
                   echo '</ul>';
-                ?>
-              </section>
+                  ?>
+                </section>
               <?php endif; ?>
 
             </article>

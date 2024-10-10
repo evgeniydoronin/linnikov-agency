@@ -1,5 +1,134 @@
 <?php
 
+// Добавление метабокса для сортировки контейнеров
+function linnikov_agency_work_add_sorting_meta_box() {
+  add_meta_box(
+    'linnikov_agency_work_sorting_meta_box', // ID метабокса
+    __('Sort Containers', 'linnikov-agency'), // Название метабокса
+    'linnikov_agency_work_sorting_meta_box_callback', // Функция обратного вызова для метабокса
+    'work', // Название кастомного поста
+    'side', // Положение метабокса
+    'default' // Приоритет
+  );
+}
+add_action('add_meta_boxes', 'linnikov_agency_work_add_sorting_meta_box');
+
+// Функция коллбэк для метабокса сортировки
+function linnikov_agency_work_sorting_meta_box_callback($post) {
+  // Получаем сохраненный порядок контейнеров (если есть)
+  $sorted_order = get_post_meta($post->ID, '_sorted_container_order', true);
+  $containers = ['single-line-scroll-slider', 'work-pictures-tails', 'two-lines-scroll-slider', 'before-after-slider', 'nine-tiles'];
+
+  // Фильтруем отключённые контейнеры
+  $active_containers = [];
+  foreach ($containers as $container) {
+    $disable_meta_key = '_disable_' . str_replace('-', '_', $container);
+    if (get_post_meta($post->ID, $disable_meta_key, true) !== 'on') {
+      $active_containers[] = $container; // Контейнер активен, добавляем его в список
+    }
+  }
+
+  // Если порядок сохранен, сортируем активные контейнеры
+  if ($sorted_order) {
+    $sorted_containers = explode(',', $sorted_order);
+    $active_containers = array_intersect($sorted_containers, $active_containers); // Убедимся, что сохраняем только активные контейнеры
+    $active_containers = array_merge($sorted_containers, array_diff($containers, $sorted_containers)); // Добавляем неотсортированные элементы
+  }
+
+
+  ?>
+  <ul id="sortable-containers">
+    <?php foreach ($active_containers as $container): ?>
+      <li class="ui-state-default" data-id="<?php echo esc_attr($container); ?>">
+        <?php echo ucfirst(str_replace('-', ' ', $container)); ?>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+  <input type="hidden" name="sorted_container_order" id="sorted_container_order" value="<?php echo esc_attr(implode(',', $active_containers)); ?>" />
+
+  <script>
+      jQuery(function($) {
+          // Инициализация sortable
+          $('#sortable-containers').sortable({
+              update: function(event, ui) {
+                  var sortedIDs = $('#sortable-containers').sortable('toArray', { attribute: 'data-id' });
+                  $('#sorted_container_order').val(sortedIDs.join(','));
+              }
+          });
+
+          // Функция для показа/скрытия контейнеров на основе состояния чекбоксов
+          function updateSortableContainersOnClient() {
+              var containerCheckboxMap = {
+                  'single-line-scroll-slider': 'input[name="disable_single_line_slider"]',
+                  'work-pictures-tails': 'input[name="disable_work_pictures_tails"]',
+                  'two-lines-scroll-slider': 'input[name="disable_two_lines_scroll_slider"]',
+                  'before-after-slider': 'input[name="disable_before_after_slider"]',
+                  'nine-tiles': 'input[name="disable_nine_tiles"]'
+              };
+
+              $.each(containerCheckboxMap, function(container, checkboxSelector) {
+                  var checkbox = $(checkboxSelector);
+                  var containerItem = $('#sortable-containers').find('li[data-id="' + container + '"]');
+
+                  // Логирование чекбокса и его состояния
+                  console.log('Checkbox element for ' + container + ':', checkbox);
+                  console.log('Checking checkbox for container: ' + container + ' Checked: ' + checkbox.prop('checked'));
+
+                  if (checkbox.length > 0 && !checkbox.prop('checked')) {
+                      // Показываем контейнер, если чекбокс не отмечен
+                      containerItem.show();
+                  } else {
+                      // Скрываем контейнер, если чекбокс отмечен
+                      containerItem.hide();
+                  }
+              });
+
+              // Логирование текущего состояния видимых контейнеров
+              var visibleContainers = $('#sortable-containers').children(':visible').map(function() {
+                  return $(this).data('id');
+              }).get();
+              console.log('Visible containers:', visibleContainers);
+          }
+
+          // Отслеживаем изменение состояния чекбоксов
+          $('input[type="checkbox"]').on('change', function() {
+              updateSortableContainersOnClient(); // Обновляем видимость при изменении состояния чекбоксов
+          });
+
+          // Инициализируем состояние контейнеров при загрузке страницы
+          updateSortableContainersOnClient();
+      });
+  </script>
+  <?php
+}
+
+// Сохранение данных метабокса сортировки
+function linnikov_agency_work_save_sorting_meta_box($post_id)
+{
+  // Проверка nonce
+  if (!isset($_POST['sorted_container_order']) || !wp_verify_nonce($_POST['linnikov_agency_slider_nonce'], basename(__FILE__))) {
+    return $post_id;
+  }
+
+  // Проверка автосохранения
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+    return $post_id;
+  }
+
+  // Проверка прав пользователя
+  if (!current_user_can('edit_post', $post_id)) {
+    return $post_id;
+  }
+
+  // Логирование значения перед сохранением
+  error_log('Saving sorted container order: ' . $_POST['sorted_container_order']);
+
+  // Сохранение порядка контейнеров
+  if (isset($_POST['sorted_container_order'])) {
+    update_post_meta($post_id, '_sorted_container_order', sanitize_text_field($_POST['sorted_container_order']));
+  }
+}
+add_action('save_post', 'linnikov_agency_work_save_sorting_meta_box');
 
 // 1. Блок: hero.
 // Добавляем метабокс для изображения Hero
@@ -38,7 +167,8 @@ function linnikov_agency_hero_meta_box_callback($post)
       <div class="image-preview-tooltip"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
         <!-- Элемент <img> для предпросмотра изображения -->
-        <img src="<?php echo $preview_image; ?>" alt="Preview" id="hero_image_preview" style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
+        <img src="<?php echo $preview_image; ?>" alt="Preview" id="hero_image_preview"
+             style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
       </div>
     </div>
   </div>
@@ -50,7 +180,8 @@ function linnikov_agency_hero_meta_box_callback($post)
       <label for="linnikov_agency_hero_image_webp" style="display:block; margin-bottom: 5px;">
         <p style="margin-bottom: 0"><?php _e('WebP', 'linnikov-agency'); ?></p>
         <!-- Элемент <img> для предпросмотра изображения -->
-        <img src="<?php echo $hero_image_webp; ?>" alt="WebP Preview" id="current_hero_image_preview" style="display:block; margin-top: 5px; width: 150px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
+        <img src="<?php echo $hero_image_webp; ?>" alt="WebP Preview" id="current_hero_image_preview"
+             style="display:block; margin-top: 5px; width: 150px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
       </label>
       <input type="text" name="linnikov_agency_hero_image_webp" id="linnikov_agency_hero_image_webp"
              value="<?php echo esc_attr($hero_image_webp); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
@@ -144,6 +275,15 @@ function linnikov_agency_slider_meta_box_callback($post)
   if (!is_array($slider_images) || empty($slider_images)) {
     $slider_images = [['webp' => '']]; // Если нет изображений, используем пустой массив
   }
+  // Добавление чекбокса для отключения контейнера
+  $disable_slider = get_post_meta($post->ID, '_disable_single_line_slider', true);
+  ?>
+  <p style="background: lightcoral; padding: 1rem">
+    <input type="checkbox" name="disable_single_line_slider"
+           id="disable_single_line_slider" <?php checked($disable_slider, 'on'); ?> />
+    <label for="disable_single_line_slider"><?php _e('Disable this on frontend', 'linnikov-agency'); ?></label>
+  </p>
+  <?php
 
   // Используем изображение 'portfolio.jpeg' по умолчанию
   $preview_image = get_template_directory_uri() . '/src/img/portfolio2.jpeg';
@@ -156,7 +296,8 @@ function linnikov_agency_slider_meta_box_callback($post)
       <span class="eye-icon" style="font-size: 20px;">👁️</span>
       <div class="image-preview-tooltip"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-        <img src="<?php echo $preview_image; ?>" alt="Preview" id="slider_hero_image_preview" style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
+        <img src="<?php echo $preview_image; ?>" alt="Preview" id="slider_hero_image_preview"
+             style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
       </div>
     </div>
   </div>
@@ -169,7 +310,8 @@ function linnikov_agency_slider_meta_box_callback($post)
           <div style="width: 100%;">
             <label for="slider_images_<?php echo $index; ?>_webp" style="display:block; margin-bottom: 5px;">
               <p style="margin-bottom: 0"><?php _e('WebP', 'linnikov-agency'); ?></p>
-              <img src="<?php echo esc_attr($image['webp']); ?>" alt="WebP Preview" id="current_slider_image_preview_<?php echo $index; ?>"
+              <img src="<?php echo esc_attr($image['webp']); ?>" alt="WebP Preview"
+                   id="current_slider_image_preview_<?php echo $index; ?>"
                    style="display: <?php echo $image['webp'] ? 'block' : 'none'; ?>; margin-top: 5px; width: 150px;">
             </label>
             <input type="text" name="slider_images[<?php echo $index; ?>][webp]"
@@ -277,6 +419,13 @@ function linnikov_agency_save_slider_meta_box($post_id)
   } else {
     delete_post_meta($post_id, '_linnikov_agency_slider_images');
   }
+
+  // Сохранение состояния чекбокса для отключения контейнера
+  if (isset($_POST['disable_single_line_slider']) && $_POST['disable_single_line_slider'] === 'on') {
+    update_post_meta($post_id, '_disable_single_line_slider', 'on');
+  } else {
+    update_post_meta($post_id, '_disable_single_line_slider', 'off');
+  }
 }
 
 add_action('save_post', 'linnikov_agency_save_slider_meta_box');
@@ -317,6 +466,16 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
     ];
   }
 
+  // Добавление чекбокса для отключения контейнера
+  $disable_slider = get_post_meta($post->ID, '_disable_work_pictures_tails', true);
+  ?>
+  <p style="background: lightcoral; padding: 1rem">
+    <input type="checkbox" name="disable_work_pictures_tails"
+           id="disable_work_pictures_tails" <?php checked($disable_slider, 'on'); ?> />
+    <label for="disable_work_pictures_tails"><?php _e('Disable this on frontend', 'linnikov-agency'); ?></label>
+  </p>
+  <?php
+
   // HTML для полей загрузки изображений
   ?>
 
@@ -326,7 +485,8 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
       <span class="eye-icon" style="font-size: 20px;">👁️</span>
       <div class="image-preview-tooltip-tails"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-        <img src="<?php echo $preview_image; ?>" alt="Preview" id="work_picture_preview" style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
+        <img src="<?php echo $preview_image; ?>" alt="Preview" id="work_picture_preview"
+             style="max-width: 600px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
       </div>
     </div>
   </div>
@@ -340,7 +500,8 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
           <div style="width: 100%;">
             <label for="work_picture_<?php echo $index; ?>_webp" style="display:block; margin-bottom: 5px;">
               <p style="margin-bottom: 0"><?php _e('WebP', 'linnikov-agency'); ?></p>
-              <img src="<?php echo esc_attr($picture['webp']); ?>" alt="WebP Preview" id="current_work_picture_preview_<?php echo $index; ?>"
+              <img src="<?php echo esc_attr($picture['webp']); ?>" alt="WebP Preview"
+                   id="current_work_picture_preview_<?php echo $index; ?>"
                    style="display: <?php echo $picture['webp'] ? 'block' : 'none'; ?>; margin-top: 5px; width: 150px;">
             </label>
             <input type="text" name="work_pictures[<?php echo $index; ?>][webp]"
@@ -481,6 +642,13 @@ function linnikov_agency_save_work_pictures_tails_meta_box($post_id)
   } else {
     delete_post_meta($post_id, '_linnikov_agency_work_video_poster_webp');
   }
+
+  // Сохранение состояния чекбокса для отключения контейнера
+  if (isset($_POST['disable_work_pictures_tails'])) {
+    update_post_meta($post_id, '_disable_work_pictures_tails', 'on');
+  } else {
+    update_post_meta($post_id, '_disable_work_pictures_tails', 'off');
+  }
 }
 
 add_action('save_post', 'linnikov_agency_save_work_pictures_tails_meta_box');
@@ -521,7 +689,15 @@ function linnikov_agency_two_lines_scroll_slider_meta_box_callback($post)
 
   // Используем изображение 'portfolio.jpeg' по умолчанию
   $preview_image = get_template_directory_uri() . '/src/img/portfolio4.jpeg';
+
+  // Добавление чекбокса для отключения контейнера
+  $disable_slider = get_post_meta($post->ID, '_disable_two_lines_scroll_slider', true);
   ?>
+  <p style="background: lightcoral; padding: 1rem">
+    <input type="checkbox" name="disable_two_lines_scroll_slider"
+           id="disable_two_lines_scroll_slider" <?php checked($disable_slider, 'on'); ?> />
+    <label for="disable_two_lines_scroll_slider"><?php _e('Disable this on frontend', 'linnikov-agency'); ?></label>
+  </p>
 
   <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <span style="display: inline-block; margin-right: 10px"><?php _e('section preview', 'linnikov-agency'); ?></span>
@@ -529,7 +705,8 @@ function linnikov_agency_two_lines_scroll_slider_meta_box_callback($post)
       <span class="eye-icon" style="font-size: 20px;">👁️</span>
       <div class="image-preview-tooltip-two-lines"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-        <img src="<?php echo esc_attr($preview_image); ?>" alt="Preview" style="max-width: 600px;" id="two_lines_preview_image">
+        <img src="<?php echo esc_attr($preview_image); ?>" alt="Preview" style="max-width: 600px;"
+             id="two_lines_preview_image">
       </div>
     </div>
   </div>
@@ -547,7 +724,8 @@ function linnikov_agency_two_lines_scroll_slider_meta_box_callback($post)
           <div style="width: 90%;">
             <label for="two_lines_scroll_slider_<?php echo $index; ?>_webp" style="display:block; margin-bottom: 5px;">
               <p style="margin-bottom: 0"><?php _e('WebP', 'linnikov-agency'); ?></p>
-              <img src="<?php echo esc_attr($picture['webp']); ?>" alt="WebP Preview" id="current_two_lines_scroll_slider_preview_<?php echo $index; ?>"
+              <img src="<?php echo esc_attr($picture['webp']); ?>" alt="WebP Preview"
+                   id="current_two_lines_scroll_slider_preview_<?php echo $index; ?>"
                    style="display: <?php echo $picture['webp'] ? 'block' : 'none'; ?>; margin-top: 5px; width: 150px;">
             </label>
             <input type="text" name="two_lines_scroll_slider_images[<?php echo $index; ?>][webp]"
@@ -640,6 +818,13 @@ function linnikov_agency_save_two_lines_scroll_slider_meta_box($post_id)
   } else {
     delete_post_meta($post_id, '_linnikov_agency_two_lines_scroll_slider_images');
   }
+
+  // Сохранение состояния чекбокса для отключения контейнера
+  if (isset($_POST['disable_two_lines_scroll_slider'])) {
+    update_post_meta($post_id, '_disable_two_lines_scroll_slider', 'on');
+  } else {
+    update_post_meta($post_id, '_disable_two_lines_scroll_slider', 'off');
+  }
 }
 
 add_action('save_post', 'linnikov_agency_save_two_lines_scroll_slider_meta_box');
@@ -674,7 +859,14 @@ function linnikov_agency_before_after_slider_meta_box_callback($post)
     ];
   }
 
+  // Добавление чекбокса для отключения контейнера
+  $disable_slider = get_post_meta($post->ID, '_disable_before_after_slider', true);
   ?>
+  <p style="background: lightcoral; padding: 1rem">
+    <input type="checkbox" name="disable_before_after_slider"
+           id="disable_before_after_slider" <?php checked($disable_slider, 'on'); ?> />
+    <label for="disable_before_after_slider"><?php _e('Disable this on frontend', 'linnikov-agency'); ?></label>
+  </p>
 
   <div id="before-after-slider-wrapper">
     <?php foreach (['before', 'after'] as $key): ?>
@@ -768,6 +960,12 @@ function linnikov_agency_save_before_after_slider_meta_box($post_id)
   } else {
     delete_post_meta($post_id, '_linnikov_agency_before_after_images');
   }
+  // Сохранение состояния чекбокса для отключения контейнера
+  if (isset($_POST['disable_before_after_slider'])) {
+    update_post_meta($post_id, '_disable_before_after_slider', 'on');
+  } else {
+    update_post_meta($post_id, '_disable_before_after_slider', 'off');
+  }
 }
 
 add_action('save_post', 'linnikov_agency_save_before_after_slider_meta_box');
@@ -810,8 +1008,14 @@ function linnikov_agency_nine_tiles_meta_box_callback($post)
 
   // Используем изображение 'portfolio.jpeg' по умолчанию
   $preview_image = get_template_directory_uri() . '/src/img/portfolio5.jpeg';
-
+// Добавление чекбокса для отключения контейнера
+  $disable_slider = get_post_meta($post->ID, '_disable_nine_tiles', true);
   ?>
+  <p style="background: lightcoral; padding: 1rem">
+    <input type="checkbox" name="disable_nine_tiles" id="disable_nine_tiles" <?php checked($disable_slider, 'on'); ?> />
+    <label for="disable_nine_tiles"><?php _e('Disable this on frontend', 'linnikov-agency'); ?></label>
+  </p>
+
 
   <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <span style="display: inline-block; margin-right: 10px"><?php _e('section preview', 'linnikov-agency'); ?></span>
@@ -819,7 +1023,8 @@ function linnikov_agency_nine_tiles_meta_box_callback($post)
       <span class="eye-icon" style="font-size: 20px;">👁️</span>
       <div class="image-preview-tooltip-nine-tiles"
            style="display: none; position: absolute; top: 0px; left: 25px; z-index: 10; background: #fff; border: 1px solid #ccc; padding: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-        <img src="<?php echo esc_attr($preview_image); ?>" alt="Preview" style="max-width: 600px;" id="nine_tiles_preview">
+        <img src="<?php echo esc_attr($preview_image); ?>" alt="Preview" style="max-width: 600px;"
+             id="nine_tiles_preview">
       </div>
     </div>
   </div>
@@ -839,11 +1044,14 @@ function linnikov_agency_nine_tiles_meta_box_callback($post)
             </label>
             <select name="nine_tiles_items[<?php echo $index; ?>][type]" id="nine_tiles_<?php echo $index; ?>_type"
                     class="nine-tiles-type" style="width: 100%;">
-              <option value="image" <?php selected($item['type'], 'image'); ?>><?php _e('Image', 'linnikov-agency'); ?></option>
-              <option value="video" <?php selected($item['type'], 'video'); ?>><?php _e('Video', 'linnikov-agency'); ?></option>
+              <option
+                  value="image" <?php selected($item['type'], 'image'); ?>><?php _e('Image', 'linnikov-agency'); ?></option>
+              <option
+                  value="video" <?php selected($item['type'], 'video'); ?>><?php _e('Video', 'linnikov-agency'); ?></option>
             </select>
           </div>
-          <div class="nine-tiles-image-fields" style="width: 30%; <?php if ($item['type'] == 'video') echo 'display:none;'; ?>">
+          <div class="nine-tiles-image-fields"
+               style="width: 30%; <?php if ($item['type'] == 'video') echo 'display:none;'; ?>">
             <label for="nine_tiles_<?php echo $index; ?>_webp" style="display:block; margin-bottom: 5px;">
               <?php _e('WebP', 'linnikov-agency'); ?>
               <img src="<?php echo esc_attr($item['webp']); ?>" alt="WebP Preview"
@@ -857,7 +1065,8 @@ function linnikov_agency_nine_tiles_meta_box_callback($post)
                    value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
           </div>
 
-          <div class="nine-tiles-video-field" style="width: 65%; <?php if ($item['type'] == 'image') echo 'display:none;'; ?>">
+          <div class="nine-tiles-video-field"
+               style="width: 65%; <?php if ($item['type'] == 'image') echo 'display:none;'; ?>">
             <label for="nine_tiles_<?php echo $index; ?>_video" style="display:block; margin-bottom: 5px;">
               <?php _e('Video URL', 'linnikov-agency'); ?>
             </label>
@@ -960,6 +1169,13 @@ function linnikov_agency_save_nine_tiles_meta_box($post_id)
     update_post_meta($post_id, '_linnikov_agency_nine_tiles_items', $items);
   } else {
     delete_post_meta($post_id, '_linnikov_agency_nine_tiles_items');
+  }
+
+  // Сохранение состояния чекбокса для отключения контейнера
+  if (isset($_POST['disable_nine_tiles'])) {
+    update_post_meta($post_id, '_disable_nine_tiles', 'on');
+  } else {
+    update_post_meta($post_id, '_disable_nine_tiles', 'off');
   }
 }
 
@@ -1076,7 +1292,6 @@ function linnikov_agency_save_more_works_meta_box($post_id)
 }
 
 add_action('save_post', 'linnikov_agency_save_more_works_meta_box');
-
 
 // 8. Блок: work-details
 // Добавление метабокса для Project Info
@@ -1380,17 +1595,17 @@ function linnikov_agency_project_info_meta_box_callback($post)
           }
 
           // Обработка клика на кнопку "Add New Award"
-          $('#add-award').on('click', function() {
+          $('#add-award').on('click', function () {
               addAward();
           });
 
           // Обработка клика на кнопку "Remove" для удаления карточки
-          $(document).on('click', '.remove-award', function() {
+          $(document).on('click', '.remove-award', function () {
               $(this).closest('.award-item').remove();
           });
 
           // Обработка загрузки изображения через медиабиблиотеку
-          $(document).on('click', '.upload-award-image', function(e) {
+          $(document).on('click', '.upload-award-image', function (e) {
               e.preventDefault();
 
               let button = $(this);
@@ -1400,7 +1615,7 @@ function linnikov_agency_project_info_meta_box_callback($post)
                       text: wp.i18n.__('Use this image', 'linnikov-agency')
                   },
                   multiple: false
-              }).on('select', function() {
+              }).on('select', function () {
                   let attachment = custom_uploader.state().get('selection').first().toJSON();
 
                   // Получаем относительный путь
