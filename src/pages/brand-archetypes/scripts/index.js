@@ -1,10 +1,66 @@
 import KeenSlider from 'keen-slider';
 import { AnimatedIcon } from '../../../shared/components/animatedIcon.js';
 import debounce from 'lodash.debounce';
+import { delay } from '../../../shared/scripts/utils.js';
 
 const { observable, action, computed, autorun } = mobx;
 
 document.addEventListener("DOMContentLoaded", init);
+
+
+
+class ArticleInteractive {
+	@observable accessor checked = false;
+	@observable accessor selected = null;
+	constructor(root) {
+		this.dom = {
+			root,
+			btnArea: root.querySelector(".la-article-interactive__btn-area"),
+			btn: root.querySelector(".la-article-interactive__btn"),
+			answers: root.querySelector(".la-article-interactive__answers"),
+		};
+		this.dom.root.addEventListener("click", (e) => {
+				if (this.checked) return;
+				e.target.matches(".la-article-interactive-answer, .la-article-interactive-answer *") && this.handleOptionClick(e);
+			});
+			// la-article-interactive_checked
+		this.dom.btn.addEventListener("click", (e) => !this.checked && this.setChecked(true));
+		autorun(() => {
+			this.dom.root.classList.toggle("la-article-interactive_selected", this.selected);
+			this.dom.btnArea.classList.toggle("open", this.selected);
+		});
+		autorun(() => {
+			this.dom.root.classList.toggle("la-article-interactive_checked", this.checked);
+			
+			if (this.checked) {
+				this.dom.answers.setAttribute("disabled", true);
+				this.showSelectedDescription();
+				this.dom.btn.setAttribute("disabled", true);
+			} else {
+				this.dom.answers.removeAttribute("disabled");
+				this.dom.btn.removeAttribute("disabled");
+			}
+		});
+	}
+	@action
+	setSelected(next) {
+		this.selected = next;
+	}
+	@action
+	setChecked(next) {
+		this.checked = next;
+	}
+	handleOptionClick(event) {
+		var target = event.target.closest(".la-article-interactive-answer");
+		if (target === this.selected) return;
+		this.selected?.classList.remove("la-article-interactive-answer_selected");
+		target.classList.add("la-article-interactive-answer_selected");
+		this.setSelected(target);
+	}
+	showSelectedDescription() {
+		this.selected.querySelector(".la-article-interactive-answer__description").classList.add("open");
+	}
+}
 class IdeasAnimation {
 	constructor(root) {
 		this.dom = {
@@ -33,7 +89,6 @@ class IdeasAnimation {
 				trigger: this.dom.root,
 				start: "top top",
 				end: "bottom bottom",
-				markers: true,
 				onUpdate: (self) => {
 					if (self.progress === 0) {
 						gsap.to(".la-archetypes-ideas__slider", {
@@ -56,9 +111,65 @@ class IdeasAnimation {
 					}
 				}
 			});
-			function calcThumbShift(activeSlide) {
-				return (this.width - this.thumbWidth) / 2 * activeSlide;
-			}
+		});
+	}, 25);
+}
+class ChatMsg {
+	constructor(root) {
+		this.dom = { root };
+	}
+	show() {
+		this.dom.root.classList.add("open");
+	}
+}
+class MainChatMsg extends ChatMsg {
+	constructor(root) {
+		super(root);
+		this.dom.adds = Array.from(this.dom.root.querySelectorAll(".la-chat-reproduction-msg__add"));
+		this.adds = this.dom.adds.map(elem => new ChatMsg(elem));
+	}
+	async show() {
+		super.show();
+		for (var i = 0; i < this.adds.length; i++) {
+			delay(200);
+			this.adds[i].show();
+		}
+	}
+}
+class ChatReproduction {
+	constructor(root) {
+		this.dom = {
+			root,
+			msgs: Array.from(root.querySelectorAll(".la-chat-reproduction-msg")),
+		};
+		this.msgs = this.dom.msgs.map(elem => new MainChatMsg(elem));
+		// const mainMsgs = this.dom.msgs.map(elem => new MainChatMsg(elem));
+		// this.msgs = [];
+		// mainMsgs.forEach(msg => {
+		// 	this.msgs.push(msg);
+		// 	this.msgs = this.msgs.concat(msg.dom.adds.map(elem => new ChatMsg(elem)));
+		// });
+		window.app.windowResizeObserver.on("resize", () => this.onResize());
+		this.rebuild();
+	}
+	onResize() {
+		this.rebuild();
+	}
+	rebuild = debounce(() => {
+		this.ctx?.revert();
+		this.ctx = gsap.context(() => {
+			ScrollTrigger.create({
+				trigger: this.dom.root,
+				start: "top bottom",
+				end: "bottom bottom",
+				onUpdate: (self) => {
+					const depth = Math.floor(this.msgs.length * self.progress) - 1;
+					if (depth < 0) return;
+					for(var i = 0; i <= depth; i++) {
+						this.msgs[i].show();
+					}
+				}
+			});
 		});
 	}, 25);
 }
@@ -109,6 +220,12 @@ class IdeaFrame {
 	}
 }
 function init() {
+	window.app.drawers.get("brand-archetypes")?.setOptions({ modal: true });
+
+	document.querySelectorAll(`[data-component="chat-reproduction"`)
+		.forEach(elem => new ChatReproduction(elem));
+	document.querySelectorAll(`[data-component="article-interactive"`)
+		.forEach(elem => new ArticleInteractive(elem));
 	initMainSlider();
 	let docAnimationActivated = false;
 	initIdeasAnimation();
@@ -122,6 +239,8 @@ function init() {
 		}
 	}, { threshold: 0 });
 	observer.observe(docAnimationElem);
+	new AnimatedIcon(document.querySelector("#iceberg-animation"));
+	new AnimatedIcon(document.querySelector("#iceberg-animation_small"));
 }
 function initIdeasAnimation() {
 	// const root = document.querySelector("#ideas-slider");
@@ -133,8 +252,6 @@ function initIdeasAnimation() {
 	// );
 	document.querySelectorAll(".la-archetypes-ideas .la-idea-frame")
 		.forEach(slide => new IdeaFrame(slide));
-
-	gsap.createCo
 }
 function initMainSlider() {
 	const slider = new KeenSlider(
@@ -142,6 +259,9 @@ function initMainSlider() {
 		{
 			loop: true,
 			renderMode: "custom",
+			slides: {
+				perView: 5,
+			},
 		},
 		[radialSlider]
 	);
@@ -179,7 +299,7 @@ const radialSlider = (slider) => {
 		slider.slides.forEach((element, idx) => {
 			const { slides: slidesState } = slider.track.details;
 				//console.log(JSON.stringify(slider.track.details));
-			element.style.transform = `rotateZ(${slidesState[idx].distance * 7.5}deg)`;
+			element.style.transform = `rotateZ(${slidesState[idx].distance * 35.5}deg)`;
 		});
   }
   slider.on("created", () => {
@@ -190,4 +310,4 @@ const radialSlider = (slider) => {
     updateStyles();
   })
   slider.on("detailsChanged", updateStyles)
-}
+} 

@@ -23,7 +23,7 @@ export class AnimatedIcon {
 		this.setScale();
 		AdobeAn.compositionLoaded(this.lib.properties.id);
 
-		this.stage.setAutoPlay(true);
+		this.stage.setAutoPlay(false);
 
 		createjs.Ticker.framerate = this.lib.properties.fps;
 		createjs.Ticker.addEventListener("tick", this.handleTick);
