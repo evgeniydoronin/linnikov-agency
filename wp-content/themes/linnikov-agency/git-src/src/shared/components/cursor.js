@@ -30,7 +30,7 @@ export class Cursor {
 		if (this.lastTarget === target) return;
 		if (target === document.documentElement.querySelector("body")) return;
 		this.type = this.defineCursorType(target);
-		this.hidden = this.type === "none";
+		this.hidden = this.type === "none" || target.tagName === "IFRAME";
 		this.wide = this.isTargetActive(target);
 		this.lastTarget = target;
 	}

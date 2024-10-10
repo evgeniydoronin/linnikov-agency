@@ -71,25 +71,40 @@ main {
 		--decor-color: var(--inverted-container-border);
 	}
 	&__inner {
+		--sci-padding-top: 0;
+		--sci-padding-bottom: 0;
 		max-width: 1400px;
 		width: 100%;
 		margin: auto;
+		padding: var(--sci-padding-top, 0) 0 var(--sci-padding-bottom, 0);
 		&_bottom-space, &_space {
-			padding-bottom: 120px;
+			--sci-padding-bottom: 120px;
 			@media (max-width: $mbpT) {
-				padding-bottom: 80px;
+				--sci-padding-bottom: 80px;
 			}
 			@media (max-width: $mbpM) {
-				padding-bottom: 60px;
+				--sci-padding-bottom: 60px;
 			}
 		}
 		&_space {
-			padding-top: 120px;
+			--sci-padding-top: 120px;
 			@media (max-width: $mbpT) {
-				padding-top: 80px;
+				--sci-padding-top: 80px;
 			}
 			@media (max-width: $mbpM) {
-				padding-top: 60px;
+				--sci-padding-top: 60px;
+			}
+		}
+		&_small-space {
+			--sci-padding-top: 50px;
+			--sci-padding-bottom: 50px;
+			@media (max-width: $mbpT) {
+				--sci-padding-top: 40px;
+				--sci-padding-bottom: 40px;
+			}
+			@media (max-width: $mbpM) {
+				--sci-padding-top: 30px;
+				--sci-padding-bottom: 30px;
 			}
 		}
 	}

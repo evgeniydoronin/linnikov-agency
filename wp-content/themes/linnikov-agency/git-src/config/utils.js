@@ -56,5 +56,6 @@ export const getPagesMeta = () => {
 		{ alias: "feedback", hasStyles: true, hasCommonChunk: true },
 		{ alias: "privacy-policy", hasStyles: true, hasCommonChunk: true },
 		{ alias: "version-select", hasStyles: true, hasCommonChunk: true },
+		{ alias: "minpack-exclusive-complimentary", hasStyles: true, hasCommonChunk: true },
 	]
 }
