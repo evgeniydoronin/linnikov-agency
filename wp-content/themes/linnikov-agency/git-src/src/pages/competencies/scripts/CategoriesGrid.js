@@ -97,6 +97,7 @@ export default class CategoriesGrid {
 			return card;
 		});
 		this.initResizeObserver();
+		this.onResize();
 
 		document.addEventListener("click", ({ target }) => {
 			if (target.matches(".category-card, .category-card *")) return;

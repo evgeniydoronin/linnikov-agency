@@ -23,6 +23,7 @@
 		@media (max-width: 1200px) {
 			--height-ratio: 66.24%;
 			margin-bottom: 40px;
+			pointer-events: none;
 		}
 	}
 	&__decor {
@@ -46,6 +47,7 @@
 	&__title {
 		margin-bottom: 10px;
 	}
-	&__cta-msg {
+	.is-mobile &__msg {
+		display: none;
 	}
 }

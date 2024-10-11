@@ -10,12 +10,23 @@
 			<section class="hero">
 				<a href="@img/single-work/iguana/01@2520.jpg"
 					data-srcset="@img/single-work/iguana/01@2520.webp"
-					data-fancybox="work-media"
-					class="hero__bg-img">
-					<picture>
+					data-fancybox="work-media">
+					{{!-- <picture>
 						<source type="image/webp" srcset="@img/single-work/iguana/01@2520.webp">
-						<img src="@img/single-work/iguana/01@2520.jpg" alt="Iguana energy drink">
-					</picture>
+						<img class="hero__bg-img" src="@img/single-work/iguana/01@2520.jpg" alt="Iguana energy drink">
+					</picture> --}}
+					<div data-component="object-fit" class="hero__bg-img">
+						<iframe
+							src="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1"
+							frameborder="0"
+							allow="autoplay; fullscreen"
+							responsive="true"
+							allowfullscreen
+							data-elem="object-fit.target"
+							data-ratio="56.25"
+						>
+						</iframe>
+					</div>
 				</a>
 			</section>
 			<section id="single-line-scroll-slider" class="single-line-scroll-slider background">
@@ -75,73 +86,79 @@
 			<section class="work-pictures-tails background">
 				<div class="section-container section-container_decor work-pictures-tails__container"
 					id="work-pictures-tails-container">
-					<a href="@img/single-work/iguana/02@2560.jpg"
-						data-fancybox="work-media"
-						srcset="@img/single-work/iguana/02@2560.webp"
-						data-caption="Iguana energy drink"
-						class="img-wrap img-wrap_cover work-pictures-tails__item">
-						<div class="img-wrap__inner">
-							<picture>
-								<source type="image/webp" src="@img/single-work/iguana/02@2560.webp">
-								<img src="@img/single-work/iguana/02@2560.jpg" alt="Iguana energy drink">
-							</picture>
-						</div>
-					</a>
-					<a href="@img/single-work/iguana/05@1560.jpg"
-						data-fancybox="work-media"
-						srcset="@img/single-work/iguana/05@1560.webp"
-						data-caption="Iguana energy drink"
-						class="img-wrap img-wrap_cover work-pictures-tails__item">
-						<div class="img-wrap__inner">
-							<picture>
-								<source type="image/webp" src="@img/single-work/iguana/05@1560.webp">
-								<img src="@img/single-work/iguana/05@1560.jpg" alt="Iguana energy drink">
-							</picture>
-						</div>
-					</a>
-					<a href="@img/single-work/iguana/06@1560.jpg"
-						data-fancybox="work-media"
-						srcset="@img/single-work/iguana/06@1560.webp"
-						data-caption="Iguana energy drink"
-						class="img-wrap img-wrap_cover work-pictures-tails__item">
-						<div class="img-wrap__inner">
-							<picture>
-								<source type="image/webp" src="@img/single-work/iguana/06@1560.webp">
-								<img src="@img/single-work/iguana/06@1560.jpg" alt="Iguana energy drink">
-							</picture>
-						</div>
-					</a>
-					<a href="https://player.vimeo.com/video/408991247?title=0&amp;byline=0&amp;portrait=0"
-						data-cursor="none"
-						data-fancybox="work-media"
-						data-caption="Iguana energy drink"
-						class="work-video work-pictures-tails__item work-pictures-tails__item_video" data-component="work-video">
-						<div class="img-wrap img-wrap_cover work-video__poster">
+					<div class="work-pictures-tails__section">
+						<a href="@img/single-work/iguana/02@2560.jpg"
+							data-fancybox="work-media"
+							srcset="@img/single-work/iguana/02@2560.webp"
+							data-caption="Iguana energy drink"
+							class="img-wrap img-wrap_cover work-pictures-tails__item">
 							<div class="img-wrap__inner">
 								<picture>
-									<source type="image/webp" src="@img/single-work/iguana/07@2370.webp">
-									<img src="@img/single-work/iguana/07@2370.jpg" alt="Iguana video poster">
+									<source type="image/webp" src="@img/single-work/iguana/02@2560.webp">
+									<img src="@img/single-work/iguana/02@2560.jpg" alt="Iguana energy drink">
 								</picture>
 							</div>
-						</div>
-						<div class="work-video__player-wrap">
-							<iframe
-								data-elem="work-video.video"
-								src="https://player.vimeo.com/video/408991247?title=0&amp;byline=0&amp;portrait=0&background=1&autoplay=0"
-								frameborder="0"
-								allow="autoplay; fullscreen"
-								allowfullscreen
-								class=" work-video__player">
-							</iframe>
-						</div>
-						<button data-elem="work-video.playback-btn" class="work-video-play-btn work-video__btn work-video__btn_playback">
-							<div class="work-video-play-btn__title">Video play / pause</div>
-							<div class="work-video-play-btn__inner">
-								<span class="icon-play work-video-play-btn__icon work-video-play-btn__icon_play"></span>
-								<span class="icon-pause work-video-play-btn__icon work-video-play-btn__icon_pause"></span>
+						</a>
+					</div>
+					<div class="work-pictures-tails__section work-pictures-tails__section_double">
+						<a href="@img/single-work/iguana/05@1560.jpg"
+							data-fancybox="work-media"
+							srcset="@img/single-work/iguana/05@1560.webp"
+							data-caption="Iguana energy drink"
+							class="img-wrap img-wrap_cover work-pictures-tails__item">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" src="@img/single-work/iguana/05@1560.webp">
+									<img src="@img/single-work/iguana/05@1560.jpg" alt="Iguana energy drink">
+								</picture>
 							</div>
-						</button>
-					</a>
+						</a>
+						<a href="@img/single-work/iguana/06@1560.jpg"
+							data-fancybox="work-media"
+							srcset="@img/single-work/iguana/06@1560.webp"
+							data-caption="Iguana energy drink"
+							class="img-wrap img-wrap_cover work-pictures-tails__item">
+							<div class="img-wrap__inner">
+								<picture>
+									<source type="image/webp" src="@img/single-work/iguana/06@1560.webp">
+									<img src="@img/single-work/iguana/06@1560.jpg" alt="Iguana energy drink">
+								</picture>
+							</div>
+						</a>
+					</div>
+					<div class="work-pictures-tails__section">
+						<a href="https://player.vimeo.com/video/408991247?title=0&amp;byline=0&amp;portrait=0"
+							data-cursor="none"
+							data-fancybox="work-media"
+							data-caption="Iguana energy drink"
+							class="work-video work-pictures-tails__item work-pictures-tails__item_video" data-component="work-video">
+							<div class="img-wrap img-wrap_cover work-video__poster">
+								<div class="img-wrap__inner">
+									<picture>
+										<source type="image/webp" src="@img/single-work/iguana/07@2370.webp">
+										<img src="@img/single-work/iguana/07@2370.jpg" alt="Iguana video poster">
+									</picture>
+								</div>
+							</div>
+							<div class="work-video__player-wrap">
+								<iframe
+									data-elem="work-video.video"
+									src="https://player.vimeo.com/video/408991247?title=0&amp;byline=0&amp;portrait=0&background=1&autoplay=0"
+									frameborder="0"
+									allow="autoplay; fullscreen"
+									allowfullscreen
+									class=" work-video__player">
+								</iframe>
+							</div>
+							<button data-elem="work-video.playback-btn" class="work-video-play-btn work-video__btn work-video__btn_playback">
+								<div class="work-video-play-btn__title">Video play / pause</div>
+								<div class="work-video-play-btn__inner">
+									<span class="icon-play work-video-play-btn__icon work-video-play-btn__icon_play"></span>
+									<span class="icon-pause work-video-play-btn__icon work-video-play-btn__icon_pause"></span>
+								</div>
+							</button>
+						</a>
+					</div>
 				</div>
 			</section>
 			<section id="two-lines-scroll-slider" class="two-lines-scroll-slider single-work__two-lines-slider">

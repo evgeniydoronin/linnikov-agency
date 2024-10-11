@@ -15,7 +15,6 @@
 		@include aval(font-size, 46, 160, "both", 360, 1680);
 	}
 	&__bg-img {
-		display: inline-block;
 		width: 100%;
 		height: 100vh;
 		@media (max-width: $mbpM) {
@@ -338,18 +337,11 @@
 	will-change: bottom;
 	&__container {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
 		gap: 20px;
 		position: relative;
 		left: 0;
 		top: 0;
 		padding-bottom: 20px;
-		@media (max-width: $mbpPC) {
-			//padding: 200px 0;
-		}
-		@media (max-width: $mbpT) {
-			//padding: 150px 0;
-		}
 		@media (max-width: $mbpM) {
 			grid-template-columns: 1fr;
 		}
@@ -357,17 +349,22 @@
 			padding-bottom: 10px;
 			gap: 10px;
 		}
-		& > *:nth-child(3n + 1) {
-			grid-column: auto/ span 2;
+	}
+	&__section {
+		display: grid;
+		gap: 20px;
+		@media (max-width: $mbpMM) {
+			gap: 10px;
+		}
+		&_double {
+			grid-template-columns: repeat(2, 1fr);
 			@media (max-width: $mbpM) {
-				grid-column: auto/ span 1;
+				grid-template-columns: 1fr;
 			}
-		}
-		& > *:nth-child(3n + 2) {
-			grid-column: auto/ span 1;
-		}
-		& > *:nth-child(3n + 3) {
-			grid-column: auto/ span 1;
+			// grid-column: auto/ span 2;
+			// @media (max-width: $mbpM) {
+			// 	grid-column: auto/ span 1;
+			// }
 		}
 	}
 	&__item {

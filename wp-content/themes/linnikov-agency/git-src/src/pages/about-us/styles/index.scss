@@ -273,32 +273,6 @@
 		@include aval(margin-bottom, 44, 100, "both", 360, 768);
 	}
 }
-.our-offer-msg {
-	--color: var(--light-black);
-	&__star-wrap {
-		position: relative;
-		top: 0.09em;
-		left: 0;
-		svg {
-			height: 0.9em;
-			width: 0.68em;
-		}
-	}
-	&__lightning-wrap {
-		svg {
-			height: 0.7em;
-			width: 0.5em;
-		}
-	}
-	&__infinity-wrap {
-		svg {
-			vertical-align: top;
-			height: 0.7em;
-			width: 0.9em;
-			stroke-dasharray: 342.16 342.16;
-		}
-	}
-}
 .about-us-motto {
 	color: var(--light-black);
 	&__inner {
