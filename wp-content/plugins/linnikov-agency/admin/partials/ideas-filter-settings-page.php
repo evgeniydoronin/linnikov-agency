@@ -9,7 +9,7 @@ $args = array(
     'taxonomy' => 'idea_tag',
     'orderby' => 'meta_value_num',
     'meta_key' => 'ideas_tag_order',
-    'order' => 'ASC',
+    'order' => 'ASC',Merge upstream changes from techno-trump repository into git-src
     'hide_empty' => true,
 );
 $tags = get_terms($args);

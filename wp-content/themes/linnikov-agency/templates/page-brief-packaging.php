@@ -33,6 +33,7 @@ get_header();
                 </div>
               </div>
             </div>
+
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
               <div class="app-form-block__cap">What will we work with?</div>
@@ -56,20 +57,20 @@ get_header();
                       <div class="text-checkbox__body">Logo and Brand Identity</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Packaging" aria-hidden="true">
-                      <div class="text-checkbox__body">Packaging</div>
+                      <input type="checkbox" name="category[]" value="Packaging Design" aria-hidden="true">
+                      <div class="text-checkbox__body">Packaging Design</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Website" aria-hidden="true">
-                      <div class="text-checkbox__body">Website</div>
+                      <input type="checkbox" name="category[]" value="Resizing" aria-hidden="true">
+                      <div class="text-checkbox__body">Resizing</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Style Guide" aria-hidden="true">
-                      <div class="text-checkbox__body">Style Guide</div>
+                      <input type="checkbox" name="category[]" value="3D Visualization" aria-hidden="true">
+                      <div class="text-checkbox__body">3D Visualization</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Other" aria-hidden="true">
-                      <div class="text-checkbox__body">Other</div>
+                      <input type="checkbox" name="category[]" value="Print-Ready Preparation" aria-hidden="true">
+                      <div class="text-checkbox__body">Print-Ready Preparation</div>
                     </label>
                   </fieldset>
                 </div>
@@ -84,6 +85,7 @@ get_header();
                 </div>
               </div>
             </div>
+
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
               <div class="app-form-block__cap">How did you get to know about us?</div>
@@ -514,7 +516,7 @@ get_header();
                   <div class="attachments" data-component="file-input">
                     <label class="attachments__body">
                       <input name="attachments" multiple="true" type="file">
-                      <span class="icon-attachment attachments__icon"></span>
+                      <span class="icon-cubic-upload attachments__icon"></span>
                       <div class="attachments__cap">Upload files for us</div>
                     </label>
                     <ul class="attachments__list" data-elem="file-input.list"></ul>

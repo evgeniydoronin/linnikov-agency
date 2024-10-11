@@ -124,7 +124,7 @@ function submit_brief_form()
       17 => "How many SKUs are there in the product line?",
       18 => "Are there any limitations that must be considered in packaging design, such as an existing brand manual, results from marketing research, the product name, logo, diecuts, or any other technical specifications?",
     ];
-  } elseif ($brief_type === 'design') {
+  } elseif ($brief_type === 'website') {
     $questions_count = 14;
 
     $questions_text = [
@@ -143,7 +143,7 @@ function submit_brief_form()
       13 => "Will the website need to support multiple languages? If yes, please list all the languages required.",
       14 => "Are there any limitations that must be considered, such as existing branding, content, CMS, or technical specifications?",
     ];
-  } elseif ($brief_type === 'website') {
+  } elseif ($brief_type === 'design') {
     $questions_count = 11; // Для "Design" 10 вопросов
 
     $questions_text = [

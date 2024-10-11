@@ -243,15 +243,7 @@
       <div class="section-container section-container_decor cs-conclusion__container">
         <div class="cs-conclusion__inner">
           <div class="cs-msg-06" data-elem="cs-conclusion.msg-01">
-            Most advertising targets rational
-            thinking: the
-            <div class="msg-focus-group">other
-              <div class="msg-focus">20%</div>
-            </div>
-            . But appealing
-            to our highly cognitive brain does not
-            influence the biases that trigger real
-            changes in consumer behavior.
+            Most advertising targets rational thinking: the<div class="msg-focus-group"> other <div class="msg-focus">20%</div></div>. But appealing to our highly cognitive brain does not influence the biases that trigger real changes in consumer behavior.
           </div>
           <div class="pie-diagram cs-conclusion__diagram">
             <svg class="pie-diagram__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
@@ -286,9 +278,7 @@
               </div>
             </div>
           </div>
-          <div class="tg-h2 cs-msg-07" data-elem="cs-conclusion.msg-02">To create unique experiences and evoke trustful
-            emotions, we use the following tools:
-          </div>
+          <div class="tg-h2 cs-msg-07" data-elem="cs-conclusion.msg-02">To create unique experiences and evoke trustful emotions, we use the following tools:</div>
         </div>
       </div>
     </section>
@@ -368,8 +358,7 @@
     <div class="faq-section">
       <div class="section-container section-container_decor" data-track-intersection>
         <div class="section-container__inner faq-section__hero">
-          <h2 class="tg-h2 faq__title" data-component="in-view-text-reveal">We possess the ability to address the five
-            fundamental questions that guide any transformative process.</h2>
+          <h2 class="tg-h2 faq__title" data-component="in-view-text-reveal">We possess the ability to address the five fundamental questions that guide any transformative process.</h2>
         </div>
       </div>
       <div id="faq-items" class="tg-h2 faq-stack">

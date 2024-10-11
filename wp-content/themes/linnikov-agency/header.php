@@ -42,7 +42,9 @@ if (is_front_page()) {
 } elseif (is_page_template('templates/page-competencies.php')) {
   echo 'competencies';
 } elseif (is_page_template('templates/page-brief-branding.php') ||
-          is_page_template('templates/page-brief-packaging.php')
+          is_page_template('templates/page-brief-packaging.php') ||
+          is_page_template('templates/page-brief-design.php') ||
+          is_page_template('templates/page-brief-website.php')
 ) {
   echo 'brief-page';
 } elseif (is_post_type_archive('work')) {

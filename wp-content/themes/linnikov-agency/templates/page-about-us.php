@@ -100,68 +100,71 @@ get_header();
     <section id="testimonials" class="testimonials about-us__testimonials">
       <div class="section-container section-container_decor testimonials__container">
         <div class="testimonials__wrap">
-          <?php
-          // Получаем данные testimonials из метаполя
-          $testimonials = get_post_meta(get_the_ID(), '_linnikov_agency_testimonials', true);
-          ?>
           <div class="testimonials__inner">
             <div class="testimonials__decor">“</div>
             <?php
-            function format_company_name($company)
-            {
-              // Преобразуем строку в нижний регистр и заменяем пробелы на дефисы
-              return strtolower(str_replace(' ', '-', sanitize_title($company)));
-            }
+            // Получаем мета-данные отзывов
+            $testimonials = get_post_meta(get_the_ID(), '_linnikov_agency_testimonials', true);
 
-            if (is_array($testimonials) && !empty($testimonials)) {
-              // Keen-slider container
+            if ($testimonials && is_array($testimonials)) :
+              // Вывод слайдера с кнопками
               echo '<div class="keen-slider testimonials__header">';
+              foreach ($testimonials as $index => $testimonial) {
+                // Получаем значение для data-name
+                $company = !empty($testimonial['company']) ? $testimonial['company'] : $testimonial['client'];
+                $data_name = strtolower(str_replace(' ', '-', $company));
 
-              foreach ($testimonials as $testimonial) {
-                $company_name_formatted = format_company_name($testimonial['company']);
-
-                // Выводим каждый слайд в keen-slider
+                // Отображаем слайд с кнопкой
                 echo '<div class="keen-slider__slide">';
-                echo '<button type="button" class="testimonials-btn testimonials__client" data-name="' . esc_attr($company_name_formatted) . '" data-default-selected="true">';
-                echo '<div class="testimonials-btn__cap">Select by ' . esc_html($testimonial['company']) . '</div>';
-                echo '<img src="' . esc_url($testimonial['image']) . '" class="testimonials-btn__logo" alt="' . esc_attr($testimonial['company']) . '">';
+                echo '<button type="button" class="testimonials-btn testimonials__client" data-name="' . esc_attr($data_name) . '"';
+
+                // Указываем атрибут data-default-selected для первого элемента
+                if ($index === 0) {
+                  echo ' data-default-selected="true"';
+                }
+
+                echo '>';
+                echo '<div class="testimonials-btn__cap">Select by ' . esc_html($data_name) . '</div>';
+                echo '<img src="' . esc_url($testimonial['image']) . '" class="testimonials-btn__logo" alt="' . esc_attr($testimonial['client']) . '">';
                 echo '</button>';
                 echo '</div>';
               }
+              echo '</div>'; // Закрываем .keen-slider
 
-              echo '</div>'; // Закрываем keen-slider
-
-              // Testimonials body container
+              // Вывод карточек отзывов
               echo '<div class="testimonials__body">';
-
               foreach ($testimonials as $testimonial) {
-                $company_name_formatted = format_company_name($testimonial['company']);
+                // Получаем значение для data-name
+                $company = !empty($testimonial['company']) ? $testimonial['company'] : $testimonial['client'];
+                $data_name = strtolower(str_replace(' ', '-', $company));
 
-                // Выводим каждую testimonial-card
-                echo '<div class="testimonials-card" data-name="' . esc_attr($company_name_formatted) . '">';
+                // Отображаем карточку с отзывом
+                echo '<div class="testimonials-card" data-name="' . esc_attr($data_name) . '">';
                 echo '<div class="testimonials-card__inner">';
                 echo '<div class="testimonials-card__info tg-service uppercase">';
                 echo '<div class="testimonials-card__name">' . esc_html($testimonial['client']) . '</div>';
                 echo '<div class="testimonials-card__title">' . esc_html($testimonial['job']) . '</div>';
-                echo '</div>';
+                echo '</div>'; // Закрываем .testimonials-card__info
 
                 echo '<div class="testimonials-card__quote">';
                 echo '<div class="tg-h3 testimonials-quote">';
                 echo '<span class="testimonials-quote-sign testimonials-quote-sign_open">“</span>';
-                echo '<span data-to-split>';
-                echo esc_html($testimonial['part1']) . ' <span class="white-space-nowrap">' . esc_html($testimonial['part2']);
-                echo '<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span></span>';
+                echo '<span data-to-split>' . esc_html($testimonial['part1']);
+
+                // Если есть вторая часть цитаты, выводим её
+                if (!empty($testimonial['part2'])) {
+                  echo '<span class="white-space-nowrap">' . esc_html($testimonial['part2']) . '</span>';
+                }
+
+                echo '<span class="testimonials-quote-sign testimonials-quote-sign_close">”</span>';
                 echo '</span>';
-                echo '</div>';
-                echo '</div>'; // Закрываем testimonials-card__quote
-
-                echo '</div>'; // Закрываем testimonials-card__inner
-                echo '</div>'; // Закрываем testimonials-card
+                echo '</div>'; // Закрываем .tg-h3 .testimonials-quote
+                echo '</div>'; // Закрываем .testimonials-card__quote
+                echo '</div>'; // Закрываем .testimonials-card__inner
+                echo '</div>'; // Закрываем .testimonials-card
               }
-
-              echo '</div>'; // Закрываем testimonials__body
-            }
-
+              echo '</div>'; // Закрываем .testimonials__body
+            endif;
             ?>
           </div>
           <div class="testimonials-pagination testimonials__pagination"></div>

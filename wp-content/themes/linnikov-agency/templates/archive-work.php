@@ -1,6 +1,4 @@
-<?php
-get_header();
-?>
+<?php get_header(); ?>
 
   <main>
     <section class="hero">
@@ -106,33 +104,33 @@ get_header();
             </a>
           </div>
         </nav>
-        <?php
-        // Получение настроенного порядка из опции
-        $work_order = get_option('linnikov_agency_work_order', '');
-
-        if (!empty($work_order)) {
-          $work_order = explode(',', $work_order); // Преобразуем строку в массив
-        } else {
-          $work_order = array(); // Используем пустой массив по умолчанию
-        }
-
-        $args = array(
-          'post_type' => 'work',
-          'posts_per_page' => -1, // Вывод всех работ
-          'orderby' => 'post__in', // Используем порядок, заданный в 'post__in'
-          'post__in' => $work_order, // Устанавливаем порядок работ
-        );
-
-        // Если порядок пустой, убираем параметр 'post__in'
-        if (empty($work_order)) {
-          unset($args['post__in']);
-          $args['orderby'] = 'menu_order'; // Устанавливаем порядок по menu_order
-        }
-
-        $query = new WP_Query($args);
-        ?>
-
         <div class="top-cases__body" data-top-cases-elem="body">
+          <?php
+          // Получение настроенного порядка из опции
+          $work_order = get_option('linnikov_agency_work_order', '');
+
+          if (!empty($work_order)) {
+            $work_order = explode(',', $work_order); // Преобразуем строку в массив
+          } else {
+            $work_order = array(); // Используем пустой массив по умолчанию
+          }
+
+          $args = array(
+            'post_type' => 'work',
+            'posts_per_page' => -1, // Вывод всех работ
+            'orderby' => 'post__in', // Используем порядок, заданный в 'post__in'
+            'post__in' => $work_order, // Устанавливаем порядок работ
+            'post_status' => 'publish', // Выводим только опубликованные работы
+          );
+
+          // Если порядок пустой, убираем параметр 'post__in'
+          if (empty($work_order)) {
+            unset($args['post__in']);
+            $args['orderby'] = 'menu_order'; // Устанавливаем порядок по menu_order
+          }
+
+          $query = new WP_Query($args);
+          ?>
           <?php
           if ($query->have_posts()) :
             while ($query->have_posts()) : $query->the_post();

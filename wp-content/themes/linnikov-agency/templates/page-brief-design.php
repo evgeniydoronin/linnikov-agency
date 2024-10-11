@@ -33,6 +33,7 @@ get_header();
                 </div>
               </div>
             </div>
+
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
               <div class="app-form-block__cap">What will we work with?</div>
@@ -44,28 +45,32 @@ get_header();
                       <div class="text-checkbox__body">Brand Positioning</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Strategy" aria-hidden="true">
-                      <div class="text-checkbox__body">Strategy</div>
+                      <input type="checkbox" name="category[]" value="Design Concept" aria-hidden="true">
+                      <div class="text-checkbox__body">Design Concept</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Naming" aria-hidden="true">
-                      <div class="text-checkbox__body">Naming</div>
+                      <input type="checkbox" name="category[]" value="Visual Identity Design" aria-hidden="true">
+                      <div class="text-checkbox__body">Visual Identity Design</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Logo and Brand Identity" aria-hidden="true">
-                      <div class="text-checkbox__body">Logo and Brand Identity</div>
+                      <input type="checkbox" name="category[]" value="Design Layout" aria-hidden="true">
+                      <div class="text-checkbox__body">Design Layout</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Packaging" aria-hidden="true">
-                      <div class="text-checkbox__body">Packaging</div>
+                      <input type="checkbox" name="category[]" value="Presentation Design" aria-hidden="true">
+                      <div class="text-checkbox__body">Presentation Design</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Website" aria-hidden="true">
-                      <div class="text-checkbox__body">Website</div>
+                      <input type="checkbox" name="category[]" value="Advertising Design" aria-hidden="true">
+                      <div class="text-checkbox__body">Advertising Design</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
-                      <input type="checkbox" name="category[]" value="Style Guide" aria-hidden="true">
-                      <div class="text-checkbox__body">Style Guide</div>
+                      <input type="checkbox" name="category[]" value="Trade Show Design" aria-hidden="true">
+                      <div class="text-checkbox__body">Trade Show Design</div>
+                    </label>
+                    <label class="text-checkbox" aria-role="button">
+                      <input type="checkbox" name="category[]" value="Prepress" aria-hidden="true">
+                      <div class="text-checkbox__body">Prepress</div>
                     </label>
                     <label class="text-checkbox" aria-role="button">
                       <input type="checkbox" name="category[]" value="Other" aria-hidden="true">
@@ -84,6 +89,7 @@ get_header();
                 </div>
               </div>
             </div>
+
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
               <div class="app-form-block__cap">How did you get to know about us?</div>
@@ -211,12 +217,14 @@ get_header();
                 // Устанавливаем первое значение из массива как начальное
                 $initial_value = !empty($slider_values) ? $slider_values[0] : 100;
                 ?>
-                <input name="budget" type="range" data-steps="5" data-labels="<?php echo esc_attr($slider_values_json); ?>" min="100" max="500" data-component="range-input">
+                <input name="budget" type="range" data-steps="5"
+                       data-labels="<?php echo esc_attr($slider_values_json); ?>" min="100" max="500"
+                       data-component="range-input">
                 <input type="hidden" name="custom_budget" value="">
 
                 <script>
                     // Ждем отправки формы
-                    document.querySelector('#brief-form').addEventListener('submit', function(event) {
+                    document.querySelector('#brief-form').addEventListener('submit', function (event) {
                         console.log('Форма отправляется');
 
                         // Находим input с именем "budget"
@@ -257,9 +265,11 @@ get_header();
               </div>
             </div>
 
+
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">What will we be working with? Is this a first-time launch or a redesign? What’s the name of the product or service? Do you already have a website? If so, please share the link with us.
+              <div class="tg-regular app-form-block__cap">What is the name of the product or service? Do you have a
+                website? If so, please share the link with us.
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -271,7 +281,9 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">What are you most proud of in your company?</div>
+              <div class="tg-regular app-form-block__cap">What are the company’s plans and objectives with this design
+                project? (We’re not looking for financial goals but rather the purpose or vision behind it.)
+              </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
                 <textarea name="question_2" class="text-input text-input_p-0" rows="1" data-autoheight="true"
@@ -282,7 +294,9 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">What are the company's plans and objectives for the new website? We’re not looking for financial goals, but rather the company's purpose or vision behind this project.</div>
+              <div class="tg-regular app-form-block__cap">Who is your target audience, and how should the design appeal
+                to them?
+              </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
                 <textarea name="question_3" class="text-input text-input_p-0" rows="1" data-autoheight="true"
@@ -293,7 +307,8 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">What is the nature and lifestyle of your target user? Please describe your target audiences in detail. How should the website appeal to them?
+              <div class="tg-regular app-form-block__cap">What are the specific goals you want to achieve with this
+                design?
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -305,7 +320,7 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">How do you convince customers that your product is better than competing alternatives, and how should the website support that message?
+              <div class="tg-regular app-form-block__cap">What specifically should we create for you?
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -317,7 +332,7 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">Who are your competitors, and what are their websites? What do you like or dislike about them?
+              <div class="tg-regular app-form-block__cap">What are the required size, format, or/and number of pages?
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -329,7 +344,8 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">What design style should the website reflect? (e.g., modern, trustworthy, innovative)? Please share any examples of design styles you like.
+              <div class="tg-regular app-form-block__cap">Will the design be printed, used digitally, or do you need
+                both versions?
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -341,7 +357,8 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">What functionality is critical for the website (e.g., e-commerce, booking system, blog)?
+              <div class="tg-regular app-form-block__cap">What content will you provide? (e.g., text, photos,
+                illustrations, source files of current visual communication)
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -353,7 +370,8 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">What is your timeline for launching the website?
+              <div class="tg-regular app-form-block__cap">What is the main idea or message the design should
+                communicate?
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -365,7 +383,8 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">Will content migration be necessary from your current website?
+              <div class="tg-regular app-form-block__cap">Do you have any preferences or wishes for the style of the
+                design?
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -377,7 +396,8 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">How many pages or sections will the website have approximately, and do you have an existing sitemap?
+              <div class="tg-regular app-form-block__cap">Are there any limitations we need to consider, such as an
+                existing brand manual, marketing research results, or specific logos and names?
               </div>
               <div class="app-form-block__body">
                 <div class="form-field form-field_width-limit">
@@ -389,43 +409,9 @@ get_header();
 
             <div class="animated-separator"></div>
             <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">Do you need integration with any external tools or platforms (e.g., CRM, email marketing, payment gateways)?
-              </div>
-              <div class="app-form-block__body">
-                <div class="form-field form-field_width-limit">
-                <textarea name="question_12" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="animated-separator"></div>
-            <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">Will the website need to support multiple languages? If yes, please list all the languages required.
-              </div>
-              <div class="app-form-block__body">
-                <div class="form-field form-field_width-limit">
-                <textarea name="question_13" class="text-input text-input_p-0" rows="1"
-                          data-autoheight="true" placeholder="Your short answer"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="animated-separator"></div>
-            <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">Are there any limitations that must be considered, such as existing branding, content, CMS, or technical specifications?
-              </div>
-              <div class="app-form-block__body">
-                <div class="form-field form-field_width-limit">
-                <textarea name="question_14" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div class="animated-separator"></div>
-            <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-              <div class="tg-regular app-form-block__cap">How do you envision the design style for your website (overall feel, fonts, colors, icons, patterns, photo style)? What character or personality should the website convey?
+              <div class="tg-regular app-form-block__cap">How do you envision the design style for your website (overall
+                feel, fonts, colors, icons, patterns, photo style)? What character or personality should the website
+                convey?
               </div>
               <div class="app-form-block__body">
                 <div id="identification-chars" class="identification-chars">
@@ -467,7 +453,7 @@ get_header();
                   <div class="attachments" data-component="file-input">
                     <label class="attachments__body">
                       <input name="attachments" multiple="true" type="file">
-                      <span class="icon-attachment attachments__icon"></span>
+                      <span class="icon-cubic-upload attachments__icon"></span>
                       <div class="attachments__cap">Upload files for us</div>
                     </label>
                     <ul class="attachments__list" data-elem="file-input.list"></ul>

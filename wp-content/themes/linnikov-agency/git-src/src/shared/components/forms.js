@@ -327,7 +327,7 @@ export class RequestForm extends Form {
 		//setTimeout(() => this.initRelatedLogic(), 0);
 	}
 	initLogic() {
-		this.dom.root.querySelector(`[name="category[]"][value="Other"]`).addEventListener("change", ({ target }) => {
+		this.dom.root.querySelector(`[name="category"][value="Other"]`).addEventListener("change", ({ target }) => {
 			this.categoryOtherDesc.setHidden(!target.checked);
 			this.categoryOtherDesc.setRequired(target.checked);
 			if (!target.checked) this.categoryOtherDesc.clear();

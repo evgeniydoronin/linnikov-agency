@@ -182,16 +182,16 @@ get_header();
                       <div class="tg-regular field-with-title__title">Select category</div>
                       <div class="tg-regular inline-select">
                         <fieldset class="inline-select__inner">
-                          <a href="<?php echo esc_url(site_url('/brief-branding#Branding')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-branding')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Branding</div>
                           </a>
-                          <a href="<?php echo esc_url(site_url('/brief-packaging#Packaging')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-packaging')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Packaging</div>
                           </a>
-                          <a href="<?php echo esc_url(site_url('/brief-website#Website')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-website')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Website</div>
                           </a>
-                          <a href="<?php echo esc_url(site_url('/brief-design#Design')); ?>" class="text-checkbox">
+                          <a href="<?php echo esc_url(site_url('/brief-design')); ?>" class="text-checkbox">
                             <div class="text-checkbox__body">Design</div>
                           </a>
                         </fieldset>
