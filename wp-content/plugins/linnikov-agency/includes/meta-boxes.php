@@ -1,7 +1,8 @@
 <?php
 
 // Добавление метабокса для сортировки контейнеров
-function linnikov_agency_work_add_sorting_meta_box() {
+function linnikov_agency_work_add_sorting_meta_box()
+{
   add_meta_box(
     'linnikov_agency_work_sorting_meta_box', // ID метабокса
     __('Sort Containers', 'linnikov-agency'), // Название метабокса
@@ -11,10 +12,12 @@ function linnikov_agency_work_add_sorting_meta_box() {
     'default' // Приоритет
   );
 }
+
 add_action('add_meta_boxes', 'linnikov_agency_work_add_sorting_meta_box');
 
 // Функция коллбэк для метабокса сортировки
-function linnikov_agency_work_sorting_meta_box_callback($post) {
+function linnikov_agency_work_sorting_meta_box_callback($post)
+{
   // Получаем сохраненный порядок контейнеров (если есть)
   $sorted_order = get_post_meta($post->ID, '_sorted_container_order', true);
   $containers = ['single-line-scroll-slider', 'work-pictures-tails', 'two-lines-scroll-slider', 'before-after-slider', 'nine-tiles'];
@@ -44,14 +47,15 @@ function linnikov_agency_work_sorting_meta_box_callback($post) {
       </li>
     <?php endforeach; ?>
   </ul>
-  <input type="hidden" name="sorted_container_order" id="sorted_container_order" value="<?php echo esc_attr(implode(',', $active_containers)); ?>" />
+  <input type="hidden" name="sorted_container_order" id="sorted_container_order"
+         value="<?php echo esc_attr(implode(',', $active_containers)); ?>"/>
 
   <script>
-      jQuery(function($) {
+      jQuery(function ($) {
           // Инициализация sortable
           $('#sortable-containers').sortable({
-              update: function(event, ui) {
-                  var sortedIDs = $('#sortable-containers').sortable('toArray', { attribute: 'data-id' });
+              update: function (event, ui) {
+                  var sortedIDs = $('#sortable-containers').sortable('toArray', {attribute: 'data-id'});
                   $('#sorted_container_order').val(sortedIDs.join(','));
               }
           });
@@ -66,7 +70,7 @@ function linnikov_agency_work_sorting_meta_box_callback($post) {
                   'nine-tiles': 'input[name="disable_nine_tiles"]'
               };
 
-              $.each(containerCheckboxMap, function(container, checkboxSelector) {
+              $.each(containerCheckboxMap, function (container, checkboxSelector) {
                   var checkbox = $(checkboxSelector);
                   var containerItem = $('#sortable-containers').find('li[data-id="' + container + '"]');
 
@@ -84,14 +88,14 @@ function linnikov_agency_work_sorting_meta_box_callback($post) {
               });
 
               // Логирование текущего состояния видимых контейнеров
-              var visibleContainers = $('#sortable-containers').children(':visible').map(function() {
+              var visibleContainers = $('#sortable-containers').children(':visible').map(function () {
                   return $(this).data('id');
               }).get();
               console.log('Visible containers:', visibleContainers);
           }
 
           // Отслеживаем изменение состояния чекбоксов
-          $('input[type="checkbox"]').on('change', function() {
+          $('input[type="checkbox"]').on('change', function () {
               updateSortableContainersOnClient(); // Обновляем видимость при изменении состояния чекбоксов
           });
 
@@ -128,6 +132,7 @@ function linnikov_agency_work_save_sorting_meta_box($post_id)
     update_post_meta($post_id, '_sorted_container_order', sanitize_text_field($_POST['sorted_container_order']));
   }
 }
+
 add_action('save_post', 'linnikov_agency_work_save_sorting_meta_box');
 
 // 1. Блок: hero.
@@ -153,7 +158,15 @@ function linnikov_agency_hero_meta_box_callback($post)
   wp_nonce_field(basename(__FILE__), 'linnikov_agency_hero_nonce');
 
   // Получаем сохраненные значения (если они есть)
+  $content_type = get_post_meta($post->ID, '_linnikov_agency_hero_content_type', true);
   $hero_image_webp = get_post_meta($post->ID, '_linnikov_agency_hero_image_webp', true);
+  $video_url = get_post_meta($post->ID, '_linnikov_agency_hero_video_url', true);
+  $video_poster_webp = get_post_meta($post->ID, '_linnikov_agency_hero_video_poster_webp', true);
+
+  // Определяем значение по умолчанию для селектора
+  if (empty($content_type)) {
+    $content_type = 'image';
+  }
 
   // Используем изображение 'portfolio.jpeg' по умолчанию
   $preview_image = get_template_directory_uri() . '/src/img/portfolio.jpeg';
@@ -176,27 +189,59 @@ function linnikov_agency_hero_meta_box_callback($post)
   <div class="slider-image-row"
        style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; background-color: #f9f9f9;">
 
-    <div style="width: 100%;">
-      <label for="linnikov_agency_hero_image_webp" style="display:block; margin-bottom: 5px;">
-        <p style="margin-bottom: 0"><?php _e('WebP', 'linnikov-agency'); ?></p>
-        <!-- Элемент <img> для предпросмотра изображения -->
-        <img src="<?php echo $hero_image_webp; ?>" alt="WebP Preview" id="current_hero_image_preview"
-             style="display:block; margin-top: 5px; width: 150px; <?php echo empty($preview_image) ? 'display: none;' : ''; ?>">
-      </label>
+    <!-- Селектор для выбора типа контента -->
+    <div style="margin-bottom: 20px;">
+      <label for="linnikov_agency_hero_content_type"><?php _e('Select Content Type', 'linnikov-agency'); ?></label>
+      <select name="linnikov_agency_hero_content_type" id="linnikov_agency_hero_content_type" style="width: 100%;">
+        <option
+            value="image" <?php selected($content_type, 'image'); ?>><?php _e('Image', 'linnikov-agency'); ?></option>
+        <option
+            value="video" <?php selected($content_type, 'video'); ?>><?php _e('Video', 'linnikov-agency'); ?></option>
+      </select>
+    </div>
+
+    <!-- Поле для загрузки изображения с предпросмотром -->
+    <div id="hero_image_fields" style="display: <?php echo $content_type === 'image' ? 'block' : 'none'; ?>;">
+      <label for="linnikov_agency_hero_image_webp"><?php _e('Hero Image (WebP)', 'linnikov-agency'); ?></label>
       <input type="text" name="linnikov_agency_hero_image_webp" id="linnikov_agency_hero_image_webp"
              value="<?php echo esc_attr($hero_image_webp); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
-      <input type="button" class="button upload-slider-image-webp" id="linnikov_agency_hero_image_webp_button"
-             value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
+      <input type="button" class="button upload-hero-image-webp" id="linnikov_agency_hero_image_webp_button"
+             value="<?php _e('Upload Image', 'linnikov-agency'); ?>"/>
+      <img src="<?php echo esc_url($hero_image_webp); ?>" alt="Preview" id="current_hero_image_preview"
+           style="max-width: 600px; display: <?php echo empty($hero_image_webp) ? 'none' : 'block'; ?>; margin-top: 10px;">
     </div>
 
-    <div style="text-align: right; margin-top: 10px;">
-      <input type="button" class="button remove-hero-images" id="linnikov_agency_remove_hero_images_button"
-             value="<?php _e('Remove Image', 'linnikov-agency'); ?>" style="background-color: #dc3232; color: #fff;"/>
+    <!-- Поля для видео (URL и постер) -->
+    <div id="hero_video_fields" style="display: <?php echo $content_type === 'video' ? 'block' : 'none'; ?>;">
+      <label for="linnikov_agency_hero_video_url"><?php _e('Video URL', 'linnikov-agency'); ?></label>
+      <input type="text" name="linnikov_agency_hero_video_url" id="linnikov_agency_hero_video_url"
+             value="<?php echo esc_attr($video_url); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
+
+      <label for="linnikov_agency_hero_video_poster_webp"><?php _e('Video Poster (WebP)', 'linnikov-agency'); ?></label>
+      <input type="text" name="linnikov_agency_hero_video_poster_webp" id="linnikov_agency_hero_video_poster_webp"
+             value="<?php echo esc_attr($video_poster_webp); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
+      <input type="button" class="button upload-hero-video-poster-webp"
+             id="linnikov_agency_hero_video_poster_webp_button"
+             value="<?php _e('Upload Poster', 'linnikov-agency'); ?>"/>
+      <img src="<?php echo esc_url($video_poster_webp); ?>" alt="Poster Preview" id="current_hero_video_poster_preview"
+           style="max-width: 600px; display: <?php echo empty($video_poster_webp) ? 'none' : 'block'; ?>; margin-top: 10px;">
     </div>
   </div>
-
   <script>
       jQuery(document).ready(function ($) {
+          // Показываем/скрываем поля в зависимости от выбранного типа контента
+          $('#linnikov_agency_hero_content_type').change(function () {
+              var contentType = $(this).val();
+              if (contentType === 'image') {
+                  $('#hero_image_fields').show();
+                  $('#hero_video_fields').hide();
+              } else if (contentType === 'video') {
+                  $('#hero_image_fields').hide();
+                  $('#hero_video_fields').show();
+              }
+          }).trigger('change');
+
+          // Загрузка изображения Hero
           $('#linnikov_agency_hero_image_webp_button').click(function (e) {
               e.preventDefault();
               var image = wp.media({
@@ -206,18 +251,22 @@ function linnikov_agency_hero_meta_box_callback($post)
                   var uploaded_image = image.state().get('selection').first();
                   var image_url = uploaded_image.toJSON().url;
                   $('#linnikov_agency_hero_image_webp').val(image_url);
-
-                  // Обновление превью после добавления изображения
                   $('#current_hero_image_preview').attr('src', image_url).show();
-                  $('#hero_image_preview').attr('src', image_url).show();
               });
           });
 
-          $('#linnikov_agency_remove_hero_images_button').click(function (e) {
+          // Загрузка постера для видео
+          $('#linnikov_agency_hero_video_poster_webp_button').click(function (e) {
               e.preventDefault();
-              $('#linnikov_agency_hero_image_webp').val('');
-              $('#current_hero_image_preview').hide();
-              $('#hero_image_preview').hide();
+              var image = wp.media({
+                  title: '<?php _e('Upload Poster', 'linnikov-agency'); ?>',
+                  multiple: false
+              }).open().on('select', function () {
+                  var uploaded_image = image.state().get('selection').first();
+                  var image_url = uploaded_image.toJSON().url;
+                  $('#linnikov_agency_hero_video_poster_webp').val(image_url);
+                  $('#current_hero_video_poster_preview').attr('src', image_url).show();
+              });
           });
       });
   </script>
@@ -225,8 +274,7 @@ function linnikov_agency_hero_meta_box_callback($post)
 }
 
 // Сохранение данных метабокса Hero
-function linnikov_agency_save_hero_meta_box($post_id)
-{
+function linnikov_agency_save_hero_meta_box($post_id) {
   // Проверка nonce
   if (!isset($_POST['linnikov_agency_hero_nonce']) || !wp_verify_nonce($_POST['linnikov_agency_hero_nonce'], basename(__FILE__))) {
     return $post_id;
@@ -242,10 +290,31 @@ function linnikov_agency_save_hero_meta_box($post_id)
     return $post_id;
   }
 
-  // Сохранение данных
-  $new_webp = (isset($_POST['linnikov_agency_hero_image_webp']) ? sanitize_text_field($_POST['linnikov_agency_hero_image_webp']) : '');
+  // Сохранение типа контента
+  if (isset($_POST['linnikov_agency_hero_content_type'])) {
+    update_post_meta($post_id, '_linnikov_agency_hero_content_type', sanitize_text_field($_POST['linnikov_agency_hero_content_type']));
+  }
 
-  update_post_meta($post_id, '_linnikov_agency_hero_image_webp', $new_webp);
+  // Сохранение изображения
+  if (isset($_POST['linnikov_agency_hero_image_webp'])) {
+    update_post_meta($post_id, '_linnikov_agency_hero_image_webp', sanitize_text_field($_POST['linnikov_agency_hero_image_webp']));
+  } else {
+    delete_post_meta($post_id, '_linnikov_agency_hero_image_webp');
+  }
+
+  // Сохранение видео URL
+  if (isset($_POST['linnikov_agency_hero_video_url'])) {
+    update_post_meta($post_id, '_linnikov_agency_hero_video_url', sanitize_text_field($_POST['linnikov_agency_hero_video_url']));
+  } else {
+    delete_post_meta($post_id, '_linnikov_agency_hero_video_url');
+  }
+
+  // Сохранение постера для видео
+  if (isset($_POST['linnikov_agency_hero_video_poster_webp'])) {
+    update_post_meta($post_id, '_linnikov_agency_hero_video_poster_webp', sanitize_text_field($_POST['linnikov_agency_hero_video_poster_webp']));
+  } else {
+    delete_post_meta($post_id, '_linnikov_agency_hero_video_poster_webp');
+  }
 }
 
 add_action('save_post', 'linnikov_agency_save_hero_meta_box');
@@ -450,21 +519,16 @@ add_action('add_meta_boxes', 'linnikov_agency_add_work_pictures_tails_meta_box')
 function linnikov_agency_work_pictures_tails_meta_box_callback($post)
 {
   wp_nonce_field(basename(__FILE__), 'linnikov_agency_work_pictures_tails_nonce');
-  $pictures = get_post_meta($post->ID, '_linnikov_agency_work_pictures', true);
+
+  // Получаем сохраненные данные
+  $first_image = get_post_meta($post->ID, '_linnikov_agency_first_image_webp', true);
+  $second_image = get_post_meta($post->ID, '_linnikov_agency_second_image_webp', true);
+  $third_image = get_post_meta($post->ID, '_linnikov_agency_third_image_webp', true);
   $video_url = get_post_meta($post->ID, '_linnikov_agency_work_video_url', true);
   $video_poster_webp = get_post_meta($post->ID, '_linnikov_agency_work_video_poster_webp', true);
 
   // Используем изображение 'portfolio.jpeg' по умолчанию
   $preview_image = get_template_directory_uri() . '/src/img/portfolio3.jpeg';
-
-  // Инициализация массива для изображений, если он пустой
-  if (!is_array($pictures) || empty($pictures)) {
-    $pictures = [
-      ['webp' => ''],
-      ['webp' => ''],
-      ['webp' => '']
-    ];
-  }
 
   // Добавление чекбокса для отключения контейнера
   $disable_slider = get_post_meta($post->ID, '_disable_work_pictures_tails', true);
@@ -474,10 +538,6 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
            id="disable_work_pictures_tails" <?php checked($disable_slider, 'on'); ?> />
     <label for="disable_work_pictures_tails"><?php _e('Disable this on frontend', 'linnikov-agency'); ?></label>
   </p>
-  <?php
-
-  // HTML для полей загрузки изображений
-  ?>
 
   <div style="display: flex; align-items: center; margin-bottom: 20px;">
     <span style="display: inline-block; margin-right: 10px"><?php _e('section preview', 'linnikov-agency'); ?></span>
@@ -491,108 +551,116 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
     </div>
   </div>
 
-  <div id="work-pictures-wrapper">
-    <?php foreach ($pictures as $index => $picture): ?>
-      <div class="work-picture-row-tails"
-           style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; background-color: #f9f9f9;">
-
-        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-          <div style="width: 100%;">
-            <label for="work_picture_<?php echo $index; ?>_webp" style="display:block; margin-bottom: 5px;">
-              <p style="margin-bottom: 0"><?php _e('WebP', 'linnikov-agency'); ?></p>
-              <img src="<?php echo esc_attr($picture['webp']); ?>" alt="WebP Preview"
-                   id="current_work_picture_preview_<?php echo $index; ?>"
-                   style="display: <?php echo $picture['webp'] ? 'block' : 'none'; ?>; margin-top: 5px; width: 150px;">
-            </label>
-            <input type="text" name="work_pictures[<?php echo $index; ?>][webp]"
-                   id="work_picture_<?php echo $index; ?>_webp" value="<?php echo esc_attr($picture['webp']); ?>"
-                   size="50" style="width: 100%; margin-bottom: 10px;"/>
-            <input type="button" class="button upload-work-picture-webp-tails"
-                   value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
-          </div>
-        </div>
-        <div style="text-align: right;">
-          <input type="button" class="button clear-work-picture-tails"
-                 value="<?php _e('Clear Image', 'linnikov-agency'); ?>"
-                 style="background-color: #dc3232; color: #fff;"/>
-        </div>
-      </div>
-    <?php endforeach; ?>
+  <?php
+  // Секция для первого изображения
+  ?>
+  <div style="margin-bottom: 20px; padding: 1rem; background: #edf0f1">
+    <h3><?php _e('First Image', 'linnikov-agency'); ?></h3>
+    <label for="first_image_webp"><?php _e('WebP Image', 'linnikov-agency'); ?></label>
+    <img src="<?php echo esc_attr($first_image); ?>" alt="First Image Preview"
+         style="width: 150px; display: <?php echo $first_image ? 'block' : 'none'; ?>;">
+    <input type="text" name="first_image_webp" id="first_image_webp" value="<?php echo esc_attr($first_image); ?>"
+           size="50" style="width: 100%; margin-bottom: 10px;"/>
+    <input type="button" class="button upload-first-image-webp" value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
   </div>
 
-  <div style="margin-bottom: 20px;">
-    <label for="work_video_url"
-           style="display:block; margin-bottom: 5px;"><?php _e('Video URL', 'linnikov-agency'); ?></label>
+  <?php
+  // Секция для второго и третьего изображений
+  ?>
+  <div style="margin-bottom: 20px; padding: 1rem; background: #edf0f1">
+    <h3><?php _e('Second and Third Images', 'linnikov-agency'); ?></h3>
+    <label for="second_image_webp"><?php _e('Second WebP Image', 'linnikov-agency'); ?></label>
+    <img src="<?php echo esc_attr($second_image); ?>" alt="Second Image Preview" style="width: 150px; display: block;">
+    <input type="text" name="second_image_webp" id="second_image_webp" value="<?php echo esc_attr($second_image); ?>"
+           size="50" style="width: 100%; margin-bottom: 10px;"/>
+    <input type="button" class="button upload-second-image-webp"
+           value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
+    <br><br>
+    <label for="third_image_webp"><?php _e('Third WebP Image', 'linnikov-agency'); ?></label>
+    <img src="<?php echo esc_attr($third_image); ?>" alt="Third Image Preview" style="width: 150px; display: block">
+    <input type="text" name="third_image_webp" id="third_image_webp" value="<?php echo esc_attr($third_image); ?>"
+           size="50" style="width: 100%; margin-bottom: 10px;"/>
+    <input type="button" class="button upload-third-image-webp" value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
+  </div>
+
+  <?php
+  // Секция для видео и постера
+  ?>
+  <div style="margin-bottom: 20px; padding: 1rem; background: #edf0f1">
+    <h3><?php _e('Video and Poster', 'linnikov-agency'); ?></h3>
+    <label for="work_video_url"><?php _e('Video URL', 'linnikov-agency'); ?></label>
     <input type="text" name="work_video_url" id="work_video_url" value="<?php echo esc_attr($video_url); ?>" size="50"
-           style="width: 100%;"/>
-  </div>
+           style="width: 100%; margin-bottom: 10px;"/>
 
-  <div class="video-poster-wrapper" style="margin-bottom: 20px;">
-    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-      <div style="width: 100%;">
-        <label for="work_video_poster_webp" style="display:block; margin-bottom: 5px;">
-          <?php _e('Video Poster WebP', 'linnikov-agency'); ?>
-          <img src="<?php echo esc_attr($video_poster_webp); ?>" alt="Poster WebP Preview"
-               style="display: <?php echo $video_poster_webp ? 'block' : 'none'; ?>; margin-top: 5px; width: 150px;">
-        </label>
-        <input type="text" name="work_video_poster_webp" id="work_video_poster_webp"
-               value="<?php echo esc_attr($video_poster_webp); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
-        <input type="button" class="button upload-video-poster-webp"
-               value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
-      </div>
-    </div>
+    <label for="work_video_poster_webp"><?php _e('Video Poster WebP', 'linnikov-agency'); ?></label>
+    <img src="<?php echo esc_attr($video_poster_webp); ?>" alt="Poster WebP Preview"
+         style="width: 150px; display: <?php echo $video_poster_webp ? 'block' : 'none'; ?>;">
+    <input type="text" name="work_video_poster_webp" id="work_video_poster_webp"
+           value="<?php echo esc_attr($video_poster_webp); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
+    <input type="button" class="button upload-video-poster-webp"
+           value="<?php _e('Upload WebP', 'linnikov-agency'); ?>"/>
   </div>
 
   <script>
       jQuery(document).ready(function ($) {
-          // Показ/скрытие всплывающей подсказки с изображением при наведении на иконку глаза
-          $('.eye-icon-wrapper-tails').hover(function () {
-              $(this).find('.image-preview-tooltip-tails').toggle();
-          });
-
-          // Загрузка изображения WebP и обновление превью
-          $('#work-pictures-wrapper').on('click', '.upload-work-picture-webp-tails', function (e) {
+          // Загрузка первого изображения
+          $('.upload-first-image-webp').on('click', function (e) {
               e.preventDefault();
               var button = $(this);
               var image = wp.media({
                   title: '<?php _e('Upload WebP', 'linnikov-agency'); ?>',
                   multiple: false
               }).open().on('select', function () {
-                  var uploaded_image = image.state().get('selection').first();
-                  var image_url = uploaded_image.toJSON().url;
-
-                  // Находим соответствующее превью и обновляем его
-                  button.closest('.work-picture-row-tails').find('img').attr('src', image_url).show();
-                  button.prev().val(image_url);
+                  var uploaded_image = image.state().get('selection').first().toJSON();
+                  button.prev('input').val(uploaded_image.url);
+                  button.prevAll('img').attr('src', uploaded_image.url).show();
               });
           });
 
-          // Загрузка постеров для видео и обновление превью
-          $('.video-poster-wrapper').on('click', '.upload-video-poster-webp', function (e) {
+          // Загрузка второго изображения
+          $('.upload-second-image-webp').on('click', function (e) {
               e.preventDefault();
               var button = $(this);
               var image = wp.media({
                   title: '<?php _e('Upload WebP', 'linnikov-agency'); ?>',
                   multiple: false
               }).open().on('select', function () {
-                  var uploaded_image = image.state().get('selection').first();
-                  var image_url = uploaded_image.toJSON().url;
-
-                  // Находим элемент <img> для превью постера и обновляем его
-                  button.prev('input[type="text"]').val(image_url); // обновляем поле
-                  button.prevAll('label').find('img').attr('src', image_url).show(); // обновляем превью
+                  var uploaded_image = image.state().get('selection').first().toJSON();
+                  button.prev('input').val(uploaded_image.url);
+                  button.prevAll('img').attr('src', uploaded_image.url).show();
               });
           });
 
-          // Очистка полей изображения
-          $('#work-pictures-wrapper').on('click', '.clear-work-picture-tails', function (e) {
+          // Загрузка третьего изображения
+          $('.upload-third-image-webp').on('click', function (e) {
               e.preventDefault();
-              var row = $(this).closest('.work-picture-row-tails');
-              row.find('input[type="text"]').val('');
-              row.find('img').attr('src', '').hide();
+              var button = $(this);
+              var image = wp.media({
+                  title: '<?php _e('Upload WebP', 'linnikov-agency'); ?>',
+                  multiple: false
+              }).open().on('select', function () {
+                  var uploaded_image = image.state().get('selection').first().toJSON();
+                  button.prev('input').val(uploaded_image.url);
+                  button.prevAll('img').attr('src', uploaded_image.url).show();
+              });
+          });
+
+          // Загрузка постера для видео
+          $('.upload-video-poster-webp').on('click', function (e) {
+              e.preventDefault();
+              var button = $(this);
+              var image = wp.media({
+                  title: '<?php _e('Upload WebP', 'linnikov-agency'); ?>',
+                  multiple: false
+              }).open().on('select', function () {
+                  var uploaded_image = image.state().get('selection').first().toJSON();
+                  button.prev('input').val(uploaded_image.url);
+                  button.prevAll('img').attr('src', uploaded_image.url).show();
+              });
           });
       });
   </script>
+
   <?php
 }
 
@@ -614,40 +682,34 @@ function linnikov_agency_save_work_pictures_tails_meta_box($post_id)
     return $post_id;
   }
 
-  // Сохранение данных изображений
-  if (isset($_POST['work_pictures'])) {
-    $pictures = array_map(function ($picture) {
-      return [
-        'webp' => sanitize_text_field($picture['webp']),
-      ];
-    }, $_POST['work_pictures']);
+  // Сохранение первого изображения
+  if (isset($_POST['first_image_webp'])) {
+    $first_image = sanitize_text_field($_POST['first_image_webp']);
+    update_post_meta($post_id, '_linnikov_agency_first_image_webp', $first_image);
+  }
 
-    update_post_meta($post_id, '_linnikov_agency_work_pictures', $pictures);
-  } else {
-    delete_post_meta($post_id, '_linnikov_agency_work_pictures');
+  // Сохранение второго изображения
+  if (isset($_POST['second_image_webp'])) {
+    $second_image = sanitize_text_field($_POST['second_image_webp']);
+    update_post_meta($post_id, '_linnikov_agency_second_image_webp', $second_image);
+  }
+
+  // Сохранение третьего изображения
+  if (isset($_POST['third_image_webp'])) {
+    $third_image = sanitize_text_field($_POST['third_image_webp']);
+    update_post_meta($post_id, '_linnikov_agency_third_image_webp', $third_image);
   }
 
   // Сохранение ссылки на видео
   if (isset($_POST['work_video_url'])) {
     $video_url = sanitize_text_field($_POST['work_video_url']);
     update_post_meta($post_id, '_linnikov_agency_work_video_url', $video_url);
-  } else {
-    delete_post_meta($post_id, '_linnikov_agency_work_video_url');
   }
 
-  // Сохранение постеров для видео
+  // Сохранение постера для видео
   if (isset($_POST['work_video_poster_webp'])) {
     $video_poster_webp = sanitize_text_field($_POST['work_video_poster_webp']);
     update_post_meta($post_id, '_linnikov_agency_work_video_poster_webp', $video_poster_webp);
-  } else {
-    delete_post_meta($post_id, '_linnikov_agency_work_video_poster_webp');
-  }
-
-  // Сохранение состояния чекбокса для отключения контейнера
-  if (isset($_POST['disable_work_pictures_tails'])) {
-    update_post_meta($post_id, '_disable_work_pictures_tails', 'on');
-  } else {
-    update_post_meta($post_id, '_disable_work_pictures_tails', 'off');
   }
 }
 

@@ -122,6 +122,11 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Enqueue main scripts
     wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array('jquery'), filemtime(get_template_directory() . '/git-src/build/js/common.min.js'), false);
+    // Локализуем параметры для скрипта common.js
+    wp_localize_script('common-js', 'ajax_request_params', array(
+      'ajax_url' => admin_url('admin-ajax.php'), // WordPress Ajax URL
+      'nonce' => wp_create_nonce('submit_request_form_nonce'), // Nonce для безопасности
+    ));
 //    wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array(), null, false);
 
     // Conditionally enqueue for front-page.php
@@ -139,7 +144,8 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
     // Conditionally enqueue for a single WORK page (single-work.php)
     if (is_singular('work')) {
       wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
-      wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
+      wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/single-work.min.css'));
+//      wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
     }
 
     // Conditionally enqueue for the NEWS archive page (news.php)
@@ -170,7 +176,7 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
     // Conditionally enqueue for a page-about-us.php
     if (is_page_template('templates/page-about-us.php')) {
       wp_enqueue_script('page-about-js', get_template_directory_uri() . '/git-src/build/js/about-us.min.js', array(), null, false);
-      wp_enqueue_style('page-about-css', get_template_directory_uri() . '/git-src/build/css/about-us.min.css');
+      wp_enqueue_style('page-about-css', get_template_directory_uri() . '/git-src/build/css/about-us.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/about-us.min.css'));
     }
 
     // Conditionally enqueue for a page-team.php
@@ -188,8 +194,15 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Conditionally enqueue for a page-careers.php
     if (is_page_template('templates/page-careers.php')) {
-      wp_enqueue_script('page-careers-js', get_template_directory_uri() . '/git-src/build/js/careers.min.js', array(), null, false);
+//      wp_enqueue_script('page-careers-js', get_template_directory_uri() . '/git-src/build/js/careers.min.js', array(), null, false);
+      wp_enqueue_script('page-careers-js', get_template_directory_uri() . '/git-src/build/js/careers.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/careers.min.js'), false);
       wp_enqueue_style('page-careers-css', get_template_directory_uri() . '/git-src/build/css/careers.min.css');
+
+      // Локализуем параметры для Ajax
+      wp_localize_script('page-careers-js', 'ajax_career_params', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('submit_career_form_nonce'),
+      ));
     }
 
     // Conditionally enqueue for a page-competencies.php
@@ -222,15 +235,27 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Conditionally enqueue for a page-careers.php
     if (is_singular('vacancies')) {
-      wp_enqueue_script('page-privacy-policy-js', get_template_directory_uri() . '/git-src/build/js/designer-application.min.js', array(), null, false);
-      wp_enqueue_style('page-privacy-policy-css', get_template_directory_uri() . '/git-src/build/css/designer-application.min.css');
+      wp_enqueue_script('page-vacancies-js', get_template_directory_uri() . '/git-src/build/js/designer-application.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/designer-application.min.js'), false);
+      wp_enqueue_style('page-vacancies-css', get_template_directory_uri() . '/git-src/build/css/designer-application.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/designer-application.min.css'));
+
+      // Локализуем параметры для Ajax
+      wp_localize_script('page-vacancies-js', 'ajax_designer_params', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('submit_designer_form_nonce'),
+      ));
     }
 
     // Conditionally enqueue for a page-contact.php
     if (is_page_template('templates/page-contact.php')) {
 //      wp_enqueue_script('page-contact-js', get_template_directory_uri() . '/git-src/build/js/contact.min.js', array(), null, false);
       wp_enqueue_script('page-contact-js', get_template_directory_uri() . '/git-src/build/js/contact.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/contact.min.js'), false);
-      wp_enqueue_style('page-contact-css', get_template_directory_uri() . '/git-src/build/css/contact.min.css');
+      wp_enqueue_style('page-contact-css', get_template_directory_uri() . '/git-src/build/css/contact.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/contact.min.css'));
+
+      // Локализация параметров для Ajax
+      wp_localize_script('page-contact-js', 'ajax_contact_params', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('submit_contact_form_nonce'),
+      ));
     }
 
     // Вызов универсальной функции для страниц слайдера
@@ -263,6 +288,13 @@ function enqueue_brief_assets($template_name, $meta_key, $default_values) {
 
     wp_enqueue_script('page-brief-branding-js', get_template_directory_uri() . '/git-src/build/js/brief.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/brief.min.js'), false);
     wp_enqueue_style('page-brief-branding-css', get_template_directory_uri() . '/git-src/build/css/brief.min.css');
+
+    // Локализация параметров для Ajax
+    wp_localize_script('page-brief-branding-js', 'ajax_brief_params', array(
+      'ajax_url' => admin_url('admin-ajax.php'),
+      'nonce' => wp_create_nonce('submit_brief_form_nonce'),
+    ));
+
   }
 }
 

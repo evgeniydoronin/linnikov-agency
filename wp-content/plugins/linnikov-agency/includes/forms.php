@@ -1,60 +1,61 @@
 <?php
-// Регистрация AJAX обработчиков для старой и новой формы
-add_action('wp_ajax_nopriv_submit_contact_form', 'submit_contact_form');
-add_action('wp_ajax_submit_contact_form', 'submit_contact_form');
-add_action('wp_ajax_nopriv_submit_brief_form', 'submit_brief_form');
-add_action('wp_ajax_submit_brief_form', 'submit_brief_form');
-add_action('wp_ajax_nopriv_submit_designer_form', 'submit_designer_form');
-add_action('wp_ajax_submit_designer_form', 'submit_designer_form');
 
 // Обработка формы (submit_contact_form)
 function submit_contact_form()
 {
-  // Проверка nonce для безопасности
-  check_ajax_referer('submit_contact_form_nonce', 'nonce');
+  // Проверка nonce
+  if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_contact_form_nonce')) {
+    error_log('Nonce verification failed.');
+    wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
 
-  // Отладка: выводим все данные, которые пришли в форме
+  error_log('Nonce verification successful.');
+
+  // Логируем данные для отладки
   error_log('POST Data: ' . print_r($_POST, true));
 
-  // Получение и обработка данных формы
+  // Получение данных формы
   $name = sanitize_text_field($_POST['contact--name']);
   $email = sanitize_email($_POST['contact--email']);
   $message = sanitize_textarea_field($_POST['message']);
+  $category_other_desc = sanitize_textarea_field($_POST['category--other-desc']);
 
-  // Обработка чекбоксов (category)
-  if (isset($_POST['category'])) {
-    if (is_array($_POST['category'])) {
-      $category = implode(', ', array_map('sanitize_text_field', $_POST['category']));
-      error_log('Category is array: ' . print_r($_POST['category'], true));
-    } else {
-      $category = sanitize_text_field($_POST['category']);
-      error_log('Category is not array: ' . $category);
-    }
-  } else {
-    $category = ''; // Если поле category не передано
+  // Обработка множественных значений чекбоксов
+  $category = isset($_POST['category']) && is_array($_POST['category']) ? implode(', ', array_map('sanitize_text_field', $_POST['category'])) : 'No category selected';
+
+  // Проверка обязательных полей
+  if (empty($name) || empty($email) || empty($message)) {
+    wp_send_json_error('All fields are required.');
+    wp_die();
   }
 
-  $other_desc = sanitize_textarea_field($_POST['category--other-desc']);
+  // Логирование данных для отладки
+  error_log("Name: $name");
+  error_log("Email: $email");
+  error_log("Message: $message");
+  error_log("Category: $category");
+  error_log("Other category description: $category_other_desc");
 
-  // Проверка корректности email
-  if (!is_email($email)) {
-    wp_send_json_error('Invalid email address.');
-  }
-
-  // Формирование содержимого письма
-  $to = 'evgeniydoronin@gmail.com'; // Замените на нужный email
-  $subject = 'New message from contact form';
-  $body = "Name: $name\nEmail: $email\nCategory: $category\nMessage: $message\nOther: $other_desc";
+  // Формируем тело письма
+  $to = 'your-email@example.com'; // Ваш email
+  $subject = 'New Contact Form Submission';
+  $body = "Name: $name\nEmail: $email\nMessage: $message\nCategory: $category\nOther Category Description: $category_other_desc";
 
   // Отправка письма
   if (wp_mail($to, $subject, $body)) {
-    wp_send_json_success('Thank you for reaching out! We’ve sent you an email with the next steps. Check your inbox!');
+    wp_send_json_success('Message sent successfully.');
   } else {
-    wp_send_json_error('Failed to send the message.');
+    wp_send_json_error('Failed to send message.');
   }
 
   wp_die();
 }
+
+// Регистрация обработчика AJAX
+add_action('wp_ajax_submit_contact_form', 'submit_contact_form');
+add_action('wp_ajax_nopriv_submit_contact_form', 'submit_contact_form');
+
 
 // Обработка формы (submit_brief_form)
 function submit_brief_form()
@@ -101,7 +102,8 @@ function submit_brief_form()
       17 => "Where do people typically learn about your product?",
       18 => "Are there any limitations that must be considered?",
     ];
-  } elseif ($brief_type === 'packaging') {
+  }
+  elseif ($brief_type === 'packaging') {
     $questions_count = 18;
 
     $questions_text = [
@@ -124,7 +126,8 @@ function submit_brief_form()
       17 => "How many SKUs are there in the product line?",
       18 => "Are there any limitations that must be considered in packaging design, such as an existing brand manual, results from marketing research, the product name, logo, diecuts, or any other technical specifications?",
     ];
-  } elseif ($brief_type === 'website') {
+  }
+  elseif ($brief_type === 'website') {
     $questions_count = 14;
 
     $questions_text = [
@@ -143,7 +146,8 @@ function submit_brief_form()
       13 => "Will the website need to support multiple languages? If yes, please list all the languages required.",
       14 => "Are there any limitations that must be considered, such as existing branding, content, CMS, or technical specifications?",
     ];
-  } elseif ($brief_type === 'design') {
+  }
+  elseif ($brief_type === 'design') {
     $questions_count = 11; // Для "Design" 10 вопросов
 
     $questions_text = [
@@ -284,6 +288,10 @@ function submit_brief_form()
   wp_die();
 }
 
+add_action('wp_ajax_nopriv_submit_brief_form', 'submit_brief_form');
+add_action('wp_ajax_submit_brief_form', 'submit_brief_form');
+
+
 // Обработка формы (submit_designer_form)
 function submit_designer_form()
 {
@@ -393,35 +401,231 @@ function submit_designer_form()
   wp_die();
 }
 
+add_action('wp_ajax_nopriv_submit_designer_form', 'submit_designer_form');
+add_action('wp_ajax_submit_designer_form', 'submit_designer_form');
 
-// Подключение скриптов для обеих форм
-function custom_enqueue_ajax_script()
+
+// Обработка формы (submit_career_form)
+function submit_career_form()
 {
-  wp_enqueue_script(
-    'custom-ajax-script',
-    plugin_dir_url(__FILE__) . '../frontend/js/forms.js', // Путь к файлу скрипта
-    array('jquery'),
-    null,
-    true
-  );
+  // Проверка nonce
+  if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_career_form_nonce')) {
+    error_log('Nonce verification failed.');
+    wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
 
-  // Локализация для контактной формы
-  wp_localize_script('custom-ajax-script', 'ajax_params', array(
-    'ajax_url' => admin_url('admin-ajax.php'),
-    'nonce' => wp_create_nonce('submit_contact_form_nonce'),
-  ));
+  error_log('Nonce verification successful.');
 
-  // Локализация для формы брифа
-  wp_localize_script('custom-ajax-script', 'ajax_brief_params', array(
-    'ajax_url' => admin_url('admin-ajax.php'),
-    'nonce' => wp_create_nonce('submit_brief_form_nonce'),
-  ));
+  // Логируем данные, которые пришли
+  error_log('POST Data: ' . print_r($_POST, true));
+  error_log('FILES Data: ' . print_r($_FILES, true));
 
-  // Локализация для формы заявки дизайнера
-  wp_localize_script('custom-ajax-script', 'ajax_designer_params', array(
-    'ajax_url' => admin_url('admin-ajax.php'),
-    'nonce' => wp_create_nonce('submit_designer_form_nonce'),
-  ));
+  // Получение данных формы
+  $name = sanitize_text_field($_POST['contact--name']);
+  $email = sanitize_email($_POST['contact--email']);
+  $message = sanitize_textarea_field($_POST['message']);
+  $agreement = isset($_POST['agreement']) ? true : false;
+
+  // Проверка обязательных полей
+  if (empty($name) || empty($email) || empty($message) || !$agreement) {
+    wp_send_json_error('All fields are required.');
+    wp_die();
+  }
+
+  // Логируем данные для отладки
+  error_log("Name: $name");
+  error_log("Email: $email");
+  error_log("Message: $message");
+  error_log("Agreement: " . ($agreement ? 'Yes' : 'No'));
+
+  // Обработка файлов (если они загружены)
+  $uploaded_files = array();
+  if (!empty($_FILES['attachments']['name'][0])) {
+    error_log('Files detected.');
+
+    $allowed_file_types = array('jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx');
+    $max_file_size = 5 * 1024 * 1024; // 5MB
+
+    // Проверка на множественные файлы
+    if (is_array($_FILES['attachments']['name'])) {
+      foreach ($_FILES['attachments']['name'] as $key => $value) {
+        if ($_FILES['attachments']['error'][$key] == UPLOAD_ERR_OK) {
+          $file_tmp_name = $_FILES['attachments']['tmp_name'][$key];
+          $original_file_name = sanitize_file_name($_FILES['attachments']['name'][$key]);
+          $file_size = $_FILES['attachments']['size'][$key];
+          $file_type = strtolower(pathinfo($original_file_name, PATHINFO_EXTENSION));
+
+          // Проверка типа и размера файла
+          if (!in_array($file_type, $allowed_file_types)) {
+            wp_send_json_error('Invalid file type. Allowed types: ' . implode(', ', $allowed_file_types));
+            wp_die();
+          }
+          if ($file_size > $max_file_size) {
+            wp_send_json_error('File size exceeds the maximum allowed size of 5MB.');
+            wp_die();
+          }
+
+          // Создаем уникальное имя файла
+          $unique_file_name = uniqid() . '-' . time() . '-' . $original_file_name;
+          $upload = wp_upload_bits($unique_file_name, null, file_get_contents($file_tmp_name));
+
+          if (!$upload['error']) {
+            $uploaded_files[] = $upload['url'];
+            error_log('Uploaded file: ' . $upload['url']);
+          } else {
+            error_log('File upload error: ' . $upload['error']);
+          }
+        }
+      }
+    }
+  } else {
+    error_log('No files uploaded.');
+  }
+
+  // Формируем тело письма
+  $to = 'evgeniydoronin@gmail.com'; // Ваш email
+  $subject = 'New Career Application';
+  $body = "Name: $name\nEmail: $email\nMessage: $message\nAgreement: Yes";
+
+  // Если есть загруженные файлы, добавляем их ссылки в тело письма
+  if (!empty($uploaded_files)) {
+    $body .= "\n\nAttachments:\n" . implode("\n", $uploaded_files);
+  }
+
+  error_log("Email body: $body");
+
+  // Отправка письма
+  if (wp_mail($to, $subject, $body)) {
+    wp_send_json_success('Application sent successfully.');
+  } else {
+    wp_send_json_error('Failed to send application.');
+  }
+
+  wp_die();
 }
 
-add_action('wp_enqueue_scripts', 'custom_enqueue_ajax_script');
+add_action('wp_ajax_submit_career_form', 'submit_career_form');
+add_action('wp_ajax_nopriv_submit_career_form', 'submit_career_form');
+
+
+// Обработка формы (submit_request_form)
+function submit_request_form() {
+  // Проверка nonce
+  if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_request_form_nonce')) {
+    error_log('Nonce verification failed.');
+    wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
+
+  error_log('Nonce verification successful.');
+
+  // Логирование данных, которые пришли
+  error_log('POST Data: ' . print_r($_POST, true));
+  error_log('FILES Data: ' . print_r($_FILES, true));
+
+  // Получение данных формы
+  $name = sanitize_text_field($_POST['contact--name']);
+  $email = sanitize_email($_POST['contact--email']);
+  $message = sanitize_textarea_field($_POST['message']);
+  $agreement = isset($_POST['agreement']) ? true : false;
+
+  // Проверка обязательных полей
+  if (empty($email)) {
+    wp_send_json_error('All fields are required.');
+    wp_die();
+  }
+
+  // Обработка категорий (если выбраны)
+  $categories = isset($_POST['category']) && is_array($_POST['category']) ? implode(', ', array_map('sanitize_text_field', $_POST['category'])) : 'No category selected';
+
+  // Если выбрана категория "Other", добавить описание
+  $category_other_desc = sanitize_text_field($_POST['category--other-desc']);
+  if (in_array('Other', $_POST['category']) && !empty($category_other_desc)) {
+    $categories .= "\nOther description: $category_other_desc";
+  }
+
+  // Логирование данных для отладки
+  error_log("Name: $name");
+  error_log("Email: $email");
+  error_log("Message: $message");
+  error_log("Categories: $categories");
+  error_log("Agreement: " . ($agreement ? 'Yes' : 'No'));
+
+  // Обработка файлов (если они загружены)
+  $uploaded_files = array();
+  if (!empty($_FILES['attachments']['name'][0])) {
+    error_log('Files detected.');
+
+    $allowed_file_types = array('jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx');
+    $max_file_size = 5 * 1024 * 1024; // 5MB
+
+    // Проверка на множественные файлы
+    if (is_array($_FILES['attachments']['name'])) {
+      foreach ($_FILES['attachments']['name'] as $key => $value) {
+        if ($_FILES['attachments']['error'][$key] == UPLOAD_ERR_OK) {
+          $file_tmp_name = $_FILES['attachments']['tmp_name'][$key];
+          $original_file_name = sanitize_file_name($_FILES['attachments']['name'][$key]);
+          $file_size = $_FILES['attachments']['size'][$key];
+          $file_type = strtolower(pathinfo($original_file_name, PATHINFO_EXTENSION));
+
+          // Проверка типа и размера файла
+          if (!in_array($file_type, $allowed_file_types)) {
+            wp_send_json_error('Invalid file type. Allowed types: ' . implode(', ', $allowed_file_types));
+            wp_die();
+          }
+          if ($file_size > $max_file_size) {
+            wp_send_json_error('File size exceeds the maximum allowed size of 5MB.');
+            wp_die();
+          }
+
+          // Создаем уникальное имя файла
+          $unique_file_name = uniqid() . '-' . time() . '-' . $original_file_name;
+          $upload = wp_upload_bits($unique_file_name, null, file_get_contents($file_tmp_name));
+
+          if (!$upload['error']) {
+            $uploaded_files[] = $upload['url'];
+            error_log('Uploaded file: ' . $upload['url']);
+          } else {
+            error_log('File upload error: ' . $upload['error']);
+          }
+        }
+      }
+    }
+  } else {
+    error_log('No files uploaded.');
+  }
+
+  // Формируем тело письма
+  $to = 'evgeniydoronin@gmail.com'; // Ваш email
+  $subject = 'New Request Submission';
+  $body = "Name: $name\nEmail: $email\nMessage: $message\nCategories: $categories\nAgreement: Yes";
+
+  // Если есть загруженные файлы, добавляем их ссылки в тело письма
+  if (!empty($uploaded_files)) {
+    $body .= "\n\nAttachments:\n" . implode("\n", $uploaded_files);
+  }
+
+  error_log("Email body: $body");
+
+  // Отправка письма
+  if (wp_mail($to, $subject, $body)) {
+    wp_send_json_success('Request sent successfully.');
+  } else {
+    wp_send_json_error('Failed to send request.');
+  }
+
+  wp_die();
+}
+add_action('wp_ajax_submit_request_form', 'submit_request_form');
+add_action('wp_ajax_nopriv_submit_request_form', 'submit_request_form');
+
+//function enqueue_request_form_scripts() {
+//
+//  // Локализация параметров для использования в JavaScript
+//  wp_localize_script('common-js', 'ajax_request_params', array(
+//    'ajax_url' => admin_url('admin-ajax.php'), // WordPress Ajax URL
+//    'nonce' => wp_create_nonce('submit_request_form_nonce'), // Nonce для безопасности
+//  ));
+//}
+//add_action('wp_enqueue_scripts', 'enqueue_request_form_scripts');

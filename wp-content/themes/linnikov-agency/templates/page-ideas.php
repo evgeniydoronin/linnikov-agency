@@ -17,6 +17,8 @@ get_header();
     }
     ?>
 
+    <h1>IDEAS++</h1>
+
     <section id="ideas-grid" class="ideas-grid" data-component="materials-grid">
       <div class="section-container section-container_decor ideas-grid__container">
         <div class="ideas-grid__body" data-elem="materials-grid.body">
@@ -178,7 +180,7 @@ get_header();
   </main>
 
 <?php
-get_template_part('templates/general/drawers-group-subscribe');
+get_template_part('templates/general/drawers-group');
 get_template_part('templates/general/toasts');
 get_template_part('templates/general/cursor');
 get_template_part('templates/general/ref-to-clipboard');

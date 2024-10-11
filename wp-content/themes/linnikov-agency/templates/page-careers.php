@@ -74,7 +74,10 @@ get_header();
             </div>
           </div>
         </div>
-        <form id="leave-cv-form" class="form leave-cv-form" data-component="leave-cv-form">
+        <form id="leave-cv-form" class="form leave-cv-form" data-component="leave-cv-form"  enctype="multipart/form-data">
+          <!-- Вставляем скрытое поле с nonce -->
+          <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('submit_career_form_nonce'); ?>">
+
           <div class="section-container section-container_decor application-form__container">
             <div class="form__body application-form__body" data-elem="body">
               <div class="animated-separator"></div>
@@ -111,7 +114,7 @@ get_header();
                   <div class="form-field form-field_width-limit">
                     <div class="attachments" data-component="file-input">
                       <label class="attachments__body">
-                        <input name="attachments" multiple="true" type="file">
+                        <input name="attachments[]" multiple="true" type="file">
                         <span class="icon-cubic-upload attachments__icon"></span>
                         <div class="attachments__cap">Upload files for us</div>
                       </label>

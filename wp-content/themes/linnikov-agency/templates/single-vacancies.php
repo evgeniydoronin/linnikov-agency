@@ -24,6 +24,9 @@ $vacancy_description = get_post_meta(get_the_ID(), '_vacancy_description', true)
         </div>
       </section>
       <form id="designer-application-form" class="tg-regular application-form"  enctype="multipart/form-data">
+        <!-- Вставляем скрытое поле с nonce -->
+        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('submit_designer_form_nonce'); ?>">
+
         <div class="section-container section-container_decor application-form__container">
           <div class="form__body application-form__body" data-elem="body">
             <div class="animated-separator"></div>

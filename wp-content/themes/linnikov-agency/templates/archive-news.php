@@ -314,7 +314,7 @@
   </main>
 
 <?php
-get_template_part('templates/general/drawers-group-subscribe');
+get_template_part('templates/general/drawers-group');
 get_template_part('templates/general/toasts');
 get_template_part('templates/general/cursor');
 get_template_part('templates/general/ref-to-clipboard');

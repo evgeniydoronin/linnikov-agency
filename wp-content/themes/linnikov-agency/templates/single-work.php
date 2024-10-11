@@ -16,16 +16,34 @@ get_header();
     ?>
 
     <!--    1. Блок: hero.-->
+    <?php
+    // Получаем мета-данные
+    $content_type = get_post_meta(get_the_ID(), '_linnikov_agency_hero_content_type', true);
+    $hero_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_hero_image_webp', true);
+    $video_url = get_post_meta(get_the_ID(), '_linnikov_agency_hero_video_url', true);
+    $video_poster_webp = get_post_meta(get_the_ID(), '_linnikov_agency_hero_video_poster_webp', true);
+
+    ?>
+
     <section class="hero">
-      <?php if ($hero_image_webp): ?>
-        <a href="<?php echo esc_url($hero_image_webp); ?>"
-           data-srcset="<?php echo esc_url($hero_image_webp); ?>"
-           data-fancybox="work-media" class="hero__bg-img">
+      <?php if ($content_type === 'video' && !empty($video_url)) : ?>
+        <!-- Video -->
+        <a href="<?php echo esc_url($video_url); ?>" data-fancybox="work-media">
+          <div data-component="object-fit" class="hero__bg-img">
+            <iframe
+                src="<?php echo esc_url($video_url); ?>"
+                frameborder="0" allow="autoplay; fullscreen" responsive="true" allowfullscreen
+                data-elem="object-fit.target"
+                data-ratio="56.25">
+            </iframe>
+          </div>
+        </a>
+      <?php elseif ($content_type === 'image' && !empty($hero_image_webp)) : ?>
+        <!-- Image -->
+        <a href="<?php echo esc_url($hero_image_webp); ?>" data-fancybox="work-media" class="hero__bg-img">
           <picture>
-            <source type="image/webp"
-                    srcset="<?php echo esc_url($hero_image_webp); ?>">
-            <img src="<?php echo esc_url($hero_image_webp); ?>"
-                 alt="Hero Image">
+            <source type="image/webp" srcset="<?php echo esc_url($hero_image_webp); ?>">
+            <img src="<?php echo esc_url($hero_image_webp); ?>" alt="Hero Image">
           </picture>
         </a>
       <?php endif; ?>
@@ -99,63 +117,91 @@ get_header();
         if (get_post_meta(get_the_ID(), '_disable_work_pictures_tails', true) !== 'on') : ?>
           <section class="work-pictures-tails background">
             <?php
-            // Получаем данные из метаполей
-            $pictures = get_post_meta(get_the_ID(), '_linnikov_agency_work_pictures', true);
+            // Получаем данные из мета-полей
+            $first_image = get_post_meta(get_the_ID(), '_linnikov_agency_first_image_webp', true);
+            $second_image = get_post_meta(get_the_ID(), '_linnikov_agency_second_image_webp', true);
+            $third_image = get_post_meta(get_the_ID(), '_linnikov_agency_third_image_webp', true);
             $video_url = get_post_meta(get_the_ID(), '_linnikov_agency_work_video_url', true);
             $video_poster_webp = get_post_meta(get_the_ID(), '_linnikov_agency_work_video_poster_webp', true);
 
-            // Проверяем, есть ли сохраненные изображения и видео
-            if (is_array($pictures) && !empty($pictures)) :
+            // Проверяем, есть ли хотя бы одно из изображений или видео
+            if ($first_image || $second_image || $third_image || $video_url):
               ?>
               <div class="section-container section-container_decor work-pictures-tails__container"
                    id="work-pictures-tails-container">
-                <?php foreach ($pictures as $picture) : ?>
-                  <a href="<?php echo esc_url($picture['webp']); ?>"
-                     data-fancybox="work-media"
-                     srcset="<?php echo esc_url($picture['webp']); ?>"
-                     data-caption="Iguana energy drink"
-                     class="img-wrap img-wrap_cover work-pictures-tails__item">
-                    <div class="img-wrap__inner">
-                      <picture>
-                        <?php if (!empty($picture['webp'])) : ?>
-                          <source type="image/webp" srcset="<?php echo esc_url($picture['webp']); ?>">
-                        <?php endif; ?>
-                        <img src="<?php echo esc_url($picture['webp']); ?>" alt="Iguana energy drink">
-                      </picture>
-                    </div>
-                  </a>
-                <?php endforeach; ?>
 
-                <?php if (!empty($video_url)) : ?>
-                  <a href="<?php echo esc_url($video_url); ?>" data-cursor="none"
-                     data-fancybox="work-media" data-caption="Iguana energy drink"
-                     class="work-video work-pictures-tails__item work-pictures-tails__item_video"
-                     data-component="work-video">
-                    <div class="img-wrap img-wrap_cover work-video__poster">
+                <?php if ($first_image): ?>
+                  <div class="work-pictures-tails__section">
+                    <a href="<?php echo esc_url($first_image); ?>" data-fancybox="work-media"
+                       srcset="<?php echo esc_url($first_image); ?>" data-caption="Iguana energy drink"
+                       class="img-wrap img-wrap_cover work-pictures-tails__item">
                       <div class="img-wrap__inner">
                         <picture>
-                          <source type="image/webp" src="<?php echo esc_url($video_poster_webp); ?>">
-                          <img src="<?php echo esc_url($video_poster_webp); ?>"
-                               alt="">
+                          <source type="image/webp" src="<?php echo esc_url($first_image); ?>">
+                          <img src="<?php echo esc_url($first_image); ?>" alt="Iguana energy drink">
                         </picture>
                       </div>
-                    </div>
-                    <div class="work-video__player-wrap">
-                      <iframe data-elem="work-video.video"
-                              src="<?php echo esc_url($video_url); ?>"
-                              frameborder="0" allow="autoplay; fullscreen" class="work-video__player">
-                      </iframe>
-                    </div>
-                    <button data-elem="work-video.playback-btn"
-                            class="work-video-play-btn work-video__btn work-video__btn_playback">
-                      <div class="work-video-play-btn__title">Video play / pause</div>
-                      <div class="work-video-play-btn__inner">
-                        <span class="icon-play work-video-play-btn__icon work-video-play-btn__icon_play"></span>
-                        <span class="icon-pause work-video-play-btn__icon work-video-play-btn__icon_pause"></span>
-                      </div>
-                    </button>
-                  </a>
+                    </a>
+                  </div>
                 <?php endif; ?>
+
+                <?php if ($second_image && $third_image): ?>
+                  <div class="work-pictures-tails__section work-pictures-tails__section_double">
+                    <a href="<?php echo esc_url($second_image); ?>" data-fancybox="work-media"
+                       srcset="<?php echo esc_url($second_image); ?>" data-caption="Iguana energy drink"
+                       class="img-wrap img-wrap_cover work-pictures-tails__item">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source type="image/webp" src="<?php echo esc_url($second_image); ?>">
+                          <img src="<?php echo esc_url($second_image); ?>" alt="Iguana energy drink">
+                        </picture>
+                      </div>
+                    </a>
+                    <a href="<?php echo esc_url($third_image); ?>" data-fancybox="work-media"
+                       srcset="<?php echo esc_url($third_image); ?>" data-caption="Iguana energy drink"
+                       class="img-wrap img-wrap_cover work-pictures-tails__item">
+                      <div class="img-wrap__inner">
+                        <picture>
+                          <source type="image/webp" src="<?php echo esc_url($third_image); ?>">
+                          <img src="<?php echo esc_url($third_image); ?>" alt="Iguana energy drink">
+                        </picture>
+                      </div>
+                    </a>
+                  </div>
+                <?php endif; ?>
+
+                <?php if ($video_url): ?>
+                  <div class="work-pictures-tails__section">
+                    <a href="<?php echo esc_url($video_url); ?>" data-cursor="none"
+                       data-fancybox="work-media" data-caption="Iguana energy drink"
+                       class="work-video work-pictures-tails__item work-pictures-tails__item_video"
+                       data-component="work-video">
+                      <div class="img-wrap img-wrap_cover work-video__poster">
+                        <div class="img-wrap__inner">
+                          <picture>
+                            <source type="image/webp" src="<?php echo esc_url($video_poster_webp); ?>">
+                            <img src="<?php echo esc_url($video_poster_webp); ?>" alt="Iguana video poster">
+                          </picture>
+                        </div>
+                      </div>
+                      <div class="work-video__player-wrap">
+                        <iframe data-elem="work-video.video"
+                                src="<?php echo esc_url($video_url); ?>"
+                                frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="work-video__player">
+                        </iframe>
+                      </div>
+                      <button data-elem="work-video.playback-btn"
+                              class="work-video-play-btn work-video__btn work-video__btn_playback">
+                        <div class="work-video-play-btn__title">Video play / pause</div>
+                        <div class="work-video-play-btn__inner">
+                          <span class="icon-play work-video-play-btn__icon work-video-play-btn__icon_play"></span>
+                          <span class="icon-pause work-video-play-btn__icon work-video-play-btn__icon_pause"></span>
+                        </div>
+                      </button>
+                    </a>
+                  </div>
+                <?php endif; ?>
+
               </div>
             <?php endif; ?>
           </section>

@@ -70,6 +70,9 @@ get_header();
             <div class="disclosure__body">
               <form id="contact-form" class="tg-regular form disclosure__inner contact-form" data-component="contact-form"
                     data-elem="disclosure.inner">
+                <!-- Вставляем скрытое поле с nonce -->
+                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('submit_contact_form_nonce'); ?>">
+
                 <div class="form__main">
                   <div class="contact-page-forms__field-with-title">
                     <div class="section-container section-container_decor">
@@ -205,19 +208,27 @@ get_header();
         </div>
       </div>
     </section>
+
+
     <section id="contacts-container" class="section-container section-container_decor contact-page__contacts">
+      <?php
+      // Получаем значения метаполей для телефона и адреса
+      $phone = get_post_meta(get_the_ID(), '_linnikov_agency_contacts_phone', true);
+      $address = get_post_meta(get_the_ID(), '_linnikov_agency_contacts_address', true);
+
+      function format_phone_number($phone) {
+        // Удаляем все символы, кроме цифр и знака '+'
+        return preg_replace('/[^\d+]/', '', $phone);
+      }
+      ?>
       <div class="contact-page__contacts-inner">
-        <?php
-        // Получаем значения метаполей для телефона и адреса
-        $phone = get_post_meta(get_the_ID(), '_linnikov_agency_contacts_phone', true);
-        $address = get_post_meta(get_the_ID(), '_linnikov_agency_contacts_address', true);
-        ?>
         <div class="contact-block">
-          <dt>Phone number</dt>
-          <dd><a itemprop="telephone" href="tel:+14692560962" target="_blank"><?php echo esc_html($phone); ?></a></dd>
+          <dd><a itemprop="telephone" href="tel:<?php echo format_phone_number($phone); ?>" target="_blank"><?php echo $phone; ?></a></dd>
         </div>
         <div class="contact-block">
-          <dt>Address</dt>
+          <dd><a itemprop="email" href="mailto:info@linnikov.agency" target="_blank">info@linnikov.agency</a></dd>
+        </div>
+        <div class="contact-block">
           <dd>
             <a href="https://maps.app.goo.gl/tB2maHEMEFxBVjjd8" target="_blank">
               <?php echo $address; ?>
@@ -227,6 +238,7 @@ get_header();
       </div>
       <div class="animated-separator"></div>
     </section>
+
   </main>
 
 <?php
