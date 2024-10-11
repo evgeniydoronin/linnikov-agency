@@ -1,7 +1,7 @@
-import { applyRevealWrapsToScope, applyRevealWraps } from "../../../shared/components/revealWrap.js";
+import { applyRevealWrapsToScope } from "../../../shared/components/revealWrap.js";
 import { Testimonials } from "../../../shared/components/testimonials.js";
 import { getTargetElem } from "../../../shared/scripts/utils.js";
-
+import TripleMsgDecorAnimation from "../../../shared/components/triple-msg-decor-animation.js"
 const { autorun, action, observable } = mobx;
 
 gsap.registerPlugin(ScrollTrigger, SplitText, PhysicsPropsPlugin);
@@ -13,7 +13,7 @@ function init() {
 	const offerSectionElem = document.querySelector("#our-offer");
 	new FallingLeafAnimation();
 	new AboutUsMotto("#about-us-motto");
-	const msgAnimation = new OurOfferMsgAnimation();
+	const msgAnimation = new TripleMsgDecorAnimation(document.querySelector("#our-offer-msg"));
 	autorun(() => {
 		offerSectionElem.classList.toggle("animation_completed", msgAnimation.completed);
 	});
@@ -235,78 +235,6 @@ function createCardStepsAnimation(rootSelector, duration, withBoxes) {
 		{ scale: 1, opacity: 1, duration: duration / 6 },
 	);
 	return tl;
-}
-
-class OurOfferMsgAnimation {
-	@observable accessor completed = false;
-	constructor() {
-		this.dom = { root: document.querySelector("#our-offer-msg") };
-		this.dom.star = this.dom.root.querySelector(`#our-offer-msg .our-offer-msg__star`);
-		this.dom.lightning = this.dom.root.querySelector(`#our-offer-msg .our-offer-msg__lightning`);
-		this.dom.infinity = this.dom.root.querySelector(`#our-offer-msg .our-offer-msg__infinity`);
-		this.modifyDom();
-		window.app.windowResizeObserver.on("resize", () => this.onResize());
-		this.rebuild();
-	}
-	@action
-	setCompleted(next) {
-		this.completed = next;
-	}
-	onResize() {
-		this.rebuild();
-	}
-	rebuild() {
-		this.animationCtx?.revert();
-		this.animationCtx = gsap.context(() => {
-			this.starTween = gsap.effects.svgStarAnimation(this.dom.star);
-			this.lightningTween = gsap.effects.svgLightningAnimation(this.dom.lightning);
-			this.infinityTween = gsap.to(this.dom.infinity, {
-				keyframes: [
-					{ strokeDashoffset: -342.16, duration: 0.6, ease: "power1.out" },
-					{ strokeDashoffset: -684, duration: 0.9, ease: "power1.in", onStart: () => gsap.set(this.dom.infinity, { "--color": "#0CFF7C" }) }
-				],
-				paused: true
-			});
-			const tl = gsap.timeline({ paused: true });
-			tl.call(() => { this.setCompleted(false); this.starTween.restart(); }, null, 0);
-			tl.call(() => this.lightningTween.restart(), null, .75);
-			tl.call(() => this.infinityTween.restart(), null, 2.6);
-			tl.call(() =>  this.setCompleted(true), null);
-			gsap.fromTo(`#our-offer-msg .reveal-wrap__item`, {
-				translateY: "1.8em",
-				scaleY: 1.2,
-			}, {
-				translateY: "0",
-				scaleY: 1,
-				scrollTrigger: {
-					trigger: "#our-offer-msg",
-					start: "bottom-=50% bottom",
-					toggleActions: "play none none reverse",
-				},
-				onComplete: async () => tl.restart(),
-			});
-			return this.initAnimationsOnHover();
-		});
-	}
-	initAnimationsOnHover() {
-		const starHandler = () => this.starTween.restart();
-		const lightningHandler = () => this.lightningTween.restart();
-		const infinityHandler = () => this.infinityTween.restart();
-		
-		this.dom.star.addEventListener(`${app.state.pointerType}enter`, starHandler);
-		this.dom.lightning.addEventListener(`${app.state.pointerType}enter`, lightningHandler);
-		this.dom.infinity.addEventListener(`${app.state.pointerType}enter`, infinityHandler);
-
-		return () => {
-			this.dom.star.removeEventListener(`${app.state.pointerType}enter`, starHandler);
-			this.dom.lightning.removeEventListener(`${app.state.pointerType}enter`, lightningHandler);
-			this.dom.infinity.removeEventListener(`${app.state.pointerType}enter`, infinityHandler);
-		}
-	}
-	modifyDom() {
-		new SplitText(`#our-offer-msg`, { type: "words" });
-		applyRevealWraps(`#our-offer-msg`);
-	}
 }
 class AboutUsMotto {
 	@observable accessor completed = false;

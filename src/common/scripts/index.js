@@ -31,7 +31,7 @@ import { init as initInViewTextReveal } from "../../shared/components/text-revea
 import Toasts from "../../shared/components/toasts.js";
 import "../../shared/components/ai-chat.js";
 import debounce from "lodash.debounce";
-
+import ObjectFit from "../../shared/components/object-fit.js";
 const { observable, flow, action, autorun, reaction, runInAction } = window.mobx;
 
 class ResizeObserverMod extends ResizeObserver {
@@ -345,6 +345,7 @@ function init() {
 	initIntersectionTracking();
 	initInveractiveVideoSections();
 	initInViewTextReveal();
+	document.querySelectorAll(`[data-component="object-fit"]`).forEach(elem => new ObjectFit(elem));
 }
 function initLightVersionDrawer() {
 	const starTween = gsap.effects.svgStarAnimation(".lite-version-drawer__star", { resetFill: true });

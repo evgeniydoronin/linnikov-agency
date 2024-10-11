@@ -16,7 +16,7 @@
 	}
 	&__contacts-inner {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(3, 1fr);
 		justify-content: center;
 		gap: 80px 0;
 		padding-bottom: 80px;
@@ -210,6 +210,9 @@
 	--underline-ears-width: 0.3em;
 }
 .contact-block {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 	@include aval(padding-top, 40, 160, "both", 360, 768);
 	dt {
@@ -220,6 +223,7 @@
 		@include aval(margin-bottom, 10, 30, "both", 360, 768);
 	}
 	dd {
+		
 		font-weight: 500;
 		line-height: 130%;
 		letter-spacing: -0.0256em;
