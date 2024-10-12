@@ -200,12 +200,13 @@
           // Устанавливаем первое значение из массива как начальное
           $initial_value = !empty($slider_values) ? $slider_values[0] : 100;
           ?>
-          <input name="budget" type="range" data-steps="5" data-labels="<?php echo esc_attr($slider_values_json); ?>" min="100" max="500" data-component="range-input">
+          <input name="budget" type="range" data-steps="5" data-labels="<?php echo esc_attr($slider_values_json); ?>"
+                 min="100" max="500" data-component="range-input">
           <input type="hidden" name="custom_budget" value="">
 
           <script>
               // Ждем отправки формы
-              document.querySelector('#brief-form').addEventListener('submit', function(event) {
+              document.querySelector('#brief-form').addEventListener('submit', function (event) {
                   console.log('Форма отправляется');
 
                   // Находим input с именем "budget"
@@ -246,242 +247,131 @@
         </div>
       </div>
 
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What will we be working with? Is this a first-time launch or a
-          rebranding? What’s the name of the product or service? Do you already have a website? If so, please
-          share the link with us.
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_1" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
+      <!-- QUESTION START -->
+
+      <?php
+
+      if ($brief_type === 'branding') {
+        $questions_count = 18;
+
+        $questions_text = [
+          1 => "What will we be working with? Is this a first-time launch or a rebranding? What’s the name of the product or service? Do you already have a website? If so, please share the link with us.",
+          2 => "What are you most proud of in your company?",
+          3 => "What are you most proud of about your product?",
+          4 => "What are the company's plans and objectives?",
+          5 => "What is the nature and lifestyle of your product’s consumer?",
+          6 => "What other audiences interact with your company and product, besides the end buyer?",
+          7 => "Why do people buy products in your category?",
+          8 => "What barriers keep people from consistently using products in your category?",
+          9 => "What do you promise to people who use products from other categories?",
+          10 => "What prevents people from purchasing your product?",
+          11 => "How do you convince customers that your product is better?",
+          12 => "What words or phrases do people use when recommending your product?",
+          13 => "What is the one word people most often use to recommend your product?",
+          14 => "Who are your competitors, and what do they promise?",
+          15 => "What can you compare your product or company to?",
+          16 => "If you were to compare your product or company to a person, what would its nature or character be?",
+          17 => "Where do people typically learn about your product?",
+          18 => "Are there any limitations that must be considered?",
+        ];
+
+        $chart_question = 'How do you envision your visual identity (logo, font, color, icons, patterns, photo style)? What character or personality should it reflect?';
+      }
+      elseif ($brief_type === 'packaging') {
+        $questions_count = 18;
+
+        $questions_text = [
+          1 => "What product are we working with? Is this a first-time launch or a redesign? What’s the name of the product? Do you have a website or any existing packaging design? If so, please share the link or details with us.",
+          2 => "What are you most proud of in your product's packaging?",
+          3 => "What are the company's plans and objectives related to packaging? We’re not looking for financial goals, but rather the company's social responsibility or the purpose behind your packaging choices.",
+          4 => "What is the nature and lifestyle of your product’s consumer? Please describe all your target groups in detail, including how packaging influences their decisions.",
+          5 => "Why do people buy products in your category? How does packaging contribute to their decision-making process?",
+          6 => "What barriers keep people from consistently using products in your category? Could packaging be a factor?",
+          7 => "What prevents people from purchasing your product, either for the first time or as a repeat customer? Does packaging play a role in this?",
+          8 => "How do you convince customers that your product's packaging is better than competing alternatives?",
+          9 => "What words or phrases do people use when recommending your product or company to friends or on social media, specifically regarding its packaging?",
+          10 => "Who are your competitors, and what do they promise to their audience through their packaging?",
+          11 => "If you were to compare your product's packaging to a person, what would its nature or character be?",
+          12 => "Where do people typically learn about your product, and how does packaging affect their first impression?",
+          13 => "What is the price positioning within your product category?",
+          14 => "What do you want to achieve with the development of the packaging design? What is the main message the packaging design needs to communicate?",
+          15 => "What packaging format and materials do you have in mind for manufacturing?",
+          16 => "Do you need us to develop a custom packaging form or diecut, or will it be provided by you or the production company?",
+          17 => "How many SKUs are there in the product line?",
+          18 => "Are there any limitations that must be considered in packaging design, such as an existing brand manual, results from marketing research, the product name, logo, diecuts, or any other technical specifications?",
+        ];
+
+        $chart_question = 'How do you envision the packaging design? What character or personality should it convey?';
+      }
+      elseif ($brief_type === 'website') {
+        $questions_count = 14;
+
+        $questions_text = [
+          1 => "What will we be working with? Is this a first-time launch or a redesign? What’s the name of the product or service? Do you already have a website? If so, please share the link with us.",
+          2 => "What are you most proud of in your company?",
+          3 => "What are the company's plans and objectives for the new website? We’re not looking for financial goals, but rather the company's purpose or vision behind this project.",
+          4 => "What is the nature and lifestyle of your target user? Please describe your target audiences in detail. How should the website appeal to them?",
+          5 => "How do you convince customers that your product is better than competing alternatives, and how should the website support that message?",
+          6 => "Who are your competitors, and what are their websites? What do you like or dislike about them?",
+          7 => "What design style should the website reflect? (e.g., modern, trustworthy, innovative)? Please share any examples of design styles you like.",
+          8 => "What functionality is critical for the website (e.g., e-commerce, booking system, blog)?",
+          9 => "What is your timeline for launching the website?",
+          10 => "Will content migration be necessary from your current website?",
+          11 => "How many pages or sections will the website have approximately, and do you have an existing sitemap?",
+          12 => "Do you need integration with any external tools or platforms (e.g., CRM, email marketing, payment gateways)?",
+          13 => "Will the website need to support multiple languages? If yes, please list all the languages required.",
+          14 => "Are there any limitations that must be considered, such as existing branding, content, CMS, or technical specifications?",
+        ];
+
+        $chart_question = 'How do you envision the design style for your website (overall feel, fonts, colors, icons, patterns, photo style)? What character or personality should the website convey?';
+      }
+      elseif ($brief_type === 'design') {
+        $questions_count = 11; // Для "Design" 10 вопросов
+
+        $questions_text = [
+          1 => "What is the name of the product or service? Do you have a website? If so, please share the link with us.",
+          2 => "What are the company’s plans and objectives with this design project? (We’re not looking for financial goals but rather the purpose or vision behind it.)",
+          3 => "Who is your target audience, and how should the design appeal to them?",
+          4 => "What are the specific goals you want to achieve with this design?",
+          5 => "What specifically should we create for you?",
+          6 => "What are the required size, format, or/and number of pages?",
+          7 => "Will the design be printed, used digitally, or do you need both versions?",
+          8 => "What content will you provide? (e.g., text, photos, illustrations, source files of current visual communication)",
+          9 => "What is the main idea or message the design should communicate?",
+          10 => "Do you have any preferences or wishes for the style of the design?",
+          11 => "Are there any limitations we need to consider, such as an existing brand manual, marketing research results, or specific logos and names?",
+        ];
+
+        $chart_question = 'How do you envision your design style (logo, font, color, icons, patterns, photo style)? What character or personality should it reflect?';
+      }
+
+      if (!empty($questions_text)) {
+        foreach ($questions_text as $question_number => $question) {
+          ?>
+          <div class="animated-separator"></div>
+          <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
+            <div class="tg-regular app-form-block__cap">
+              <?php echo esc_html($question); ?>
+            </div>
+            <div class="app-form-block__body">
+              <div class="form-field form-field_width-limit">
+                    <textarea name="question_<?php echo esc_attr($question_number); ?>"
+                              class="text-input text-input_p-0" rows="1" data-autoheight="true"
+                              placeholder="Your short answer"></textarea>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+          <?php
+        }
+      }
+      ?>
+
+
+      <!-- QUESTION END -->
 
       <div class="animated-separator"></div>
       <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What are you most proud of in your company?</div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_2" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What are you most proud of about your product?</div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_3" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What are the company's plans and objectives? We’re not looking
-          for financial goals like "we want to earn a billion," but rather the company's social responsibility or
-          the purpose behind creating the business.
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_4" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What is the nature and lifestyle of your product’s consumer?
-          Please describe all your target groups in detail.
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_5" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What other audiences interact with your company and product,
-          besides the end buyer?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_6" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">Why do people buy products in your category? For example,
-          cosmetic products can be purchased for various reasons: to hide fatigue, prolong youth, maintain future
-          health, or attract others.
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_7" class="text-input text-input_p-0" rows="1"
-                          data-autoheight="true" placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What barriers keep people from consistently using products in
-          your category? For example, a lack of time may lead people to choose fast food over a traditional cafe.
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_8" class="text-input text-input_p-0" rows="1"
-                          data-autoheight="true" placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What do you promise to people who use products from other
-          categories that solve the same problems? For example, like choosing a train over a plane.
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_9" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What prevents people from purchasing your product, either for
-          the first time or as a repeat customer?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_10" class="text-input text-input_p-0" rows="1"
-                          data-autoheight="true" placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">How do you convince customers that your product is better than
-          competing alternatives?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_11" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What words or phrases do people use when recommending your
-          product or company to friends or on social media?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_12" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What is the one word people most often use to recommend your
-          product or company?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_13" class="text-input text-input_p-0" rows="1"
-                          data-autoheight="true" placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">Who are your competitors, and what do they promise to their
-          audience?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_14" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">What can you compare your product or company to? For example,
-          insurance services are often compared to an umbrella.
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_15" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">If you were to compare your product or company to a person,
-          what would its nature or character be?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_16" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">Where do people typically learn about your product?</div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_17" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">Are there any limitations that must be considered, such as an
-          existing brand manual, results from marketing research, the product name, logo, or anything else?
-        </div>
-        <div class="app-form-block__body">
-          <div class="form-field form-field_width-limit">
-                <textarea name="question_18" class="text-input text-input_p-0" rows="1" data-autoheight="true"
-                          placeholder="Your short answer"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="animated-separator"></div>
-      <div class="section-container__inner field-wrap_t field-wrap_b app-form-block">
-        <div class="tg-regular app-form-block__cap">How do you envision your visual identity (logo, font, color,
-          icons, patterns, photo style)? What character or personality should it reflect?
-        </div>
+        <div class="tg-regular app-form-block__cap"><?php echo !empty($chart_question) ? $chart_question : ''; ?></div>
         <div class="app-form-block__body">
           <div id="identification-chars" class="identification-chars">
             <div class="char-slider">
@@ -543,8 +433,8 @@
               </div>
             </div>
             <span class="tg-regular checkbox__cap">Consent to <a
-                href="<?php echo esc_url(site_url('/privacy-policy/')); ?>"
-                class="simple-text-link">personal data processing</a></span>
+                  href="<?php echo esc_url(site_url('/privacy-policy/')); ?>"
+                  class="simple-text-link">personal data processing</a></span>
           </label>
         </div>
       </div>

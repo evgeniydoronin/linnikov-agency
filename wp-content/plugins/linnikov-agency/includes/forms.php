@@ -73,6 +73,8 @@ function submit_brief_form()
   // Получение типа брифа
   $brief_type = sanitize_text_field($_POST['brief_type']);
 
+
+
   // Получение и обработка данных формы
   $name = sanitize_text_field($_POST['contact--name']);
   $email = sanitize_email($_POST['contact--email']);
