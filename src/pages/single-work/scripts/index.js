@@ -16,13 +16,17 @@ function init() {
 		container: document.querySelector("#more-works"),
 		targetSelector: ".case-poster"
 	});
-	new SingleLineScrollSlider("#single-line-scroll-slider");
-	new TwoLinesScrollSlider("#two-lines-scroll-slider");
+	document.querySelectorAll(`[data-component="single-line-scroll-slider"`)
+		.forEach(elem => new SingleLineScrollSlider(elem));
+	document.querySelectorAll(`[data-component="two-lines-scroll-slider"`)
+		.forEach(elem => new TwoLinesScrollSlider(elem));
+	document.querySelectorAll(`[data-component="nine-tiles"`)
+		.forEach(elem => new NineTiles(elem));
+
 	pageHeader.addTrigger("#detail-panel");
 	const moreWorks = new WorksSlider("#more-works");
 	window.projectDetails = new Details(moreWorks);
 	initBeforeAfterSliders();
-	new NineTiles("#nine-tiles");
 }
 
 // class StickySiblingsMag {
@@ -67,9 +71,9 @@ function init() {
 // 	}
 // }
 class SingleLineScrollSlider {
-	constructor(selector) {
+	constructor(root) {
 		this.bcr = {};
-		this.dom = { root: document.querySelector(selector) };
+		this.dom = { root };
 		this.dom.wrap = this.dom.root.querySelector("[data-elem=wrap]");
 		this.dom.container = this.dom.root.querySelector("[data-elem=container]");
 		this.dom.inner = this.dom.root.querySelector("[data-elem=inner]");
@@ -77,7 +81,6 @@ class SingleLineScrollSlider {
 		this.selectSlides();
 		this.updateCSSSlidesNumber();
 		this.execResizeObserver();
-		
 		this.onResize();
 	}
 	execResizeObserver() {
@@ -131,9 +134,9 @@ class TwoLinesScrollSlider {
 	scalingInterval = null;
 	firstStepProgress = 0;
 	firstStepAnimationProgress = 0;
-	constructor(selector) {
+	constructor(root) {
 		this.bcr = {};
-		this.dom = { root: document.querySelector(selector) };
+		this.dom = { root };
 		this.dom.wrap = this.dom.root.querySelector("[data-elem=wrap]");
 		this.dom.container = this.dom.root.querySelector("[data-elem=container]");
 		this.dom.body = this.dom.container.querySelector("[data-elem=body]");

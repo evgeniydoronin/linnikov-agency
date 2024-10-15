@@ -3,7 +3,16 @@ import linnikovCustom from "./tom-select/plugins/linnikov-custom.js";
 import { Disclosure } from "./disclosure.js";
 
 const phoneMask = Inputmask("+9 (999) 999-99-99");
-const currencyMask = Inputmask("currency");
+const currencyMask = Inputmask({
+			alias: 'currency',
+			groupSeparator: ',',
+			autoGroup: true,
+			digits: 0, // Отключить десятичные знаки (копейки)
+			digitsOptional: false,
+			clearMaskOnLostFocus: false,
+			placeholder: ''
+		});
+			console.log(currencyMask);
 const emailMask = Inputmask({
 	mask: "*{1,64}[.*{1,64}][.*{1,64}][.*{1,63}]@-{1,63}.-{1,63}[.-{1,63}][.-{1,63}]",
 	greedy: !1,

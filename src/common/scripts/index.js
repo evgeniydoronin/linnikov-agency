@@ -657,6 +657,7 @@ function initFancybox() {
 		clickContent: "close",
 		preventCaptionOverlap: false,
 		contentFit: true,
+		loop: true,
 		mobile: {
 			clickSlide: "close",
 			clickContent: "close",

@@ -166,13 +166,13 @@
 		</section>		<main>
 			<section class="hero">
 				<a href="./img/single-work/iguana/01@2520.jpg" data-srcset="./img/single-work/iguana/01@2520.webp" data-fancybox="work-media">
-					<div data-component="object-fit" class="hero__bg-img">
-						<iframe src="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" responsive="true" allowfullscreen data-elem="object-fit.target" data-ratio="56.25">
-						</iframe>
-					</div>
+					<picture>
+						<source type="image/webp" srcset="./img/single-work/iguana/01@2520.webp">
+						<img class="hero__bg-img" src="./img/single-work/iguana/01@2520.jpg" alt="Iguana energy drink">
+					</picture>
 				</a>
 			</section>
-			<section id="single-line-scroll-slider" class="single-line-scroll-slider background">
+			<section class="single-line-scroll-slider background" data-component="single-line-scroll-slider">
 				<div class="section-container section-container_decor single-line-scroll-slider__container" data-elem="container">
 					<div class="single-line-scroll-slider__wrap" data-elem="wrap">
 						<div class="single-line-scroll-slider__inner" data-elem="inner">
@@ -215,7 +215,7 @@
 				</div>
 			</section>
 			<section class="work-pictures-tails background">
-				<div class="section-container section-container_decor work-pictures-tails__container" id="work-pictures-tails-container">
+				<div class="section-container section-container_decor work-pictures-tails__container">
 					<div class="work-pictures-tails__section">
 						<a href="./img/single-work/iguana/02@2560.jpg" data-fancybox="work-media" srcset="./img/single-work/iguana/02@2560.webp" data-caption="Iguana energy drink" class="img-wrap img-wrap_cover work-pictures-tails__item">
 							<div class="img-wrap__inner">
@@ -269,7 +269,7 @@
 					</div>
 				</div>
 			</section>
-			<section id="two-lines-scroll-slider" class="two-lines-scroll-slider single-work__two-lines-slider">
+			<section class="two-lines-scroll-slider single-work__two-lines-slider" data-component="two-lines-scroll-slider">
 				<div class="section-container section-container_decor two-lines-scroll-slider__container" data-elem="container">
 					<div class="two-lines-scroll-slider__wrap" data-elem="wrap">
 						<div class="two-lines-scroll-slider__inner" data-elem="inner">
@@ -364,69 +364,142 @@
 					<div class="before-after-slider__thumb" data-active="true" data-elem="thumb"></div>
 				</div>
 			</section>
-			<section id="nine-tiles" class="nine-tiles" data-component="nine-tiles">
+			<section class="nine-tiles" data-component="nine-tiles">
 				<div class="section-container section-container_decor nine-tiles__underlay"></div>
 				<div class="nine-tiles__inner">
-					<div class="img-wrap img-wrap_cover">
+					<a href="./img/single-work/iguana/09@1708.jpg" data-srcset="./img/single-work/iguana/09@1708.jpg" data-fancybox="set_01" class="img-wrap img-wrap_cover">
 						<div class="img-wrap__inner">
 							<picture>
 								<source type="image/webp" srcset="./img/single-work/iguana/09@1708.webp">
 								<img src="./img/single-work/iguana/09@1708.jpg" alt="Iguana energy drink">
 							</picture>
 						</div>
-					</div>
-					<iframe src="https://player.vimeo.com/video/311427118?title=0&byline=0&portrait=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="nine-tiles__video">
-					</iframe>
-					<div class="img-wrap img-wrap_cover">
+					</a>
+					<a href="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" data-srcset="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" data-fancybox="set_01" data-component="object-fit">
+						<iframe src="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" responsive="true" allowfullscreen data-elem="object-fit.target" data-ratio="56.25">
+						</iframe>
+					</a>
+					<a href="./img/single-work/iguana/01@2520.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
 						<div class="img-wrap__inner">
 							<picture>
 								<source type="image/webp" srcset="./img/single-work/iguana/01@2520.webp">
 								<img src="./img/single-work/iguana/01@2520.jpg" alt="Iguana energy drink">
 							</picture>
 						</div>
-					</div>
-					<div class="img-wrap img-wrap_cover">
+					</a>
+					<a href="./img/single-work/iguana/01@2520.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
 						<div class="img-wrap__inner">
 							<picture>
 								<source type="image/webp" srcset="./img/single-work/iguana/01@2520.webp">
 								<img src="./img/single-work/iguana/01@2520.jpg" alt="Iguana energy drink">
 							</picture>
 						</div>
-					</div>
-					<iframe data-elem="work-video.video" src="https://player.vimeo.com/video/311427118?title=0&byline=0&portrait=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="nine-tiles__video">
-					</iframe>
-					<div class="img-wrap img-wrap_cover">
+					</a>
+					<a href="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" data-fancybox="set_01" data-component="object-fit">
+						<iframe src="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" responsive="true" allowfullscreen data-elem="object-fit.target" data-ratio="56.25">
+						</iframe>
+					</a>
+					<a href="./img/single-work/iguana/10@1708.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
 						<div class="img-wrap__inner">
 							<picture>
 								<source type="image/webp" srcset="./img/single-work/iguana/10@1708.webp">
 								<img src="./img/single-work/iguana/10@1708.jpg" alt="Iguana energy drink">
 							</picture>
 						</div>
-					</div>
-					<div class="img-wrap img-wrap_cover">
+					</a>
+					<a href="./img/single-work/iguana/06@1560.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
 						<div class="img-wrap__inner">
 							<picture>
 								<source type="image/webp" srcset="./img/single-work/iguana/06@1560.webp">
 								<img src="./img/single-work/iguana/06@1560.jpg" alt="Iguana energy drink">
 							</picture>
 						</div>
-					</div>
-					<div class="img-wrap img-wrap_cover">
+					</a>
+					<a href="./img/single-work/iguana/05@1560.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
 						<div class="img-wrap__inner">
 							<picture>
 								<source type="image/webp" srcset="./img/single-work/iguana/05@1560.webp">
 								<img src="./img/single-work/iguana/05@1560.jpg" alt="Iguana energy drink">
 							</picture>
 						</div>
-					</div>
-					<div class="img-wrap img-wrap_cover">
+					</a>
+					<a href="./img/single-work/iguana/09@1708.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
 						<div class="img-wrap__inner">
 							<picture>
 								<source type="image/webp" srcset="./img/single-work/iguana/09@1708.webp">
 								<img src="./img/single-work/iguana/09@1708.jpg" alt="Iguana energy drink">
 							</picture>
 						</div>
-					</div>
+					</a>
+				</div>
+			</section>
+			<section class="nine-tiles nine-tiles_slim" data-component="nine-tiles">
+				<div class="section-container section-container_decor nine-tiles__underlay"></div>
+				<div class="nine-tiles__inner">
+					<a href="./img/single-work/iguana/09@1708.jpg" data-srcset="./img/single-work/iguana/09@1708.jpg" data-fancybox="set_01" class="img-wrap img-wrap_cover">
+						<div class="img-wrap__inner">
+							<picture>
+								<source type="image/webp" srcset="./img/single-work/iguana/09@1708.webp">
+								<img src="./img/single-work/iguana/09@1708.jpg" alt="Iguana energy drink">
+							</picture>
+						</div>
+					</a>
+					<a href="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" data-srcset="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" data-fancybox="set_01" data-component="object-fit">
+						<iframe src="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" responsive="true" allowfullscreen data-elem="object-fit.target" data-ratio="56.25">
+						</iframe>
+					</a>
+					<a href="./img/single-work/iguana/01@2520.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
+						<div class="img-wrap__inner">
+							<picture>
+								<source type="image/webp" srcset="./img/single-work/iguana/01@2520.webp">
+								<img src="./img/single-work/iguana/01@2520.jpg" alt="Iguana energy drink">
+							</picture>
+						</div>
+					</a>
+					<a href="./img/single-work/iguana/01@2520.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
+						<div class="img-wrap__inner">
+							<picture>
+								<source type="image/webp" srcset="./img/single-work/iguana/01@2520.webp">
+								<img src="./img/single-work/iguana/01@2520.jpg" alt="Iguana energy drink">
+							</picture>
+						</div>
+					</a>
+					<a href="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" data-fancybox="set_01" data-component="object-fit">
+						<iframe src="https://player.vimeo.com/video/311427118?fullscreen=1&title=0&byline=0&portrait=0&transparent=0&background=1&controls=0&muted=1" frameborder="0" allow="autoplay; fullscreen" responsive="true" allowfullscreen data-elem="object-fit.target" data-ratio="56.25">
+						</iframe>
+					</a>
+					<a href="./img/single-work/iguana/10@1708.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
+						<div class="img-wrap__inner">
+							<picture>
+								<source type="image/webp" srcset="./img/single-work/iguana/10@1708.webp">
+								<img src="./img/single-work/iguana/10@1708.jpg" alt="Iguana energy drink">
+							</picture>
+						</div>
+					</a>
+					<a href="./img/single-work/iguana/06@1560.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
+						<div class="img-wrap__inner">
+							<picture>
+								<source type="image/webp" srcset="./img/single-work/iguana/06@1560.webp">
+								<img src="./img/single-work/iguana/06@1560.jpg" alt="Iguana energy drink">
+							</picture>
+						</div>
+					</a>
+					<a href="./img/single-work/iguana/05@1560.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
+						<div class="img-wrap__inner">
+							<picture>
+								<source type="image/webp" srcset="./img/single-work/iguana/05@1560.webp">
+								<img src="./img/single-work/iguana/05@1560.jpg" alt="Iguana energy drink">
+							</picture>
+						</div>
+					</a>
+					<a href="./img/single-work/iguana/09@1708.webp" data-fancybox="set_01" class="img-wrap img-wrap_cover">
+						<div class="img-wrap__inner">
+							<picture>
+								<source type="image/webp" srcset="./img/single-work/iguana/09@1708.webp">
+								<img src="./img/single-work/iguana/09@1708.jpg" alt="Iguana energy drink">
+							</picture>
+						</div>
+					</a>
 				</div>
 			</section>
 			<section class="more-works single-work__more-works" id="more-works">
@@ -532,7 +605,7 @@
 									<h3>Strategy</h3>
 									<p>Lorem ipsum dolor sit amet consectetur. Aliquet rhoncus convallis etiam mauris pellentesque nunc purus purus. Pellentesque cursus elit cras imperdiet porta nulla gravida at condimentum. Tincidunt pharetra risus commodo enim pellentesque morbi velit. Ornare vel id nullam et.</p>
 									<p>Lorem ipsum dolor sit amet consectetur. Aliquet rhoncus convallis etiam mauris pellentesque nunc purus purus. Pellentesque cursus elit cras imperdiet porta nulla gravida at condimentum. Tincidunt pharetra risus commodo enim pellentesque morbi velit. Ornare vel id nullam et.</p>
-									<div class="article-quote">
+									<div class="article-quote article-quote_always-light">
 										<img src="./img/quotes.svg" alt="Quotes" class="article-quote__quotes-img">
 										<p class="article-quote__body">Rooted at the intersection of comedy and culture, Hartbeat is the entertainment company founded by prolific comedian, actor, and entrepreneur Kevin Hart</p>
 										<div class="article-quote__author">Yocasta LaChapelle,</div>

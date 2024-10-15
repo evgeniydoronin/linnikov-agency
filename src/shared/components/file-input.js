@@ -24,11 +24,13 @@ class FileInput {
 			newList.items.add(this.dom.input.files.item(idx));
 		}
 		this.dom.input.files = newList.files;
+		this.dom.input.dispatchEvent(new Event("change", { bubbles: true }));
 		this.rebuildList();
 	}
 	rebuildList() {
 		this.dom.root.classList.toggle("_selected", this.dom.input.value);
 		this.dom.list.innerHTML = Array.from(this.dom.input.files).map((file, idx) => FileInput.renderItem(file, idx)).join("");
+		$(this.dom.input).valid();
 	}
 }
 

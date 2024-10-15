@@ -619,11 +619,9 @@ html {
 		object-position: center;
 		pointer-events: none;
 	}
+	
 	&_top {
 		--height-ratio: 56.19%;
-		@media (max-width: $mbpM) {
-			--height-ratio: 66.6%;
-		}
 	}
 	&::after {
 		content: attr(data-caption);
@@ -667,6 +665,19 @@ html {
 		visibility: visible;
 		opacity: 1;
 	}
+	.img-wrap__inner {
+		transform: none;
+	}
+	&_zoomable {
+		overflow: hidden;
+	}
+	&_zoomable &__inner {
+		transition: transform 0.4s;
+		transform: scale(1.01);
+	}
+	&_zoomable:hover &__inner {
+		transform: scale(1.08);
+	}
 	&__title {
 		--hidding-shift: 2em;
 		--save-space: 0.2em;
@@ -692,9 +703,6 @@ html {
 	}
 	&:hover &__title .reveal-wrap__inner > * {
 		transform: translate(0, 0);
-	}
-	.img-wrap__inner {
-		transform: none;
 	}
 }
 .top-cases {
@@ -1017,9 +1025,9 @@ html {
 		}
 		@include aval(margin-top, 24, 50, "both", 360, 992);
 		@include aval(margin-bottom, 24, 50, "both", 360, 992);
-		html[data-theme="dark"] & {
-			filter: invert(1);
-		}
+	}
+	html[data-theme="dark"] &:not(&_always-light) &__quotes-img {
+		filter: invert(1);
 	}
 	&__body {
 		font-size: 60px;
@@ -1292,7 +1300,7 @@ textarea::placeholder, input::placeholder {
 	& > .error {
 		position: absolute;
 		left: 0;
-		top: calc(100% + 6px);
+		top: calc(100% + 4px);
 		color: var(--error-color, var(--red, red));
 		font-size: 14px;
 	}
@@ -3079,18 +3087,23 @@ textarea::placeholder, input::placeholder {
 	}
 	&__inner {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, calc(100% / 3));
 		gap: 20px;
 		position: sticky;
 		left: 0;
 		top: 20px;
 		overflow: hidden;
 		@media (max-width: $mbpM) {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, calc(100% / 2));
 		}
 		@media (max-width: $mbpMM) {
 			top: 10px;
 			gap: 10px;
+		}
+	}
+	&_slim &__inner {
+		@media (max-width: $mbpM) {
+			grid-template-columns: 1fr;
 		}
 	}
 	&__inner *:nth-child(5) {
@@ -3102,6 +3115,11 @@ textarea::placeholder, input::placeholder {
 		}
 		@media (max-width: $mbpMM) {
 			--height-ratio: 100%;
+		}
+	}
+	&_slim &__inner *:nth-child(5) {
+		@media (max-width: $mbpMM) {
+			--height-ratio: 56.25%;
 		}
 	}
 	&__video {
@@ -3294,7 +3312,7 @@ textarea::placeholder, input::placeholder {
 	&__footer {
 		padding-top: 25px;
 		.field-with-title:nth-child(1) {
-			margin-bottom: 20px;
+			margin-bottom: 30px;
 		}
 	}
 	&__actions {
@@ -3345,6 +3363,15 @@ textarea::placeholder, input::placeholder {
 		padding: 11px 10px;
 		border: 1px solid var(--light-grey);
 		min-width: 0;
+	}
+	&__value {
+		text-align: right;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+				/* display: none; <- Crashes Chrome on hover */
+				-webkit-appearance: none;
+				margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+		}
 	}
 	&__select {
 		border: 1px solid var(--light-grey);
@@ -3896,20 +3923,6 @@ textarea::placeholder, input::placeholder {
 	display: grid;
 	gap: 50px;
 }
-[data-component="object-fit"] {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-// [data-master] > [data-elem="object-fit.target"] {
-// 	position: absolute;
-// }
-[data-elem="object-fit.target"] {
-	min-width: var(--width, 100%);
-	height: var(--height, 100%);
-	margin: auto;
-}
-
 .our-offer-msg {
 	--color: var(--light-black);
 	@media (max-width: $mbpMM) {
@@ -3998,4 +4011,25 @@ textarea::placeholder, input::placeholder {
 			}
 		}
 	}
+}
+[data-component="object-fit"] {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	padding-top: var(--height-ratio, 50%);
+}
+// [data-master] > [data-elem="object-fit.target"] {
+// 	position: absolute;
+// }
+[data-elem="object-fit.target"] {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	min-width: var(--width, 100%);
+	height: var(--height, 100%);
+	margin: auto;
 }

@@ -120,7 +120,6 @@ export class WorksSlider {
 			this.tweens = [];
 			gsap.set(this.dom.slides, { opacity: 0 });
 			gsap.set(this.nextSlides.concat(this.prevSlides).concat(this.activeSlides), { opacity: 1 });
-			console.log(this.prevSlides, this.activeSlides, this.nextSlides);
 			if (this.direction === "forward") {
 				gsap.set(this.nextSlides, { translateX: `${this.dom.body.offsetWidth}px` });
 				this.tweens.push(gsap.to(this.activeSlides, {
