@@ -211,7 +211,6 @@
 }
 .contact-block {
 	display: flex;
-	align-items: center;
 	justify-content: center;
 	text-align: center;
 	@include aval(padding-top, 40, 160, "both", 360, 768);

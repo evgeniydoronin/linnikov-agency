@@ -161,6 +161,7 @@
 		left: 0;
 		top: 0;
 		display: grid;
+		align-items: start;
 		grid-template-columns: 8.616fr 3.6fr;
 		gap: 30px 20px;
 		@media (max-width: 1700px) {

@@ -359,8 +359,9 @@ class SlidesDuplicator {
 	executed = false;
 	wrapperReplica = null;
 	static hasEnoughWidth(container) {
-		const frameWidth = window.innerWidth * 1.1;
+		const frameWidth = window.innerWidth * 2;
 		const bcr = container.getBoundingClientRect();
+			console.log(bcr.width > frameWidth);
 		return bcr.width > frameWidth;
 	}
 	constructor(slider) {
@@ -468,6 +469,7 @@ class ZoomSlider extends EventEmitter {
 		this.duplicator.exec();
 		this.initResizeObserver();
 		this.speedChangeByViewportSize();
+		this.updateForce();
 		this.dom.root.classList.add("initialized");
 	}
 	get dragged() {
@@ -477,16 +479,15 @@ class ZoomSlider extends EventEmitter {
 		this.state.dragging = value;
 	}
 	speedChangeByViewportSize() {
-		const mediaMatch = matchMedia("(max-width: 992px)");
-		const matchHandler = ({ matches }) => {
-			if (matches) {
-				this.state.force = initialForce * 2;
-			} else {
-				this.state.force = initialForce;
-			}
-		};
-		mediaMatch.addListener(matchHandler);
-		matchHandler(mediaMatch);
+		this.mediaMatch = matchMedia("(max-width: 992px)");
+		this.mediaMatch.addListener(() => this.updateForce());
+	}
+	updateForce() {
+		if (this.mediaMatch.matches || this.state.zoom === 3) {
+			this.state.force = initialForce * 2;
+		} else {
+			this.state.force = initialForce;
+		}
 	}
 	bindEventHandlers() {
 		this.dom.body.addEventListener(`${app.state.pointerType}down`, this.pointerDownHandler, { passive: false });
@@ -526,7 +527,7 @@ class ZoomSlider extends EventEmitter {
 		this.emit("interaction");
 	}
 	setScroll(value) {
-		this.state.scrollLeft = Math.max(0, value);
+		this.state.scrollLeft = value; //Math.max(0, value);
 		//this.dom.body.scrollLeft = this.state.scrollLeft;
 		//this.dom.body.style.transform = `translateX(${-this.state.scrollLeft}px)`;
 		this.dom.body.style.setProperty("--translate-x", `${-this.state.scrollLeft}px`);
@@ -536,8 +537,10 @@ class ZoomSlider extends EventEmitter {
 		const wrapperReplicaBcr = wrapperReplica.getBoundingClientRect();
 		const wrapper = this.dom.wrapper;
 		const wrapperBcr = wrapper.getBoundingClientRect();
-		if (wrapperReplicaBcr.right <= window.innerWidth || wrapperBcr.left >= -10) {
-			if (wrapperBcr.left >= -10) { // Go to duplicate
+		
+		if (wrapperReplicaBcr.right <= window.innerWidth || wrapperBcr.left > 0) {
+				console.log(wrapperReplicaBcr, wrapperBcr);
+			if (wrapperBcr.left > 0) { // Go to duplicate
 				return this.state.scrollLeft + wrapperReplicaBcr.left - wrapperBcr.left;
 			} else { // Return to original
 				return this.state.scrollLeft - wrapperReplicaBcr.left + wrapperBcr.left;
@@ -602,6 +605,8 @@ class ZoomSlider extends EventEmitter {
 		return Array.from(this.dom.body.querySelectorAll("[data-zs-elem*=slide]"));
 	}
 	setZoom(value) {
+		this.state.zoom = value;
+		this.updateForce();
 		if (this.currentTransition) this.currentTransition.cancel();
 		this.currentTransition = new ZoomTransition(this, value);
 		this.currentTransition.exec();

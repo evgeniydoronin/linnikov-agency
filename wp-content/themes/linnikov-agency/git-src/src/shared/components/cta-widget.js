@@ -11,7 +11,7 @@ export class CtaWidget {
 		if (!this.dom.root) return;
 		CtaWidget.initialized = true;
 		setTimeout(() => this.initRelatedLogic(), 0);
-		if (document.querySelector("body.contact-page, body.team-page, body.brief-page, body.version-select-page")) {
+		if (document.querySelector("body.contact-page, body.team-page, body.brief-page, body.version-select-page, body.minpack-exclusive-complimentary")) {
 			this.hide();
 			this._disabled = true;
 		}
