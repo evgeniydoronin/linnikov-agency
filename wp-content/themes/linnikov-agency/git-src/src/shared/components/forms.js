@@ -283,6 +283,13 @@ export class ContactForm extends Form {
     async submitHandler(form, event) {
         const formData = new FormData(form); // Собираем данные формы
 
+        // Генерация токена reCAPTCHA v3
+        const recaptchaToken = await grecaptcha.execute('6LeySEgqAAAAAJPJdoC2slB0x-4BFIPaX4_pPTyO', { action: 'submit_brief_form' });
+
+        // Записываем сгенерированный токен в скрытое поле формы
+        document.getElementById('g-recaptcha-response').value = recaptchaToken;
+        formData.append('g-recaptcha-response', recaptchaToken); // Добавляем токен в данные формы
+
         // Собираем все выбранные значения чекбоксов "category[]"
         const categories = Array.from(form.querySelectorAll('input[name="category[]"]:checked'))
             .map(input => input.value);
@@ -368,6 +375,14 @@ export class BriefForm extends Form {
 
     async submitHandler(form, event) {
         const formData = new FormData(form); // Собираем данные формы
+
+        // Генерация токена reCAPTCHA v3
+        const recaptchaToken = await grecaptcha.execute('6LeySEgqAAAAAJPJdoC2slB0x-4BFIPaX4_pPTyO', { action: 'submit_brief_form' });
+
+        // Записываем сгенерированный токен в скрытое поле формы
+        document.getElementById('g-recaptcha-response').value = recaptchaToken;
+        formData.append('g-recaptcha-response', recaptchaToken); // Добавляем токен в данные формы
+
 
         // Собираем все выбранные значения чекбоксов "category[]" и "source[]"
         const categories = Array.from(form.querySelectorAll('input[name="category[]"]:checked')).map(input => input.value);
@@ -495,6 +510,13 @@ export class DesignerApplicationForm extends Form {
 
         const formData = new FormData(form); // Собираем данные формы
 
+        // Генерация токена reCAPTCHA v3
+        const recaptchaToken = await grecaptcha.execute('6LeySEgqAAAAAJPJdoC2slB0x-4BFIPaX4_pPTyO', { action: 'submit_brief_form' });
+
+        // Записываем сгенерированный токен в скрытое поле формы
+        document.getElementById('g-recaptcha-response').value = recaptchaToken;
+        formData.append('g-recaptcha-response', recaptchaToken); // Добавляем токен в данные формы
+
         // Собираем все выбранные значения чекбоксов "project_types[]" и "tools[]"
         const project_types = Array.from(form.querySelectorAll('input[name="project_types[]"]:checked'))
             .map(input => input.value);
@@ -549,6 +571,13 @@ export class LeaveCVForm extends Form {
     async submitHandler(form, event) {
         try {
             const formData = new FormData(form); // Собираем данные формы
+
+            // Генерация токена reCAPTCHA v3
+            const recaptchaToken = await grecaptcha.execute('6LeySEgqAAAAAJPJdoC2slB0x-4BFIPaX4_pPTyO', { action: 'submit_brief_form' });
+
+            // Записываем сгенерированный токен в скрытое поле формы
+            document.getElementById('g-recaptcha-response').value = recaptchaToken;
+            formData.append('g-recaptcha-response', recaptchaToken); // Добавляем токен в данные формы
 
             // Добавляем nonce в FormData
             formData.append('nonce', ajax_career_params.nonce);
