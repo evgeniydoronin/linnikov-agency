@@ -28,25 +28,35 @@ get_header();
     <section class="hero">
       <?php if ($content_type === 'video' && !empty($video_url)) : ?>
         <!-- Video -->
-        <a href="<?php echo esc_url($video_url); ?>" data-fancybox="work-media">
+        <a href="<?php echo esc_url($video_url); ?>"
+           data-srcset="<?php echo esc_url($video_url); ?>"
+           data-fancybox="work-media">
+
           <div data-component="object-fit" class="hero__bg-img">
             <iframe
                 src="<?php echo esc_url($video_url); ?>"
-                frameborder="0" allow="autoplay; fullscreen" responsive="true" allowfullscreen
+                frameborder="0"
+                allow="autoplay; fullscreen"
+                responsive="true"
+                allowfullscreen
                 data-elem="object-fit.target"
-                data-ratio="56.25">
+                data-ratio="56.25"
+            >
             </iframe>
           </div>
         </a>
       <?php elseif ($content_type === 'image' && !empty($hero_image_webp)) : ?>
         <!-- Image -->
-        <a href="<?php echo esc_url($hero_image_webp); ?>" data-fancybox="work-media" class="hero__bg-img">
+        <a href="<?php echo esc_url($hero_image_webp); ?>"
+           data-srcset="<?php echo esc_url($hero_image_webp); ?>"
+           data-fancybox="work-media">
           <picture>
             <source type="image/webp" srcset="<?php echo esc_url($hero_image_webp); ?>">
-            <img src="<?php echo esc_url($hero_image_webp); ?>" alt="Hero Image">
+            <img class="hero__bg-img" src="<?php echo esc_url($hero_image_webp); ?>" >
           </picture>
         </a>
       <?php endif; ?>
+
     </section>
 
     <?php
