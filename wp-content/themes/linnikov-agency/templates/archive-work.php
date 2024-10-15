@@ -182,8 +182,8 @@
               $main_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_main_image_webp', true);
               $main_image_jpg = str_replace('.webp', '.jpg', $main_image_webp); // Предполагаем, что JPG изображение имеет тот же путь, что и WebP, но с другим расширением
               ?>
-              <a href="<?php the_permalink(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="<?php the_title(); ?>" data-category="<?php echo esc_attr($categories); ?>">
-                <div class="img-wrap__inner">
+              <a href="<?php the_permalink(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_zoomable case-poster_top" data-caption="<?php the_title(); ?>" data-category="<?php echo esc_attr($categories); ?>">
+                <div class="img-wrap__inner case-poster__inner">
                   <picture>
                     <source type="image/webp" srcset="<?php echo esc_url($main_image_webp); ?>">
                     <img src="<?php echo esc_url($main_image_jpg); ?>" alt="<?php the_title(); ?>" loading="lazy">
@@ -208,8 +208,8 @@
               $main_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_main_image_webp', true);
               $main_image_jpg = str_replace('.webp', '.jpg', $main_image_webp); // Предполагаем, что JPG изображение имеет тот же путь, что и WebP, но с другим расширением
               ?>
-              <a href="<?php the_permalink(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="<?php the_title(); ?>" data-category="<?php echo esc_attr($categories); ?>">
-                <div class="img-wrap__inner">
+              <a href="<?php the_permalink(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_zoomable case-poster_top" data-caption="<?php the_title(); ?>" data-category="<?php echo esc_attr($categories); ?>">
+                <div class="img-wrap__inner case-poster__inner">
                   <picture>
                     <source type="image/webp" srcset="<?php echo esc_url($main_image_webp); ?>">
                     <img src="<?php echo esc_url($main_image_jpg); ?>" alt="<?php the_title(); ?>" loading="lazy">
