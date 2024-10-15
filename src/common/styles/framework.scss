@@ -3926,6 +3926,7 @@ textarea::placeholder, input::placeholder {
 		}
 		&_2 {
 			@media (max-width: $mbpMM) {
+				flex: 1 0 100%;
 				order: 2;
 			}
 		}
@@ -3935,35 +3936,53 @@ textarea::placeholder, input::placeholder {
 	}
 	&__star-wrap {
 		position: relative;
-		top: 0.09em;
+		top: 0.096em;
 		left: 0;
+		padding: 0.1em 0;
 		svg {
 			height: 0.9em;
-			width: 0.68em;
+			width: 0.7em;
 		}
 	}
 	&_mec &__star-wrap {
-		padding-left: 1.16em;
 		@media (max-width: $mbpMM) {
 			flex: 1 0 100%;
 			order: -1;
 			padding-left: 0;
+			& svg {
+				height: 0.9em;
+				width: 0.9em;
+			}
 		}
 	}
 	&__lightning-wrap {
+		position: relative;
+		top: 0.015em;
+		left: 0;
 		svg {
-			height: 0.7em;
+			height: 0.74em;
 			width: 0.5em;
 		}
 	}
 	&_mec &__lightning-wrap {
 		padding-left: 0.1em;
 		@media (max-width: $mbpMM) {
+			position: relative;
+			left: 0.1em;
+			top: 0.04em;
 			order: 1;
+			padding: 0.1em 0;
+			& svg {
+				height: 0.9em;
+				width: 0.9em;
+			}
 		}
 	}
 	&__infinity-wrap {
 		svg {
+			position: relative;
+			top: 0em;
+			left: -0.03em;
 			vertical-align: top;
 			height: 0.7em;
 			width: 0.9em;
@@ -3973,6 +3992,10 @@ textarea::placeholder, input::placeholder {
 	&_mec &__infinity-wrap {
 		@media (max-width: $mbpMM) {
 			order: 1;
+			& svg {
+				height: 0.9em;
+				width: 1.1em;
+			}
 		}
 	}
 }

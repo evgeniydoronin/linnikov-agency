@@ -27,6 +27,7 @@
 		}
 	}
 	&__decor {
+		--decor-color: var(--light-black);
 		--decor-height: 4px;
 		grid-column: 1/ -1;
 		&_shift {
