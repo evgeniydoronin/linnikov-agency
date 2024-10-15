@@ -8,806 +8,54 @@
             <style data-zs-elem="style"></style>
             <div class="zoom-slider__body" data-zs-elem="body">
               <div class="zoom-slider__wrapper" data-zs-elem="wrapper">
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/01.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/01.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/02.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/02.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/03.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/03.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/04.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/04.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/05.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/05.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/06.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/06.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/07.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/07.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/08.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/08.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/09.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/09.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/10.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/10.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/11.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/11.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/12.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/12.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/13.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/13.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/14.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/14.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/15.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/15.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/16.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/16.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/17.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/17.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/18.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/18.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/19.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/19.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/20.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/20.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/21.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/21.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/22.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/22.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/23.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/23.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/24.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/24.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/25.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/25.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/26.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/26.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/27.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/27.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/28.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/28.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/29.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/29.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/30.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/30.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/31.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/31.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/32.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/32.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/33.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/33.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/34.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/34.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/35.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/35.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/36.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/36.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/37.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/37.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/38.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/38.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/39.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/39.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/40.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/40.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/41.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/41.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/42.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/42.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/43.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/43.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/44.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/44.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/45.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/45.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/46.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/46.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/47.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/47.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/48.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/48.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/49.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/49.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="." class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
-                   data-caption="Project name" data-zs-elem="slide">
-                  <div class="img-wrap__inner">
-                    <picture>
-                      <source type="image/webp"
-                              srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/50.webp">
-                      <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/slider/50.jpg"
-                           alt="Project preview" loading="lazy">
-                    </picture>
-                  </div>
-                  <div class="reveal-wrap case-poster__title">
-                    <div class="reveal-wrap__inner">
-                      <div class="line">Project name</div>
-                    </div>
-                  </div>
-                </a>
+                <?php
+                // Получаем сохраненный порядок постов для второго контейнера
+                $secondary_order = get_option('_linnikov_agency_secondary_work_order', '');
+
+                if (!empty($secondary_order)) {
+                  // Преобразуем строку в массив ID постов
+                  $selected_secondary_posts = explode(',', $secondary_order);
+
+                  // Запрос для получения постов по сохраненному порядку
+                  $args = array(
+                    'post_type' => 'work',
+                    'post__in' => $selected_secondary_posts,
+                    'orderby' => 'post__in',
+                    'posts_per_page' => -1,
+                    'post_status' => 'publish',
+                  );
+                  $query = new WP_Query($args);
+
+                  if ($query->have_posts()) :
+                    while ($query->have_posts()) : $query->the_post();
+                      // Получаем URL изображения из featured image
+                      $image_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                      $image_webp = get_the_post_thumbnail_url(get_the_ID(), 'full-webp'); // Для webp, если поддерживается
+                      $title = get_the_title();
+                      $permalink = get_permalink();
+                      ?>
+                      <a href="<?php echo esc_url($permalink); ?>" class="img-wrap img-wrap_cover case-poster case-poster_home-slider zoom-slider__slide"
+                         data-caption="<?php echo esc_attr($title); ?>" data-zs-elem="slide">
+                        <div class="img-wrap__inner">
+                          <picture>
+                            <?php if ($image_webp): ?>
+                              <source type="image/webp" srcset="<?php echo esc_url($image_webp); ?>">
+                            <?php endif; ?>
+                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy">
+                          </picture>
+                        </div>
+                        <div class="reveal-wrap case-poster__title">
+                          <div class="reveal-wrap__inner">
+                            <div class="line"><?php echo esc_html($title); ?></div>
+                          </div>
+                        </div>
+                      </a>
+                    <?php
+                    endwhile;
+                    wp_reset_postdata();
+                  endif;
+                }
+                ?>
               </div>
             </div>
             <div id="cases-slider-control" class="zoom-slider-control zoom-slider__control">
@@ -865,15 +113,11 @@
         <div class="section-container section-container_decor about__container">
           <div class="section-container__inner" data-component="sliding-text">
             <h1 class="text-rgb-shake" data-elem="text">
-              <div class="about-text-wrap" data-elem="main-text">Linnikov is a transformation branding agency specializing in business evolution
-              </div>
+              <div class="about-text-wrap" data-elem="main-text">Linnikov is a transformation branding agency specializing in business evolution</div>
               <div class="text-rgb-shake__set about__rgb-set" aria-hidden="true" data-elem="rgb-set">
-                <div class="about-text-wrap">Linnikov is a transformation branding agency specializing in business evolution
-                </div>
-                <div class="about-text-wrap">Linnikov is a transformation branding agency specializing in business evolution
-                </div>
-                <div class="about-text-wrap">Linnikov is a transformation branding agency specializing in business evolution
-                </div>
+                <div class="about-text-wrap">Linnikov is a transformation branding agency specializing in business evolution</div>
+                <div class="about-text-wrap">Linnikov is a transformation branding agency specializing in business evolution</div>
+                <div class="about-text-wrap">Linnikov is a transformation branding agency specializing in business evolution</div>
               </div>
             </h1>
             <div class="section-decor about__decor" data-elem="decor">
@@ -1075,97 +319,65 @@
               </a>
             </div>
           </nav>
-          <div class="top-cases__body" data-top-cases-elem="body">
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Iguana" data-category="branding, packaging">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/iguana@2x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/iguana@2x.jpg"
-                       alt="Iguana"
-                       loading="lazy">
-                </picture>
-              </div>
-            </a>
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Khush" data-category="branding, digital">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/khush@2x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/khush@2x.jpg" alt="Khush"
-                       loading="lazy">
-                </picture>
-              </div>
-            </a>
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Project name" data-category="branding, digital">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/the-moon@2x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/the-moon@2x.jpg"
-                       alt="Project preview" loading="lazy">
-                </picture>
-              </div>
-            </a>
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Project name" data-category="branding">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/rgb-pot@1.5x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/rgb-pot@1.5x.jpg"
-                       alt="Project preview" loading="lazy">
-                </picture>
-              </div>
-            </a>
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Project name" data-category="branding">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/aromanty@1.5x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/aromanty@1.5x.jpg"
-                       alt="Aromanty" loading="lazy">
-                </picture>
-              </div>
-            </a>
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Project name" data-category="branding">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/glass-letters@1.5x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/glass-letters@1.5x.jpg"
-                       alt="Project preview" loading="lazy">
-                </picture>
-              </div>
-            </a>
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Project name" data-category="branding, digital">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/spf30@1.5x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/spf30@1.5x.jpg"
-                       alt="Project preview" loading="lazy">
-                </picture>
-              </div>
-            </a>
-            <a href="." data-cursor="none" class="img-wrap img-wrap_cover case-poster case-poster_top"
-               data-caption="Project name" data-category="branding, digital, packaging">
-              <div class="img-wrap__inner">
-                <picture>
-                  <source type="image/webp"
-                          srcset="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/gusto-pastila@2x.webp">
-                  <img src="<?php echo get_template_directory_uri(); ?>/git-src/build/img/home/gusto-pastila@2x.jpg"
-                       alt="Project preview" loading="lazy">
-                </picture>
-              </div>
-            </a>
-          </div>
+
+          <?php
+          // Получаем сохраненный порядок постов
+          $main_page_order = get_option('_linnikov_agency_main_page_work_order', '');
+
+          if (!empty($main_page_order)) {
+            // Преобразуем строку с ID постов в массив
+            $post_ids = explode(',', $main_page_order);
+
+            // Создаем запрос для получения постов в указанном порядке
+            $args = array(
+              'post_type' => 'work',
+              'post__in' => $post_ids,
+              'orderby' => 'post__in', // Порядок по ID
+            );
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) {
+              echo '<div class="top-cases__body" data-top-cases-elem="body">';
+              while ($query->have_posts()) {
+                $query->the_post();
+
+                // Получаем теги (таксономия work_tag)
+                $tags = get_the_terms(get_the_ID(), 'work_tag');
+                $tag_slugs = array();
+                if ($tags) {
+                  foreach ($tags as $tag) {
+                    $tag_slugs[] = $tag->slug;
+                  }
+                }
+
+                // Преобразуем теги в строку через запятую
+                $tag_data = implode(', ', $tag_slugs);
+
+                // Получаем Hero image из метаполя
+                $main_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_main_image_webp', true);
+                $main_image_jpg = str_replace('.webp', '.jpg', $main_image_webp); // Предполагаем, что JPG изображение имеет тот же путь, что и WebP, но с другим расширением
+                // $image_url = get_the_post_thumbnail_url(get_the_ID(), 'large'); // Получаем URL изображения
+
+                $title = get_the_title();
+
+                // Вывод работы
+                echo '
+                    <a href="' . get_permalink() . '" class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="' . esc_attr($title) . '" data-category="' . esc_attr($tag_data) . '">
+                        <div class="img-wrap__inner">
+                            <picture>
+                                <img src="' . esc_url($main_image_webp) . '" alt="' . esc_attr($title) . '" loading="lazy">
+                            </picture>
+                        </div>
+                    </a>';
+              }
+              echo '</div>';
+              wp_reset_postdata(); // Сбрасываем глобальные данные постов
+            }
+          } else {
+            echo '<p>No posts available.</p>';
+          }
+          ?>
+
           <div class="top-cases__all-works">
             <?php
             // Получаем ссылку на архив всех работ

@@ -1,5 +1,20 @@
 <?php
 
+function verify_recaptcha($token) {
+  $secret_key = '6LeySEgqAAAAAFfgzzqWvKTp6OJCuVGg4Dwx2TRh';
+  $response = wp_remote_post('https://www.google.com/recaptcha/api/siteverify', array(
+    'body' => array(
+      'secret' => $secret_key,
+      'response' => $token
+    )
+  ));
+
+  $response_body = wp_remote_retrieve_body($response);
+  $result = json_decode($response_body, true);
+
+  return $result['success']; // Возвращаем результат проверки
+}
+
 // Обработка формы (submit_contact_form)
 function submit_contact_form()
 {
@@ -7,6 +22,12 @@ function submit_contact_form()
   if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_contact_form_nonce')) {
     error_log('Nonce verification failed.');
     wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
+
+  // Проверка reCAPTCHA
+  if (!verify_recaptcha($_POST['g-recaptcha-response'])) {
+    wp_send_json_error('reCAPTCHA verification failed.');
     wp_die();
   }
 
@@ -38,7 +59,7 @@ function submit_contact_form()
   error_log("Other category description: $category_other_desc");
 
   // Формируем тело письма
-  $to = 'your-email@example.com'; // Ваш email
+  $to = 'info@linnikov.agency'; // Ваш email
   $subject = 'New Contact Form Submission';
   $body = "Name: $name\nEmail: $email\nMessage: $message\nCategory: $category\nOther Category Description: $category_other_desc";
 
@@ -63,6 +84,12 @@ function submit_brief_form()
   // Проверка nonce для безопасности
   if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_brief_form_nonce')) {
     wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
+
+  // Проверка reCAPTCHA
+  if (!verify_recaptcha($_POST['g-recaptcha-response'])) {
+    wp_send_json_error('reCAPTCHA verification failed.');
     wp_die();
   }
 
@@ -248,8 +275,7 @@ function submit_brief_form()
   Has Deadline: $has_deadline\n
   Deadline Date: $deadline_date\n
   Start Date: $start_date\n
-  Budget: $budget\n\n
-  Questions: $budget\n\n";
+  Budget: $budget\n\n";
 
   // Добавляем вопросы с их заголовками и ответами в нужной последовательности
   foreach ($questions as $index => $answer) {
@@ -276,7 +302,7 @@ function submit_brief_form()
   error_log("Email body: $body");
 
   // Отправка письма
-  $recipient_email = 'evgeniydoronin@gmail.com'; // Замените на нужный email
+  $recipient_email = 'info@linnikov.agency'; // Замените на нужный email
   $subject = 'New brief form submission';
 
   if (wp_mail($recipient_email, $subject, $body)) {
@@ -301,6 +327,12 @@ function submit_designer_form()
   if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_designer_form_nonce')) {
     error_log('Nonce verification failed.');
     wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
+
+  // Проверка reCAPTCHA
+  if (!verify_recaptcha($_POST['g-recaptcha-response'])) {
+    wp_send_json_error('reCAPTCHA verification failed.');
     wp_die();
   }
 
@@ -382,7 +414,7 @@ function submit_designer_form()
   }
 
   // Формируем тело письма
-  $to = 'evgeniydoronin@gmail.com'; // Ваш email
+  $to = 'info@linnikov.agency'; // Ваш email
   $subject = 'New Designer Application';
   $body = "Name: $name\nEmail: $email\nPortfolio Link: $portfolio_link\nExperience: $experience\nCover Letter: $cover_letter\nSalary: $salary\nPeriod: $period\nProject Types: $project_types\nTools: $tools";
 
@@ -414,6 +446,12 @@ function submit_career_form()
   if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_career_form_nonce')) {
     error_log('Nonce verification failed.');
     wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
+
+  // Проверка reCAPTCHA
+  if (!verify_recaptcha($_POST['g-recaptcha-response'])) {
+    wp_send_json_error('reCAPTCHA verification failed.');
     wp_die();
   }
 
@@ -486,7 +524,7 @@ function submit_career_form()
   }
 
   // Формируем тело письма
-  $to = 'evgeniydoronin@gmail.com'; // Ваш email
+  $to = 'info@linnikov.agency'; // Ваш email
   $subject = 'New Career Application';
   $body = "Name: $name\nEmail: $email\nMessage: $message\nAgreement: Yes";
 
@@ -517,6 +555,12 @@ function submit_request_form() {
   if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'submit_request_form_nonce')) {
     error_log('Nonce verification failed.');
     wp_send_json_error('Nonce verification failed.');
+    wp_die();
+  }
+
+  // Проверка reCAPTCHA
+  if (!verify_recaptcha($_POST['g-recaptcha-response'])) {
+    wp_send_json_error('reCAPTCHA verification failed.');
     wp_die();
   }
 
@@ -599,7 +643,7 @@ function submit_request_form() {
   }
 
   // Формируем тело письма
-  $to = 'evgeniydoronin@gmail.com'; // Ваш email
+  $to = 'info@linnikov.agency'; // Ваш email
   $subject = 'New Request Submission';
   $body = "Name: $name\nEmail: $email\nMessage: $message\nCategories: $categories\nAgreement: Yes";
 
@@ -621,13 +665,3 @@ function submit_request_form() {
 }
 add_action('wp_ajax_submit_request_form', 'submit_request_form');
 add_action('wp_ajax_nopriv_submit_request_form', 'submit_request_form');
-
-//function enqueue_request_form_scripts() {
-//
-//  // Локализация параметров для использования в JavaScript
-//  wp_localize_script('common-js', 'ajax_request_params', array(
-//    'ajax_url' => admin_url('admin-ajax.php'), // WordPress Ajax URL
-//    'nonce' => wp_create_nonce('submit_request_form_nonce'), // Nonce для безопасности
-//  ));
-//}
-//add_action('wp_enqueue_scripts', 'enqueue_request_form_scripts');

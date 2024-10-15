@@ -18,6 +18,9 @@
   <link rel="icon" sizes="512x512"
         href="<?php echo get_template_directory_uri(); ?>/favicon/android-chrome-512x512.png">
   <title><?php wp_title('|', true, 'right'); ?></title>
+
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeySEgqAAAAAJPJdoC2slB0x-4BFIPaX4_pPTyO"></script>
+
   <?php wp_head(); ?>
 </head>
 <body class="<?php
@@ -39,6 +42,10 @@ if (is_front_page()) {
   echo 'contact-page';
 } elseif (is_page_template('templates/page-team.php')) {
   echo 'team-page';
+} elseif (is_page_template('templates/page-cookie-policy.php.php')) {
+  echo 'cookies';
+} elseif (is_page_template('templates/page-express-brand-audit.php')) {
+  echo 'minpack-exclusive-complimentary tg-regular';
 } elseif (is_page_template('templates/page-competencies.php')) {
   echo 'competencies';
 } elseif (is_page_template('templates/page-brief-branding.php') ||

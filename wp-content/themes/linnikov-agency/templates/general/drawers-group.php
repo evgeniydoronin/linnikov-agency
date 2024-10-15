@@ -2,7 +2,8 @@
 
   <?php if (
     is_post_type_archive('news') ||
-    is_post_type_archive('ideas')
+    is_post_type_archive('ideas') ||
+    is_page_template('templates/page-cookie-policy.php')
   ) : ?>
     <section data-lenis-prevent class="drawer drawer_full sign-up-drawer" data-drawer="sign-up">
       <div id="sign-up-panel" class="drawer__panel sign-up-drawer__panel" data-elem="drawer.panel"
@@ -92,7 +93,7 @@
   <section class="cookies-panel" data-drawer="cookies-agreement">
     <div class="cookies-panel__container" data-elem="drawer.panel" data-scrollable>
       <form id="cookies-approval" class="cookies-panel__form">
-        <h2 class="tg-regular">This websites uses <a href="cookies.html" class="simple-text-link">cookies</a></h2>
+        <h2 class="tg-regular">This websites uses <a href="<?php echo esc_url(site_url('/cookie-policy/')); ?>" class="simple-text-link">cookies</a></h2>
         <div class="cookies-panel__group">
           <div class="cookies-panel__options">
             <label class="cookies-option">

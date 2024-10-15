@@ -380,7 +380,7 @@ get_header();
             // Цикл для вывода постов
             while ($works_query->have_posts()) : $works_query->the_post();
               // Получаем изображение из метаполя
-              $hero_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_hero_image_webp', true);
+              $hero_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_main_image_webp', true);
 
               // Если метаполе не пустое, выводим картинку
               if ($hero_image_webp) : ?>

@@ -78,6 +78,9 @@ get_header();
           <!-- Вставляем скрытое поле с nonce -->
           <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('submit_career_form_nonce'); ?>">
 
+          <!-- Hidden reCAPTCHA token field -->
+          <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+
           <div class="section-container section-container_decor application-form__container">
             <div class="form__body application-form__body" data-elem="body">
               <div class="animated-separator"></div>

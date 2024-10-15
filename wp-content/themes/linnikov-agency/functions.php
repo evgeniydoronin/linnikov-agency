@@ -118,7 +118,7 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Enqueue styles
     wp_enqueue_style('fancybox-css', get_template_directory_uri() . '/git-src/build/libs/fancybox/jquery.fancybox.min.css');
-    wp_enqueue_style('common-css', get_template_directory_uri() . '/git-src/build/css/common.min.css');
+    wp_enqueue_style('common-css', get_template_directory_uri() . '/git-src/build/css/common.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/common.min.css'));
 
     // Enqueue main scripts
     wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array('jquery'), filemtime(get_template_directory() . '/git-src/build/js/common.min.js'), false);
@@ -127,24 +127,36 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       'ajax_url' => admin_url('admin-ajax.php'), // WordPress Ajax URL
       'nonce' => wp_create_nonce('submit_request_form_nonce'), // Nonce для безопасности
     ));
-//    wp_enqueue_script('common-js', get_template_directory_uri() . '/git-src/build/js/common.min.js', array(), null, false);
+
+    // Подключаем основной файл стилей с меткой времени
+    wp_enqueue_style(
+      'main-style', // Уникальный идентификатор для стиля
+      get_stylesheet_uri(), // URL для основного style.css
+      array(), // Зависимости (если нужно подключать другие стили до этого)
+      filemtime(get_stylesheet_directory() . '/style.css') // Метка времени, основанная на последней модификации файла
+    );
 
     // Conditionally enqueue for front-page.php
     if (is_front_page()) {
-      wp_enqueue_script('home-js', get_template_directory_uri() . '/git-src/build/js/home.min.js', array(), null, false);
-      wp_enqueue_style('home-css', get_template_directory_uri() . '/git-src/build/css/home.min.css');
+//      wp_enqueue_script('home-js', get_template_directory_uri() . '/git-src/build/js/home.min.js', array(), null, false);
+//      wp_enqueue_style('home-css', get_template_directory_uri() . '/git-src/build/css/home.min.css');
+      wp_enqueue_script('home-js', get_template_directory_uri() . '/git-src/build/js/home.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/home.min.js'), false);
+      wp_enqueue_style('home-css', get_template_directory_uri() . '/git-src/build/css/home.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/home.min.css'));
     }
 
     // Conditionally enqueue for the works archive page (works.php)
     if (is_post_type_archive('work')) {
-      wp_enqueue_script('works-js', get_template_directory_uri() . '/git-src/build/js/works.min.js', array(), null, false);
-      wp_enqueue_style('works-css', get_template_directory_uri() . '/git-src/build/css/works.min.css');
+//      wp_enqueue_script('works-js', get_template_directory_uri() . '/git-src/build/js/works.min.js', array(), null, false);
+//      wp_enqueue_style('works-css', get_template_directory_uri() . '/git-src/build/css/works.min.css');
+      wp_enqueue_script('works-js', get_template_directory_uri() . '/git-src/build/js/works.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/works.min.js'), false);
+      wp_enqueue_style('works-css', get_template_directory_uri() . '/git-src/build/css/works.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/works.min.css'));
     }
 
     // Conditionally enqueue for a single WORK page (single-work.php)
     if (is_singular('work')) {
-      wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
+      wp_enqueue_script('page-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/single-work.min.js'), false);
       wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/single-work.min.css'));
+//      wp_enqueue_script('single-work-js', get_template_directory_uri() . '/git-src/build/js/single-work.min.js', array(), null, false);
 //      wp_enqueue_style('single-work-css', get_template_directory_uri() . '/git-src/build/css/single-work.min.css');
     }
 
@@ -175,28 +187,33 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Conditionally enqueue for a page-about-us.php
     if (is_page_template('templates/page-about-us.php')) {
-      wp_enqueue_script('page-about-js', get_template_directory_uri() . '/git-src/build/js/about-us.min.js', array(), null, false);
+//      wp_enqueue_script('page-about-js', get_template_directory_uri() . '/git-src/build/js/about-us.min.js', array(), null, false);
+      wp_enqueue_script('page-about-js', get_template_directory_uri() . '/git-src/build/js/about-us.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/about-us.min.js'), false);
       wp_enqueue_style('page-about-css', get_template_directory_uri() . '/git-src/build/css/about-us.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/about-us.min.css'));
     }
 
     // Conditionally enqueue for a page-team.php
     if (is_page_template('templates/page-team.php')) {
 //      wp_enqueue_script('page-team-js', get_template_directory_uri() . '/git-src/build/js/team.min.js', array(), null, false);
+//      wp_enqueue_style('page-team-css', get_template_directory_uri() . '/git-src/build/css/team.min.css');
       wp_enqueue_script('page-team-js', get_template_directory_uri() . '/git-src/build/js/team.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/team.min.js'), false);
-      wp_enqueue_style('page-team-css', get_template_directory_uri() . '/git-src/build/css/team.min.css');
+      wp_enqueue_style('page-team-css', get_template_directory_uri() . '/git-src/build/css/team.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/team.min.css'));
     }
 
     // Conditionally enqueue for a page-ideas.php
     if (is_post_type_archive('ideas')) {
-      wp_enqueue_script('page-ideas-js', get_template_directory_uri() . '/git-src/build/js/ideas.min.js', array(), null, false);
-      wp_enqueue_style('page-ideas-css', get_template_directory_uri() . '/git-src/build/css/ideas.min.css');
+//      wp_enqueue_style('page-ideas-css', get_template_directory_uri() . '/git-src/build/css/ideas.min.css');
+//      wp_enqueue_script('page-ideas-js', get_template_directory_uri() . '/git-src/build/js/ideas.min.js', array(), null, false);
+      wp_enqueue_script('page-ideas-js', get_template_directory_uri() . '/git-src/build/js/ideas.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/ideas.min.js'), false);
+      wp_enqueue_style('page-ideas-css', get_template_directory_uri() . '/git-src/build/css/ideas.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/ideas.min.css'));
     }
 
     // Conditionally enqueue for a page-careers.php
     if (is_page_template('templates/page-careers.php')) {
 //      wp_enqueue_script('page-careers-js', get_template_directory_uri() . '/git-src/build/js/careers.min.js', array(), null, false);
+//      wp_enqueue_style('page-careers-css', get_template_directory_uri() . '/git-src/build/css/careers.min.css');
       wp_enqueue_script('page-careers-js', get_template_directory_uri() . '/git-src/build/js/careers.min.js', array(), filemtime(get_template_directory() . '/git-src/build/js/careers.min.js'), false);
-      wp_enqueue_style('page-careers-css', get_template_directory_uri() . '/git-src/build/css/careers.min.css');
+      wp_enqueue_style('page-careers-css', get_template_directory_uri() . '/git-src/build/css/careers.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/careers.min.css'));
 
       // Локализуем параметры для Ajax
       wp_localize_script('page-careers-js', 'ajax_career_params', array(
@@ -229,8 +246,9 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 
     // Conditionally enqueue for a page-careers.php
     if (is_page_template('templates/page-privacy-policy.php')) {
+//      wp_enqueue_style('page-privacy-policy-css', get_template_directory_uri() . '/git-src/build/css/privacy-policy.min.css');
       wp_enqueue_script('page-privacy-policy-js', get_template_directory_uri() . '/git-src/build/js/privacy-policy.min.js', array(), null, false);
-      wp_enqueue_style('page-privacy-policy-css', get_template_directory_uri() . '/git-src/build/css/privacy-policy.min.css');
+      wp_enqueue_style('page-privacy-policy-css', get_template_directory_uri() . '/git-src/build/css/privacy-policy.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/privacy-policy.min.css'));
     }
 
     // Conditionally enqueue for a page-careers.php
@@ -258,6 +276,18 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
       ));
     }
 
+    // Conditionally enqueue for a page-express-brand-audit.php
+    if (is_page_template('templates/page-express-brand-audit.php')) {
+      wp_enqueue_script('page-minpack-exclusive-js', get_template_directory_uri() . '/git-src/build/js/minpack-exclusive-complimentary.min.js', array(), null, false);
+      wp_enqueue_style('page-minpack-exclusive-css', get_template_directory_uri() . '/git-src/build/css/minpack-exclusive-complimentary.min.css');
+    }
+
+    // Conditionally enqueue for a page-cookie-policy.php
+    if (is_page_template('templates/page-cookie-policy.php')) {
+      wp_enqueue_script('page-cookies-js', get_template_directory_uri() . '/git-src/build/js/cookies.min.js', array(), null, false);
+      wp_enqueue_style('page-cookies-css', get_template_directory_uri() . '/git-src/build/css/cookies.min.css', array(), filemtime(get_template_directory() . '/git-src/build/css/cookies.min.css'));
+    }
+
     // Вызов универсальной функции для страниц слайдера
     enqueue_brief_assets('page-brief-branding.php', '_linnikov_agency_slider_branding_values', [100, 200, 300, 400, 500]);
     enqueue_brief_assets('page-brief-packaging.php', '_linnikov_agency_slider_packaging_values', [100, 200, 300, 400, 500]);
@@ -270,7 +300,8 @@ if (!function_exists('linnikov_agency_enqueue_styles_and_scripts')) {
 }
 
 // Функция для подключения стилей и скриптов для слайдера
-function enqueue_brief_assets($template_name, $meta_key, $default_values) {
+function enqueue_brief_assets($template_name, $meta_key, $default_values)
+{
   global $post;
 
   if (is_page_template('templates/' . $template_name)) {
@@ -362,15 +393,25 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 function custom_phpmailer_init(PHPMailer $phpmailer)
 {
+//  $phpmailer->isSMTP();
+//  $phpmailer->Host = 'smtp.gmail.com';  // SMTP сервер Gmail
+//  $phpmailer->SMTPAuth = true;
+//  $phpmailer->Port = 587;  // Порт для TLS
+//  $phpmailer->Username = 'evgenedoronin@gmail.com';  // Ваш Gmail логин
+//  $phpmailer->Password = 'srem wmgy mfge nvsr';  // Пароль приложения (не обычный пароль)
+//  $phpmailer->SMTPSecure = 'tls';  // Используйте TLS для безопасности
+//  $phpmailer->From = 'evgenedoronin@linnikov.agency';  // Ваш адрес Gmail в качестве отправителя
+//  $phpmailer->FromName = 'Evgene Doronin';  // Имя отправителя
+
   $phpmailer->isSMTP();
   $phpmailer->Host = 'smtp.gmail.com';  // SMTP сервер Gmail
   $phpmailer->SMTPAuth = true;
-  $phpmailer->Port = 587;  // Порт для TLS
-  $phpmailer->Username = 'evgenedoronin@gmail.com';  // Ваш Gmail логин
-  $phpmailer->Password = 'srem wmgy mfge nvsr';  // Пароль приложения (не обычный пароль)
-  $phpmailer->SMTPSecure = 'tls';  // Используйте TLS для безопасности
-  $phpmailer->From = 'evgenedoronin@linnikov.agency';  // Ваш адрес Gmail в качестве отправителя
-  $phpmailer->FromName = 'Evgene Doronin';  // Имя отправителя
+  $phpmailer->Port = 465;  // Порт для TLS
+  $phpmailer->Username = 'info@linnikov.agency';  // Ваш Gmail логин
+  $phpmailer->Password = 'vgzo cvip uzvb rhoh';  // Пароль приложения (не обычный пароль)
+  $phpmailer->SMTPSecure = 'ssl';  // Используйте TLS для безопасности
+  $phpmailer->From = 'info@linnikov.agency';  // Ваш адрес Gmail в качестве отправителя
+  $phpmailer->FromName = 'Linnikov.Agency';  // Имя отправителя
 }
 
 

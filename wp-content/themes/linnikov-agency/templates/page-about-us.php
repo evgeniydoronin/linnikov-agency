@@ -620,11 +620,7 @@ get_header();
             <div style="position: relative;" class="reveal-wrap">
               <div class="reveal-wrap__inner">
                 <div class="reveal-wrap__item"
-                     style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">We
-                </div>
-              </div>
-            </div>
-            <div class="our-offer-msg__star-wrap reveal-wrap">
+                     style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">We</div></div></div><div class="our-offer-msg__star-wrap reveal-wrap">
               <div class="reveal-wrap__inner">
                 <div class="reveal-wrap__item"
                      style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
@@ -649,12 +645,10 @@ get_header();
                   </svg>
                 </div>
               </div>
-            </div>
-            <div style="position: relative;" class="reveal-wrap">
+            </div><div style="position: relative;" class="reveal-wrap">
               <div class="reveal-wrap__inner">
                 <div class="reveal-wrap__item"
-                     style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                  offer
+                     style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">offer
                 </div>
               </div>
             </div>
@@ -703,16 +697,10 @@ get_header();
                   </svg>
                 </div>
               </div>
-            </div>
-            <div style="position: relative;" class="reveal-wrap">
+            </div><div style="position: relative;" class="reveal-wrap">
               <div class="reveal-wrap__inner">
                 <div class="reveal-wrap__item"
-                     style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                  brand
-                </div>
-              </div>
-            </div>
-            <div class="our-offer-msg__infinity-wrap reveal-wrap">
+                     style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">brand</div></div></div><div class="our-offer-msg__infinity-wrap reveal-wrap">
               <div class="reveal-wrap__inner">
                 <div class="reveal-wrap__item"
                      style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">

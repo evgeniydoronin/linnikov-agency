@@ -135,6 +135,98 @@ function linnikov_agency_work_save_sorting_meta_box($post_id)
 
 add_action('save_post', 'linnikov_agency_work_save_sorting_meta_box');
 
+
+// 0. Блок: Main Image.
+// Добавляем метабокс для изображения Main Image
+function linnikov_agency_add_main_image_meta_box()
+{
+  add_meta_box(
+    'linnikov_agency_main_image_meta_box',
+    __('Main Image', 'linnikov-agency'),
+    'linnikov_agency_main_image_meta_box_callback',
+    'work',  // Для какого типа постов добавляем метабокс
+    'normal',  // Положение метабокса
+    'high'  // Приоритет
+  );
+}
+
+add_action('add_meta_boxes', 'linnikov_agency_add_main_image_meta_box');
+
+// Коллбэк функция для метабокса Main Image
+function linnikov_agency_main_image_meta_box_callback($post)
+{
+  // Используем nonce для верификации
+  wp_nonce_field(basename(__FILE__), 'linnikov_agency_main_image_nonce');
+
+  // Получаем сохраненные значения (если они есть)
+  $main_image_webp = get_post_meta($post->ID, '_linnikov_agency_main_image_webp', true);
+
+  ?>
+  <div class="slider-image-row"
+       style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; background-color: #f9f9f9;">
+
+    <!-- Поле для загрузки изображения с предпросмотром -->
+    <div id="main_image_fields" style="display: block;">
+      <label for="linnikov_agency_main_image_webp"><?php _e('Main Image (WebP)', 'linnikov-agency'); ?></label>
+      <input type="text" name="linnikov_agency_main_image_webp" id="linnikov_agency_main_image_webp"
+             value="<?php echo esc_attr($main_image_webp); ?>" size="50" style="width: 100%; margin-bottom: 10px;"/>
+      <input type="button" class="button upload-main-image-webp" id="linnikov_agency_main_image_webp_button"
+             value="<?php _e('Upload Image', 'linnikov-agency'); ?>"/>
+      <img src="<?php echo esc_url($main_image_webp); ?>" alt="Preview" id="current_main_image_preview"
+           style="max-width: 600px; display: <?php echo empty($main_image_webp) ? 'none' : 'block'; ?>; margin-top: 10px;">
+    </div>
+  </div>
+
+  <script>
+      jQuery(document).ready(function ($) {
+
+          // Загрузка изображения Main Image
+          $('#linnikov_agency_main_image_webp_button').click(function (e) {
+              e.preventDefault();
+              var image = wp.media({
+                  title: '<?php _e('Upload Image', 'linnikov-agency'); ?>',
+                  multiple: false
+              }).open().on('select', function () {
+                  var uploaded_image = image.state().get('selection').first();
+                  var image_url = uploaded_image.toJSON().url;
+                  $('#linnikov_agency_main_image_webp').val(image_url);
+                  $('#current_main_image_preview').attr('src', image_url).show();
+              });
+          });
+
+      });
+  </script>
+  <?php
+}
+
+// Сохранение данных метабокса Main Image
+function linnikov_agency_save_main_image_meta_box($post_id) {
+  // Проверка nonce
+  if (!isset($_POST['linnikov_agency_main_image_nonce']) || !wp_verify_nonce($_POST['linnikov_agency_main_image_nonce'], basename(__FILE__))) {
+    return $post_id;
+  }
+
+  // Проверка автосохранения
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+    return $post_id;
+  }
+
+  // Проверка прав пользователя
+  if (!current_user_can('edit_post', $post_id)) {
+    return $post_id;
+  }
+
+  // Сохранение изображения
+  if (isset($_POST['linnikov_agency_main_image_webp'])) {
+    update_post_meta($post_id, '_linnikov_agency_main_image_webp', sanitize_text_field($_POST['linnikov_agency_main_image_webp']));
+  } else {
+    delete_post_meta($post_id, '_linnikov_agency_main_image_webp');
+  }
+}
+
+add_action('save_post', 'linnikov_agency_save_main_image_meta_box');
+
+
 // 1. Блок: hero.
 // Добавляем метабокс для изображения Hero
 function linnikov_agency_add_hero_meta_box()
@@ -267,6 +359,11 @@ function linnikov_agency_hero_meta_box_callback($post)
                   $('#linnikov_agency_hero_video_poster_webp').val(image_url);
                   $('#current_hero_video_poster_preview').attr('src', image_url).show();
               });
+          });
+
+          // Показ/скрытие всплывающей подсказки с изображением при наведении на иконку глаза
+          $('.eye-icon-wrapper-slider').hover(function () {
+              $(this).find('.image-preview-tooltip').toggle();
           });
       });
   </script>
@@ -603,6 +700,11 @@ function linnikov_agency_work_pictures_tails_meta_box_callback($post)
 
   <script>
       jQuery(document).ready(function ($) {
+          // Показ/скрытие всплывающей подсказки с изображением при наведении на иконку глаза
+          $('.eye-icon-wrapper-tails').hover(function () {
+              $(this).find('.image-preview-tooltip-tails').toggle();
+          });
+
           // Загрузка первого изображения
           $('.upload-first-image-webp').on('click', function (e) {
               e.preventDefault();

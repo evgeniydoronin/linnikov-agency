@@ -106,6 +106,32 @@
         </nav>
         <div class="top-cases__body" data-top-cases-elem="body">
           <?php
+//          // Получение настроенного порядка из опции
+//          $work_order = get_option('linnikov_agency_work_order', '');
+//
+//          if (!empty($work_order)) {
+//            $work_order = explode(',', $work_order); // Преобразуем строку в массив
+//          } else {
+//            $work_order = array(); // Используем пустой массив по умолчанию
+//          }
+//
+//          $args = array(
+//            'post_type' => 'work',
+//            'posts_per_page' => -1, // Вывод всех работ
+//            'orderby' => 'post__in', // Используем порядок, заданный в 'post__in'
+//            'post__in' => $work_order, // Устанавливаем порядок работ
+//            'post_status' => 'publish', // Выводим только опубликованные работы
+//          );
+//
+//          // Если порядок пустой, убираем параметр 'post__in'
+//          if (empty($work_order)) {
+//            unset($args['post__in']);
+//            $args['orderby'] = 'menu_order'; // Устанавливаем порядок по menu_order
+//          }
+//
+//          $query = new WP_Query($args);
+
+
           // Получение настроенного порядка из опции
           $work_order = get_option('linnikov_agency_work_order', '');
 
@@ -115,6 +141,7 @@
             $work_order = array(); // Используем пустой массив по умолчанию
           }
 
+          // Сначала выводим посты с кастомной сортировкой
           $args = array(
             'post_type' => 'work',
             'posts_per_page' => -1, // Вывод всех работ
@@ -123,39 +150,80 @@
             'post_status' => 'publish', // Выводим только опубликованные работы
           );
 
-          // Если порядок пустой, убираем параметр 'post__in'
-          if (empty($work_order)) {
-            unset($args['post__in']);
-            $args['orderby'] = 'menu_order'; // Устанавливаем порядок по menu_order
-          }
-
           $query = new WP_Query($args);
-          ?>
-          <?php
-          if ($query->have_posts()) :
-            while ($query->have_posts()) : $query->the_post();
+
+          // Получаем ID постов, которые уже были выведены
+          $sorted_post_ids = wp_list_pluck($query->posts, 'ID');
+
+          // Запрашиваем посты, которые не входят в кастомный порядок
+          $args_unsorted = array(
+            'post_type' => 'work',
+            'posts_per_page' => -1,
+            'post_status' => 'publish',
+            'post__not_in' => $sorted_post_ids, // Исключаем посты, которые уже были выведены
+            'orderby' => 'menu_order', // Выводим их по порядку из menu_order или по умолчанию
+          );
+
+          $query_unsorted = new WP_Query($args_unsorted);
+
+          // Теперь у нас есть два набора постов: с сортировкой и без неё
+          // Можно вывести их вместе
+
+          if ($query->have_posts()) {
+            while ($query->have_posts()) {
+              $query->the_post();
+              // Вывод постов с кастомной сортировкой
               $work_tags = get_the_terms(get_the_ID(), 'work_tag'); // Получаем теги работы
               $categories = '';
               if ($work_tags && !is_wp_error($work_tags)) {
                 $categories = join(', ', wp_list_pluck($work_tags, 'slug')); // Преобразуем массив тегов в строку
               }
               // Получаем Hero image из метаполя
-              $hero_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_hero_image_webp', true);
-              $hero_image_jpg = str_replace('.webp', '.jpg', $hero_image_webp); // Предполагаем, что JPG изображение имеет тот же путь, что и WebP, но с другим расширением
+              $main_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_main_image_webp', true);
+              $main_image_jpg = str_replace('.webp', '.jpg', $main_image_webp); // Предполагаем, что JPG изображение имеет тот же путь, что и WebP, но с другим расширением
               ?>
               <a href="<?php the_permalink(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="<?php the_title(); ?>" data-category="<?php echo esc_attr($categories); ?>">
                 <div class="img-wrap__inner">
                   <picture>
-                    <source type="image/webp" srcset="<?php echo esc_url($hero_image_webp); ?>">
-                    <img src="<?php echo esc_url($hero_image_jpg); ?>" alt="<?php the_title(); ?>" loading="lazy">
+                    <source type="image/webp" srcset="<?php echo esc_url($main_image_webp); ?>">
+                    <img src="<?php echo esc_url($main_image_jpg); ?>" alt="<?php the_title(); ?>" loading="lazy">
                   </picture>
                 </div>
               </a>
-            <?php
-            endwhile;
-            wp_reset_postdata();
-          endif;
+              <?php
+            }
+          }
+
+          // Теперь выводим посты без кастомной сортировки
+          if ($query_unsorted->have_posts()) {
+            while ($query_unsorted->have_posts()) {
+              $query_unsorted->the_post();
+              // Вывод постов без кастомной сортировки
+              $work_tags = get_the_terms(get_the_ID(), 'work_tag'); // Получаем теги работы
+              $categories = '';
+              if ($work_tags && !is_wp_error($work_tags)) {
+                $categories = join(', ', wp_list_pluck($work_tags, 'slug')); // Преобразуем массив тегов в строку
+              }
+              // Получаем Hero image из метаполя
+              $main_image_webp = get_post_meta(get_the_ID(), '_linnikov_agency_main_image_webp', true);
+              $main_image_jpg = str_replace('.webp', '.jpg', $main_image_webp); // Предполагаем, что JPG изображение имеет тот же путь, что и WebP, но с другим расширением
+              ?>
+              <a href="<?php the_permalink(); ?>" class="img-wrap img-wrap_cover case-poster case-poster_top" data-caption="<?php the_title(); ?>" data-category="<?php echo esc_attr($categories); ?>">
+                <div class="img-wrap__inner">
+                  <picture>
+                    <source type="image/webp" srcset="<?php echo esc_url($main_image_webp); ?>">
+                    <img src="<?php echo esc_url($main_image_jpg); ?>" alt="<?php the_title(); ?>" loading="lazy">
+                  </picture>
+                </div>
+              </a>
+              <?php
+            }
+          }
+
+          // Не забываем сбросить глобальные переменные WP
+          wp_reset_postdata();
           ?>
+
         </div>
       </div>
     </section>
